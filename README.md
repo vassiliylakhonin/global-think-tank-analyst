@@ -1,8 +1,8 @@
 # Global Think-Tank Analyst
 
-`global-think-tank-analyst` is a custom AI skill for generating structured, decision-ready policy analysis in the style of leading global think tanks.
+`global-think-tank-analyst` is an **OpenClaw skill** for producing structured, decision-ready policy analysis in the style of leading global think tanks.
 
-It is designed for users who need more than a generic summary: clear policy options, trade-offs, risks, scenarios, and implementation logic.
+It is built for users who need more than a generic summary: clear policy options, trade-offs, risks, scenarios, and implementation logic.
 
 ## What This Skill Produces
 
@@ -29,7 +29,7 @@ This skill is useful for:
 
 ## Design Principles
 
-The skill is built to emphasize:
+The skill is designed to emphasize:
 
 - structured reasoning
 - explicit assumptions
@@ -39,7 +39,7 @@ The skill is built to emphasize:
 
 ## Repository Contents
 
-- `SKILL.md` - the core skill definition and workflow instructions
+- `SKILL.md` - core skill definition and workflow instructions
 
 ## Example Prompt
 
@@ -47,4 +47,4 @@ The skill is built to emphasize:
 
 ## Purpose
 
-This repository exists as a reusable skill package for policy and strategic analysis workflows in Codex-compatible environments.
+This repository provides a reusable **OpenClaw skill package** for policy and strategic analysis workflows.
