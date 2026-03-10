@@ -24,11 +24,14 @@ An OpenClaw skill for producing high-quality, decision-ready policy analysis wit
 
 ```bash
 clawhub install global-think-tank-analyst
+
 Optional pinned version:
 
 clawhub install global-think-tank-analyst --version 1.0.0
+
 Use in OpenClaw
-Use $global-think-tank-analyst to evaluate policy options for [topic], including stakeholder analysis, scenarios, implementation risks, and a final recommendation.
+Use $global-think-tank-analyst to evaluate policy options for [topic], including stakeholder analysis, scenarios,
+
 Typical output
 Executive Summary
 Policy Objective
@@ -41,3 +44,6 @@ Risk Register
 Implementation Pathway
 Final Recommendation
 Assumptions and Confidence
+
+Purpose
+This repository packages a reusable OpenClaw skill for structured, decision-oriented policy and strategic analysis.
