@@ -46,6 +46,3 @@ SKILL.md
 README.md
 Purpose
 This repository packages a reusable OpenClaw skill for structured, decision-oriented policy and strategic analysis.
-
-License
-Add a license file if you plan to distribute the skill publicly.
