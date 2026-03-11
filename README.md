@@ -47,3 +47,5 @@ Assumptions and Confidence
 
 Purpose
 This repository packages a reusable OpenClaw skill for structured, decision-oriented policy and strategic analysis.
+
+License MIT
