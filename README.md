@@ -1,55 +1,16 @@
-# Global Think-Tank Analyst (OpenClaw Skill)
+# Global Think Tank Analyst (OpenClaw Skill)
 
-<p align="left">
-  <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst/stargazers"><img src="https://img.shields.io/github/stars/vassiliylakhonin/global-think-tank-analyst?style=for-the-badge" alt="Stars"></a>
-  <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst/network/members"><img src="https://img.shields.io/github/forks/vassiliylakhonin/global-think-tank-analyst?style=for-the-badge" alt="Forks"></a>
-  <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst/issues"><img src="https://img.shields.io/github/issues/vassiliylakhonin/global-think-tank-analyst?style=for-the-badge" alt="Issues"></a>
-  <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst/commits/main"><img src="https://img.shields.io/github/last-commit/vassiliylakhonin/global-think-tank-analyst?style=for-the-badge" alt="Last Commit"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License"></a>
-</p>
+`global-think-tank-analyst` produces structured geopolitical, strategic, and policy analysis in a clear think-tank style.
 
-A decision-grade policy analysis skill for OpenClaw that helps teams produce **structured, evidence-aware, and implementation-ready** briefs in the style of leading global think tanks.
+It is designed for decision-useful outputs with explicit assumptions, confidence labels, alternative hypotheses, and practical recommendations.
 
-Designed for policy, strategy, and research workflows where outputs must be useful for real decisions—not just descriptive summaries.
+## What this skill does
 
----
-
-## Why this skill exists
-
-Most AI outputs on policy are either:
-- too generic to guide decisions, or
-- too verbose to be operational.
-
-This skill is built to close that gap by enforcing:
-- clear decision objectives,
-- explicit assumptions,
-- option comparison with trade-offs,
-- risk ownership,
-- and execution pathways.
-
----
-
-## Core capabilities
-
-- Decision-focused policy briefs (not generic summaries)
-- Scenario analysis (best/base/worst + trigger indicators)
-- Stakeholder and political-economy mapping
-- Policy option comparison with feasibility and time-to-impact
-- Risk register with mitigation owners
-- Implementation pathways (30/60/90 + 4–12 month horizon)
-- Explicit assumptions, evidence quality, and confidence labels
-
----
-
-## Best fit use cases
-
-- Government and ministerial advisory memos
-- Think tank and policy unit analysis
-- NGO/donor strategy notes
-- Geopolitical and public policy scenario planning
-- Institution-facing AI workflows requiring auditability
-
----
+- Builds executive policy briefs and full strategic reports
+- Produces risk assessments, horizon scans, and scenario sets
+- Maps actors, incentives, constraints, and power balances
+- Stress-tests claims with red-team and alternative-hypothesis logic
+- Exports structured JSON for downstream workflows
 
 ## Install
 
@@ -57,72 +18,48 @@ This skill is built to close that gap by enforcing:
 clawhub install global-think-tank-analyst
 ```
 
-Install a pinned version:
-
-```bash
-clawhub install global-think-tank-analyst --version 1.0.0
-```
-
----
-
-## Quick start
-
-Use in OpenClaw:
+## Quick usage
 
 ```text
-Use $global-think-tank-analyst to evaluate policy options for [topic], including stakeholder analysis, scenarios, risks, and implementation pathways.
+think-tank Analyze US-China tech decoupling risks 2026–2030
 ```
-
-Example prompt:
 
 ```text
-Use $global-think-tank-analyst to assess policy options for regulating frontier AI models in Central Asia over the next 24 months. Include a stakeholder map, scenario analysis, and a 30/60/90-day implementation plan.
+think-tank --scenarios Arctic resource competition under climate change 2027–2035
 ```
 
----
+```text
+think-tank --red-team Russian hybrid tactics in Eastern Europe
+```
 
-## Output structure (typical)
+## Common modes
 
-1. Executive Summary  
-2. Policy Objective  
-3. Current Context  
-4. Stakeholder Map  
-5. Policy Options and Trade-offs  
-6. Scenario Analysis  
-7. Risk Register  
-8. Implementation Pathway  
-9. Monitoring Framework  
-10. Final Recommendation  
-11. Assumptions, Evidence Quality, Confidence
+- `think-tank [topic]` — concise brief
+- `think-tank --report [topic]` — full structured report
+- `think-tank --risk [topic]` — exposure, triggers, impact pathways
+- `think-tank --scenarios [topic] [timeframe]` — plausible futures + signposts
+- `think-tank --horizon [topic] [timeframe]` — emerging signals and wildcards
+- `think-tank --red-team [claim or policy]` — stress-test assumptions and conclusions
+- `think-tank --json [topic]` — structured machine-readable output
 
----
+## Typical outputs
 
-## Quality standards
+1. Executive summary + situation overview
+2. Strategic drivers and context scan
+3. Actor map / stakeholder analysis
+4. Risk matrix and trigger indicators
+5. Baseline / optimistic / pessimistic / wildcard scenarios
+6. Options, recommendations, and indicators to watch
+7. Confidence labels, assumptions, and alternative hypotheses
 
-- **Decision usefulness over verbosity**
-- **Transparent assumptions and uncertainty**
-- **Operational realism (budget/legal/political constraints)**
-- **Actionable recommendations with clear next steps**
+## Repository structure
 
----
-
-## Contributing
-
-Contributions are welcome.
-
-Suggested contributions:
-- Improve prompt patterns and examples
-- Add domain-specific policy templates
-- Tighten quality gates for high-stakes topics
-- Improve clarity and brevity of output structures
-
-Open an issue first for substantial changes so we can align scope.
-
----
-
-## Repository purpose
-
-This repository packages a reusable OpenClaw skill for policy and strategic analysis where quality must be practical, evidence-aware, and implementation-ready.
+```text
+.
+├── SKILL.md
+├── README.md
+└── LICENSE
+```
 
 ## License
 

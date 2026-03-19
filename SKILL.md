@@ -1,280 +1,470 @@
 ---
-name: Global Think Tank Analyst
-description: >-
-  Decision-grade policy analysis for governments, NGOs, and institutions:
-  scenario planning, stakeholder mapping, policy options, risk registers,
-  and implementation-ready recommendations with explicit assumptions and
-  confidence levels.
+name: global-think-tank-analyst
+description: Produce structured geopolitical, strategic, and policy analysis in a clear think-tank style. Use when assessing international risks, policy options, security trends, scenarios, or red-team challenges. Also covers confidence labels, assumptions, alternative hypotheses, indicators to watch, and JSON-ready outputs.
+homepage: https://github.com/vassiliylakhonin/global-think-tank-analyst
+user-invocable: true
+metadata: {"openclaw":{"emoji":"🌍","os":["linux","darwin","win32"]}}
 ---
 
-# Global Policy Think-Tank Analyst
+# Global Think Tank Analyst
 
-## Purpose
-Deliver rigorous, decision-grade policy analysis in the style of leading global think tanks, with transparent assumptions, evidence quality, trade-offs, and implementation realism.
+Produce structured geopolitical, strategic, and policy analysis in a
+clear think-tank style.
 
-## Use When
+Use this skill to turn complex international, security, policy, and
+strategic questions into decision-useful analysis with explicit
+assumptions, confidence labels, alternative hypotheses, and actionable
+outputs.
+
+## Quick Start
+
+Install:
+
+```bash
+clawhub install global-think-tank-analyst
+Start with a direct topic:
+
+text
+think-tank Analyze US-China tech decoupling risks 2026–2030
+Generate scenarios:
+
+text
+think-tank --scenarios Arctic resource competition under climate change 2027–2035
+Stress-test a claim:
+
+text
+think-tank --red-team Russian hybrid tactics in Eastern Europe
+Best For
+This skill is especially useful for:
+
+policy analysts
+
+geopolitical researchers
+
+strategy teams
+
+risk and foresight professionals
+
+corporate intelligence teams
+
+think-tank style writing and brief production
+
+Quick Reference
+If you need...	Use...
+A concise geopolitical brief	think-tank [topic]
+A full structured report	think-tank --report [topic]
+Exposure, triggers, and impacts	think-tank --risk [topic]
+Multiple plausible futures	think-tank --scenarios [topic] [timeframe]
+Emerging signals and horizon scan	think-tank --horizon [topic] [timeframe]
+A challenge test of a forecast or claim	think-tank --red-team [claim or policy]
+Structured export	think-tank --json [topic]
+What You Get
+Depending on the request, this skill can produce:
+
+Executive summary
+
+Situation overview
+
+Strategic drivers
+
+PESTLE scan
+
+Stakeholder analysis
+
+Power map
+
+Risk matrix
+
+Scenario set
+
+Horizon scan
+
+Alternative hypotheses
+
+Red-team challenge
+
+Policy or strategy options
+
+Recommendations
+
+Indicators to watch
+
+Confidence and assumptions
+
+JSON export block
+
+When to Use
 Use this skill when the user needs:
-- Policy analysis on national, regional, or global issues
-- Strategic options with pros/cons and implementation pathways
-- Scenario planning (best/base/worst case)
-- Stakeholder and political-economy mapping
-- Risk analysis with mitigation strategies
-- A clear recommendation memo (or multiple options) for decision-makers
 
-## Not For
-- Legal advice as a substitute for licensed counsel
-- Classified intelligence collection
-- Real-time emergency response command
-- Purely academic literature reviews without decision intent
+Geopolitical analysis
 
-## Default Operating Mode
-- Primary mode: **Standard**
-- Escalate to **Deep** for high-stakes, high-uncertainty, or geopolitically sensitive topics
-- Use **Fast** for quick briefings and early framing
+International relations assessment
 
----
+Strategic risk evaluation
 
-## Analysis Modes
+Policy implications
 
-### 1) Fast (rapid brief)
-**Goal:** 10–20 minute directional policy brief  
-**Orchestration:** 1–2 specialist subagents  
-**Output:** concise options note + immediate next actions
+Security trend analysis
 
-### 2) Standard (full memo)
-**Goal:** decision-ready policy memo  
-**Orchestration:** 3–5 specialist subagents  
-**Output:** structured recommendations + risks + implementation path
+Scenario planning
 
-### 3) Deep (red-team enhanced)
-**Goal:** high-confidence strategic package  
-**Orchestration:** 6+ specialists + explicit red-team challenge  
-**Output:** full policy dossier with stress-tested assumptions and contingencies
+Horizon scanning
 
----
+A red-team challenge of a claim or forecast
 
-## Required Input Schema
-Always collect or infer the following before analysis:
+Policy or strategy options for governments, firms, or institutions
 
-```yaml
-topic: string                    # policy issue/problem statement
-objective: string                # what decision must be made
-geography: string                # country/region/global scope
-time_horizon: string             # e.g., 3 months / 2 years / 10 years
-target_audience: string          # minister, donor, parliament, board, etc.
-constraints:                     # hard limits
-  budget: string|null
-  legal_regulatory: string|null
-  political: string|null
-  operational: string|null
-success_criteria:                # what success looks like
-  - string
-risk_tolerance: string           # low / medium / high
-evidence_standard: string        # rapid / balanced / stringent
-deliverable_type: string         # brief / memo / strategy note / options paper
-```
+Modes
+text
+think-tank [topic]
+think-tank --report [topic]
+think-tank --risk [topic]
+think-tank --scenarios [topic] [timeframe]
+think-tank --horizon [topic] [timeframe]
+think-tank --red-team [claim or policy]
+think-tank --json [topic]
+Intake Template
+text
+Topic:            |
+Region / theater: |
+Time horizon:     |
+Primary question: |
+Key actors:       |
+Audience:         | (policy / corporate / academic / public)
+Mode:             | (brief / report / risk / scenarios / horizon / red-team / json)
+Depth:            | (light / standard / deep)
+Free-form input also works. Ask follow-up questions only if missing
+details would block a useful answer.
 
-If critical fields are missing, state assumptions explicitly before proceeding.
+Core Rules
+text
+1. Separate sourced facts from expert judgment.
+2. Mark uncertainty explicitly.
+3. State key assumptions in deep analysis.
+4. Include at least one alternative hypothesis when ambiguity is high.
+5. Use a red-team lens to challenge main conclusions.
+6. Avoid deterministic language in fast-moving environments.
+7. Recommend expert review for crisis or high-stakes decisions.
+8. Do not present speculation as fact.
+Confidence Labels
+text
+High        — well-supported and relatively stable
+Medium      — plausible but contested or incomplete
+Low         — weakly supported or rapidly changing
+Speculative — forward-looking inference with limited evidence
+Use these labels whenever evidence is uncertain or forecasts rely on
+assumptions.
 
----
+Framework Selection
+Choose only the minimum frameworks needed for the task.
 
-## Subagent Orchestration Framework
+Use:
 
-When complexity justifies parallel analysis, delegate to specialist tracks:
+text
+PESTLE              — when macro context and structural drivers matter
+Stakeholder analysis — when several actors shape the outcome
+Power mapping       — when leverage and balance of power matter
+Scenario planning   — when uncertainty is high
+SAT methods         — when ambiguity, bias, or politicization is high
+SWOT                — when evaluating one actor, policy, or institution
+Cross-impact        — when second-order effects and cascades matter
+Workflow
+Step 1 — Parse the Request
 
-1. **Geopolitics & Security Analyst**
-   - Regional dynamics, alignment pressures, escalation pathways
+Extract:
 
-2. **Political Economy Analyst**
-   - Incentives, winners/losers, state capacity, implementation friction
+text
+- topic
+- region or theater
+- time horizon
+- main actors
+- user objective
+- preferred mode
+- depth
+Step 2 — Frame the Question
 
-3. **Macroeconomics & Fiscal Analyst**
-   - Cost ranges, funding feasibility, fiscal trade-offs
+Define:
 
-4. **Law & Regulation Analyst**
-   - Compatibility with domestic/international frameworks
+text
+- core analytical question
+- scope boundaries
+- decision context
+- main uncertainties
+Step 3 — Select Frameworks
 
-5. **Social Impact & Equity Analyst**
-   - Distributional effects, vulnerable groups, legitimacy risks
+Apply only what is needed.
 
-6. **Evidence & OSINT Analyst**
-   - Source triangulation, evidence quality grading, uncertainty flags
+Examples:
 
-7. **Red-Team Analyst (Deep mode required)**
-   - Attack assumptions, identify failure modes, adversarial scenarios
+text
+Policy brief   → PESTLE + stakeholders + recommendations
+Risk memo      → drivers + risk matrix + indicators
+Forecast       → scenarios + signposts + assumptions
+Challenge test → SAT + alternative hypotheses + red-team
+Step 4 — Build the Analysis
 
-### Synthesis Rules
-- Main agent remains accountable for final coherence
-- Resolve cross-agent conflicts explicitly (do not average silently)
-- If evidence conflicts, rank confidence by source quality and recency
-- Preserve minority/high-risk dissent in a “Contrarian View” section
+Develop:
 
----
+text
+- situation overview
+- strategic drivers
+- actor incentives and constraints
+- key risks
+- second-order effects
+- plausible future pathways
+Step 5 — Stress-Test Conclusions
 
-## Output Schema (Required)
+Challenge the initial thesis with prompts such as:
 
-Return analysis in this structure:
+text
+- What if the main assumption is wrong?
+- Which actor is underestimated?
+- What trigger could break the forecast?
+- What evidence would falsify the conclusion?
+Step 6 — Deliver Decision-Useful Output
 
-```yaml
-executive_summary:
-  issue: string
-  why_now: string
-  headline_recommendation: string
+Always end with:
 
-policy_objective:
-  primary_goal: string
-  secondary_goals:
-    - string
+text
+- key findings
+- main risks
+- options or implications
+- recommendations
+- confidence level
+- indicators to watch
+Core Frameworks
+PESTLE
 
-current_context:
-  key_facts:
-    - string
-  uncertainty_flags:
-    - string
+text
+Political      — leadership, alliances, regime stability, conflict drivers
+Economic       — trade, debt, sanctions, investment, inflation, dependency
+Social         — demographics, migration, legitimacy, polarization
+Technological  — AI, cyber, semiconductors, infrastructure, surveillance
+Legal          — regulation, treaties, sovereignty, compliance
+Environmental  — climate stress, water, food, disasters, resources
+Stakeholder Analysis
 
-stakeholder_map:
-  actors:
-    - name: string
-      interests: [string]
-      influence: low|medium|high
-      likely_position: string
+For each actor capture:
 
-policy_options:
-  - option: string
-    mechanism: string
-    expected_benefits: [string]
-    tradeoffs_costs: [string]
-    feasibility: low|medium|high
-    time_to_impact: string
+text
+- interests
+- capabilities
+- constraints
+- likely behavior
+- power level: High / Medium / Low
+- position: Supportive / Mixed / Opposed / Unclear
+Scenario Planning
 
-scenario_analysis:
-  best_case: string
-  base_case: string
-  worst_case: string
-  trigger_indicators:
-    - string
+Use at least:
 
-risk_register:
-  - risk: string
-    probability: low|medium|high
-    impact: low|medium|high
-    mitigation: string
-    owner: string
+text
+- Baseline
+- Optimistic
+- Pessimistic
+- Wildcard
+For each scenario include:
 
-implementation_pathway:
-  first_30_days: [string]
-  days_31_90: [string]
-  months_4_12: [string]
-  dependencies: [string]
+text
+- description
+- main drivers
+- trigger conditions
+- early warning indicators
+- strategic implications
+- confidence
+Structured Analytic Techniques
 
-monitoring_framework:
-  leading_indicators: [string]
-  lagging_indicators: [string]
-  review_cadence: string
+Use one or more in deep analysis:
 
-assumptions:
-  - string
+text
+- Key Assumptions Check
+- Analysis of Competing Hypotheses
+- Indicators and Signposts
+- Red Team review
+High-Relevance Domains
+Add these when relevant:
 
-evidence_quality:
-  overall: low|medium|high
-  notes: string
+text
+- hybrid and cognitive warfare
+- disinformation and AI-generated propaganda
+- supply chain and critical minerals dependencies
+- climate-security risks
+- cyber and space competition
+- AI and autonomy in conflict or statecraft
+- VUCA / BANI conditions in unstable systems
+Output Formats
+Executive Policy Brief
 
-confidence:
-  overall: low|medium|high
-  rationale: string
+text
+1. Executive Summary
+2. Key Findings
+3. Main Risks
+4. Policy or Strategy Options
+5. Recommendations
+6. Confidence and Assumptions
+Full Strategic Report
 
-final_verdict:
-  recommendation_type: Proceed|Proceed with Conditions|Delay|Do Not Proceed
-  conditions_if_any: [string]
-```
+text
+1. Executive Summary
+2. Situation Overview
+3. Context Scan
+4. Key Actors and Power Map
+5. Strategic Drivers
+6. Risk Matrix
+7. Scenario Analysis
+8. Alternative Hypotheses
+9. Policy Options
+10. Recommendations
+11. Indicators to Watch
+12. Confidence and Caveats
+Risk Assessment
 
----
+text
+1. Risk Overview
+2. Risk Matrix
+3. Trigger Conditions
+4. Impact Pathways
+5. Mitigation Options
+6. Indicators to Watch
+Horizon Scan
 
-## Quality Gates (must pass before finalizing)
+text
+1. Emerging Signals
+2. Weak Signals
+3. Structural Drivers
+4. Wildcards
+5. 3–5 Year Implications
+Red-Team Memo
 
-Run deterministic gate when structured output is available:
-- `scripts/policy_gate.py --input <memo.json>`
-- Include gate score/verdict in final recommendation.
-
-1. **Assumptions transparency**  
-   - Are key assumptions explicit and testable?
-
-2. **Evidence integrity**  
-   - Are claims tied to credible evidence or clearly marked as uncertain?
-
-3. **Alternatives completeness**  
-   - Are at least 2–3 viable policy options compared?
-
-4. **Implementation realism**  
-   - Are budget, legal, political, and capacity constraints reflected?
-
-5. **Risk rigor**  
-   - Are major risks probability/impact-rated with mitigations and owners?
-
-6. **Decision usefulness**  
-   - Does the memo support a real Go/No-Go/Conditional decision?
-
-If any gate fails, revise before delivering.
-
----
-
-## Reasoning Standards
-- Use ranges, not fake precision, for uncertain numbers
-- Distinguish facts, inferences, and judgments
-- Surface what would change the recommendation
-- Prefer “decision relevance” over encyclopedic breadth
-
----
-
-## Final Memo Template (human-readable)
-
-Include a final line:
-- `Gate status: Pass / Conditional Pass / Fail (score: X/100)`
+text
+1. Target Claim or Strategy
+2. Hidden Assumptions
+3. Competing Hypotheses
+4. Failure Modes
+5. Adversary Perspective
+6. Revised Assessment
+Standard Output Template
+text
+# [Title]
 
 ## Executive Summary
-- Issue:
-- Why this matters now:
-- Recommended direction:
+[Concise synthesis]
 
-## Policy Options Compared
-- Option A:
-- Option B:
-- Option C:
+## Situation Overview
+[Current context]
 
-## Verdict
-**Proceed / Proceed with Conditions / Delay / Do Not Proceed**
+## Strategic Drivers
+- Driver 1
+- Driver 2
+- Driver 3
 
-## Gate Conditions (with dates/thresholds)
-- Condition 1:
-- Condition 2:
+## Key Actors
+| Actor | Interests | Capabilities | Constraints | Likely Behavior |
 
-## Top Risks & Mitigations
-1. Risk — Mitigation
-2. Risk — Mitigation
-3. Risk — Mitigation
+## Risk Matrix
+| Risk | Likelihood | Impact | Time Horizon | Notes |
 
-## 30/60/90-Day Action Plan
-- 0–30 days:
-- 31–60 days:
-- 61–90 days:
+## Scenarios
+### Baseline
+### Optimistic
+### Pessimistic
+### Wildcard
 
-## Data Gaps to Validate Next
-- Gap 1
-- Gap 2
-- Gap 3
+## Options
+1. Option A
+2. Option B
+3. Option C
 
----
+## Recommendations
+- Priority 1
+- Priority 2
+- Priority 3
 
-## Example Triggers
-- “Assess policy options for regulating frontier AI models in Central Asia.”
-- “Create a decision memo on energy subsidy reform with political risk analysis.”
-- “Build a scenario-based migration policy brief for the next 24 months.”
-- “Compare sanctions policy pathways and implementation feasibility.”
+## Indicators to Watch
+- Indicator 1
+- Indicator 2
+- Indicator 3
 
----
+## Confidence and Assumptions
+- Confidence:
+- Key assumptions:
+- Alternative hypothesis:
+JSON Output
+json
+{
+  "query": "",
+  "mode": "brief",
+  "time_horizon": "",
+  "summary": "",
+  "drivers": [],
+  "pestle": {
+    "political": "",
+    "economic": "",
+    "social": "",
+    "technological": "",
+    "legal": "",
+    "environmental": ""
+  },
+  "stakeholders": [
+    {
+      "name": "",
+      "interests": "",
+      "capabilities": "",
+      "constraints": "",
+      "power": "high",
+      "position": "mixed"
+    }
+  ],
+  "risks": [
+    {
+      "name": "",
+      "likelihood": "medium",
+      "impact": "high",
+      "time_horizon": "",
+      "notes": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Baseline",
+      "description": "",
+      "drivers": [],
+      "indicators": [],
+      "confidence": "medium"
+    }
+  ],
+  "policy_options": [],
+  "recommendations": [],
+  "assumptions": [],
+  "alternative_hypotheses": [],
+  "confidence": "medium"
+}
+Limits
+This skill does not:
 
-## Style
-- Concise, evidence-led, decision-oriented
-- No jargon without operational meaning
-- Explicit confidence and uncertainty labels
-- Practical over performative
+replace classified, field, or government intelligence
+
+guarantee forecasting accuracy
+
+justify advocacy framed as analysis
+
+remove the need for expert review in crisis decisions
+
+If evidence is thin, keep the output concise rather than padded.
+
+Quick Tips
+Use --risk when the user wants triggers and exposure, not a full report.
+
+Use --scenarios when uncertainty is the main issue.
+
+Use --red-team before finalizing a strong claim or forecast.
+
+For corporate audiences, emphasize sanctions, supply chains, market access, and regulatory exposure.
+
+For policy audiences, emphasize feasibility, sequencing, and second-order effects.
+
+In polarized topics, include at least one alternative hypothesis.
+
+Recommend expert review for operational or crisis decisions.
+
+Author
+Vassiliy Lakhonin
