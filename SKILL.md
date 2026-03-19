@@ -146,6 +146,13 @@ text
 6. Avoid deterministic language in fast-moving environments.
 7. Recommend expert review for crisis or high-stakes decisions.
 8. Do not present speculation as fact.
+
+Decision-Grade Additions (required in standard/deep mode)
+text
+9. Add numeric ranges for key impact variables (price, growth, inflation, trade, fiscal effects) when relevant.
+10. Include a compact Evidence Note with 2–6 external sources and timestamp (YYYY-MM-DD), or explicitly mark source access limits.
+11. Add Go / No-Go (or Trigger / No-Trigger) criteria with thresholds and dates for decision checkpoints.
+12. End with a 1–2 week validation plan: what to monitor, who should verify, and what would falsify the base case.
 Confidence Labels
 text
 High        — well-supported and relatively stable
