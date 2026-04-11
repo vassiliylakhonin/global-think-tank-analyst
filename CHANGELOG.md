@@ -4,6 +4,9 @@ All notable changes to this project are documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Synced `SKILL.md` with richer ClawHub methodology (framework selection, workflow, output formats, structured template) and cleaned markdown formatting for GitHub readability.
+
 ### Added
 - `FORK_GUIDE.md` with a 15-minute adaptation flow
 - `CONTRIBUTING.md` with PR workflow and quality gates

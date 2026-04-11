@@ -1,6 +1,6 @@
 ---
 name: global-think-tank-analyst
-description: Produce structured geopolitical, strategic, and policy analysis in a clear think-tank style, with assumptions, confidence labels, alternative hypotheses, indicators to watch, and action-ready recommendations.
+description: Produce decision-ready geopolitical and policy analysis in a think-tank format. Use for country risk, security trend assessment, scenario planning, red-team challenge, and strategy options; outputs include explicit assumptions, confidence labels, alternative hypotheses, indicators to watch, and JSON-ready structure.
 homepage: https://github.com/vassiliylakhonin/global-think-tank-analyst
 user-invocable: true
 metadata: {"openclaw":{"emoji":"🌍","os":["linux","darwin","win32"]}}
@@ -8,9 +8,11 @@ metadata: {"openclaw":{"emoji":"🌍","os":["linux","darwin","win32"]}}
 
 # Global Think Tank Analyst
 
-Use this skill for decision-useful analysis of geopolitical, policy, and strategic questions.
+Produce structured geopolitical, strategic, and policy analysis in a clear think-tank style.
 
-## Quick start
+Use this skill to turn complex international, security, and policy questions into decision-useful outputs with explicit assumptions, confidence labels, alternative hypotheses, and practical recommendations.
+
+## Quick Start
 
 Install:
 
@@ -38,7 +40,7 @@ think-tank --red-team [claim or policy]
 think-tank --json [topic]
 ```
 
-## Core rules
+## Core Rules
 
 1. Separate sourced facts from expert judgment.
 2. Mark uncertainty explicitly.
@@ -49,38 +51,135 @@ think-tank --json [topic]
 7. Recommend expert review for crisis or high-stakes decisions.
 8. Do not present speculation as fact.
 
-## Decision-grade additions (standard/deep mode)
+## Decision-Grade Additions (standard/deep mode)
 
 9. Add numeric ranges for key impact variables (price, growth, inflation, trade, fiscal effects) when relevant.
-10. Include a compact Evidence Note with 2–6 external sources and timestamp (YYYY-MM-DD), or explicitly mark source access limits.
-11. Add Go / No-Go (or Trigger / No-Trigger) criteria with thresholds and dates for decision checkpoints.
-12. End with a 1–2 week validation plan: what to monitor, who should verify, and what would falsify the base case.
+10. Include a compact Evidence Note with 2-6 external sources and timestamp (YYYY-MM-DD), or explicitly mark source access limits.
+11. Add Go/No-Go (or Trigger/No-Trigger) criteria with thresholds and dates for decision checkpoints.
+12. End with a 1-2 week validation plan: what to monitor, who should verify, and what would falsify the base case.
 
-## Output contract
-
-Always aim to include:
-- Executive summary
-- Key assumptions
-- Confidence label (High/Medium/Low/Speculative)
-- At least one alternative hypothesis when uncertainty is high
-- Main risks and indicators to watch
-- Action options and recommendations
-
-## Confidence labels
+## Confidence Labels
 
 - **High**: well-supported and relatively stable
 - **Medium**: plausible but contested or incomplete
 - **Low**: weakly supported or rapidly changing
 - **Speculative**: forward-looking inference with limited evidence
 
-## Practical guidance
+## Framework Selection
 
-- Separate sourced facts from judgment.
-- Do not present speculation as fact.
-- Avoid deterministic language in volatile environments.
-- Recommend expert review for crisis or high-stakes decisions.
+Choose the minimum frameworks needed for the task:
 
-## Optional JSON shape
+- **PESTLE**: macro context and structural drivers
+- **Stakeholder analysis**: multi-actor dynamics
+- **Power mapping**: leverage and power balance
+- **Scenario planning**: high uncertainty
+- **SAT methods**: ambiguity, bias, politicization
+- **SWOT**: one actor, policy, or institution
+- **Cross-impact**: second-order effects and cascades
+
+## Workflow
+
+1. **Parse the request**: topic, theater, horizon, actors, user objective, mode, depth.
+2. **Frame the question**: core question, boundaries, decision context, uncertainties.
+3. **Select frameworks**: only what is needed.
+4. **Build the analysis**: drivers, actors, incentives, constraints, risks, second-order effects.
+5. **Stress-test**: assumptions, underweighted actors, breaking triggers, falsification evidence.
+6. **Deliver**: findings, risks, options, recommendations, confidence, indicators.
+
+## Output Formats
+
+### Executive Policy Brief
+
+1. Executive Summary
+2. Key Findings
+3. Main Risks
+4. Policy or Strategy Options
+5. Recommendations
+6. Confidence and Assumptions
+
+### Full Strategic Report
+
+1. Executive Summary
+2. Situation Overview
+3. Context Scan
+4. Key Actors and Power Map
+5. Strategic Drivers
+6. Risk Matrix
+7. Scenario Analysis
+8. Alternative Hypotheses
+9. Policy Options
+10. Recommendations
+11. Indicators to Watch
+12. Confidence and Caveats
+
+### Risk Assessment
+
+1. Risk Overview
+2. Risk Matrix
+3. Trigger Conditions
+4. Impact Pathways
+5. Mitigation Options
+6. Indicators to Watch
+
+### Red-Team Memo
+
+1. Target Claim or Strategy
+2. Hidden Assumptions
+3. Competing Hypotheses
+4. Failure Modes
+5. Adversary Perspective
+6. Revised Assessment
+
+## Standard Output Template
+
+```text
+# [Title]
+
+## Executive Summary
+[Concise synthesis]
+
+## Situation Overview
+[Current context]
+
+## Strategic Drivers
+- Driver 1
+- Driver 2
+- Driver 3
+
+## Key Actors
+| Actor | Interests | Capabilities | Constraints | Likely Behavior |
+
+## Risk Matrix
+| Risk | Likelihood | Impact | Time Horizon | Notes |
+
+## Scenarios
+### Baseline
+### Optimistic
+### Pessimistic
+### Wildcard
+
+## Options
+1. Option A
+2. Option B
+3. Option C
+
+## Recommendations
+- Priority 1
+- Priority 2
+- Priority 3
+
+## Indicators to Watch
+- Indicator 1
+- Indicator 2
+- Indicator 3
+
+## Confidence and Assumptions
+- Confidence:
+- Key assumptions:
+- Alternative hypothesis:
+```
+
+## Optional JSON Output
 
 ```json
 {
@@ -89,8 +188,42 @@ Always aim to include:
   "time_horizon": "",
   "summary": "",
   "drivers": [],
-  "risks": [],
-  "scenarios": [],
+  "pestle": {
+    "political": "",
+    "economic": "",
+    "social": "",
+    "technological": "",
+    "legal": "",
+    "environmental": ""
+  },
+  "stakeholders": [
+    {
+      "name": "",
+      "interests": "",
+      "capabilities": "",
+      "constraints": "",
+      "power": "high",
+      "position": "mixed"
+    }
+  ],
+  "risks": [
+    {
+      "name": "",
+      "likelihood": "medium",
+      "impact": "high",
+      "time_horizon": "",
+      "notes": ""
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "Baseline",
+      "description": "",
+      "drivers": [],
+      "indicators": [],
+      "confidence": "medium"
+    }
+  ],
   "policy_options": [],
   "recommendations": [],
   "assumptions": [],
@@ -98,3 +231,14 @@ Always aim to include:
   "confidence": "medium"
 }
 ```
+
+## Limits
+
+This skill does not:
+
+- replace classified, field, or government intelligence
+- guarantee forecasting accuracy
+- justify advocacy framed as analysis
+- remove the need for expert review in crisis decisions
+
+If evidence is thin, keep output concise rather than padded.
