@@ -93,6 +93,9 @@ Use these references when quality bar is high or stakes are material:
 - **Subagent orchestration**: `references/subagent-orchestration.md`
 - **Confidence scoring rubric**: `references/confidence-rubric.md`
 - **Regression/eval gate**: `references/eval-pack.md`
+- **Enterprise architecture**: `references/enterprise-v1-blueprint.md`
+- **Evidence layer spec**: `references/evidence-layer-spec.md`
+- **Governance and audit**: `references/governance-and-audit.md`
 
 ## Output Formats
 

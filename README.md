@@ -92,6 +92,12 @@ Advanced references:
 - `references/subagent-orchestration.md`
 - `references/confidence-rubric.md`
 - `references/eval-pack.md`
+- `references/enterprise-v1-blueprint.md`
+- `references/evidence-layer-spec.md`
+- `references/governance-and-audit.md`
+
+Enterprise template:
+- `examples/enterprise-decision-pack-template.md`
 
 ---
 

@@ -14,5 +14,7 @@ All notable changes to this project are documented in this file.
 - `examples/queries.md` with ready-to-use prompts
 - `examples/adaptations.md` with adaptation blueprints
 - `examples/decision-memo-sample.md` with a concrete decision-grade output
+- `examples/enterprise-decision-pack-template.md` for enterprise-grade delivery
 - `.github/ISSUE_TEMPLATE/fork-showcase.yml` to collect and feature adapted forks
 - README redesign with stronger value proposition, social proof badges, and clear fork CTA
+- Enterprise references: architecture blueprint, evidence layer spec, governance/audit controls
