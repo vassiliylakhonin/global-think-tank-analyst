@@ -17,10 +17,11 @@ Most analysis prompts produce long text.
 This skill produces **decision memos**.
 
 - Explicit assumptions
-- Confidence labels
-- Competing hypotheses
+- Confidence labels + scoring rubric
+- Competing hypotheses + red-team checks
 - Trigger-based Go / No-Go logic
 - 1–2 week validation plan
+- Subagent-ready orchestration for deep workflows
 
 ---
 
@@ -83,8 +84,14 @@ Typical fork directions:
 ├── FORK_GUIDE.md
 ├── CONTRIBUTING.md
 ├── CHANGELOG.md
-└── examples/
+├── examples/
+└── references/
 ```
+
+Advanced references:
+- `references/subagent-orchestration.md`
+- `references/confidence-rubric.md`
+- `references/eval-pack.md`
 
 ---
 

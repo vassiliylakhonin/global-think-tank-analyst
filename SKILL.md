@@ -86,6 +86,14 @@ Choose the minimum frameworks needed for the task:
 5. **Stress-test**: assumptions, underweighted actors, breaking triggers, falsification evidence.
 6. **Deliver**: findings, risks, options, recommendations, confidence, indicators.
 
+## Advanced Playbooks (vNext)
+
+Use these references when quality bar is high or stakes are material:
+
+- **Subagent orchestration**: `references/subagent-orchestration.md`
+- **Confidence scoring rubric**: `references/confidence-rubric.md`
+- **Regression/eval gate**: `references/eval-pack.md`
+
 ## Output Formats
 
 ### Executive Policy Brief
