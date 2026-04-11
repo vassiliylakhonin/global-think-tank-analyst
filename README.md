@@ -1,4 +1,4 @@
-# Geopolitical Risk Copilot (Global Think Tank Analyst)
+# AI Decision Intelligence Analyst (Global Think Tank Analyst)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Forks](https://img.shields.io/github/forks/vassiliylakhonin/global-think-tank-analyst?style=flat)](https://github.com/vassiliylakhonin/global-think-tank-analyst/forks)

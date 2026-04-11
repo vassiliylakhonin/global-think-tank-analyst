@@ -5,6 +5,7 @@ All notable changes to this project are documented in this file.
 ## [Unreleased]
 
 ### Changed
+- Rebranded positioning to "AI Decision Intelligence Analyst" for stronger enterprise discoverability and conversion.
 - Repositioned skill for higher ClawHub conversion: clearer value proposition, ICP-first README, and high-conversion use-case block.
 - Updated `SKILL.md` description to emphasize evidence notes, confidence scoring, Go/No-Go triggers, and validation plans.
 - Added mandatory evidence safety guardrails in `SKILL.md` (no fabricated citations, explicit limited-access mode, claim status tags).
