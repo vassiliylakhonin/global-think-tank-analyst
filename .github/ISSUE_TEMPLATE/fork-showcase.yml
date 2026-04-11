@@ -1,0 +1,26 @@
+name: Fork Showcase
+description: Share your adapted fork so it can be featured.
+title: "[Fork Showcase]: "
+labels: ["fork-showcase"]
+body:
+  - type: input
+    id: fork_url
+    attributes:
+      label: Fork URL
+      placeholder: https://github.com/you/your-fork
+    validations:
+      required: true
+  - type: textarea
+    id: adaptation
+    attributes:
+      label: What did you adapt?
+      placeholder: Domain, audience, output format, key changes.
+    validations:
+      required: true
+  - type: textarea
+    id: sample
+    attributes:
+      label: One example prompt + output style
+      placeholder: Show your best before/after.
+    validations:
+      required: true
