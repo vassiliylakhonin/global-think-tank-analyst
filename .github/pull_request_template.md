@@ -1,13 +1,15 @@
-## What changed
+## Summary
 
-## Why it matters
-
-## Risk level
-- [ ] Low
-- [ ] Medium
-- [ ] High
+What changed and why?
 
 ## Checklist
-- [ ] Frontmatter remains valid (`name`, `description`)
-- [ ] Change is reflected in `CHANGELOG.md`
-- [ ] No fabricated evidence or fake certainty patterns introduced
+
+- [ ] `SKILL.md` frontmatter remains valid (`name`, `description`)
+- [ ] Decision-quality and evidence guardrails remain intact
+- [ ] No fabricated certainty language introduced
+- [ ] README updated if behavior or positioning changed
+- [ ] Changelog entry added when user-facing behavior changed
+
+## Risks
+
+Any reliability, safety, or trust impact from this change?
