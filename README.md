@@ -5,7 +5,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/vassiliylakhonin/global-think-tank-analyst)](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 
-Decision-ready geopolitical and policy memo skill for OpenClaw.
+Decision-ready geopolitical and policy memo skill for OpenClaw and Codex.
 
 This skill converts ambiguous geopolitical and policy questions into structured, decision-useful analysis with explicit uncertainty, evidence limits, competing hypotheses, scenarios, and actionable options.
 
@@ -17,11 +17,20 @@ This skill converts ambiguous geopolitical and policy questions into structured,
 - Produces bounded recommendations with trade-offs
 - Supports quick briefs, standard memos, scenario briefs, and red-team mode
 
-## Installation
+## Installation (OpenClaw)
 
 ```bash
 clawhub install global-think-tank-analyst
 ```
+
+## Codex variant
+
+Use `codex/SKILL.md` when you want the same methodology in Codex skill workflows.
+
+Quick setup:
+1. Copy `codex/SKILL.md` into your Codex skills directory.
+2. Activate the skill in your Codex environment.
+3. Use memo requests like the examples below.
 
 ## Example prompts
 
@@ -38,7 +47,8 @@ clawhub install global-think-tank-analyst
 
 ## Repository structure
 
-- `SKILL.md` — canonical skill instructions
+- `SKILL.md` — canonical OpenClaw skill instructions
+- `codex/SKILL.md` — Codex-ready skill variant
 - `README.md` — project overview and usage
 - `.github/` — issue templates and CI checks
 
