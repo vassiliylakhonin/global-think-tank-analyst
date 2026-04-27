@@ -380,3 +380,31 @@ Success means the user can clearly see:
 Failure means the answer sounds intelligent but does not improve a real decision.
 
 Author Vassiliy Lakhonin
+
+## Installation
+
+```bash
+openclaw skills install vassiliylakhonin/global-think-tank-analyst
+```
+
+## Example Prompt
+
+**Mode A – Quick Brief**
+```
+Prepare a quick brief on the EU CBAM exposure for a Kazakh metals exporter over the next 12 months.
+```
+
+**Mode B – Standard Memo**
+```
+Write a policy‑risk memo on sanctions exposure for a Russian energy company operating in Central Asia.
+```
+
+**Mode C – Scenario Brief**
+```
+Provide a scenario brief on possible US‑China semiconductor control developments for 2026‑2028.
+```
+
+**Mode D – Red‑Team Challenge**
+```
+Red‑team the claim that supply‑chain sanctions risk for a European tech firm is manageable.
+```
