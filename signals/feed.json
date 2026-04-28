@@ -1,0 +1,16 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Policy Risk Signals",
+  "home_page_url": "https://github.com/vassiliylakhonin/global-think-tank-analyst",
+  "feed_url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/feed.json",
+  "description": "Short, source-aware policy risk notes for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk analysis.",
+  "items": [
+    {
+      "id": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-04-28.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-04-28.md",
+      "title": "2026-04-28: Evidence discipline is the product, not decoration",
+      "date_published": "2026-04-28T00:00:00Z",
+      "content_text": "# Policy Risk Signal — 2026-04-28\n\n<!-- title: Evidence discipline is the product, not decoration -->\n\n## Signal\nPolicy-risk analysis is becoming more useful when it shows its evidence limits, not when it tries to sound more certain than the source base allows. For sanctions, trade, regulatory, and geopolitical questions, the practical signal is simple: decision-makers need short analysis that separates facts from assumptions before it recommends action.\n\n## Why it matters\n- AI-generated geopolitical analysis can create false confidence if it blends facts, assessments, and scenarios.\n- Compliance, trade, and strategy teams need decision questions, not background essays.\n- A visible signal format lets readers inspect how a memo skill handles uncertainty before they trust it with a real decision.\n\n## Decision question\nWhich policy or geopolitical change is material enough to trigger a deeper memo, and what evidence would change the recommended posture?\n\n## Quick assessment\n- **Fact:** Policy Risk Memo Architect is designed to label facts, assessments, assumptions, scenarios, unknowns, evidence mode, and confidence.\n- **Assessment:** The strongest use case is not news summarization; it is converting a public signal into a bounded decision memo.\n- **Unknown:** Whether a given public signal is decision-relevant depends on the user's geography, exposure, timeline, and risk tolerance.\n- **Main risk:** Publishing polished analysis without source discipline can weaken trust faster than publishing nothing.\n\n## What to watch\n- New sanctions, export-control, customs, or regulatory notices that change compliance exposure.\n- Trade-policy updates that affect market access, reporting burden, or cost structure.\n- Divergence between official policy statements and implementation behavior.\n\n## Sources\n- [Policy Risk Memo Architect README](../../README.md) — repository methodology\n- [Policy Risk Memo Architect skill spec](../../SKILL.md) — evidence and uncertainty rules\n\n## Example expansion prompt\nUse Policy Risk Memo Architect to expand this signal into a standard memo for a company with cross-border exposure. Define the decision, separate facts from assumptions, identify unknowns, assess risks and trade-offs, give options, and list indicators to watch.\n"
+    }
+  ]
+}

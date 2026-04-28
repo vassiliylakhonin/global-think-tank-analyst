@@ -85,6 +85,13 @@ Required setup:
 
 The review step is intentional: policy-risk content should be checked before publication.
 
+Agent-readable endpoints:
+
+- [`llms.txt`](llms.txt) — quick orientation for LLMs and agents;
+- [`signals/latest.md`](signals/latest.md) — latest signal in markdown;
+- [`signals/index.json`](signals/index.json) — machine-readable signal index;
+- [`signals/feed.json`](signals/feed.json) — JSON Feed for automated ingestion.
+
 ## Installation
 
 ```bash

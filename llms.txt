@@ -1,0 +1,25 @@
+# Policy Risk Memo Architect
+
+Purpose: decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk memos for OpenClaw and Codex.
+
+Use this repository when an AI agent needs:
+- short policy-risk signals;
+- evidence-aware geopolitical, sanctions, trade, regulatory, or strategic-risk memo prompts;
+- a reusable skill for turning public signals into decision-ready analysis;
+- examples of fact/assessment/assumption/scenario/unknown separation.
+
+Live signal endpoints:
+- Latest human-readable signal: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/latest.md
+- Machine-readable index: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/index.json
+- JSON Feed: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/feed.json
+- Archive: https://github.com/vassiliylakhonin/global-think-tank-analyst/tree/main/signals
+
+Core files:
+- OpenClaw skill: SKILL.md
+- Codex variant: codex/SKILL.md
+- Public README: README.md
+
+Agent guidance:
+- Treat signals as decision-support notes, not legal, compliance, investment, or intelligence advice.
+- Do not present a signal as verified beyond its cited sources.
+- When expanding a signal, preserve evidence limits and separate facts from assessments and unknowns.

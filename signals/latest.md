@@ -1,3 +1,11 @@
+# Latest Policy Risk Signal
+
+Canonical file: [2026-04-28](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-04-28.md)
+
+Canonical path: `signals/2026/2026-04-28.md`
+
+---
+
 # Policy Risk Signal — 2026-04-28
 
 <!-- title: Evidence discipline is the product, not decoration -->
@@ -25,8 +33,8 @@ Which policy or geopolitical change is material enough to trigger a deeper memo,
 - Divergence between official policy statements and implementation behavior.
 
 ## Sources
-- [Policy Risk Memo Architect README](../../README.md) — repository methodology
-- [Policy Risk Memo Architect skill spec](../../SKILL.md) — evidence and uncertainty rules
+- [Policy Risk Memo Architect README](../README.md) — repository methodology
+- [Policy Risk Memo Architect skill spec](../SKILL.md) — evidence and uncertainty rules
 
 ## Example expansion prompt
 Use Policy Risk Memo Architect to expand this signal into a standard memo for a company with cross-border exposure. Define the decision, separate facts from assumptions, identify unknowns, assess risks and trade-offs, give options, and list indicators to watch.

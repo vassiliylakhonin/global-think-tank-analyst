@@ -27,6 +27,10 @@ SOURCES_PATH = ROOT / ".github" / "policy-risk-signal" / "sources.json"
 SIGNALS_DIR = ROOT / "signals"
 README_PATH = ROOT / "README.md"
 ARCHIVE_PATH = SIGNALS_DIR / "README.md"
+LATEST_PATH = SIGNALS_DIR / "latest.md"
+INDEX_JSON_PATH = SIGNALS_DIR / "index.json"
+FEED_JSON_PATH = SIGNALS_DIR / "feed.json"
+REPO_URL = "https://github.com/vassiliylakhonin/global-think-tank-analyst"
 
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 
@@ -197,11 +201,9 @@ def openai_generate(prompt: str, model: str) -> str:
 
 
 def signal_title(markdown: str) -> str:
-    for line in markdown.splitlines():
-        if line.startswith("## Signal"):
-            continue
-        if line.startswith("# "):
-            continue
+    meta = re.search(r"<!--\s*title:\s*(.+?)\s*-->", markdown)
+    if meta:
+        return strip_text(meta.group(1))[:140]
     match = re.search(r"## Signal\s+(.+?)(?:\n## |\Z)", markdown, re.S)
     if match:
         paragraph = strip_text(match.group(1)).split(".")[0]
@@ -223,8 +225,9 @@ Each signal is intentionally brief: one public signal, why it matters, one decis
     if ARCHIVE_PATH.exists():
         text = ARCHIVE_PATH.read_text(encoding="utf-8")
         existing = [line for line in text.splitlines() if line.startswith("- [")]
-    new_line = f"- [{date}]({rel_path}): {title}"
-    lines = [new_line] + [line for line in existing if f"]({rel_path})" not in line]
+    archive_path = rel_path.removeprefix("signals/")
+    new_line = f"- [{date}]({archive_path}): {title}"
+    lines = [new_line] + [line for line in existing if f"]({archive_path})" not in line and f"]({rel_path})" not in line]
     archive += "\n".join(lines[:20]) + "\n"
     ARCHIVE_PATH.write_text(archive, encoding="utf-8")
 
@@ -253,6 +256,70 @@ Short, source-aware policy risk notes showing how this skill turns public signal
             raise SystemExit("README insertion marker not found")
         text = text.replace(marker, block + marker, 1)
     README_PATH.write_text(text, encoding="utf-8")
+
+def collect_signal_entries() -> list[dict[str, str]]:
+    entries: list[dict[str, str]] = []
+    for path in sorted(SIGNALS_DIR.glob("[0-9][0-9][0-9][0-9]/*.md"), reverse=True):
+        date = path.stem
+        markdown = path.read_text(encoding="utf-8")
+        rel_path = path.relative_to(ROOT).as_posix()
+        entries.append(
+            {
+                "date": date,
+                "title": signal_title(markdown),
+                "path": rel_path,
+                "url": f"{REPO_URL}/blob/main/{rel_path}",
+            }
+        )
+    return entries
+
+
+def update_agent_indexes() -> None:
+    entries = collect_signal_entries()
+    if not entries:
+        return
+
+    latest = entries[0]
+    latest_source = ROOT / latest["path"]
+    latest_markdown = latest_source.read_text(encoding="utf-8")
+    # Dated signals live in signals/YYYY/. latest.md lives in signals/, so adjust
+    # repository-relative links like ../../README.md when copying current content.
+    latest_markdown_for_latest = latest_markdown.replace("](../../", "](../")
+    LATEST_PATH.write_text(
+        f"# Latest Policy Risk Signal\n\n"
+        f"Canonical file: [{latest['date']}]({latest['url']})\n\n"
+        f"Canonical path: `{latest['path']}`\n\n"
+        f"---\n\n"
+        f"{latest_markdown_for_latest.rstrip()}\n",
+        encoding="utf-8",
+    )
+
+    index_payload = {
+        "title": "Policy Risk Signals",
+        "description": "Short, source-aware policy risk notes for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk analysis.",
+        "latest": latest,
+        "signals": entries,
+    }
+    INDEX_JSON_PATH.write_text(json.dumps(index_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    feed_payload = {
+        "version": "https://jsonfeed.org/version/1.1",
+        "title": "Policy Risk Signals",
+        "home_page_url": REPO_URL,
+        "feed_url": f"{REPO_URL}/blob/main/signals/feed.json",
+        "description": index_payload["description"],
+        "items": [
+            {
+                "id": entry["url"],
+                "url": entry["url"],
+                "title": f"{entry['date']}: {entry['title']}",
+                "date_published": f"{entry['date']}T00:00:00Z",
+                "content_text": (ROOT / entry["path"]).read_text(encoding="utf-8"),
+            }
+            for entry in entries[:20]
+        ],
+    }
+    FEED_JSON_PATH.write_text(json.dumps(feed_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -283,6 +350,7 @@ def main() -> None:
     out_path.write_text(markdown.rstrip() + "\n", encoding="utf-8")
     update_archive(date, rel_path, title)
     update_main_readme(date, rel_path, title)
+    update_agent_indexes()
     print(f"Wrote {rel_path}")
 
 
