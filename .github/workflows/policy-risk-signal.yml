@@ -1,0 +1,57 @@
+name: Policy Risk Signal
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Signal date (YYYY-MM-DD). Defaults to today's UTC date."
+        required: false
+        type: string
+  schedule:
+    # Every Monday at 06:15 UTC. The workflow opens a PR; it does not publish directly to main.
+    - cron: "15 6 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate-signal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate weekly Policy Risk Signal
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
+        run: |
+          DATE_INPUT="${{ inputs.date }}"
+          if [ -n "$DATE_INPUT" ]; then
+            ./scripts/generate_policy_risk_signal.py --date "$DATE_INPUT"
+          else
+            ./scripts/generate_policy_risk_signal.py
+          fi
+
+      - name: Show generated changes
+        run: git diff -- README.md signals/
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/policy-risk-signal
+          delete-branch: true
+          commit-message: "docs: add weekly policy risk signal"
+          title: "docs: add weekly Policy Risk Signal"
+          body: |
+            Automated weekly Policy Risk Signal draft.
+
+            Review checklist:
+            - [ ] Sources are real and relevant
+            - [ ] Facts are source-backed
+            - [ ] Assessment is bounded and not legal/compliance/investment advice
+            - [ ] README signal index looks right
+          labels: |
+            documentation
+            automated-signal

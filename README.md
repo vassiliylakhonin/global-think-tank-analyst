@@ -58,6 +58,33 @@ This skill enforces a stricter memo discipline:
 | Uncertainty | `Low`, `Moderate`, or `High` confidence tied to evidence quality |
 | Practical relevance | Options, trade-offs, implementation friction, and indicators to watch |
 
+## Policy Risk Signal — 7 days of signals → decision memos
+
+Short, source-aware policy risk notes showing how this skill turns public signals into decision-ready analysis.
+
+- [2026-04-28](signals/2026/2026-04-28.md): Evidence discipline is the product, not decoration
+
+[Full signal archive →](signals)
+
+## Automated signal pipeline
+
+The repository includes a weekly GitHub Actions pipeline that drafts the next Policy Risk Signal from public RSS/Atom sources and opens a pull request for review.
+
+How it works:
+
+1. Fetch public source snippets from `.github/policy-risk-signal/sources.json`.
+2. Generate one short source-aware signal with `scripts/generate_policy_risk_signal.py`.
+3. Write `signals/YYYY/YYYY-MM-DD.md` and update the README/archive indexes.
+4. Open a pull request instead of publishing directly to `main`.
+
+Required setup:
+
+- add repository secret `OPENAI_API_KEY`;
+- optionally set repository variable `OPENAI_MODEL`;
+- run the **Policy Risk Signal** workflow manually once, then let the weekly schedule continue.
+
+The review step is intentional: policy-risk content should be checked before publication.
+
 ## Installation
 
 ```bash
@@ -126,6 +153,8 @@ If you do not provide all fields, the skill will infer what it can and state ass
 ├── SKILL.md              # OpenClaw skill
 ├── codex/SKILL.md        # Codex-ready variant
 ├── README.md             # Public documentation
+├── signals/              # Weekly Policy Risk Signal archive
+├── scripts/              # Signal generation automation
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── SECURITY.md

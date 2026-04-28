@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "name": "OFAC Recent Actions",
+      "url": "https://ofac.treasury.gov/recent-actions.xml",
+      "focus": "US sanctions, designations, compliance exposure"
+    },
+    {
+      "name": "European Commission Press Corner",
+      "url": "https://ec.europa.eu/commission/presscorner/api/rss?language=en",
+      "focus": "EU policy, trade, regulation, sanctions, enlargement"
+    },
+    {
+      "name": "WTO News",
+      "url": "https://www.wto.org/english/news_e/news_e.xml",
+      "focus": "trade policy, disputes, tariffs, market access"
+    },
+    {
+      "name": "World Bank Europe and Central Asia",
+      "url": "https://www.worldbank.org/en/region/eca/rss",
+      "focus": "macro, development, infrastructure, regional risk"
+    },
+    {
+      "name": "EBRD News",
+      "url": "https://www.ebrd.com/news/rss.xml",
+      "focus": "investment climate, transition economies, Central Asia"
+    }
+  ]
+}
