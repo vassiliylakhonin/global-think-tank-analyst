@@ -36,7 +36,7 @@ DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 
 SYSTEM_PROMPT = """You generate one weekly Policy Risk Signal for a public GitHub repository.
 
-Audience: analysts, founders, operators, compliance/risk teams, and policy-curious builders evaluating a policy-risk memo skill.
+Audience: analysts, founders, operators, compliance/risk teams, policy-curious builders, and AI-agent builders evaluating a universal policy-risk memo playbook.
 
 Hard rules:
 - Use only the provided source snippets and URLs.
@@ -50,7 +50,7 @@ Hard rules:
 
 USER_TEMPLATE = """Date: {date}
 
-Repository: Policy Risk Memo Architect — a skill for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk memos.
+Repository: Global Think Tank Analyst - a universal AI-agent playbook for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk memos.
 
 Task: Create one short weekly Policy Risk Signal from the source snippets below.
 
@@ -79,7 +79,7 @@ One concrete question this should trigger for a company, investor, NGO, analyst,
 - [Source title](URL) — source name
 
 ## Example expansion prompt
-A short prompt that asks Policy Risk Memo Architect to expand the signal into a standard memo.
+A short prompt that asks Global Think Tank Analyst to expand the signal into a standard memo.
 
 Source snippets:
 {snippets}
@@ -214,7 +214,7 @@ def signal_title(markdown: str) -> str:
 def update_archive(date: str, rel_path: str, title: str) -> None:
     archive = f"""# Policy Risk Signals
 
-Short, source-aware policy risk notes showing how Policy Risk Memo Architect turns public signals into decision-ready analysis.
+Short, source-aware policy risk notes showing how Global Think Tank Analyst turns public signals into decision-ready analysis.
 
 Each signal is intentionally brief: one public signal, why it matters, one decision question, a bounded assessment, and indicators to watch.
 
@@ -234,16 +234,16 @@ Each signal is intentionally brief: one public signal, why it matters, one decis
 
 def update_main_readme(date: str, rel_path: str, title: str) -> None:
     text = README_PATH.read_text(encoding="utf-8")
-    block = f"""## Policy Risk Signal — 7 days of signals → decision memos
+    block = f"""## Policy Risk Signal - public examples
 
-Short, source-aware policy risk notes showing how this skill turns public signals into decision-ready analysis.
+Short, source-aware policy risk notes showing how this agent playbook turns public signals into decision-ready analysis.
 
 - [{date}]({rel_path}): {title}
 
-[Full signal archive →](signals)
+[Full signal archive](signals)
 
 """
-    start = text.find("## Policy Risk Signal — 7 days of signals → decision memos")
+    start = text.find("## Policy Risk Signal - public examples")
     if start != -1:
         next_heading = text.find("\n## ", start + 1)
         if next_heading == -1:
@@ -251,7 +251,7 @@ Short, source-aware policy risk notes showing how this skill turns public signal
         else:
             text = text[:start] + block + text[next_heading + 1 :]
     else:
-        marker = "## Installation\n"
+        marker = "## Installation and integration\n"
         if marker not in text:
             raise SystemExit("README insertion marker not found")
         text = text.replace(marker, block + marker, 1)
@@ -296,7 +296,7 @@ def update_agent_indexes() -> None:
 
     index_payload = {
         "title": "Policy Risk Signals",
-        "description": "Short, source-aware policy risk notes for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk analysis.",
+        "description": "Short, source-aware policy risk notes for universal AI-agent decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk analysis.",
         "latest": latest,
         "signals": entries,
     }
