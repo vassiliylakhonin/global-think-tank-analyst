@@ -10,6 +10,16 @@ Canonical path: `signals/2026/2026-04-28.md`
 
 <!-- title: Evidence discipline is the product, not decoration -->
 
+```text
+Date: 2026-04-28
+Domain: meta / methodology
+Region: cross-border
+Evidence mode: reasoning-only
+Confidence: Moderate
+```
+
+> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, compliance, sanctions, or investment advice. No live sources were checked for this signal.
+
 ## Signal
 Policy-risk analysis is becoming more useful when it shows its evidence limits, not when it tries to sound more certain than the source base allows. For sanctions, trade, regulatory, and geopolitical questions, the practical signal is simple: decision-makers need short analysis that separates facts from assumptions before it recommends action.
 
@@ -22,7 +32,7 @@ Policy-risk analysis is becoming more useful when it shows its evidence limits, 
 Which policy or geopolitical change is material enough to trigger a deeper memo, and what evidence would change the recommended posture?
 
 ## Quick assessment
-- **Fact:** Policy Risk Memo Architect is designed to label facts, assessments, assumptions, scenarios, unknowns, evidence mode, and confidence.
+- **Fact:** The Global Think Tank Analyst skill (Policy Risk Memo Architect method) is designed to label facts, assessments, assumptions, scenarios, unknowns, evidence mode, and confidence.
 - **Assessment:** The strongest use case is not news summarization; it is converting a public signal into a bounded decision memo.
 - **Unknown:** Whether a given public signal is decision-relevant depends on the user's geography, exposure, timeline, and risk tolerance.
 - **Main risk:** Publishing polished analysis without source discipline can weaken trust faster than publishing nothing.
@@ -32,9 +42,14 @@ Which policy or geopolitical change is material enough to trigger a deeper memo,
 - Trade-policy updates that affect market access, reporting burden, or cost structure.
 - Divergence between official policy statements and implementation behavior.
 
+## What would change the judgment
+- A worked benchmark showing memos with explicit evidence labels are no more useful than memos without.
+- Adoption signals indicating users prefer confident-sounding analysis over evidence-disciplined memos.
+
 ## Sources
-- [Policy Risk Memo Architect README](../README.md) — repository methodology
-- [Policy Risk Memo Architect skill spec](../SKILL.md) — evidence and uncertainty rules
+No live sources were checked for this signal. Internal references only:
+- [README](../README.md) — repository positioning and methodology
+- [SKILL.md](../SKILL.md) — evidence and uncertainty rules
 
 ## Example expansion prompt
-Use Policy Risk Memo Architect to expand this signal into a standard memo for a company with cross-border exposure. Define the decision, separate facts from assumptions, identify unknowns, assess risks and trade-offs, give options, and list indicators to watch.
+Use Global Think Tank Analyst to expand this signal into a standard memo for a company with cross-border exposure. Define the decision, separate facts from assumptions, identify unknowns, assess risks and trade-offs, give options, and list indicators to watch.
