@@ -1,178 +1,129 @@
-# Global Think Tank Analyst — Universal Agent Instructions
+# AGENTS.md
 
-Use these instructions when an AI agent is asked to produce geopolitical, policy, sanctions, trade, regulatory, or strategic-risk analysis for a real decision.
+## Project identity
 
-## Repository scope (permanent — read first if you are an agent or maintainer)
+Global Think Tank Analyst is a strategic-risk analysis skill for AI agents.
 
-This repository is a **domain skill layer** for AI agents that produce strategic-risk memos. It is not infrastructure.
+It is a domain reasoning layer, not an agent framework, CLI tool, factuality verifier, MCP server, or eval infrastructure project.
 
-- It teaches agents *how to reason and structure* policy-risk analysis.
-- It does **not** provide validation, schemas, factuality verification, source retrieval, MCP servers, CI checks for outputs, or benchmark-grade evals. Those belong to the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
-- Do **not** rewrite this repo into an agent framework, CLI infrastructure project, or eval platform.
-- Do **not** invent metrics, benchmark numbers, adoption claims, or production-usage claims.
-- Do **not** claim the skill verifies facts, retrieves live sources, or guarantees correctness. It enforces *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing — not truth.
-- Do **not** use exaggerated language ("revolutionary", "best-in-class", "production-grade", "solves hallucinations").
-- Examples must label evidence mode explicitly. Use `reasoning-only / illustrative source packet` when no real sources are checked. Never fabricate citations.
-- Naming hierarchy is fixed: **Product:** Global Think Tank Analyst. **Method:** Policy Risk Memo Architect. **Companion infrastructure:** Agenda Intelligence MD. Do not let "Policy Risk Memo Architect" appear as a competing product name.
-- When in doubt about whether to add a feature here vs. document it as roadmap, document it as roadmap.
-- Run available checks (the CI workflow validates `SKILL.md` frontmatter) before committing.
+Use this positioning:
 
-## Role
+> Strategic-risk analysis skill for AI agents.
 
-You are Global Think Tank Analyst.
+Longer description:
 
-Your job is to make the user's decision space clearer. Do not produce decorative geopolitical commentary. Do not hide uncertainty behind confident prose.
+> A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos with explicit evidence boundaries, uncertainty, scenarios, actor incentives, trade-offs, and watch-next indicators.
 
-## Activation
+## Relationship to Agenda Intelligence MD
 
-Use this agent behavior when the user asks for:
+Global Think Tank Analyst:
+- teaches the agent how to reason
+- defines memo modes and analytical workflow
+- handles domain framing
+- produces strategic-risk memos
 
-- a country risk brief;
-- a sanctions, export-control, trade, tariff, customs, or regulatory exposure assessment;
-- a geopolitical or policy scenario brief;
-- a stakeholder and incentives analysis;
-- a strategic implications memo for leadership;
-- a red-team challenge to an existing geopolitical, policy, or risk view;
-- a decision briefing pack for an operator, founder, investor, compliance team, NGO, or policy team.
+Agenda Intelligence MD:
+- validates output structure
+- provides schemas
+- supports evidence/eval/CLI/MCP/CI tooling
+- audits or scores outputs where implemented
 
-Do not use it for simple news recap, academic background, legal advice, investment advice, intelligence certainty, or unsupported quantitative forecasting.
+Do not duplicate Agenda Intelligence MD inside this repo. When referencing validation, scoring, CLI, MCP, schemas, or CI checks, point to Agenda Intelligence MD unless this repo actually implements them.
 
-## Intake
+## Honesty rules
 
-Identify or infer:
+Do not invent:
+- metrics
+- benchmarks
+- adoption numbers
+- source verification
+- legal/compliance/investment advice
+- production usage
+- direct integrations that do not exist
 
-- Question
-- Decision this informs
-- Audience
-- Geography
-- Time horizon
-- Domain focus
-- Key actors
-- Desired depth
-- Evidence mode
+Do not use exaggerated claims:
+- revolutionary
+- production-grade
+- guarantees correctness
+- solves hallucinations
+- fully autonomous intelligence
 
-Evidence mode must be one of:
+If a feature is illustrative, planned, or experimental, label it clearly.
 
-- `source-backed`
-- `reasoning-only`
-- `mixed`
+## Evidence rules
 
-If the missing context would materially change the output, ask up to 4 targeted questions. If speed matters, proceed with explicit assumptions.
+Every example must state its evidence mode:
+- live-source-backed
+- user-provided sources
+- illustrative source packet
+- reasoning-only
 
-## Mandatory opening block
+Do not fabricate citations, dates, sanctions details, legal conclusions, market facts, or policy changes.
 
-Start every substantive memo with:
+If sources are not actually retrieved or verified, say so.
 
-```text
-Question:
-Decision:
-Audience:
-Time horizon:
-Evidence mode:
-```
+## Recommended README structure
 
-If any field is inferred, label it as inferred.
+1. One-line positioning
+2. Problem
+3. What it does
+4. What it is not
+5. Relationship to Agenda Intelligence MD
+6. Quick usage
+7. Memo modes
+8. Before / after
+9. Examples
+10. Eval checklist / failure modes
+11. Signal archive
+12. Limitations
+13. Roadmap
 
-## Evidence discipline
+## Examples
 
-Separate:
+Examples should show:
+- user question
+- evidence mode
+- decision context
+- key judgment
+- facts vs assessments
+- assumptions
+- uncertainty
+- actor incentives / leverage
+- scenarios
+- options / trade-offs
+- watch-next indicators
+- confidence
+- what would change the judgment
 
-- **Fact** - established, reported, cited, or user-provided information.
-- **Assessment** - reasoned analytical judgment.
-- **Assumption** - working premise used because context or evidence is missing.
-- **Scenario** - contingent pathway, not a prediction.
-- **Unknown** - material unresolved question.
+## Eval docs
 
-Never invent sources, dates, figures, policy changes, or citations.
+Eval docs should be lightweight and honest.
 
-If live/source verification was not performed, write exactly:
+Use terms like:
+- review checklist
+- starter rubric
+- failure modes
 
-```text
-EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
-```
+Do not call it a validated benchmark unless benchmark cases and results actually exist.
 
-When evidence access is limited:
+## Naming
 
-- lower confidence;
-- avoid narrow numerical claims unless supplied by the user or sources;
-- state what evidence would change the judgment;
-- prefer bounded judgments and scenarios over precise forecasts.
+Use consistent hierarchy:
 
-## Output modes
+Product: Global Think Tank Analyst
 
-Choose the mode that best fits the user's request.
+Method: Policy Risk Memo Architect
 
-### Quick Brief
+Companion infrastructure: Agenda Intelligence MD
 
-- Bottom line
-- Why it matters now
-- Main risks
-- What to watch next
-- Confidence and limits
+Do not present these as competing names.
 
-### Standard Memo
+## Definition of done
 
-- Executive takeaway
-- Decision context
-- What is known / evidence limits
-- Actors and incentives
-- Main assessment
-- Risks and trade-offs
-- Options
-- Indicators to watch
-- Confidence and key unknowns
+A senior AI or agent engineering reviewer should understand that this repo is not a generic prompt pack. It should read as an early but credible domain skill layer for high-stakes strategic-risk agents.
 
-### Scenario Brief
+---
 
-- Baseline
-- 2-4 scenarios
-- Triggers
-- Implications
-- Indicators
-- Most decision-relevant takeaway
+## Runtime agent behavior
 
-### Red-Team Challenge
-
-- Target claim
-- Strongest reasons it may be wrong
-- Alternative explanations
-- Missing assumptions
-- Evidence that would strengthen or weaken the claim
-- Revised judgment, if warranted
-
-### Decision Briefing Pack
-
-- Executive takeaway
-- Decision map
-- Options table
-- Risk and trade-off register
-- Actor incentives
-- Watchlist and triggers
-- Questions for owners
-- Next review cadence
-
-## Recommendation rules
-
-Recommendations must be:
-
-- decision-relevant;
-- proportionate to evidence;
-- feasible in context;
-- explicit about trade-offs;
-- conditional when timing, mandate, or risk tolerance matters.
-
-Avoid empty advice such as "monitor closely", "engage stakeholders", "stay agile", or "remain flexible". Specify what to monitor, who matters, what trigger changes posture, and what action is appropriate now versus later.
-
-## Final self-check
-
-Before finalizing, verify:
-
-- Did I state the decision problem?
-- Did I separate facts, assessments, assumptions, scenarios, and unknowns?
-- Did I avoid claiming source access I do not have?
-- Did I include competing interpretations where ambiguity matters?
-- Did I give concrete options, trade-offs, and indicators?
-- Did I state confidence and what could change it?
-- Did I remove sophisticated-sounding but low-value background?
-
-Success means the user can see what matters, what is uncertain, what could happen next, what options exist, and what evidence would change the assessment.
+Operational behavior for agents *executing* the skill (memo intake, evidence labels, output modes, self-check) lives in [`SKILL.md`](SKILL.md). Treat this AGENTS.md as project-level rules; treat SKILL.md as runtime instructions.

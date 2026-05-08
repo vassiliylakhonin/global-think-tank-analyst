@@ -68,17 +68,7 @@ flowchart LR
 
 This repository ships only markdown skill files, examples, eval checklists, and a small signal-generation script. It does not include validators, schemas, or runtimes.
 
-## Output modes
-
-| Mode | Use when you need | Typical output |
-|---|---|---|
-| **A — Quick Brief** | Fast orientation | Bottom line, why it matters, main risks, watchlist, confidence |
-| **B — Standard Memo** | Default decision memo | Executive takeaway, context, evidence limits, actors, assessment, options |
-| **C — Scenario Brief** | Divergent futures matter | Baseline, 2–4 scenarios, triggers, implications, indicators |
-| **D — Red-Team Challenge** | Stress-test a claim | Failure modes, alternative explanations, missing assumptions, revised judgment |
-| **E — Decision Briefing Pack** | A team needs to act | Memo, options table, watchlist, questions for owners, next-step cadence |
-
-## Quick start
+## Quick usage
 
 Paste this into any capable AI agent:
 
@@ -98,6 +88,16 @@ Give options, trade-offs, indicators to watch, and bounded confidence.
 ```
 
 If the agent has live browsing, ask it to cite sources. If it does not, it must say so and lower confidence.
+
+## Memo modes
+
+| Mode | Use when you need | Typical output |
+|---|---|---|
+| **A — Quick Brief** | Fast orientation | Bottom line, why it matters, main risks, watchlist, confidence |
+| **B — Standard Memo** | Default decision memo | Executive takeaway, context, evidence limits, actors, assessment, options |
+| **C — Scenario Brief** | Divergent futures matter | Baseline, 2–4 scenarios, triggers, implications, indicators |
+| **D — Red-Team Challenge** | Stress-test a claim | Failure modes, alternative explanations, missing assumptions, revised judgment |
+| **E — Decision Briefing Pack** | A team needs to act | Memo, options table, watchlist, questions for owners, next-step cadence |
 
 ## Before / after
 
@@ -189,11 +189,25 @@ To contribute a signal, copy [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
 └── .github/              # CI, issue templates, workflows
 ```
 
-## Trust and safety posture
+## Limitations
 
-This project is intentionally conservative about evidence. It must not fabricate sources, imply live verification when none occurred, or present speculative geopolitical judgments as facts.
+- This project is intentionally conservative about evidence. It does not fabricate sources, imply live verification when none occurred, or present speculative geopolitical judgments as facts.
+- It is a **decision-support skill**, not legal, compliance, investment, sanctions, or intelligence advice.
+- It does not verify factuality. It enforces analytical *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing.
+- It does not retrieve sources, run validators, expose an MCP server, or score outputs. For those, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
+- Examples in this repo are illustrative (`reasoning-only / illustrative source packet`). Do not treat them as real intelligence products.
+- Signals in `signals/` are public examples of the skill style, not official intelligence and not real-time.
 
-It is a decision-support skill, not legal, compliance, investment, or intelligence advice.
+## Roadmap
+
+Directional, not committed. Items here are not implemented.
+
+- More worked examples across additional domains (export controls, critical minerals, energy transition policy).
+- Tighter integration recipes for Agenda Intelligence MD (validation/scoring of memos produced with this skill).
+- Additional failure-mode patterns derived from real review feedback.
+- Expanded signal archive with a wider domain coverage and clearer evidence-mode tagging.
+
+If you'd like to influence the roadmap, open an issue.
 
 ## License
 
