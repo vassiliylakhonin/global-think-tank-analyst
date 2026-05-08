@@ -1,31 +1,39 @@
 # Global Think Tank Analyst
 
-Purpose: universal AI-agent playbook for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk memos.
+Purpose: a reusable domain skill layer for AI agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos. Behavior contract, not infrastructure.
 
 Use this repository when an AI agent needs:
-- short policy-risk signals;
-- evidence-aware geopolitical, sanctions, trade, regulatory, or strategic-risk memo prompts;
-- a reusable skill for turning public signals into decision-ready analysis;
-- a decision briefing pack with options, trade-offs, triggers, and confidence;
-- examples of fact/assessment/assumption/scenario/unknown separation.
+- to convert a broad geopolitical/policy question into a decision problem;
+- to produce a structured strategic-risk memo (quick brief, standard, scenario, red-team, decision pack);
+- to enforce fact / assessment / assumption / scenario / unknown separation;
+- to disclose evidence limits when live verification is unavailable;
+- to produce concrete watch-next indicators and decision triggers;
+- examples and a human review checklist for the above.
+
+What this repository is not:
+- not a factuality verifier, source retriever, or RAG pipeline;
+- not an MCP server, CLI tool, validator, schema layer, or eval framework;
+- not legal, compliance, sanctions, or investment advice;
+- not a generic agent framework.
 
 Compatible agent environments:
-- ChatGPT, Claude, Gemini, Perplexity, and other chat agents;
-- Codex, Cursor, Windsurf, and repository-aware coding agents;
-- OpenClaw / ClawHub skills;
-- custom MCP agents, RAG systems, and internal copilots.
+- ChatGPT, Claude, Gemini, Perplexity, and other chat agents (paste/attach);
+- Codex, Cursor, Windsurf, and repository-aware coding agents (repo context);
+- OpenClaw / ClawHub (only if a current package exists);
+- custom MCP agents, RAG systems, internal copilots (indexing).
 
-Live signal endpoints:
-- Latest human-readable signal: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/latest.md
-- Machine-readable index: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/index.json
-- JSON Feed: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/feed.json
-- Archive: https://github.com/vassiliylakhonin/global-think-tank-analyst/tree/main/signals
+Companion project for validation, scoring, evidence audit, schemas, CLI, MCP, CI:
+- https://github.com/vassiliylakhonin/Agenda-Intelligence-md
+- Use Global Think Tank Analyst to draft the memo. Use Agenda Intelligence MD to validate, score, and audit it.
 
 Core files:
-- Universal agent instructions: AGENTS.md
-- Canonical skill behavior: SKILL.md
-- Codex variant: codex/SKILL.md
-- Public README: README.md
+- AGENTS.md — universal agent instructions and repository scope
+- SKILL.md — canonical skill behavior
+- codex/SKILL.md — Codex variant
+- README.md — public documentation
+- examples/ — worked memo examples (reasoning-only / illustrative)
+- evals/ — human review checklist, failure modes, starter rubric
+- signals/ — public examples of the skill style (not official intelligence)
 
 Agent guidance:
 - Treat this repository as a behavior contract, not just documentation.
@@ -33,8 +41,14 @@ Agent guidance:
 - Separate facts, assessments, assumptions, scenarios, and unknowns.
 - Do not present a signal as verified beyond its cited sources.
 - Do not claim live verification unless the agent actually performed it.
-- When expanding a signal, preserve evidence limits and state what evidence would change the judgment.
-- End with options, trade-offs, concrete indicators, confidence, and key unknowns.
+- End with options, trade-offs, concrete indicators, confidence, and what evidence would change the judgment.
 
-Related lightweight agenda layer: https://github.com/vassiliylakhonin/Agenda-Intelligence-md
-Use Agenda-Intelligence.md for signal classification and agenda triage; use this repo for full policy-risk memos and decision briefing packs.
+Evidence limitations:
+- This skill enforces analytical discipline; it does not verify truth.
+- If no live sources are accessed, declare evidence mode as `reasoning-only` and lower confidence.
+- Never fabricate citations, dates, figures, or policy changes.
+
+Live signal endpoints:
+- Latest signal: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/latest.md
+- Index: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/index.json
+- JSON Feed: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/feed.json

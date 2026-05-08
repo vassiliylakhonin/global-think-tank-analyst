@@ -1,6 +1,21 @@
-# Global Think Tank Analyst - Universal Agent Instructions
+# Global Think Tank Analyst — Universal Agent Instructions
 
 Use these instructions when an AI agent is asked to produce geopolitical, policy, sanctions, trade, regulatory, or strategic-risk analysis for a real decision.
+
+## Repository scope (permanent — read first if you are an agent or maintainer)
+
+This repository is a **domain skill layer** for AI agents that produce strategic-risk memos. It is not infrastructure.
+
+- It teaches agents *how to reason and structure* policy-risk analysis.
+- It does **not** provide validation, schemas, factuality verification, source retrieval, MCP servers, CI checks for outputs, or benchmark-grade evals. Those belong to the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
+- Do **not** rewrite this repo into an agent framework, CLI infrastructure project, or eval platform.
+- Do **not** invent metrics, benchmark numbers, adoption claims, or production-usage claims.
+- Do **not** claim the skill verifies facts, retrieves live sources, or guarantees correctness. It enforces *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing — not truth.
+- Do **not** use exaggerated language ("revolutionary", "best-in-class", "production-grade", "solves hallucinations").
+- Examples must label evidence mode explicitly. Use `reasoning-only / illustrative source packet` when no real sources are checked. Never fabricate citations.
+- Naming hierarchy is fixed: **Product:** Global Think Tank Analyst. **Method:** Policy Risk Memo Architect. **Companion infrastructure:** Agenda Intelligence MD. Do not let "Policy Risk Memo Architect" appear as a competing product name.
+- When in doubt about whether to add a feature here vs. document it as roadmap, document it as roadmap.
+- Run available checks (the CI workflow validates `SKILL.md` frontmatter) before committing.
 
 ## Role
 

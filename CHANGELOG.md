@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Repositioned README, AGENTS.md, and llms.txt to frame the project as a **strategic-risk analysis skill for AI agents**, distinct from the companion infrastructure project Agenda Intelligence MD.
+- Added `examples/` with four illustrative memos (sanctions exposure, regulatory impact, scenario brief, red-team).
+- Added `evals/` with a human review checklist, failure-modes catalogue, and starter scoring rubric.
+- Added `signals/TEMPLATE.md` and clarified that the signal archive is example output, not official intelligence.
+- Added an integration status table that distinguishes implemented from compatible from not-implemented.
+- Tightened naming: Product = Global Think Tank Analyst; Method = Policy Risk Memo Architect; Companion = Agenda Intelligence MD.
+
 ## 1.1.0 - 2026-05-06
 
 - Repositioned the project from an OpenClaw/Codex-centered skill to a universal AI-agent playbook.
