@@ -134,7 +134,10 @@ The first answer is a tone. The second is a decision input.
 Worked memos in [`examples/`](examples/):
 
 - [Sanctions exposure memo](examples/sanctions-exposure-memo.md)
-- [Regulatory impact memo](examples/regulatory-impact-memo.md)
+- [Regulatory impact memo (EU CBAM)](examples/regulatory-impact-memo.md)
+- [Export-controls exposure memo](examples/export-controls-memo.md)
+- [Critical-minerals supply-risk memo](examples/critical-minerals-memo.md)
+- [Energy-transition policy memo](examples/energy-transition-policy-memo.md)
 - [Geopolitical scenario brief](examples/geopolitical-scenario-brief.md)
 - [Red-team policy brief](examples/red-team-policy-brief.md)
 
@@ -206,10 +209,10 @@ To contribute a signal, copy [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
 
 Directional, not committed. Items here are not implemented.
 
-- More worked examples across additional domains (export controls, critical minerals, energy transition policy).
-- Tighter integration recipes for Agenda Intelligence MD (validation/scoring of memos produced with this skill).
 - Additional failure-mode patterns derived from real review feedback.
-- Expanded signal archive with a wider domain coverage and clearer evidence-mode tagging.
+- Expanded signal archive with wider domain coverage and clearer evidence-mode tagging.
+- A `live-source-backed` worked example, paired with a real evidence pack, once a current public event is suitable.
+- Optional MCP recipe demonstrating the integration loop with Agenda Intelligence MD end to end.
 
 If you'd like to influence the roadmap, open an issue.
 

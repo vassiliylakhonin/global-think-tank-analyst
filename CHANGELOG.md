@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Added `docs/integrations/agenda-intelligence-md.md` — concrete CLI / MCP recipes for composing this skill with Agenda Intelligence MD (markdown score, JSON brief validate+score, evidence-pack audit, MCP loop).
+- Added three illustrative memos: export-controls exposure, critical-minerals supply-risk, EU energy-transition policy.
+- Trimmed the README Roadmap to reflect what was delivered.
+
 ## 1.2.0 - 2026-05-08
 
 - Repositioned README, AGENTS.md, llms.txt, SKILL.md, and codex/SKILL.md to frame the project as a **strategic-risk analysis skill for AI agents**, distinct from the companion infrastructure project Agenda Intelligence MD.
