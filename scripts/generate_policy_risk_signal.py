@@ -36,44 +36,64 @@ DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 
 SYSTEM_PROMPT = """You generate one weekly Policy Risk Signal for a public GitHub repository.
 
-Audience: analysts, founders, operators, compliance/risk teams, policy-curious builders, and AI-agent builders evaluating a universal policy-risk memo playbook.
+The repository is Global Think Tank Analyst — a strategic-risk analysis skill for AI agents, not a news feed and not an intelligence product. Each signal is a public example of the skill style.
+
+Audience: analysts, founders, operators, compliance/risk teams, policy-curious builders, and AI-agent builders evaluating a strategic-risk skill layer.
 
 Hard rules:
-- Use only the provided source snippets and URLs.
-- Do not invent facts, numbers, policy changes, citations, URLs, dates, or causal claims.
-- If evidence is thin, say so clearly.
+- Use only the provided source snippets and URLs. Do not introduce sources that are not in the snippets.
+- Do not invent facts, numbers, policy changes, citations, URLs, dates, sanctions details, legal conclusions, or causal claims.
+- Evidence mode is `live-source-backed` (snippets were retrieved). State this in the header block.
+- Distinguish facts (from snippets) from assessments (your reasoned judgment) from unknowns. Never blur these.
+- If evidence is thin, say so and lower confidence; do not over-state.
 - Pick one signal that can support a short decision-relevant analysis.
 - Write concise markdown only, no code fences.
 - Keep it sober, useful, and non-sensational.
-- This is decision-support content, not legal/compliance/investment advice.
+- This is decision-support content, not legal, compliance, sanctions, or investment advice.
 """
 
 USER_TEMPLATE = """Date: {date}
 
-Repository: Global Think Tank Analyst - a universal AI-agent playbook for decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk memos.
+Repository: Global Think Tank Analyst — strategic-risk analysis skill for AI agents.
 
-Task: Create one short weekly Policy Risk Signal from the source snippets below.
+Task: Create one short weekly Policy Risk Signal from the source snippets below. Output must match the format below exactly, including the header block and disclaimer.
 
 Required markdown format:
 # Policy Risk Signal — {date}
 
+<!-- title: short title under 80 chars -->
+
+```text
+Date: {date}
+Domain: [sanctions / trade / regulatory / geopolitical / strategic]
+Region: [country / corridor / market]
+Evidence mode: live-source-backed
+Confidence: Low / Moderate / High
+```
+
+> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, compliance, sanctions, or investment advice.
+
 ## Signal
-One short paragraph explaining what public signal is visible from the provided sources.
+One short paragraph (3–5 sentences) explaining what public signal is visible from the provided sources.
 
 ## Why it matters
-2-3 bullets focused on decision relevance.
+2–3 bullets focused on decision relevance.
 
 ## Decision question
 One concrete question this should trigger for a company, investor, NGO, analyst, or policy team.
 
 ## Quick assessment
-- **Fact:** one source-backed fact from snippets.
-- **Assessment:** one bounded judgment.
+- **Fact (from sources):** one source-backed fact from snippets.
+- **Assessment:** one bounded analytical judgment.
+- **Assumption:** one working premise made explicit.
 - **Unknown:** one material unknown.
 - **Main risk:** one practical risk.
 
 ## What to watch
-- 3 observable indicators.
+- 3 concrete, observable indicators (not "monitor closely").
+
+## What would change the judgment
+- 1–2 specific developments that would force a re-write of this signal.
 
 ## Sources
 - [Source title](URL) — source name
@@ -211,16 +231,36 @@ def signal_title(markdown: str) -> str:
     return "weekly policy risk signal"
 
 
-def update_archive(date: str, rel_path: str, title: str) -> None:
-    archive = f"""# Policy Risk Signals
+ARCHIVE_HEADER = """# Policy Risk Signals
 
-Short, source-aware policy risk notes showing how Global Think Tank Analyst turns public signals into decision-ready analysis.
+Public **examples** of the Global Think Tank Analyst skill style. Each signal shows how the skill turns one public event into a bounded, decision-aware note.
 
-Each signal is intentionally brief: one public signal, why it matters, one decision question, a bounded assessment, and indicators to watch.
+## What this archive is
+
+- a public set of example outputs;
+- a way to see the memo style at signal-length scale;
+- a starting point for adapting the skill to your own internal signals.
+
+## What this archive is not
+
+- not official intelligence;
+- not investment, legal, compliance, or sanctions advice;
+- not a guarantee of factual verification beyond what each signal explicitly cites;
+- not real-time. Signals are dated and may be stale.
 
 ## Latest signals
 
 """
+
+ARCHIVE_FOOTER = """
+
+## Contributing a signal
+
+Copy [`TEMPLATE.md`](TEMPLATE.md) to `signals/YYYY/YYYY-MM-DD.md`, fill in every section, and open a pull request. Reviewers will check evidence mode, confidence calibration, and that no citations are fabricated.
+"""
+
+
+def update_archive(date: str, rel_path: str, title: str) -> None:
     existing: list[str] = []
     if ARCHIVE_PATH.exists():
         text = ARCHIVE_PATH.read_text(encoding="utf-8")
@@ -228,34 +268,8 @@ Each signal is intentionally brief: one public signal, why it matters, one decis
     archive_path = rel_path.removeprefix("signals/")
     new_line = f"- [{date}]({archive_path}): {title}"
     lines = [new_line] + [line for line in existing if f"]({archive_path})" not in line and f"]({rel_path})" not in line]
-    archive += "\n".join(lines[:20]) + "\n"
-    ARCHIVE_PATH.write_text(archive, encoding="utf-8")
-
-
-def update_main_readme(date: str, rel_path: str, title: str) -> None:
-    text = README_PATH.read_text(encoding="utf-8")
-    block = f"""## Policy Risk Signal - public examples
-
-Short, source-aware policy risk notes showing how this agent playbook turns public signals into decision-ready analysis.
-
-- [{date}]({rel_path}): {title}
-
-[Full signal archive](signals)
-
-"""
-    start = text.find("## Policy Risk Signal - public examples")
-    if start != -1:
-        next_heading = text.find("\n## ", start + 1)
-        if next_heading == -1:
-            text = text[:start] + block.rstrip() + "\n"
-        else:
-            text = text[:start] + block + text[next_heading + 1 :]
-    else:
-        marker = "## Installation and integration\n"
-        if marker not in text:
-            raise SystemExit("README insertion marker not found")
-        text = text.replace(marker, block + marker, 1)
-    README_PATH.write_text(text, encoding="utf-8")
+    body = "\n".join(lines[:20]) + "\n"
+    ARCHIVE_PATH.write_text(ARCHIVE_HEADER + body + ARCHIVE_FOOTER, encoding="utf-8")
 
 def collect_signal_entries() -> list[dict[str, str]]:
     entries: list[dict[str, str]] = []
@@ -296,7 +310,7 @@ def update_agent_indexes() -> None:
 
     index_payload = {
         "title": "Policy Risk Signals",
-        "description": "Short, source-aware policy risk notes for universal AI-agent decision-ready geopolitical, sanctions, trade, regulatory, and strategic-risk analysis.",
+        "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
         "latest": latest,
         "signals": entries,
     }
@@ -334,8 +348,20 @@ def main() -> None:
     snippets = collect_snippets()
     prompt = USER_TEMPLATE.format(date=date, snippets=snippets)
     markdown = openai_generate(prompt, args.model)
-    if "## Sources" not in markdown or "## Quick assessment" not in markdown:
-        raise SystemExit("Generated signal is missing required sections")
+    required_sections = [
+        "## Signal",
+        "## Why it matters",
+        "## Decision question",
+        "## Quick assessment",
+        "## What to watch",
+        "## What would change the judgment",
+        "## Sources",
+    ]
+    missing = [s for s in required_sections if s not in markdown]
+    if missing:
+        raise SystemExit(f"Generated signal is missing required sections: {', '.join(missing)}")
+    if "Evidence mode:" not in markdown:
+        raise SystemExit("Generated signal is missing the evidence mode header block")
 
     out_dir = SIGNALS_DIR / year
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -349,7 +375,6 @@ def main() -> None:
 
     out_path.write_text(markdown.rstrip() + "\n", encoding="utf-8")
     update_archive(date, rel_path, title)
-    update_main_readme(date, rel_path, title)
     update_agent_indexes()
     print(f"Wrote {rel_path}")
 
