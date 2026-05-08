@@ -55,6 +55,8 @@ flowchart LR
 
 This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; validation and tooling live in Agenda Intelligence MD.
 
+For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md).
+
 ## Integration status
 
 | Environment | Status | Notes |

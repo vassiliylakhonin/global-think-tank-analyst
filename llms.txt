@@ -29,6 +29,9 @@ Portfolio (three layers, separately maintained):
 
 Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the domain needs regional depth. Use Agenda Intelligence MD to validate, score, and audit the output.
 
+Concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack):
+- docs/integrations/agenda-intelligence-md.md
+
 Core files:
 - AGENTS.md — universal agent instructions and repository scope
 - SKILL.md — canonical skill behavior
