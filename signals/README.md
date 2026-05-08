@@ -17,7 +17,9 @@ Public **examples** of the Global Think Tank Analyst skill style. Each signal sh
 
 ## Latest signals
 
+- [2026-05-08](2026/2026-05-08.md): When honest evidence packs lower the score, the composition is working
 - [2026-04-28](2026/2026-04-28.md): Evidence discipline is the product, not decoration
+
 
 ## Contributing a signal
 

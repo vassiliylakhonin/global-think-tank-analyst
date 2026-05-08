@@ -3,7 +3,11 @@
 ## Unreleased
 
 - Added `docs/integrations/agenda-intelligence-md.md` — concrete CLI / MCP recipes for composing this skill with Agenda Intelligence MD (markdown score, JSON brief validate+score, evidence-pack audit, MCP loop).
+- Added `docs/integrations/agenda-intelligence-md-live-demo.md` — end-to-end run with **real CLI output** (95/100 brief-only → 83/100 with an honest evidence pack), captured against the published Agenda Intelligence MD package on 2026-05-08.
+- Added a `live-source-backed` worked example: `examples/live-source-backed-memo.md` (memo on the May 1, 2026 OFAC "Operation Economic Fury" Iran shadow-banking action), paired with a real JSON brief projection and evidence pack under `examples/agenda-projections/`.
 - Added three illustrative memos: export-controls exposure, critical-minerals supply-risk, EU energy-transition policy.
+- Added a new signal (`signals/2026/2026-05-08.md`) explaining why an honest evidence pack lowers the score.
+- Expanded `evals/failure-modes.md` with five new patterns specific to the GTTA + Agenda Intelligence MD composition (score gaming via stripped unsupported claims, JSON projection content loss, mode mismatch on raw markdown scoring, `live_source_backed` claim without an evidence pack, stale `retrieved_at`).
 - Trimmed the README Roadmap to reflect what was delivered.
 
 ## 1.2.0 - 2026-05-08

@@ -2,10 +2,13 @@
 
 Worked memo examples produced in the Global Think Tank Analyst style.
 
-All examples are illustrative. Evidence mode is **reasoning-only / illustrative source packet** — no live sources are checked, no citations are fabricated, and the memos are not intelligence products. They exist to show the *shape* of the output: decision framing, fact/assessment/assumption/scenario/unknown separation, actor incentives, options, watch indicators, and bounded confidence.
+Most examples are illustrative (`reasoning-only / illustrative source packet`) — no live sources are checked, no citations are fabricated, and they are not intelligence products. They exist to show the *shape* of the output: decision framing, fact/assessment/assumption/scenario/unknown separation, actor incentives, options, watch indicators, and bounded confidence.
+
+One example — `live-source-backed-memo.md` — uses **real public sources retrieved on 2026-05-08**, paired with a JSON brief projection and an evidence pack so the composition with [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) can be reproduced end to end.
 
 | File | Mode | Topic |
 |---|---|---|
+| [live-source-backed-memo.md](live-source-backed-memo.md) | **Live-source-backed** | OFAC Operation Economic Fury (2026-05-01) — real Treasury sources; paired JSON brief and evidence pack under [agenda-projections/](agenda-projections/) |
 | [sanctions-exposure-memo.md](sanctions-exposure-memo.md) | Standard memo | Secondary sanctions exposure for an EU tech firm in Central Asia |
 | [regulatory-impact-memo.md](regulatory-impact-memo.md) | Standard memo | EU CBAM exposure for a metals exporter |
 | [export-controls-memo.md](export-controls-memo.md) | Standard memo | Dual-use export-control exposure for a European industrial supplier |

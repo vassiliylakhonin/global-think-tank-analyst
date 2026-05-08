@@ -73,3 +73,40 @@ Common ways strategic-risk memos go wrong, with diagnostic cues. Use this with [
 **Symptom:** Useful judgment is buried under decoration.
 **Cue:** Executive takeaway repeats the question instead of answering it.
 **Fix:** Cut the first third. The takeaway should stand alone.
+
+---
+
+## When composing with Agenda Intelligence MD
+
+The patterns below are derived from real integration runs (see [`docs/integrations/agenda-intelligence-md-live-demo.md`](../docs/integrations/agenda-intelligence-md-live-demo.md)). They are specific to the GTTA + Agenda Intelligence MD composition.
+
+## 13. Score gaming via stripped unsupported claims
+
+**Symptom:** An evidence pack is constructed only from the claims that have sources, hiding the assessments behind the memo's judgment.
+**Cue:** `unsupported_claims=0` and `required_but_missing_sources=0` despite the memo containing analytical leaps.
+**Why it matters:** The score will look better, but the composition is now misleading. The whole point is that honest gaps lower the score.
+**Fix:** Treat the evidence pack as an audit of the *whole* memo, not a curated subset. Every assessment that is not source-backed belongs in `unsupported_claims`.
+
+## 14. JSON projection that drops load-bearing memo content
+
+**Symptom:** The projection (`agenda-brief.json`) passes `validate-brief` and scores well, but the operationally important parts of the memo (options, trade-offs, actor-incentive detail, "what would change the judgment") were not projected.
+**Cue:** `validate-brief: OK` and a high `score`, but a reviewer reading only the JSON would not be able to make the decision the memo informs.
+**Fix:** Treat the JSON projection as a structural surface for validators, not as the memo. Always preserve the markdown memo as the canonical artifact and ensure the projection links back to it.
+
+## 15. Mode mismatch on raw markdown scoring
+
+**Symptom:** Running `agenda-intelligence score` on a GTTA memo file produces an error like `Not a before/after example: missing ['## Before: generic agent output', '## After: with Agenda-Intelligence.md']`, and a contributor concludes the integration is broken.
+**Cue:** The error names specific section headers the file lacks.
+**Fix:** Use the JSON projection path. The markdown scorer is shaped for Agenda Intelligence MD's `before/after` example format, not for GTTA memos. This is current behavior; verify against `agenda-intelligence --help` for newer versions.
+
+## 16. `live_source_backed` claim without an evidence pack
+
+**Symptom:** The memo or brief declares `evidence_mode: live_source_backed`, but no evidence pack accompanies it. The structural-only score still looks high (real-run example: 95/100).
+**Cue:** A high score with no `--evidence` flag in the scoring command.
+**Fix:** If the brief is `live_source_backed`, attach an evidence pack and re-score. Treat brief-only scores as a smoke test, not as a quality grade.
+
+## 17. Stale `retrieved_at` masquerading as current
+
+**Symptom:** Sources tagged `freshness: current` in the evidence pack, but `retrieved_at` is weeks or months old.
+**Cue:** Mismatch between `retrieved_at` and the current date when the memo is being acted on.
+**Fix:** Re-fetch and re-validate. Sanctions designations, regulatory text, and price-sensitive data can change between retrieval and action; the freshness tag is about the source at retrieval time, not at decision time.

@@ -55,7 +55,7 @@ flowchart LR
 
 This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; validation and tooling live in Agenda Intelligence MD.
 
-For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md).
+For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md). For an end-to-end run with **real CLI output** (95/100 brief-only → 83/100 with an honest evidence pack), see [`docs/integrations/agenda-intelligence-md-live-demo.md`](docs/integrations/agenda-intelligence-md-live-demo.md).
 
 ## Integration status
 
@@ -133,6 +133,7 @@ The first answer is a tone. The second is a decision input.
 
 Worked memos in [`examples/`](examples/):
 
+- [Live-source-backed memo: OFAC Operation Economic Fury (2026-05-01)](examples/live-source-backed-memo.md) — paired with a real [JSON brief](examples/agenda-projections/live-source-backed-memo.brief.json) and [evidence pack](examples/agenda-projections/live-source-backed-memo.evidence.json)
 - [Sanctions exposure memo](examples/sanctions-exposure-memo.md)
 - [Regulatory impact memo (EU CBAM)](examples/regulatory-impact-memo.md)
 - [Export-controls exposure memo](examples/export-controls-memo.md)
@@ -209,10 +210,9 @@ To contribute a signal, copy [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
 
 Directional, not committed. Items here are not implemented.
 
-- Additional failure-mode patterns derived from real review feedback.
-- Expanded signal archive with wider domain coverage and clearer evidence-mode tagging.
-- A `live-source-backed` worked example, paired with a real evidence pack, once a current public event is suitable.
-- Optional MCP recipe demonstrating the integration loop with Agenda Intelligence MD end to end.
+- More failure-mode patterns once real user review feedback is available (current patterns are derived from the examples and the live integration run, not from third-party reviews).
+- Wider signal-archive domain coverage as suitable public events arise.
+- Additional `live-source-backed` examples in domains beyond sanctions (regulatory text releases, customs notices, central-bank communications) once stable primary sources can be cited.
 
 If you'd like to influence the roadmap, open an issue.
 

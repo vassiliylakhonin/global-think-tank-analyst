@@ -1,0 +1,60 @@
+{
+  "bottom_line": "May 2026 OFAC Operation Economic Fury sharply raises enforcement-attention risk for EU correspondent banks with UAE/HK-routed flows; tighten EDD on shell-company typology now, ahead of likely follow-on actions.",
+  "signal_classification": "enforcement_marker",
+  "what_changed": "On 2026-05-01 OFAC designated 35 entities and individuals tied to Iran's shadow-banking architecture and explicitly named Hong Kong and the UAE as preferred shell-company jurisdictions for the Zarringhalam network (Treasury press release SB-0477).",
+  "why_it_matters": "The legal risk surface for non-US correspondent banks did not change materially, but the enforcement-attention surface did. Adjacency risk through cover-company patterns matching the published typology now drives short-horizon EDD posture.",
+  "affected_actors": [
+    "EU correspondent banks with UAE/HK/TR exposure",
+    "HK and UAE financial regulators",
+    "Iranian rahbar networks and front companies",
+    "OFAC and US Treasury",
+    "EU and UK sanctions authorities"
+  ],
+  "main_uncertainty": "Whether OFAC or aligned EU/UK authorities will name a financial intermediary in a follow-on designation within the 90-day horizon, and how quickly correspondent-bank partners formalize typology-based EDD requests.",
+  "scenarios": [
+    {
+      "name": "Typology absorption",
+      "description": "OFAC publishes follow-on FAQs; EU/UK regulators issue typology guidance; correspondent partners tighten EDD voluntarily.",
+      "indicators": [
+        "OFAC FAQ updates citing SB-0477",
+        "EU/UK typology bulletins",
+        "HK SFC or UAE Central Bank circulars"
+      ]
+    },
+    {
+      "name": "Intermediary-bank designation",
+      "description": "OFAC names a specific correspondent or payment intermediary tied to the typology.",
+      "indicators": [
+        "Further OFAC press releases under Operation Economic Fury",
+        "Secondary reporting of named banks in HK/UAE"
+      ]
+    },
+    {
+      "name": "Allied alignment",
+      "description": "EU or UK adds aligned designations or sectoral measures on the same network.",
+      "indicators": [
+        "EU consolidated list updates",
+        "UK OFSI notices",
+        "Coordinated public statements"
+      ]
+    },
+    {
+      "name": "Quiet status quo",
+      "description": "No follow-on action, no aligned moves over the 90-day horizon.",
+      "indicators": [
+        "Absence of OFAC follow-up within 60 days",
+        "Absence of EU/UK alignment"
+      ]
+    }
+  ],
+  "watch_next": [
+    "Further OFAC press releases referencing SB-0477 or Operation Economic Fury",
+    "EU consolidated sanctions list updates touching the same network",
+    "UK OFSI consolidated list updates",
+    "HK SFC or UAE Central Bank typology bulletins",
+    "Correspondent-partner EDD letters citing the Zarringhalam typology",
+    "Naming of any financial intermediary in a follow-on action"
+  ],
+  "evidence_mode": "live_source_backed",
+  "confidence": "medium"
+}

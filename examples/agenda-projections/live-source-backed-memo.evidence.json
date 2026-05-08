@@ -1,0 +1,105 @@
+{
+  "topic": "May 2026 OFAC Operation Economic Fury Iran shadow-banking designations",
+  "evidence_mode": "live_source_backed",
+  "retrieved_at": "2026-05-08T00:00:00Z",
+  "jurisdiction": "US (OFAC); secondary regulatory implications EU, UK, HK, UAE",
+  "claims": [
+    {
+      "claim": "On May 1, 2026, OFAC designated 35 entities and individuals tied to Iran's shadow-banking architecture under Operation Economic Fury.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "U.S. Department of the Treasury — Press Release SB-0477: Economic Fury Targets Iran Shadow Banking Facilitators",
+          "url": "https://home.treasury.gov/news/press-releases/sb0477",
+          "source_type": "official",
+          "freshness": "current",
+          "supports": [
+            "Number of designated entities and individuals (35)",
+            "Operation name (Economic Fury)",
+            "Target description (Iran shadow-banking architecture)"
+          ],
+          "limits": [
+            "Press release; the operative legal action is the corresponding SDN list update",
+            "Designations and general licenses can be amended; verify against current OFAC list before operational use"
+          ]
+        },
+        {
+          "name": "Investing.com / Reuters — US Treasury sanctions 35 entities in Iran shadow banking crackdown",
+          "url": "https://www.investing.com/news/economy-news/us-treasury-sanctions-35-entities-in-iran-shadow-banking-crackdown-93CH-4642672",
+          "source_type": "media",
+          "freshness": "current",
+          "supports": ["Number of designated entities (35)", "Action characterization"],
+          "limits": ["Secondary reporting; cite the Treasury press release as the primary source for any operational decision"]
+        }
+      ]
+    },
+    {
+      "claim": "OFAC explicitly identifies the Zarringhalam network's front companies in Hong Kong and the UAE as a primary mechanism for cover-company transactions on behalf of Iranian entities.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "U.S. Department of the Treasury — Press Release SB-0477",
+          "url": "https://home.treasury.gov/news/press-releases/sb0477",
+          "source_type": "official",
+          "freshness": "current",
+          "supports": [
+            "Naming of the Zarringhalam network",
+            "Naming of Hong Kong and the UAE as preferred shell-company jurisdictions",
+            "Stated rationale that these jurisdictions are 'easy to establish and subject to less scrutiny'"
+          ],
+          "limits": [
+            "Characterization is from the Treasury press release; jurisdictions named have their own enforcement frameworks"
+          ]
+        },
+        {
+          "name": "Arab News — US Treasury warns UAE, Hong Kong banks over Iran-linked money flows",
+          "url": "https://www.arabnews.com/node/2640043/amp",
+          "source_type": "media",
+          "freshness": "current",
+          "supports": ["Regulatory-attention framing toward UAE and HK banks"],
+          "limits": ["Secondary reporting; framing reflects journalistic interpretation"]
+        }
+      ]
+    },
+    {
+      "claim": "The May 2026 action builds on a January 15, 2026 OFAC shadow-banking action targeting 'rahbar' networks of Bank Melli and Shahr Bank.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "U.S. Department of the Treasury — Press Release SB-0477 (references the prior January 15, 2026 action)",
+          "url": "https://home.treasury.gov/news/press-releases/sb0477",
+          "source_type": "official",
+          "freshness": "current",
+          "supports": ["Existence and date of prior January 15 action", "Targets of prior action (Bank Melli, Shahr Bank rahbar networks)"],
+          "limits": ["Primary text of the January 15 action requires separate retrieval"]
+        }
+      ]
+    },
+    {
+      "claim": "EU and UK regulators are likely to update typology-based supervisory expectations in response to OFAC's typology disclosure within 1–2 quarters.",
+      "support_status": "unsupported",
+      "sources": []
+    },
+    {
+      "claim": "Correspondent-banking partners in HK and the UAE will tighten internal KYC documentation requests independently and visibly, increasing operational friction even on legitimate flows.",
+      "support_status": "unsupported",
+      "sources": []
+    }
+  ],
+  "unsupported_claims": [
+    "EU and UK regulators are likely to update typology-based supervisory expectations within 1–2 quarters (assessment, not source-backed)",
+    "Correspondent-bank partners will tighten EDD independently and visibly (assessment, not source-backed)"
+  ],
+  "source_plan": [
+    "OFAC press releases under Operation Economic Fury",
+    "OFAC SDN list updates",
+    "EU consolidated sanctions list",
+    "UK OFSI consolidated list",
+    "HK SFC and UAE Central Bank typology bulletins"
+  ],
+  "required_but_missing_sources": [
+    "Direct retrieval of the January 15, 2026 OFAC press release",
+    "Live OFAC SDN list lookup of named entities to confirm program tags",
+    "EU and UK consolidated list snapshots as of 2026-05-08"
+  ]
+}
