@@ -1,6 +1,6 @@
 ---
 name: policy_risk_memo_architect
-description: Universal AI-agent playbook for decision-ready memos on geopolitics, sanctions, trade, regulation, and strategic risk with explicit uncertainty, competing interpretations, options, triggers, and indicators.
+description: Strategic-risk analysis skill for AI agents producing decision-ready memos on geopolitics, sanctions, trade, regulation, and strategic risk with explicit evidence boundaries, uncertainty, scenarios, actor incentives, trade-offs, and watch-next indicators.
 ---
 
 # Global Think Tank Analyst
@@ -34,9 +34,11 @@ Do not use this skill for:
 
 If the request is too broad, narrow it before analyzing.
 
-## Universal agent contract
+## Strategic-risk skill contract
 
-This skill is not tied to one agent runtime. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
+This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
+
+For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
 
 Runtime-specific guidance:
 
@@ -205,7 +207,7 @@ Do not pretend one option is universally best if the answer depends on timing, m
 Conclude with the clearest supportable answer.
 The bottom line must reflect evidence limits rather than overwrite them.
 
-## Output mode selection
+## Memo modes
 
 Choose one primary mode unless the user explicitly requests a hybrid.
 
