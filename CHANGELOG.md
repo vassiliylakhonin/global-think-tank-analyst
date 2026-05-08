@@ -8,6 +8,7 @@
 - Added three illustrative memos: export-controls exposure, critical-minerals supply-risk, EU energy-transition policy.
 - Added a new signal (`signals/2026/2026-05-08.md`) explaining why an honest evidence pack lowers the score.
 - Expanded `evals/failure-modes.md` with five new patterns specific to the GTTA + Agenda Intelligence MD composition (score gaming via stripped unsupported claims, JSON projection content loss, mode mismatch on raw markdown scoring, `live_source_backed` claim without an evidence pack, stale `retrieved_at`).
+- Added three additional `live-source-backed` worked examples (real sources retrieved 2026-05-08): Hormuz disruption / energy prices, EU AI Act simplification (Omnibus VII), and the China critical-minerals export-control suspension.
 - Trimmed the README Roadmap to reflect what was delivered.
 
 ## 1.2.0 - 2026-05-08

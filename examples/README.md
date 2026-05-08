@@ -4,11 +4,14 @@ Worked memo examples produced in the Global Think Tank Analyst style.
 
 Most examples are illustrative (`reasoning-only / illustrative source packet`) — no live sources are checked, no citations are fabricated, and they are not intelligence products. They exist to show the *shape* of the output: decision framing, fact/assessment/assumption/scenario/unknown separation, actor incentives, options, watch indicators, and bounded confidence.
 
-One example — `live-source-backed-memo.md` — uses **real public sources retrieved on 2026-05-08**, paired with a JSON brief projection and an evidence pack so the composition with [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) can be reproduced end to end.
+Four examples are **`live-source-backed`** with real public sources retrieved on 2026-05-08. One of them (`live-source-backed-memo.md`) is also paired with a JSON brief projection and an evidence pack so the composition with [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) can be reproduced end to end. Sources may have changed since retrieval; verify before any operational use.
 
 | File | Mode | Topic |
 |---|---|---|
 | [live-source-backed-memo.md](live-source-backed-memo.md) | **Live-source-backed** | OFAC Operation Economic Fury (2026-05-01) — real Treasury sources; paired JSON brief and evidence pack under [agenda-projections/](agenda-projections/) |
+| [live-source-backed-hormuz-energy-prices.md](live-source-backed-hormuz-energy-prices.md) | **Live-source-backed** | Hormuz disruption and Brent/WTI volatility (May 2026) — World Bank, CNBC, Al Jazeera, CNN |
+| [live-source-backed-eu-ai-act-simplification.md](live-source-backed-eu-ai-act-simplification.md) | **Live-source-backed** | EU AI Act simplification provisional agreement (2026-05-07, Omnibus VII) — Council of the EU primary source |
+| [live-source-backed-china-critical-minerals-suspension.md](live-source-backed-china-critical-minerals-suspension.md) | **Live-source-backed** | China critical-minerals export-control suspension (Nov 2025 – Nov 2026) — Pillsbury, Clark Hill, Fastmarkets, CSIS, ORF |
 | [sanctions-exposure-memo.md](sanctions-exposure-memo.md) | Standard memo | Secondary sanctions exposure for an EU tech firm in Central Asia |
 | [regulatory-impact-memo.md](regulatory-impact-memo.md) | Standard memo | EU CBAM exposure for a metals exporter |
 | [export-controls-memo.md](export-controls-memo.md) | Standard memo | Dual-use export-control exposure for a European industrial supplier |

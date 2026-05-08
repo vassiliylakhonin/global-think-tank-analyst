@@ -134,6 +134,9 @@ The first answer is a tone. The second is a decision input.
 Worked memos in [`examples/`](examples/):
 
 - [Live-source-backed memo: OFAC Operation Economic Fury (2026-05-01)](examples/live-source-backed-memo.md) — paired with a real [JSON brief](examples/agenda-projections/live-source-backed-memo.brief.json) and [evidence pack](examples/agenda-projections/live-source-backed-memo.evidence.json)
+- [Live-source-backed: Hormuz disruption and energy prices (May 2026)](examples/live-source-backed-hormuz-energy-prices.md)
+- [Live-source-backed: EU AI Act simplification (Omnibus VII, 2026-05-07)](examples/live-source-backed-eu-ai-act-simplification.md)
+- [Live-source-backed: China critical-minerals export-controls suspension (Nov 2025 – Nov 2026)](examples/live-source-backed-china-critical-minerals-suspension.md)
 - [Sanctions exposure memo](examples/sanctions-exposure-memo.md)
 - [Regulatory impact memo (EU CBAM)](examples/regulatory-impact-memo.md)
 - [Export-controls exposure memo](examples/export-controls-memo.md)
