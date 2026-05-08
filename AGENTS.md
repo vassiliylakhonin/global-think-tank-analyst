@@ -106,17 +106,20 @@ Use terms like:
 
 Do not call it a validated benchmark unless benchmark cases and results actually exist.
 
-## Naming
+## Naming and portfolio
 
 Use consistent hierarchy:
 
-Product: Global Think Tank Analyst
+Product: Global Think Tank Analyst (horizontal domain skill)
 
 Method: Policy Risk Memo Architect
 
-Companion infrastructure: Agenda Intelligence MD
+Vertical specialists (compose on top of the horizontal skill, do not duplicate it):
+- central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
 
-Do not present these as competing names.
+Companion infrastructure: Agenda Intelligence MD (validation, scoring, schemas, CLI / MCP / CI).
+
+Do not present these as competing names. Do not duplicate vertical-specialist depth or Agenda Intelligence MD tooling inside this repo.
 
 ## Definition of done
 

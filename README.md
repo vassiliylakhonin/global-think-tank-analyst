@@ -33,25 +33,27 @@ This repository is a domain skill layer that teaches agents how to do that work.
 
 If you need validation, scoring, evidence audit, schemas, CLI, MCP, or CI checks for outputs produced with this skill, see the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
 
-## Relationship to Agenda Intelligence MD
+## Portfolio: how this skill composes
 
-The two projects are complementary, not competing.
+Three layers, separately maintained, designed to compose:
 
-| | Global Think Tank Analyst | Agenda Intelligence MD |
+| Layer | Repo | What it does |
 |---|---|---|
-| Layer | Domain reasoning skill | Machine-readable protocol |
-| Concern | Memo logic, analyst behavior, scenario and decision framing | Schemas, validation, scoring, evidence audit |
-| Form | Markdown skill / behavior contract | CLI / MCP / CI tooling |
-| Audience | Agents producing the memo | Systems checking the memo |
+| **Horizontal domain skill** | **Global Think Tank Analyst** (this repo) | The reasoning method and memo modes. Region- and topic-agnostic. |
+| **Vertical specialists** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Region-deep skills that ride on top of the horizontal method (Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk). |
+| **Infrastructure / validation** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) | Machine-readable protocol, schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling. |
 
 ```mermaid
 flowchart LR
-    A[Global Think Tank Analyst] -->|drafts| B[Strategic-risk memo]
-    B -->|validated by| C[Agenda Intelligence MD]
-    C -->|scored, audited| D[Decision-ready brief]
+    A[Global Think Tank Analyst<br/>horizontal method] -->|drafts memo| D[Strategic-risk memo]
+    V[Vertical specialist<br/>e.g. Central Asia Caspian] -->|adds regional depth| D
+    D -->|validated, scored| C[Agenda Intelligence MD<br/>infrastructure]
+    C --> O[Decision-ready brief]
 ```
 
-> Use Global Think Tank Analyst to draft the memo. Use Agenda Intelligence MD to validate, score, and audit the output.
+> Use **Global Think Tank Analyst** for the analyst behavior and memo structure. Bring in a **vertical specialist** when the domain or region needs depth this skill alone cannot provide. Use **Agenda Intelligence MD** to validate, score, and audit the output.
+
+This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; validation and tooling live in Agenda Intelligence MD.
 
 ## Integration status
 
