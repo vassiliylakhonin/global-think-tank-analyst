@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.3.0 - 2026-05-09
 
 - Added `docs/integrations/agenda-intelligence-md.md` — concrete CLI / MCP recipes for composing this skill with Agenda Intelligence MD (markdown score, JSON brief validate+score, evidence-pack audit, MCP loop).
 - Added `docs/integrations/agenda-intelligence-md-live-demo.md` — end-to-end run with **real CLI output** (95/100 brief-only → 83/100 with an honest evidence pack), captured against the published Agenda Intelligence MD package on 2026-05-08.
