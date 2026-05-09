@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Spawned three signals from existing live-source-backed memos: Hormuz oil-price corridor, EU AI Act simplification redeployment, China critical-minerals procurement window. Hardened the signal-generation script to support `YYYY-MM-DD-<topic>.md` filenames so multiple signals can share a date.
+- Added two more `live-source-backed` worked examples: ECB rate-hold (2026-04-30, ECB primary publications) and EU CBAM enforcement-phase exposure (2026 definitive phase, DG TAXUD).
+- Converted the README example list to a domain × evidence-mode matrix for navigation.
+- Added ECB and BIS feeds to `.github/policy-risk-signal/sources.json` to broaden monetary-policy and financial-stability coverage in the auto-signal pipeline.
+
 ## 1.3.0 - 2026-05-09
 
 - Added `docs/integrations/agenda-intelligence-md.md` — concrete CLI / MCP recipes for composing this skill with Agenda Intelligence MD (markdown score, JSON brief validate+score, evidence-pack audit, MCP loop).

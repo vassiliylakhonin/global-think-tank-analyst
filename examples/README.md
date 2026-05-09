@@ -12,6 +12,8 @@ Four examples are **`live-source-backed`** with real public sources retrieved on
 | [live-source-backed-hormuz-energy-prices.md](live-source-backed-hormuz-energy-prices.md) | **Live-source-backed** | Hormuz disruption and Brent/WTI volatility (May 2026) — World Bank, CNBC, Al Jazeera, CNN |
 | [live-source-backed-eu-ai-act-simplification.md](live-source-backed-eu-ai-act-simplification.md) | **Live-source-backed** | EU AI Act simplification provisional agreement (2026-05-07, Omnibus VII) — Council of the EU primary source |
 | [live-source-backed-china-critical-minerals-suspension.md](live-source-backed-china-critical-minerals-suspension.md) | **Live-source-backed** | China critical-minerals export-control suspension (Nov 2025 – Nov 2026) — Pillsbury, Clark Hill, Fastmarkets, CSIS, ORF |
+| [live-source-backed-cbam-enforcement.md](live-source-backed-cbam-enforcement.md) | **Live-source-backed** | EU CBAM enforcement / definitive phase (2026) — DG TAXUD, ICAP, S&P Global |
+| [live-source-backed-ecb-rate-hold.md](live-source-backed-ecb-rate-hold.md) | **Live-source-backed** | ECB rate hold (2026-04-30) — ECB primary publications |
 | [sanctions-exposure-memo.md](sanctions-exposure-memo.md) | Standard memo | Secondary sanctions exposure for an EU tech firm in Central Asia |
 | [regulatory-impact-memo.md](regulatory-impact-memo.md) | Standard memo | EU CBAM exposure for a metals exporter |
 | [export-controls-memo.md](export-controls-memo.md) | Standard memo | Dual-use export-control exposure for a European industrial supplier |

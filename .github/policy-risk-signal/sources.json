@@ -24,6 +24,16 @@
       "name": "EBRD News",
       "url": "https://www.ebrd.com/news/rss.xml",
       "focus": "investment climate, transition economies, Central Asia"
+    },
+    {
+      "name": "ECB Press Releases",
+      "url": "https://www.ecb.europa.eu/rss/press.html",
+      "focus": "euro-area monetary policy, financial stability, supervision"
+    },
+    {
+      "name": "BIS Latest Speeches and Press Releases",
+      "url": "https://www.bis.org/list/press_releases/index.rss",
+      "focus": "international banking, monetary policy coordination, financial stability"
     }
   ]
 }
