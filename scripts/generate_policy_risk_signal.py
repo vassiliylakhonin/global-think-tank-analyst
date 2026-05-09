@@ -271,15 +271,23 @@ def update_archive(date: str, rel_path: str, title: str) -> None:
     body = "\n".join(lines[:20]) + "\n"
     ARCHIVE_PATH.write_text(ARCHIVE_HEADER + body + ARCHIVE_FOOTER, encoding="utf-8")
 
+DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
+
+
 def collect_signal_entries() -> list[dict[str, str]]:
     entries: list[dict[str, str]] = []
     for path in sorted(SIGNALS_DIR.glob("[0-9][0-9][0-9][0-9]/*.md"), reverse=True):
-        date = path.stem
+        # Filenames may be `YYYY-MM-DD.md` or `YYYY-MM-DD-<topic>.md`.
+        # Use the date prefix for indexes and the full stem as a stable id.
+        match = DATE_PREFIX_RE.match(path.stem)
+        date = match.group(1) if match else path.stem
+        slug = path.stem
         markdown = path.read_text(encoding="utf-8")
         rel_path = path.relative_to(ROOT).as_posix()
         entries.append(
             {
                 "date": date,
+                "slug": slug,
                 "title": signal_title(markdown),
                 "path": rel_path,
                 "url": f"{REPO_URL}/blob/main/{rel_path}",

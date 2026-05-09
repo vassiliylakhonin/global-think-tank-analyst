@@ -131,19 +131,21 @@ The first answer is a tone. The second is a decision input.
 
 ## Examples
 
-Worked memos in [`examples/`](examples/):
+Worked memos in [`examples/`](examples/), grouped by domain and evidence mode:
 
-- [Live-source-backed memo: OFAC Operation Economic Fury (2026-05-01)](examples/live-source-backed-memo.md) — paired with a real [JSON brief](examples/agenda-projections/live-source-backed-memo.brief.json) and [evidence pack](examples/agenda-projections/live-source-backed-memo.evidence.json)
-- [Live-source-backed: Hormuz disruption and energy prices (May 2026)](examples/live-source-backed-hormuz-energy-prices.md)
-- [Live-source-backed: EU AI Act simplification (Omnibus VII, 2026-05-07)](examples/live-source-backed-eu-ai-act-simplification.md)
-- [Live-source-backed: China critical-minerals export-controls suspension (Nov 2025 – Nov 2026)](examples/live-source-backed-china-critical-minerals-suspension.md)
-- [Sanctions exposure memo](examples/sanctions-exposure-memo.md)
-- [Regulatory impact memo (EU CBAM)](examples/regulatory-impact-memo.md)
-- [Export-controls exposure memo](examples/export-controls-memo.md)
-- [Critical-minerals supply-risk memo](examples/critical-minerals-memo.md)
-- [Energy-transition policy memo](examples/energy-transition-policy-memo.md)
-- [Geopolitical scenario brief](examples/geopolitical-scenario-brief.md)
-- [Red-team policy brief](examples/red-team-policy-brief.md)
+| Domain | Evidence mode | File |
+|---|---|---|
+| Sanctions / AML | live-source-backed | [OFAC Operation Economic Fury (2026-05-01)](examples/live-source-backed-memo.md) — paired with a real [JSON brief](examples/agenda-projections/live-source-backed-memo.brief.json) and [evidence pack](examples/agenda-projections/live-source-backed-memo.evidence.json) |
+| Energy / commodities | live-source-backed | [Hormuz disruption and energy prices (May 2026)](examples/live-source-backed-hormuz-energy-prices.md) |
+| Regulatory / AI policy | live-source-backed | [EU AI Act simplification (Omnibus VII, 2026-05-07)](examples/live-source-backed-eu-ai-act-simplification.md) |
+| Trade / critical minerals | live-source-backed | [China critical-minerals export-controls suspension (Nov 2025 – Nov 2026)](examples/live-source-backed-china-critical-minerals-suspension.md) |
+| Sanctions / AML | reasoning-only | [Sanctions exposure memo](examples/sanctions-exposure-memo.md) |
+| Regulatory / climate | reasoning-only | [Regulatory impact memo (EU CBAM)](examples/regulatory-impact-memo.md) |
+| Export controls | reasoning-only | [Export-controls exposure memo](examples/export-controls-memo.md) |
+| Trade / critical minerals | reasoning-only | [Critical-minerals supply-risk memo](examples/critical-minerals-memo.md) |
+| Energy / climate policy | reasoning-only | [Energy-transition policy memo](examples/energy-transition-policy-memo.md) |
+| Geopolitical / scenarios | reasoning-only | [US–China semiconductor scenario brief](examples/geopolitical-scenario-brief.md) |
+| Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
 All examples use **reasoning-only / illustrative** evidence mode. They do not cite live sources and are not intelligence products.
 
