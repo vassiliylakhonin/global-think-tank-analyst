@@ -40,13 +40,15 @@ Three layers, separately maintained, designed to compose:
 | Layer | Repo | What it does |
 |---|---|---|
 | **Horizontal domain skill** | **Global Think Tank Analyst** (this repo) | The reasoning method and memo modes. Region- and topic-agnostic. |
-| **Vertical specialists** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Region-deep skills that ride on top of the horizontal method (Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk). |
+| **Vertical specialist — V1** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk. |
+| **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
 | **Infrastructure / validation** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) | Machine-readable protocol, schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling. |
 
 ```mermaid
 flowchart LR
     A[Global Think Tank Analyst<br/>horizontal method] -->|drafts memo| D[Strategic-risk memo]
-    V[Vertical specialist<br/>e.g. Central Asia Caspian] -->|adds regional depth| D
+    V1[V1 Central Asia Caspian<br/>vertical specialist] -->|adds regional depth| D
+    V2[V2 Gulf + Middle East<br/>vertical specialist] -->|adds regional depth| D
     D -->|validated, scored| C[Agenda Intelligence MD<br/>infrastructure]
     C --> O[Decision-ready brief]
 ```
@@ -222,7 +224,7 @@ Directional, not committed. Items here are not implemented unless explicitly not
 
 **Example depth:** add at least one `user-provided-sources` mode example — where the agent works from a document packet rather than live browsing or reasoning only. This is the most common real-world evidence mode and is currently absent from the examples directory.
 
-**Vertical specialist expansion:** evaluate adding a second vertical-specialist repo for a domain with enough decision-context complexity to justify it (candidates: Gulf & Middle East energy/sanctions; EU regulatory affairs depth). Not started; dependent on whether the Central Asia Caspian pattern proves reusable.
+**Vertical specialist expansion:** a second vertical-specialist repo, [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill), is now live (Iran sanctions, GCC banking and sovereign wealth, Hormuz/Bab-el-Mandeb/Red Sea maritime risk). EU regulatory affairs depth is the candidate for a third vertical if demand materialises.
 
 **Eval improvement:** failure-mode patterns are currently derived from the examples and the live integration run. Adding patterns from actual user review feedback would improve the checklist's practical value. Not possible until broader external usage generates structured feedback.
 
