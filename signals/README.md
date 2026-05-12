@@ -17,11 +17,11 @@ Public **examples** of the Global Think Tank Analyst skill style. Each signal sh
 
 ## Latest signals
 
+- [2026-05-12](2026/2026-05-12-monetary-policy-divergence.md): Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem
+- [2026-05-12](2026/2026-05-12-us-china-tariff-de-escalation.md): US-China tariff de-escalation: a pause, not a reset — plan for structural competition while managing the tactical window
+- [2026-05-12](2026/2026-05-12-fed-stagflation-posture.md): Fed between tariff inflation and growth slowdown: the rate path is not a straight line
+- [2026-05-12](2026/2026-05-12-us-eu-trade-framework.md): US–EU tariff exposure: the negotiation phase is a planning input, not a resolution
 - [2026-05-09](2026/2026-05-09-hormuz.md): Hormuz oil-price corridor: $86 baseline / $95–115 upside is the planning frame
-- [2026-05-09](2026/2026-05-09-eu-ai-act.md): EU AI Act simplification: redeploy compliance budget, do not cut it
-- [2026-05-09](2026/2026-05-09-china-minerals.md): China critical-minerals suspension: a procurement window, not a policy reset
-- [2026-05-08](2026/2026-05-08.md): When honest evidence packs lower the score, the composition is working
-- [2026-04-28](2026/2026-04-28.md): Evidence discipline is the product, not decoration
 
 ## Contributing a signal
 
