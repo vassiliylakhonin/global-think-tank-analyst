@@ -6,6 +6,13 @@
   "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
   "items": [
     {
+      "id": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-fed-stagflation-posture.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-fed-stagflation-posture.md",
+      "title": "2026-05-12: Fed between tariff inflation and growth slowdown: the rate path is not a straight line",
+      "date_published": "2026-05-12T00:00:00Z",
+      "content_text": "# Policy Risk Signal — 2026-05-12\n\n<!-- title: Fed between tariff inflation and growth slowdown: the rate path is not a straight line -->\n\nDomain: monetary policy / corporate finance. Region: US, global. Evidence mode: reasoning-only. Confidence: Moderate.\n\nThe Federal Reserve faces a structurally harder policy environment than the post-2022 rate cycle: tariff-driven goods inflation is pushing prices up while trade-policy uncertainty is pulling growth down. The standard playbook does not resolve cleanly when both pressures operate simultaneously.\n\nDecision question: For a CFO managing floating-rate debt, capex timing, or FX hedging with USD exposure — how much policy uncertainty should be priced into the rate path?\n\nAssessment: A prolonged pause — not a cut cycle — is the most defensible base case for corporate planning. Verify current Fed guidance before acting.\n\nScenarios: (1) Prolonged pause — Fed holds flat through most of 2026. (2) Stagflation escalation — forced to choose between fighting inflation or supporting growth. (3) Disinflationary surprise — tariff reversal clears path for cuts. (4) Divergence — ECB cuts while Fed holds, compressing margins for US exporters.\n\nWatch: FOMC statements and dot-plot revisions; core PCE prints; labor market data; ECB/BoE divergence; Treasury yield curve shape; political commentary on Fed independence.\n\nNo live sources were checked for this signal. Verify current Fed guidance, FOMC statement, dot-plot projections, and core PCE prints before any treasury or investment decision.\n"
+    },
+    {
       "id": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md",
       "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md",
       "title": "2026-05-12: US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
