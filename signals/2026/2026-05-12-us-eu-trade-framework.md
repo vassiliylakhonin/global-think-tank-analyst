@@ -1,11 +1,3 @@
-# Latest Policy Risk Signal
-
-Canonical file: [2026-05-12](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md)
-
-Canonical path: `signals/2026/2026-05-12-us-eu-trade-framework.md`
-
----
-
 # Policy Risk Signal — 2026-05-12
 
 <!-- title: US–EU tariff exposure: the negotiation phase is a planning input, not a resolution -->
@@ -40,18 +32,34 @@ For an EU-headquartered operator with US market exposure, should transatlantic t
 - **Unknown:** Duration of any pause mechanism; EU willingness to use retaliatory tariff authority as a negotiating lever; US administration's flexibility on sectoral carve-outs.
 - **Main risk:** Anchoring operational decisions on negotiation optimism rather than structural tariff reality.
 
-## What to watch
+## Who gains leverage
+- US industrial producers protected by the tariff structure.
+- Non-EU third-country suppliers already outside the tariff regime (alternative sourcing options improve).
+- EU negotiators holding retaliatory authority as a credible lever, if the political coalition holds.
+
+## Who loses leverage
+- EU exporters of goods with high US market concentration and limited pricing power.
+- US importers of EU inputs with no near-term substitution path.
+- Operators with long-dated supply contracts priced before the tariff structure changed.
+
+## Scenarios
+- **Baseline:** Tariff structure persists through 2026 with periodic sectoral carve-outs and quota expansions, but no comprehensive framework. Cost pass-through and supplier diversification are the operational responses.
+- **Partial resolution:** A sectoral agreement covers high-visibility categories (steel, EVs, or agriculture), reducing headline tension without addressing the full tariff exposure. Partial relief is likely to be priced as permanent by markets before formal ratification.
+- **Escalation:** EU retaliatory tariff authority is activated on a set of US goods; US responds with counter-escalation. Cost basis for transatlantic goods trade rises further; some supply-chain restructuring becomes irreversible.
+- **Disconfirming:** A rapid framework agreement — covering tariff reduction, mutual recognition, and reciprocal enforcement — is ratified within 12 months. This is the scenario most operators are implicitly betting on; it is also the least likely given current institutional constraints.
+
+## Watch next
 - Official announcement of a ratified framework agreement (not a "progress on talks" communiqué).
 - EU Council vote on retaliatory tariff activation: passage means escalation scenario becomes primary.
-- US import volume and pricing data for EU-exposed goods categories (steel, machinery, industrial components).
-- WTO dispute panel decisions: track how parties respond, not just the ruling.
-- Sector-specific carve-out announcements (EVs, pharmaceuticals, aerospace): track scope carefully.
+- US import volume and pricing data for EU-exposed goods categories (steel, machinery, industrial components): divergence from pre-tariff trend confirms cost absorption is real.
+- WTO dispute panel decisions: procedural outcomes matter less than how parties respond to them.
+- Sector-specific carve-out announcements (EVs, pharmaceuticals, aerospace): track scope carefully — partial relief often signals negotiation stalemate, not progress.
 
 ## What would change the judgment
-- A ratified bilateral framework agreement with binding tariff-reduction commitments → restructuring decisions should accelerate.
-- EU retaliatory tariff activation on a significant US goods category → escalation scenario; cost-basis revisions become urgent.
-- Unilateral US tariff suspension on a broad category → treat as 90-day reprieve at most, not durable resolution.
-- US administration posture shift signaling acceptance of WTO-consistent tariff levels → re-assess framework probability upward, but do not act ahead of formal announcement.
+- A ratified bilateral framework agreement with binding tariff-reduction commitments → disconfirming scenario becomes operative; restructuring decisions should accelerate.
+- EU retaliatory tariff activation on a significant US goods category → escalation scenario; cost basis revisions and supplier restructuring become urgent.
+- Unilateral US tariff suspension on a broad category without a reciprocal EU commitment → likely a domestic political move, not durable; treat as 90-day reprieve at most.
+- A change in US administration posture signaling willingness to accept WTO-consistent tariff levels → re-assess framework probability upward, but do not act ahead of formal announcement.
 
 ## Sources
 No live sources were checked for this signal. Assessment is based on structural reasoning about US-EU trade architecture and negotiation dynamics.
@@ -63,3 +71,6 @@ Confidence: Moderate. The structural reasoning is sound; the specific current-st
 
 ## Example expansion prompt
 Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for an EU industrial operator with US market exposure: define the options (absorb, pass through, restructure), separate facts from assumptions, identify the negotiation-scenario triggers, and list watch-next indicators tied to posture changes.
+
+## Disclaimer
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, trade-legal, customs, or investment advice.

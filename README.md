@@ -63,7 +63,7 @@ For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add a
 |---|---|---|
 | Codex / Cursor / Windsurf | Compatible by repo context | Add `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt` as context |
 | ChatGPT, Claude, Gemini, Perplexity | Compatible by paste/attach | Paste `AGENTS.md` or attach `SKILL.md` |
-| OpenClaw / ClawHub | Packaging-dependent | Install only if a current package exists for your version |
+| OpenClaw / ClawHub | Not actively maintained | Package may not be current; use paste/attach as fallback |
 | RAG / internal copilots | Compatible by indexing | Index `README.md`, `SKILL.md`, `AGENTS.md`, `llms.txt`, `signals/` |
 | Agenda Intelligence MD | Companion project | Use it for validation, evidence audit, scoring |
 | MCP server | Not implemented here | Use Agenda Intelligence MD if MCP is required |
@@ -147,9 +147,10 @@ Worked memos in [`examples/`](examples/), grouped by domain and evidence mode:
 | Trade / critical minerals | reasoning-only | [Critical-minerals supply-risk memo](examples/critical-minerals-memo.md) |
 | Energy / climate policy | reasoning-only | [Energy-transition policy memo](examples/energy-transition-policy-memo.md) |
 | Geopolitical / scenarios | reasoning-only | [US–China semiconductor scenario brief](examples/geopolitical-scenario-brief.md) |
+| AI governance / strategic competition | reasoning-only | [AI governance regulatory divergence — US, EU, China (18–24 month)](examples/ai-governance-scenario-brief.md) |
 | Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
-All examples use **reasoning-only / illustrative** evidence mode. They do not cite live sources and are not intelligence products.
+Live-source-backed examples cite real public sources retrieved on 2026-05-08; verify before any operational use. Reasoning-only examples do not cite live sources and are not intelligence products.
 
 ## Evaluation
 
@@ -215,11 +216,15 @@ To contribute a signal, copy [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
 
 ## Roadmap
 
-Directional, not committed. Items here are not implemented.
+Directional, not committed. Items here are not implemented unless explicitly noted.
 
-- More failure-mode patterns once real user review feedback is available (current patterns are derived from the examples and the live integration run, not from third-party reviews).
-- Wider signal-archive domain coverage as suitable public events arise.
-- Additional `live-source-backed` examples in domains beyond sanctions (regulatory text releases, customs notices, central-bank communications) once stable primary sources can be cited.
+**Signal coverage:** expand the archive into trade and monetary-policy domains (US-EU tariffs, interest-rate regime shifts, supply-chain re-routing events). The current archive covers energy, regulatory, critical minerals, and sanctions well; trade and macro are underrepresented.
+
+**Example depth:** add at least one `user-provided-sources` mode example — where the agent works from a document packet rather than live browsing or reasoning only. This is the most common real-world evidence mode and is currently absent from the examples directory.
+
+**Vertical specialist expansion:** evaluate adding a second vertical-specialist repo for a domain with enough decision-context complexity to justify it (candidates: Gulf & Middle East energy/sanctions; EU regulatory affairs depth). Not started; dependent on whether the Central Asia Caspian pattern proves reusable.
+
+**Eval improvement:** failure-mode patterns are currently derived from the examples and the live integration run. Adding patterns from actual user review feedback would improve the checklist's practical value. Not possible until broader external usage generates structured feedback.
 
 If you'd like to influence the roadmap, open an issue.
 

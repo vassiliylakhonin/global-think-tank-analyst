@@ -2,13 +2,20 @@
   "title": "Policy Risk Signals",
   "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
   "latest": {
-    "date": "2026-05-09",
-    "slug": "2026-05-09-hormuz",
-    "title": "Hormuz oil-price corridor: $86 baseline / $95–115 upside is the planning frame",
-    "path": "signals/2026/2026-05-09-hormuz.md",
-    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-hormuz.md"
+    "date": "2026-05-12",
+    "slug": "2026-05-12-us-eu-trade-framework",
+    "title": "US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
+    "path": "signals/2026/2026-05-12-us-eu-trade-framework.md",
+    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md"
   },
   "signals": [
+    {
+      "date": "2026-05-12",
+      "slug": "2026-05-12-us-eu-trade-framework",
+      "title": "US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
+      "path": "signals/2026/2026-05-12-us-eu-trade-framework.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md"
+    },
     {
       "date": "2026-05-09",
       "slug": "2026-05-09-hormuz",
