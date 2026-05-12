@@ -36,19 +36,108 @@ Do not use this skill for:
 
 If the request is too broad, narrow it before analyzing.
 
+## Codex Platform Setup
+
+This variant is optimized for Codex agentic workflows, repository-aware agents, and multi-step pipeline integration.
+
+**Repository context:**
+Treat `AGENTS.md`, `llms.txt`, and this file as the behavior contract for this repository. When working in the GTTA repo, read `AGENTS.md` first for project-level rules, then this file for runtime behavior.
+
+**Include in Codex agent context:**
+```
+AGENTS.md
+llms.txt
+codex/SKILL.md
+```
+
+**Tool-use discipline:**
+In Codex, tools may include web search, file read, shell commands, or API calls. Apply strict discipline:
+- Do not claim a source was checked unless the tool was actually invoked and returned results
+- Cite tool output explicitly: source name, date retrieved, key fact extracted
+- If tools unavailable: state `reasoning-only`, lower confidence, avoid narrow numerical claims
+- If tools available: use them for current policy, sanctions, regulatory, and market facts before asserting them
+
+**Agentic-loop output discipline:**
+Codex agents may run multi-step loops where each step's output feeds the next. Calibrate output format to the pipeline step:
+- Analysis step → produce markdown memo (default)
+- Extraction step → produce JSON structured brief (see JSON Output Mode)
+- Validation step → hand off to Agenda Intelligence MD (see Pipeline Integration)
+
+Do not produce over-long narrative in intermediate steps. Compress ruthlessly when the output is consumed by another agent step, not a human.
+
+## JSON Output Mode
+
+When the downstream step is Agenda Intelligence MD validation, a structured pipeline consumer, or the user/orchestrator requests structured output, produce JSON instead of markdown.
+
+Trigger: `--json`, `format: json`, `output: brief-json`, or explicit orchestrator instruction.
+
+Produce a JSON object:
+
+```json
+{
+  "title": "string — decision-relevant title",
+  "domain": "sanctions | trade | regulatory | geopolitical | energy | technology | financial",
+  "region": "string — primary geography",
+  "evidence_mode": "live-source-backed | user-provided sources | illustrative source packet | reasoning-only",
+  "bottom_line": "string — 1-2 sentences, decision-relevant",
+  "primary_driver": "string",
+  "decision_context": "string — what decision this memo supports",
+  "key_facts": ["string — fact label: value"],
+  "key_assessments": ["string"],
+  "key_assumptions": ["string"],
+  "actor_incentives": [
+    {"actor": "string", "incentive": "string", "leverage": "string"}
+  ],
+  "risks": [
+    {"risk": "string", "channel": "string", "severity": "Low | Moderate | High"}
+  ],
+  "scenarios": [
+    {"label": "string", "trigger": "string", "implication": "string", "probability_label": "Low | Moderate | High"}
+  ],
+  "options": [
+    {"option": "string", "benefit": "string", "downside": "string", "condition": "string"}
+  ],
+  "watch_next": ["string — named indicator, not vague 'monitor'"],
+  "unknowns": ["string"],
+  "confidence": "Low | Moderate | High",
+  "confidence_basis": "string",
+  "what_would_change": ["string"],
+  "limitation_note": "string"
+}
+```
+
+## Pipeline Integration with Agenda Intelligence MD
+
+When producing output for Agenda Intelligence MD validation:
+
+**Step 1 — Get source plan (if applicable):**
+```bash
+agenda-intelligence source-plan <category>
+# or via MCP:
+# agenda-intelligence-mcp → source_plan(category)
+```
+
+**Step 2 — Draft memo (markdown).**
+
+**Step 3 — Produce JSON brief:**
+Use JSON Output Mode above.
+
+**Step 4 — Validate and score:**
+```bash
+agenda-intelligence validate-brief brief.json
+agenda-intelligence score brief.json [--evidence evidence-pack.json] [--min-score 80]
+```
+
+**Step 5 — Return to user:**
+Return markdown memo + validation pass/fail + score. Flag schema errors or low scores before handing off.
+
+For MCP integration: `agenda-intelligence-mcp` exposes `validate_brief`, `validate_evidence`, `score_output`, `source_plan` as MCP tools. See https://github.com/vassiliylakhonin/Agenda-Intelligence-md
+
 ## Strategic-risk skill contract
 
-This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
+This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline.
 
-For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
-
-Runtime-specific guidance:
-
-- If live browsing or source tools are available, use them when the user asks for current analysis and cite sources.
-- If live browsing is unavailable, disclose the evidence limit and lower confidence.
-- If repository context is available, treat `AGENTS.md`, `llms.txt`, and this file as the behavior contract.
-- If the user provides documents, treat them as the primary evidence base and distinguish user-provided facts from your assessments.
-- If the agent has tool access, do not claim a source was checked unless the tool was actually used.
+For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
 
 The user should get the same analytical standard regardless of which AI agent runs this skill.
 
