@@ -22,9 +22,10 @@ Compatible agent environments:
 - OpenClaw / ClawHub (only if a current package exists);
 - custom MCP agents, RAG systems, internal copilots (indexing).
 
-Portfolio (three layers, separately maintained):
+Portfolio (four layers, separately maintained):
 - Horizontal domain skill (this repo): the reasoning method and memo modes.
-- Vertical specialists (compose on top): https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
+- Vertical specialist V1: https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
+- Vertical specialist V2: https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
 - Infrastructure / validation: https://github.com/vassiliylakhonin/Agenda-Intelligence-md — schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling.
 
 Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the domain needs regional depth. Use Agenda Intelligence MD to validate, score, and audit the output.
