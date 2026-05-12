@@ -21,6 +21,7 @@ Six examples are **`live-source-backed`** with real public sources retrieved on 
 | [energy-transition-policy-memo.md](energy-transition-policy-memo.md) | Standard memo | EU energy-transition policy risk for a heavy-industry portfolio |
 | [geopolitical-scenario-brief.md](geopolitical-scenario-brief.md) | Scenario brief | US–China semiconductor export controls 2026–2028 |
 | [ai-governance-scenario-brief.md](ai-governance-scenario-brief.md) | Scenario brief | AI governance regulatory divergence across US, EU, and China — 18–24 month horizon |
+| [user-provided-sources-supply-chain-sanctions.md](user-provided-sources-supply-chain-sanctions.md) | **User-provided sources** | Supply-chain sanctions exposure — user brings vendor register, payment-rail documentation, and product classification; skill maps the exposure |
 | [red-team-policy-brief.md](red-team-policy-brief.md) | Red-team | Claim that supply-chain sanctions risk is "manageable" |
 
 Do not paste these as real analysis. They are skill demonstrations.

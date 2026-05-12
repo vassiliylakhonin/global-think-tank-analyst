@@ -150,6 +150,7 @@ Worked memos in [`examples/`](examples/), grouped by domain and evidence mode:
 | Energy / climate policy | reasoning-only | [Energy-transition policy memo](examples/energy-transition-policy-memo.md) |
 | Geopolitical / scenarios | reasoning-only | [US–China semiconductor scenario brief](examples/geopolitical-scenario-brief.md) |
 | AI governance / strategic competition | reasoning-only | [AI governance regulatory divergence — US, EU, China (18–24 month)](examples/ai-governance-scenario-brief.md) |
+| Sanctions / supply-chain | user-provided sources | [Supply-chain sanctions exposure — user brings vendor register, payment rails, and product classification](examples/user-provided-sources-supply-chain-sanctions.md) |
 | Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
 Live-source-backed examples cite real public sources retrieved on 2026-05-08; verify before any operational use. Reasoning-only examples do not cite live sources and are not intelligence products.
@@ -222,7 +223,7 @@ Directional, not committed. Items here are not implemented unless explicitly not
 
 **Signal coverage:** expand the archive into trade and monetary-policy domains (US-EU tariffs, interest-rate regime shifts, supply-chain re-routing events). The current archive covers energy, regulatory, critical minerals, and sanctions well; trade and macro are underrepresented.
 
-**Example depth:** add at least one `user-provided-sources` mode example — where the agent works from a document packet rather than live browsing or reasoning only. This is the most common real-world evidence mode and is currently absent from the examples directory.
+**Example depth:** a `user-provided-sources` mode example is now included ([supply-chain sanctions exposure](examples/user-provided-sources-supply-chain-sanctions.md)), demonstrating the agent working from the user's own vendor register, payment-rail documentation, and product classification rather than live browsing or reasoning only.
 
 **Vertical specialist expansion:** a second vertical-specialist repo, [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill), is now live (Iran sanctions, GCC banking and sovereign wealth, Hormuz/Bab-el-Mandeb/Red Sea maritime risk). EU regulatory affairs depth is the candidate for a third vertical if demand materialises.
 
