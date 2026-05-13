@@ -8,7 +8,7 @@ Use this repository when an AI agent needs:
 - to enforce fact / assessment / assumption / scenario / unknown separation;
 - to disclose evidence limits when live verification is unavailable;
 - to produce concrete watch-next indicators and decision triggers;
-- examples and a human review checklist for the above.
+- examples, a learning path, and a human review checklist for the above.
 
 What this repository is not:
 - not a factuality verifier, source retriever, or RAG pipeline;
@@ -38,7 +38,8 @@ Core files:
 - SKILL.md — canonical skill behavior
 - codex/SKILL.md — Codex variant
 - README.md — public documentation
-- examples/ — worked memo examples (reasoning-only / illustrative)
+- examples/README.md — guided learning path through examples
+- examples/ — worked memo examples across reasoning-only, live-source-backed, and user-provided source modes
 - evals/ — human review checklist, failure modes, starter rubric
 - signals/ — public examples of the skill style (not official intelligence)
 
@@ -59,3 +60,9 @@ Live signal endpoints:
 - Latest signal: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/latest.md
 - Index: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/index.json
 - JSON Feed: https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/feed.json
+
+How to consume signals:
+- read them as compressed examples of the skill style;
+- expand a signal into a deeper memo with its example expansion prompt;
+- use index.json or feed.json for ingestion;
+- verify cited sources and current facts before operational use.
