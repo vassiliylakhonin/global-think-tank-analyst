@@ -254,7 +254,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 - It is a **decision-support skill**, not legal, compliance, investment, sanctions, or intelligence advice.
 - It does not verify factuality. It enforces analytical *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing.
 - It does not retrieve sources, run validators, expose an MCP server, or score outputs. For those, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
-- Examples in this repo are illustrative (`reasoning-only / illustrative source packet`). Do not treat them as real intelligence products.
+- Examples in this repo are demonstrations of the skill style across `reasoning-only`, `user-provided sources`, and `live-source-backed` modes. Do not treat them as real intelligence products, and verify current facts before operational use.
 - Signals in `signals/` are public examples of the skill style, not official intelligence and not real-time.
 
 ## Roadmap

@@ -1,62 +1,84 @@
 # Latest Policy Risk Signal
 
-Canonical file: [2026-05-12 — Central bank divergence](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-monetary-policy-divergence.md)
+Canonical file: [2026-05-12](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md)
 
-Canonical path: `signals/2026/2026-05-12-monetary-policy-divergence.md`
-
----
-
-**Also published 2026-05-12:**
-- [US-China tariff de-escalation: a pause, not a reset](2026/2026-05-12-us-china-tariff-de-escalation.md) — trade / geopolitical / strategic competition
-- [Fed between tariff inflation and growth slowdown](2026/2026-05-12-fed-stagflation-posture.md) — monetary policy / corporate finance
-- [US–EU tariff exposure: the negotiation phase is a planning input](2026/2026-05-12-us-eu-trade-framework.md) — trade / geopolitical
+Canonical path: `signals/2026/2026-05-12-us-eu-trade-framework.md`
 
 ---
 
 # Policy Risk Signal — 2026-05-12
 
-<!-- title: Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem -->
+<!-- title: US–EU tariff exposure: the negotiation phase is a planning input, not a resolution -->
 
 ```text
 Date: 2026-05-12
-Domain: monetary policy / corporate finance / FX
-Region: US, EU, UK, EM
+Domain: trade / regulatory
+Region: US, EU, transatlantic corridors
 Evidence mode: reasoning-only
 Confidence: Moderate
 ```
 
-> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not investment, financial, or treasury advice. No live sources were checked for this signal.
+> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not trade-legal, customs, or investment advice. No live sources were checked for this signal.
 
 ## Signal
-When the Fed holds rates while other central banks cut, the interest-rate differential widens and capital flows toward USD assets. This creates real, computable costs and opportunities across FX exposures, USD-denominated debt, and capital flows — none of which are captured by headline interest-rate tracking alone. The duration of the divergence is the binding planning variable.
+The US-EU tariff dispute that opened in 2025 established a new structural baseline for transatlantic trade economics. Periodic negotiation signals have not resolved the underlying tension between US industrial-policy priorities (reciprocal tariffs, domestic content requirements) and EU trade-policy constraints (WTO disciplines, state-aid rules, single-market consistency). Operators with transatlantic exposure face a choice: price the tariff cost as permanent, or hold off structural decisions pending a framework agreement that has not materialized.
 
 **EVIDENCE ACCESS LIMITED: no live verification performed in this environment.**
 
+## Why it matters
+- Pricing decisions, contract renewals, and supplier restructuring made under "this will resolve soon" assumptions carry downside if the dispute extends another 12–18 months.
+- The EU and US have structurally different incentive constraints: EU negotiators must clear 27-member unanimity and WTO consistency; US negotiators face domestic industrial constituency pressure that resists concessions on core tariff levels.
+- Interim relief measures (pauses, sector carve-outs, quota expansions) can misread as framework progress; they are not the same as durable tariff reduction.
+
 ## Decision question
-For a CFO, treasurer, or corporate finance team with material multi-currency exposure or USD-denominated financing: what is the cost of being wrong on central-bank divergence duration, and what posture change does that cost justify?
+For an EU-headquartered operator with US market exposure, should transatlantic tariff costs be absorbed, passed through, or used to trigger supplier/logistics restructuring — and at what point does waiting for a framework deal become the costlier posture?
 
 ## Quick assessment
-- **Fact (structural):** Interest-rate differential drives capital flows toward the higher-rate currency. USD assets attract inflows; cutting-currency assets face outflows. This is mechanics, not forecast.
-- **Assessment:** A company that has not sized its FX and USD funding-cost exposure under the divergence scenario cannot make a rational hedging decision. Size the exposure first.
-- **Assumption:** No coordinated G7 currency management or Fed political intervention changes the structural rate differential.
-- **Unknown:** Duration of divergence; ECB's willingness to continue cutting if EUR/USD weakens materially; EM central bank response capacity.
-- **Main risk:** A company that deferred FX hedging on an assumption of rapid rate convergence faces asymmetric downside if divergence persists or widens.
+- **Fact (inferred from structure):** US-EU tariff dispute creates cost asymmetry for goods-intensive transatlantic flows; financial services and software are largely insulated.
+- **Assessment:** Treat ongoing negotiation as noise until a ratifiable framework agreement is announced. Absorbing costs without restructuring buys time but not resolution.
+- **Assumption:** No comprehensive bilateral agreement has been announced as of this signal date; verify current status before acting.
+- **Unknown:** Duration of any pause mechanism; EU willingness to use retaliatory tariff authority as a negotiating lever; US administration's flexibility on sectoral carve-outs.
+- **Main risk:** Anchoring operational decisions on negotiation optimism rather than structural tariff reality.
+
+## Who gains leverage
+- US industrial producers protected by the tariff structure.
+- Non-EU third-country suppliers already outside the tariff regime (alternative sourcing options improve).
+- EU negotiators holding retaliatory authority as a credible lever, if the political coalition holds.
+
+## Who loses leverage
+- EU exporters of goods with high US market concentration and limited pricing power.
+- US importers of EU inputs with no near-term substitution path.
+- Operators with long-dated supply contracts priced before the tariff structure changed.
+
+## Scenarios
+- **Baseline:** Tariff structure persists through 2026 with periodic sectoral carve-outs and quota expansions, but no comprehensive framework. Cost pass-through and supplier diversification are the operational responses.
+- **Partial resolution:** A sectoral agreement covers high-visibility categories (steel, EVs, or agriculture), reducing headline tension without addressing the full tariff exposure. Partial relief is likely to be priced as permanent by markets before formal ratification.
+- **Escalation:** EU retaliatory tariff authority is activated on a set of US goods; US responds with counter-escalation. Cost basis for transatlantic goods trade rises further; some supply-chain restructuring becomes irreversible.
+- **Disconfirming:** A rapid framework agreement — covering tariff reduction, mutual recognition, and reciprocal enforcement — is ratified within 12 months. This is the scenario most operators are implicitly betting on; it is also the least likely given current institutional constraints.
 
 ## Watch next
-- FOMC statements and ECB press conferences — the primary rate-path signals.
-- USD DXY or trade-weighted USD index — sustained move confirms divergence scenario is operative.
-- EM central bank interventions — FX reserve drawdowns signal USD strength is creating capital-flow pressure.
-- US Treasury yield curve vs. non-US curves — leading indicator of divergence duration expectations.
+- Official announcement of a ratified framework agreement (not a "progress on talks" communiqué).
+- EU Council vote on retaliatory tariff activation: passage means escalation scenario becomes primary.
+- US import volume and pricing data for EU-exposed goods categories (steel, machinery, industrial components): divergence from pre-tariff trend confirms cost absorption is real.
+- WTO dispute panel decisions: procedural outcomes matter less than how parties respond to them.
+- Sector-specific carve-out announcements (EVs, pharmaceuticals, aerospace): track scope carefully — partial relief often signals negotiation stalemate, not progress.
 
 ## What would change the judgment
-- Tariff reversal or US-EU/US-China trade framework → Fed gains room to cut; divergence compresses.
-- ECB signals pause in cutting due to EUR weakness → convergence from the other direction.
-- G7 coordinated exchange-rate statement → compresses the divergence trade immediately.
+- A ratified bilateral framework agreement with binding tariff-reduction commitments → disconfirming scenario becomes operative; restructuring decisions should accelerate.
+- EU retaliatory tariff activation on a significant US goods category → escalation scenario; cost basis revisions and supplier restructuring become urgent.
+- Unilateral US tariff suspension on a broad category without a reciprocal EU commitment → likely a domestic political move, not durable; treat as 90-day reprieve at most.
+- A change in US administration posture signaling willingness to accept WTO-consistent tariff levels → re-assess framework probability upward, but do not act ahead of formal announcement.
 
 ## Sources
-No live sources were checked. Pairs with Fed stagflation posture signal (2026-05-12) and ECB rate-hold signal (2026-04-30).
+No live sources were checked for this signal. Assessment is based on structural reasoning about US-EU trade architecture and negotiation dynamics.
 
-> Verify current central-bank policy rates, forward-rate curves, and FX rates before any treasury, hedging, or financing decision.
+> Verify current tariff rates, any announced framework agreement status, and WTO dispute panel outcomes before any operational or contract decision.
 
 ## Confidence and limitations
-Confidence: Moderate. Structural mechanics of interest-rate divergence and FX carry are well-established. Specific rate levels and current central-bank guidance must be verified against live sources.
+Confidence: Moderate. The structural reasoning is sound; the specific current-status facts (tariff levels, negotiation stage, any pauses or carve-outs in effect) must be verified against live sources before operational use.
+
+## Example expansion prompt
+Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for an EU industrial operator with US market exposure: define the options (absorb, pass through, restructure), separate facts from assumptions, identify the negotiation-scenario triggers, and list watch-next indicators tied to posture changes.
+
+## Disclaimer
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, trade-legal, customs, or investment advice.
