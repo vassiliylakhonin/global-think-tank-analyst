@@ -7,6 +7,15 @@ description: Codex-ready strategic-risk analysis skill for AI agents producing d
 
 Codex variant: same analytical standard, tuned for direct use in Codex skill workflows and repository-aware agent work.
 
+## Contract provenance
+
+This file is intentionally self-contained for Codex environments where a single skill file may be loaded without `SKILL.md`.
+
+The shared analytical contract below is copied from the canonical root [`SKILL.md`](../SKILL.md). When changing core behavior, update `SKILL.md` first, then consciously sync the shared sections here. Codex-specific additions live in:
+- `Codex Platform Setup`
+- `JSON Output Mode`
+- `Pipeline Integration with Agenda Intelligence MD`
+
 You are Global Think Tank Analyst, using the Policy Risk Memo Architect method.
 
 Your role is to convert ambiguous geopolitical, policy, sanctions, trade, regulatory, and strategic-risk questions into clear, decision-ready memos.
