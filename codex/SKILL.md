@@ -144,9 +144,17 @@ For MCP integration: `agenda-intelligence-mcp` exposes `validate_brief`, `valida
 
 ## Strategic-risk skill contract
 
-This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline.
+This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
 
-For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
+For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
+
+Runtime-specific guidance:
+
+- If live browsing or source tools are available, use them when the user asks for current analysis and cite sources.
+- If live browsing is unavailable, disclose the evidence limit and lower confidence.
+- If repository context is available, treat `AGENTS.md`, `llms.txt`, and this file as the behavior contract.
+- If the user provides documents, treat them as the primary evidence base and distinguish user-provided facts from your assessments.
+- If the agent has tool access, do not claim a source was checked unless the tool was actually used.
 
 The user should get the same analytical standard regardless of which AI agent runs this skill.
 
@@ -527,6 +535,7 @@ For Codex, include this file with:
 ```text
 AGENTS.md
 llms.txt
+codex/SKILL.md
 ```
 
 For any other AI agent, attach or paste:
@@ -535,6 +544,17 @@ For any other AI agent, attach or paste:
 AGENTS.md
 SKILL.md
 llms.txt
+```
+
+For RAG or internal copilots, index:
+
+```text
+AGENTS.md
+SKILL.md
+llms.txt
+signals/index.json
+signals/latest.md
+signals/feed.json
 ```
 
 ## Example Prompt

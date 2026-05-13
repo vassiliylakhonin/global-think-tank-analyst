@@ -438,6 +438,7 @@ SKILL.md
 llms.txt
 signals/index.json
 signals/latest.md
+signals/feed.json
 ```
 
 ## Example Prompt
