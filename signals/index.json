@@ -3,18 +3,18 @@
   "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
   "latest": {
     "date": "2026-05-12",
-    "slug": "2026-05-12-monetary-policy-divergence",
-    "title": "Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem",
-    "path": "signals/2026/2026-05-12-monetary-policy-divergence.md",
-    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-monetary-policy-divergence.md"
+    "slug": "2026-05-12-us-eu-trade-framework",
+    "title": "US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
+    "path": "signals/2026/2026-05-12-us-eu-trade-framework.md",
+    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md"
   },
   "signals": [
     {
       "date": "2026-05-12",
-      "slug": "2026-05-12-monetary-policy-divergence",
-      "title": "Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem",
-      "path": "signals/2026/2026-05-12-monetary-policy-divergence.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-monetary-policy-divergence.md"
+      "slug": "2026-05-12-us-eu-trade-framework",
+      "title": "US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
+      "path": "signals/2026/2026-05-12-us-eu-trade-framework.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md"
     },
     {
       "date": "2026-05-12",
@@ -25,17 +25,17 @@
     },
     {
       "date": "2026-05-12",
+      "slug": "2026-05-12-monetary-policy-divergence",
+      "title": "Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem",
+      "path": "signals/2026/2026-05-12-monetary-policy-divergence.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-monetary-policy-divergence.md"
+    },
+    {
+      "date": "2026-05-12",
       "slug": "2026-05-12-fed-stagflation-posture",
       "title": "Fed between tariff inflation and growth slowdown: the rate path is not a straight line",
       "path": "signals/2026/2026-05-12-fed-stagflation-posture.md",
       "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-fed-stagflation-posture.md"
-    },
-    {
-      "date": "2026-05-12",
-      "slug": "2026-05-12-us-eu-trade-framework",
-      "title": "US–EU tariff exposure: the negotiation phase is a planning input, not a resolution",
-      "path": "signals/2026/2026-05-12-us-eu-trade-framework.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md"
     },
     {
       "date": "2026-05-09",

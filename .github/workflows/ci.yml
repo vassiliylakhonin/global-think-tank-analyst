@@ -73,3 +73,32 @@ jobs:
 
           print("Signal JSON feeds OK")
           PY
+
+      - name: Validate signal archive consistency
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import sys
+
+          index = json.loads(Path("signals/index.json").read_text(encoding="utf-8"))
+          feed = json.loads(Path("signals/feed.json").read_text(encoding="utf-8"))
+          latest = Path("signals/latest.md").read_text(encoding="utf-8")
+
+          latest_path = Path(index["latest"]["path"])
+          if not latest_path.exists():
+              print(f"signals/index.json latest path missing: {latest_path}")
+              sys.exit(1)
+          if index["latest"]["title"] not in latest:
+              print("signals/latest.md does not contain the latest title from signals/index.json")
+              sys.exit(1)
+
+          index_urls = {item.get("url") for item in index.get("signals", [])[:20]}
+          feed_urls = {item.get("url") for item in feed.get("items", [])}
+          missing_in_feed = sorted(index_urls - feed_urls)
+          if missing_in_feed:
+              print(f"signals/feed.json missing URLs from signals/index.json: {missing_in_feed}")
+              sys.exit(1)
+
+          print("Signal archive consistency OK")
+          PY
