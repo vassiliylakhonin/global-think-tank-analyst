@@ -66,17 +66,20 @@ If sources are not actually retrieved or verified, say so.
 
 1. One-line positioning
 2. Problem
-3. What it does
-4. What it is not
-5. Relationship to Agenda Intelligence MD
-6. Quick usage
-7. Memo modes
-8. Before / after
-9. Examples
-10. Eval checklist / failure modes
-11. Signal archive
-12. Limitations
-13. Roadmap
+3. Try this prompt
+4. What it does
+5. What it is not
+6. Relationship to Agenda Intelligence MD
+7. Integration status
+8. Quick usage
+9. Memo modes
+10. Before / after
+11. Examples and learning path
+12. Eval checklist / failure modes
+13. Signal archive and how to consume signals
+14. Agent-readable endpoints
+15. Limitations
+16. Roadmap
 
 ## Examples
 
@@ -95,6 +98,8 @@ Examples should show:
 - confidence
 - what would change the judgment
 
+Examples should be navigable as a learning path, not only as a file list. Keep [`examples/README.md`](examples/README.md) aligned with the examples table in [`README.md`](README.md).
+
 ## Eval docs
 
 Eval docs should be lightweight and honest.
@@ -105,6 +110,17 @@ Use terms like:
 - failure modes
 
 Do not call it a validated benchmark unless benchmark cases and results actually exist.
+
+## Signals
+
+Signals are distribution examples of the skill style, not official intelligence or real-time operational guidance.
+
+When describing signals, make clear:
+- how to read the latest signal
+- where the archive index lives
+- where the JSON Feed lives
+- that any signal can be expanded into a deeper memo using its example expansion prompt
+- that current facts and cited sources must be verified before operational use
 
 ## Naming and portfolio
 
