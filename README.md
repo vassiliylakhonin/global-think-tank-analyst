@@ -11,6 +11,32 @@ LLMs are good at summarizing geopolitical events. They are weak at turning them 
 
 This repository is a domain skill layer that teaches agents how to do that work. It is a behavior contract, not a framework, runtime, or eval platform.
 
+## Try this prompt
+
+Paste this into an AI agent that can reason over policy, sanctions, trade, or geopolitical risk:
+
+```text
+Use Global Think Tank Analyst.
+
+Question: What does EU CBAM enforcement-phase exposure change for a Kazakh metals exporter over the next 12 months?
+Decision this informs: whether to absorb reporting/compliance cost, pass cost through to EU buyers, or restructure export routing.
+Audience: founder / operator.
+Geography: Kazakhstan and EU import markets.
+Time horizon: 12 months.
+Evidence mode: reasoning-only unless you can browse live sources.
+Depth: quick brief.
+
+Separate facts, assumptions, assessments, scenarios, and unknowns.
+Give options, trade-offs, concrete watch-next indicators, confidence, and what would change the judgment.
+```
+
+Expected shape of a good answer:
+- opens with the decision being supported, not generic background;
+- labels evidence mode and confidence;
+- separates facts, assumptions, assessments, scenarios, and unknowns;
+- names concrete options with trade-offs;
+- ends with observable indicators, not "monitor closely."
+
 ## What it does
 
 - frames broad geopolitical or policy questions as decision problems;
@@ -135,6 +161,8 @@ The first answer is a tone. The second is a decision input.
 
 Worked memos in [`examples/`](examples/), grouped by domain and evidence mode:
 
+For a guided route through the examples, start with [`examples/README.md`](examples/README.md).
+
 | Domain | Evidence mode | File |
 |---|---|---|
 | Sanctions / AML | live-source-backed | [OFAC Operation Economic Fury (2026-05-01)](examples/live-source-backed-memo.md) — paired with a real [JSON brief](examples/agenda-projections/live-source-backed-memo.brief.json) and [evidence pack](examples/agenda-projections/live-source-backed-memo.evidence.json) |
@@ -177,6 +205,18 @@ The archive is:
 - not a guarantee of factual verification beyond what each signal explicitly cites.
 
 To contribute a signal, copy [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
+
+## How to consume signals
+
+Use signals as examples of the skill style and as lightweight prompts for deeper memos. They are useful when you want to see how the method handles a current-looking policy, trade, sanctions, regulatory, energy, or macro risk question in compressed form.
+
+Consumption paths:
+- read the latest signal at [`signals/latest.md`](signals/latest.md);
+- browse the archive through [`signals/index.json`](signals/index.json);
+- ingest the JSON Feed at [`signals/feed.json`](signals/feed.json);
+- expand any signal by pasting its "Example expansion prompt" into an agent running this skill.
+
+Signals are not real-time intelligence. Before using one for an operational decision, verify the cited sources and current facts.
 
 ## Agent-readable endpoints
 

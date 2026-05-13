@@ -38,3 +38,38 @@ jobs:
               sys.exit(1)
           print('Frontmatter OK')
           PY
+
+      - name: Validate signal JSON feeds
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import sys
+
+          required = {
+              Path("signals/index.json"): ("title", "description", "latest", "signals"),
+              Path("signals/feed.json"): ("version", "title", "home_page_url", "feed_url", "items"),
+          }
+
+          for path, keys in required.items():
+              if not path.exists():
+                  print(f"{path} missing")
+                  sys.exit(1)
+              try:
+                  data = json.loads(path.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as exc:
+                  print(f"{path} invalid JSON: {exc}")
+                  sys.exit(1)
+              missing = [key for key in keys if key not in data]
+              if missing:
+                  print(f"{path} missing keys: {missing}")
+                  sys.exit(1)
+              if path.name == "index.json" and not isinstance(data["signals"], list):
+                  print("signals/index.json: signals must be a list")
+                  sys.exit(1)
+              if path.name == "feed.json" and not isinstance(data["items"], list):
+                  print("signals/feed.json: items must be a list")
+                  sys.exit(1)
+
+          print("Signal JSON feeds OK")
+          PY
