@@ -102,3 +102,6 @@ What remains open:
 
 Do not treat the portfolio as externally validated until those gaps are closed.
 
+For a concrete path toward review, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md),
+[`docs/case-packet.md`](docs/case-packet.md), and
+[`docs/external-review-template.md`](docs/external-review-template.md).
