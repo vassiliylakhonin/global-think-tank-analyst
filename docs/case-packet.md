@@ -63,7 +63,33 @@ Source limitations:
 - The FATF / EAG sources establish AML/CFT evaluation context. They do not
   establish onboarding risk for a specific customer.
 
-## 4. Portfolio Components Used
+## 4. Case Boundary
+
+This packet uses a fictional operating scenario to make the workflow concrete
+without implying a real client, customer, bank, or transaction.
+
+Fictional scenario:
+
+- A European fintech wants to onboard SME exporters in Kazakhstan and
+  Uzbekistan.
+- Target users sell industrial inputs, machinery-adjacent goods, logistics
+  services, and general trade goods to regional buyers.
+- Some invoices involve Caspian-connected logistics or UAE-linked trading
+  counterparties.
+- The fintech has basic KYC data but has not yet collected complete UBO records,
+  goods-classification support, route rationale, or correspondent-bank feedback
+  for every proposed customer segment.
+
+Out of scope:
+
+- No named customer, bank, vessel, beneficial owner, payment provider, or trading
+  company is assessed.
+- No sanctions-screening, transaction monitoring, vessel tracking, export-control
+  classification, or legal analysis is performed.
+- No conclusion is made about whether any real party is compliant, non-compliant,
+  sanctioned, or suspicious.
+
+## 5. Portfolio Components Used
 
 | Component | Role in this packet |
 |---|---|
@@ -72,7 +98,29 @@ Source limitations:
 | Gulf + Middle East Hybrid Intelligence Skill | Adds UAE / Iran-adjacent counterparty and correspondent-banking exposure framing. |
 | Agenda Intelligence MD | Would validate or score a structured output if this memo were converted into a JSON brief. |
 
-## 5. Source-Backed Memo
+## 6. Decision Snapshot
+
+| Field | Assessment |
+|---|---|
+| Decision | Do not approve unrestricted launch. Approve conditional expansion with segment-level enhanced due diligence. |
+| Main risk | Risk clusters where opaque SMEs, sanctions-adjacent goods, Caspian routing, UAE-linked counterparties and sensitive payment rails overlap. |
+| Main uncertainty | Whether real customer files, transaction data, UBO records and bank feedback confirm or reduce the structural risk. |
+| Immediate action | Define low-risk eligible segments, EDD triggers, escalation thresholds and evidence required before onboarding higher-risk segments. |
+| Confidence | Moderate for the structural mechanism; low for any real-party conclusion. |
+| Evidence boundary | Public-source workflow demo only; not externally validated and not operational advice. |
+
+## 7. Claim Traceability Matrix
+
+| Claim used in memo | Source basis | Analyst inference | Confidence |
+|---|---|---|---|
+| Foreign financial institutions can face sanctions risk when supporting Russia's war economy or evasion networks. | Treasury June 2024 and January 2025 releases. | Central Asia-linked financial or trade nodes should be treated as possible sanctions-evasion transmission points when facts show Russia-adjacent exposure. | Moderate |
+| Payment connectivity is a specific risk channel, not only a background compliance issue. | Treasury November 2024 Gazprombank action and SPFS-related warning. | Fintech onboarding should include payment-rail and correspondent-bank sensitivity checks, especially for Russia-adjacent exposure. | Moderate |
+| Central Asia-linked institutions can appear in sanctions-evasion enforcement narratives. | Treasury January 2025 action naming a Kyrgyz Republic-based financial institution. | Regional exposure does not equal illicit activity, but it justifies tighter escalation logic for opaque trade-finance flows. | Moderate |
+| Caspian / Middle Corridor growth is commercially legitimate and strategically important. | World Bank Middle Corridor and Kazakhstan rail-connectivity releases. | Route use alone should not be treated as suspicious; risk rises when route, goods, counterparty, and payment facts are poorly explained. | Moderate |
+| Kazakhstan and Uzbekistan AML/CFT context matters for onboarding design. | FATF Kazakhstan mutual-evaluation page and Central Bank of Uzbekistan EAG materials. | The fintech should not rely on jurisdiction labels alone; it needs customer-level controls, documentation and escalation triggers. | Moderate |
+| UAE links are not inherently high risk, but hub intermediation can raise review burden. | FATF February 2024 increased-monitoring update and memo context. | UAE-linked counterparties require commercial rationale and ownership clarity when combined with sensitive goods, Russia/Iran adjacency, or opaque routing. | Low to moderate |
+
+## 8. Source-Backed Memo
 
 ### Decision
 
@@ -214,7 +262,7 @@ customers, goods, counterparties, banks, routes, vessels, owners, or payment
 rails. It is not legal, compliance, sanctions, AML, investment, or operational
 advice.
 
-## 6. Agenda Intelligence MD Projection
+## 9. Agenda Intelligence MD Projection
 
 If this were converted into an Agenda Intelligence MD JSON brief, the expected
 checks would focus on:
@@ -229,7 +277,7 @@ checks would focus on:
 Not run in this packet. This document is a pre-validation demo, not a scored
 case.
 
-## 7. Reviewer Questions
+## 10. Reviewer Questions
 
 - Is the decision question realistic for fintech risk leadership?
 - Are the sanctions / AML / payment-rail mechanisms correctly framed?
@@ -238,7 +286,7 @@ case.
 - Are the watch-next indicators operational enough?
 - Would this be useful, useful with revisions, or not useful?
 
-## 8. Review Record Placeholder
+## 11. Review Record Placeholder
 
 No external reviewer has reviewed this packet yet.
 
@@ -250,4 +298,3 @@ When reviewed, record:
 - findings;
 - changes made or deferred;
 - attribution permission.
-
