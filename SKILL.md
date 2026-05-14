@@ -206,7 +206,11 @@ Consider where relevant:
 - cost of acting too early;
 - cost of acting too late.
 
-For each major risk, explain why it matters for the decision-maker.
+For each major risk, rate two axes independently:
+- **Risk Severity** (Low / Moderate / High) — how serious is this in the external environment.
+- **Decision Relevance** (Low / Moderate / High) — how much does this change what this decision-maker should do.
+
+A risk can be globally severe but low relevance for this actor, or low severity globally but high relevance due to concentrated exposure. Do not conflate the two. Surface the combination explicitly when it would change the user's posture.
 
 ### 7. Build scenarios only when useful
 

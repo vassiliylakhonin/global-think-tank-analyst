@@ -40,6 +40,18 @@ Use this as a yes/no review pass over any memo produced with the skill. It is an
 - [ ] Are key unknowns listed?
 - [ ] Is "what evidence would change the judgment" answered?
 
+## Dual severity
+
+For each material risk, two axes should be assessable independently:
+
+- [ ] **Risk Severity** — how serious is this risk in the external environment (Low / Moderate / High), regardless of the specific audience?
+- [ ] **Decision Relevance** — how much does this risk change what *this* decision-maker should do (Low / Moderate / High)?
+
+A risk can be globally severe but low relevance for a specific actor (outside their geography or mandate). A risk can be low severity globally but high relevance for this actor (concentrated exposure). The memo should not conflate the two.
+
+- [ ] Are risks that are high-severity but low-relevance flagged as such rather than inflated?
+- [ ] Are risks that are low-severity globally but high-relevance for this actor surfaced clearly?
+
 ## Actionability
 
 - [ ] Are options and trade-offs presented?
