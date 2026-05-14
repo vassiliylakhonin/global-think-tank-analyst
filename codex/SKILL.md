@@ -100,7 +100,7 @@ Produce a JSON object:
     {"actor": "string", "incentive": "string", "leverage": "string"}
   ],
   "risks": [
-    {"risk": "string", "channel": "string", "severity": "Low | Moderate | High"}
+    {"risk": "string", "channel": "string", "severity": "Low | Moderate | High", "decision_relevance": "Low | Moderate | High"}
   ],
   "scenarios": [
     {"label": "string", "trigger": "string", "implication": "string", "probability_label": "Low | Moderate | High"}

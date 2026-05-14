@@ -174,7 +174,7 @@ Method: Policy Risk Memo Architect
 
 Vertical specialists (compose on top of the horizontal skill, do not duplicate it):
 - central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
-- gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC banking and sovereign wealth, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
+- gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
 
 Companion infrastructure: Agenda Intelligence MD (validation, scoring, schemas, CLI / MCP / CI).
 
