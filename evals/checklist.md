@@ -46,6 +46,20 @@ Use this as a yes/no review pass over any memo produced with the skill. It is an
 - [ ] Are watch-next **indicators** concrete (observable signals, not "monitor closely")?
 - [ ] Are decision triggers named where posture should change?
 
+## Delegation and accountability
+
+- [ ] Is the output positioned as **analytical support for a human decision**, not as the decision itself?
+- [ ] Are recommendations framed as options or trade-offs, not directives?
+- [ ] Does the memo make clear that a practitioner (analyst, legal, policy) should verify before acting?
+- [ ] Is the boundary between analysis and advice explicit?
+- [ ] Does the memo indicate what would trigger escalation to a primary source or specialist?
+
+## Freshness and trust surface
+
+- [ ] For time-sensitive claims (policy dates, regulatory changes, enforcement posture): is a recency flag present (`[stale-risk: YYYY-MM]` or equivalent)?
+- [ ] If external tools (MCP, web search) were used: is the source noted per provenance tags?
+- [ ] If no live verification was performed: is this stated explicitly rather than implied?
+
 ## Safety and limitations
 
 - [ ] Does the memo avoid presenting itself as legal, compliance, sanctions, or investment advice?
