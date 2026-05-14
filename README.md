@@ -63,6 +63,8 @@ If you need validation, scoring, evidence audit, schemas, CLI, MCP, or CI checks
 
 Three layers, separately maintained, designed to compose:
 
+For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
+
 | Layer | Repo | What it does |
 |---|---|---|
 | **Horizontal domain skill** | **Global Think Tank Analyst** (this repo) | The reasoning method and memo modes. Region- and topic-agnostic. |
