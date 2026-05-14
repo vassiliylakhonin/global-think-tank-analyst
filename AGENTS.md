@@ -105,21 +105,23 @@ This skill makes the agent better at strategic-risk analysis, not narrower. If t
 ## Recommended README structure
 
 1. One-line positioning
-2. Problem
-3. Try this prompt
-4. What it does
-5. What it is not
-6. Relationship to Agenda Intelligence MD
-7. Integration status
-8. Quick usage
-9. Memo modes
-10. Before / after
-11. Examples and learning path
-12. Eval checklist / failure modes
-13. Signal archive and how to consume signals
+2. Try this prompt
+3. What it does
+4. What it is not
+5. Portfolio: how this skill composes
+6. Integration status
+7. Quick usage
+8. Memo modes
+9. Before / after
+10. Examples
+11. Evaluation
+12. Signal archive
+13. How to consume signals
 14. Agent-readable endpoints
-15. Limitations
-16. Roadmap
+15. Naming
+16. Repository structure
+17. Limitations
+18. Roadmap
 
 ## Examples
 
