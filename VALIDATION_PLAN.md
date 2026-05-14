@@ -79,6 +79,10 @@ Ask every reviewer:
 - What one revision would most improve usefulness?
 - Would this be useful, useful with revisions, or not useful?
 
+For the current Central Asia fintech routing-risk packet, use
+[`docs/reviewer-workflow.md`](docs/reviewer-workflow.md) to send the packet,
+machine-readable projections, and response template in a consistent order.
+
 ## Recording Findings
 
 Create a review record only after a real reviewer response exists. Store it in a
@@ -92,4 +96,3 @@ details.
 
 No external validation is claimed by this plan. It prepares the workflow for
 external review.
-
