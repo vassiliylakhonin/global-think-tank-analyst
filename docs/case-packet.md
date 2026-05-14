@@ -264,8 +264,16 @@ advice.
 
 ## 9. Agenda Intelligence MD Projection
 
-If this were converted into an Agenda Intelligence MD JSON brief, the expected
-checks would focus on:
+This packet includes a machine-readable projection:
+
+- [case-packet.brief.json](case-packet.brief.json) - decision logic, scenarios,
+  watchlist, evidence mode, and confidence boundaries.
+- [case-packet.evidence.json](case-packet.evidence.json) - source mapping,
+  support status, source limits, unsupported claims, and required missing
+  sources.
+
+If this projection were run through Agenda Intelligence MD, the expected checks
+would focus on:
 
 - whether the decision context is explicit;
 - whether assumptions and unknowns are separated;
@@ -274,8 +282,8 @@ checks would focus on:
 - whether watch-next indicators are concrete;
 - whether the limitation note prevents operational overclaiming.
 
-Not run in this packet. This document is a pre-validation demo, not a scored
-case.
+Not run in this packet. These files are pre-validation artifacts, not a scored
+case and not evidence of external validation.
 
 ## 10. Reviewer Questions
 

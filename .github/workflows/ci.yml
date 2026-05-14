@@ -42,5 +42,8 @@ jobs:
       - name: Validate signal JSON feeds
         run: python3 scripts/validate_signals.py
 
+      - name: Validate repository JSON
+        run: python3 scripts/validate_json.py
+
       - name: Validate example evidence discipline
         run: python3 scripts/validate_examples.py
