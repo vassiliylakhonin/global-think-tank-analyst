@@ -85,9 +85,9 @@ machine-readable projections, and response template in a consistent order.
 
 ## Recording Findings
 
-Create a review record only after a real reviewer response exists. Store it in a
-future `validated-cases/` or `reviews/` directory only if the reviewer consents
-to the chosen attribution level.
+Create a review record only after a real reviewer response exists. Store it in
+[`reviews/`](reviews/) only if the reviewer consents to the chosen attribution
+level. Use [`reviews/TEMPLATE.md`](reviews/TEMPLATE.md) for the record.
 
 If permission is not granted, summarize privately but do not publish identifying
 details.

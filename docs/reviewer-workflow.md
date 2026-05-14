@@ -30,6 +30,8 @@ Send the reviewer these files:
 Optional context:
 
 - [VALIDATION_PLAN.md](../VALIDATION_PLAN.md) - what counts as validation.
+- [reviews/README.md](../reviews/README.md) - how public review records are
+  stored after permission is granted.
 - [evals/checklist.md](../evals/checklist.md) - general memo quality checklist.
 - [evals/rubric.md](../evals/rubric.md) - optional qualitative scorecard.
 
@@ -78,8 +80,9 @@ After receiving feedback:
 4. Do not claim external validation unless a real review exists.
 5. Update the packet, JSON projection, and validation plan if findings change
    the case boundary or evidence claims.
+6. Use [reviews/TEMPLATE.md](../reviews/TEMPLATE.md) only after publication
+   permission is clear.
 
 ## Current Status
 
 No external reviewer has reviewed the current case packet.
-
