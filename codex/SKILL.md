@@ -562,6 +562,9 @@ Silently verify:
 - Did I provide feasible, conditional options?
 - Did I keep the conclusion bounded by evidence?
 - Did I remove paragraphs that sound sophisticated but do not improve a decision?
+- Did I tag factual claims with provenance (at minimum Axis A: `[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`)?
+- Did I rate Risk Severity and Decision Relevance independently for each material risk?
+- (Mode F only) Did I avoid writing a finished memo — did I coach rather than conclude?
 
 Revise before final output if needed.
 
