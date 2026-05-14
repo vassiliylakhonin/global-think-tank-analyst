@@ -638,3 +638,8 @@ Red‑team the claim that supply‑chain sanctions risk for a European tech firm
 ```
 Create a decision briefing pack for a logistics company deciding whether to reroute shipments away from a higher-risk customs corridor.
 ```
+
+**Mode F – Analyst Training**
+```
+I want to build my own analysis of EU CBAM exposure for a Kazakh metals exporter. Use analyst training mode — coach me through the reasoning, don't write the memo for me.
+```
