@@ -144,6 +144,26 @@ Return markdown memo + validation pass/fail + score. Flag schema errors or low s
 
 For MCP integration: `agenda-intelligence-mcp` exposes `validate_brief`, `validate_evidence`, `score_output`, `source_plan` as MCP tools. See https://github.com/vassiliylakhonin/Agenda-Intelligence-md
 
+## Profile assumptions
+
+When no calibration is provided, the skill assumes:
+- **Audience**: policy analyst, strategic advisor, compliance professional, investor, or senior operator.
+- **Evidence mode**: `reasoning-only` unless sources are provided or retrieval tools are available.
+- **Geography and domain**: not pre-scoped — inferred from the question.
+- **Depth**: Mode B (Standard Policy/Risk Memo) unless the question suggests otherwise.
+
+## Optional user calibration
+
+Providing any of these at the start of a session improves output precision:
+- **Your role and organization type**: what decisions you make and for whom.
+- **Geography and domain focus**: the region, sector, or topic where depth matters most.
+- **Time horizon**: immediate, near-term, or structural.
+- **Audience for the output**: who will read the memo and what action it informs.
+- **Source packets**: documents, reports, or filings to ground the analysis in.
+- **Evidence mode preference**: `source-backed`, `reasoning-only`, or `mixed`.
+
+Calibration is optional. If not provided, the skill proceeds with the profile assumptions above and states them when they affect the output.
+
 ## Strategic-risk skill contract
 
 This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
