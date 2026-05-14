@@ -87,7 +87,7 @@ This repo does not duplicate either neighbor. Vertical depth lives in vertical-s
 
 For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md). For an end-to-end run with **real CLI output** (95/100 brief-only → 83/100 with an honest evidence pack), see [`docs/integrations/agenda-intelligence-md-live-demo.md`](docs/integrations/agenda-intelligence-md-live-demo.md).
 
-For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), and [`docs/external-review-template.md`](docs/external-review-template.md). These are preparation assets, not evidence of external validation.
+For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), its machine-readable projections ([brief](docs/case-packet.brief.json), [evidence](docs/case-packet.evidence.json)), and [`docs/external-review-template.md`](docs/external-review-template.md). These are preparation assets, not evidence of external validation.
 
 ## Integration status
 
