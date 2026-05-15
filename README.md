@@ -3,7 +3,7 @@
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **STRATEGIC-RISK MEMO REASONING SKILL** — a domain reasoning method that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos. Open-source. No live data. No legal, compliance or investment advice.
+> **STRATEGIC-RISK REASONING CONTRACT FOR AI AGENTS** — a domain reasoning contract that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos with decision framing, evidence boundaries, scenarios and confidence. Open-source. No live data. No legal, compliance or investment advice.
 
 **Strategic-risk analysis skill for AI agents.**
 
@@ -19,6 +19,18 @@ This repository is a domain skill layer that teaches agents how to do that work.
 - analysts, consultants and researchers using AI assistants for memo work in policy, trade, regulation or sanctions
 - risk, compliance and policy leadership whose AI tools must produce decision-ready output instead of generic regional or topical commentary
 - reviewers and editors of AI-produced memos who need explicit evidence boundaries and uncertainty labels
+
+**Where this sits in the production AI stack**
+
+Reasoning skills (markdown-first reasoning contracts for agents):
+- **→ Global Think Tank Analyst (this repo)** — horizontal: policy, sanctions, regulatory, geopolitical, trade memos
+- [Central Asia + Caspian Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) — vertical: sanctions, AML, banking, corridor risk in Central Asia / Caspian
+- [Gulf + Middle East Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) — vertical: Iran sanctions, GCC banking, sovereign wealth, maritime chokepoint risk
+
+Evidence & audit layer (CI / MCP / schemas):
+- [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) — validate, score and audit strategic-risk agent output structure
+
+The skills define how agents *reason*. Agenda Intelligence MD defines how the output is *audited*. Together they let agents produce auditable strategic-intelligence — not just plausible-sounding summaries.
 
 ## Try this prompt
 
