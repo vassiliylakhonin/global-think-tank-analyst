@@ -1,6 +1,6 @@
 # China critical-minerals export-controls suspension — supply-chain posture memo (live-source-backed)
 
-> **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** from the URLs cited under "Sources." The suspension of certain China export controls is **time-bound**; reinstatement risk is the central planning constraint. Verify against MOFCOM announcements before any operational decision. This memo is illustrative; it is not export-control, trade-finance, or procurement advice.
+> **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** `[primary][stale-risk: 2026-05]`. The suspension of certain China export controls is **time-bound**; reinstatement risk is the central planning constraint. Verify against MOFCOM announcements before any operational decision. Structural reasoning below remains valid; specific scope and dates of the suspension reflect a 2026-05-08 snapshot and require re-verification. This memo is illustrative; it is not export-control, trade-finance, or procurement advice.
 
 **User question:** China has suspended certain critical-minerals export controls (rare earths, gallium, germanium, antimony, graphite, superhard materials) until November 2026. What does that change for our procurement and supplier-diversification plan over the next 6 months?
 

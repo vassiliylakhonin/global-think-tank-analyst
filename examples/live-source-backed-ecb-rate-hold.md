@@ -1,6 +1,6 @@
 # ECB rate hold under intensifying risks — corporate finance posture memo (live-source-backed)
 
-> **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** from the URLs cited under "Sources." Monetary policy is meeting-by-meeting and data-dependent; verify against the next ECB statement before action. This memo is illustrative; it is not investment, treasury, hedging, or banking advice.
+> **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** `[primary][stale-risk: 2026-05]`. Monetary policy is meeting-by-meeting and data-dependent; verify against the next ECB statement before action. Structural reasoning below remains valid; specific rate levels and inter-meeting commentary require re-verification against current ECB releases. This memo is illustrative; it is not investment, treasury, hedging, or banking advice.
 
 **User question:** The ECB held rates at its April 30, 2026 meeting (deposit 2.00%, MRO 2.15%, MLF 2.40%) under intensifying upside risks to inflation and downside risks to growth. What does that mean for our corporate-finance posture (refinancing, FX, working-capital tenor) over the next 6 months?
 
