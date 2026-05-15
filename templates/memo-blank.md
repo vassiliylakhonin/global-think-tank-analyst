@@ -26,16 +26,21 @@ Depth: [standard memo | extended brief | quick note]
 
 ## Facts (from sources)
 
-- **Fact:** [State the fact.] ([Source name, date, URL if live-retrieved](URL))
-- **Fact:** [State the fact.] ([Source name, date](URL))
-- **Fact:** [Add more as needed.]
+Tag each fact with Axis A (exactly one) and optional Axis B. Axis A: `[primary]` `[secondary]` `[user-provided]` `[inference]`. Axis B: `[verify]` `[stale-risk: YYYY-MM]`.
+
+- **Fact:** [State the fact.] ([Source name, date](URL)) `[primary]`
+- **Fact:** [State the fact.] ([Source name, date](URL)) `[secondary]`
+- **Fact:** [State the fact — derived from other facts in this memo.] `[inference]`
+- **Fact:** [State the fact — time-sensitive.] ([Source name, date](URL)) `[primary][stale-risk: YYYY-MM]`
 
 ---
 
 ## Assessments
 
-- **Assessment ([Confidence]):** [Your analytical interpretation of the facts. Make the inference explicit. Do not state assessment as fact.]
-- **Assessment ([Confidence]):** [Add more as needed.]
+Tag each assessment `[analyst-judgment]`. Add `[inference]` if derived from specific facts above rather than general knowledge.
+
+- **Assessment ([Confidence]):** [Your analytical interpretation of the facts. Make the inference explicit.] `[analyst-judgment]`
+- **Assessment ([Confidence]):** [Derived from facts X and Y above.] `[inference]`
 
 ---
 
