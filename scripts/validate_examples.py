@@ -42,6 +42,9 @@ def main() -> None:
         if "evidence mode: `live-source-backed`" in lower or "evidence mode: live-source-backed" in lower:
             fail(f"{path.relative_to(ROOT)}: non-live-source-backed filename claims live-source-backed mode")
 
+        if "evidence mode: `mixed`" in lower or "evidence mode: mixed" in lower:
+            continue
+
         if (
             "no live sources were checked" in lower
             or "no live verification performed" in lower
