@@ -3,6 +3,8 @@
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+> **STRATEGIC-RISK MEMO REASONING SKILL** — a domain reasoning method that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos. Open-source. No live data. No legal, compliance or investment advice.
+
 **Strategic-risk analysis skill for AI agents.**
 
 A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos.
@@ -10,6 +12,13 @@ A reusable domain skill for agents that produce policy-risk, sanctions, regulato
 LLMs are good at summarizing geopolitical events. They are weak at turning them into decision-ready intelligence: framing the decision, separating facts from assessments, stating uncertainty, reasoning through actor incentives, identifying scenarios, and defining what to watch next.
 
 This repository is a domain skill layer that teaches agents how to do that work. It is a behavior contract, not a framework, runtime, or eval platform.
+
+## Who it is for
+
+- AI engineers and product teams building strategic-risk, sanctions, policy or geopolitical-risk agents
+- analysts, consultants and researchers using AI assistants for memo work in policy, trade, regulation or sanctions
+- risk, compliance and policy leadership whose AI tools must produce decision-ready output instead of generic regional or topical commentary
+- reviewers and editors of AI-produced memos who need explicit evidence boundaries and uncertainty labels
 
 ## Try this prompt
 
