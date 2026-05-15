@@ -248,6 +248,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 ├── llms.txt              # Agent and LLM indexer orientation
 ├── docs/                 # Case packets, integrations, review workflow
 ├── examples/             # Worked memo examples
+├── templates/            # Blank memo template for operational use
 ├── evals/                # Human review checklist, failure modes, rubric
 ├── reviews/              # Future external review records
 ├── signals/              # Public signal archive + template
