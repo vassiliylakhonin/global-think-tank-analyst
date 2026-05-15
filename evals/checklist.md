@@ -15,6 +15,7 @@ Use this as a yes/no review pass over any memo produced with the skill. It is an
 - [ ] If live verification was not performed, is the `EVIDENCE ACCESS LIMITED` notice present?
 - [ ] Are sources only claimed where they were actually checked?
 - [ ] Are there no fabricated citations, dates, or numerical claims?
+- [ ] **Sample claim verification:** pick 1–3 facts, open the cited source, and check that the exact wording is supported. Flag claims that add technical specifications (e.g. pricing methodology, units, legal thresholds) not present in the source.
 
 ## Analytical separation
 
