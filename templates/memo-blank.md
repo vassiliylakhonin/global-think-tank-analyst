@@ -98,6 +98,20 @@ Tag each assessment `[analyst-judgment]`. Add `[inference]` if derived from spec
 
 ---
 
+## Grounding profile
+
+Self-report of evidence composition. Count tagged claims in the memo above and fill in. Helps a reader calibrate how much of the conclusion rests on source-backed facts versus analyst judgment.
+
+- **Source-backed claims:** primary [N], secondary [N], user-provided [N]
+- **Derived claims:** inference [N]
+- **Judgment claims:** analyst-judgment [N]
+- **Flagged for verification:** [N] (claims carrying `[verify]`)
+- **Stale-risk claims:** [N] (claims carrying `[stale-risk: YYYY-MM]`)
+
+A high analyst-judgment count is not a defect — strategic-risk memos legitimately depend on judgment. The profile is a transparency device, not a score.
+
+---
+
 ## Limitation note
 
 [State the specific limits of this memo: what it does not screen, assess, verify, or constitute. Be concrete. Do not use generic boilerplate — name the actual gap relevant to this memo.]
