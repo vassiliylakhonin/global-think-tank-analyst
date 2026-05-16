@@ -54,6 +54,14 @@ def main() -> None:
     if not canonical_latest.exists():
         fail(f"signals/index.json latest path missing: {latest['path']}")
 
+    if index["signals"]:
+        newest = max(index["signals"], key=lambda s: s["date"])
+        if newest["slug"] != latest["slug"]:
+            fail(
+                f"signals/index.json 'latest' is '{latest['slug']}' "
+                f"but newest signal by date is '{newest['slug']}' ({newest['date']})"
+            )
+
     latest_text = latest_path.read_text(encoding="utf-8")
     if latest["title"] not in latest_text:
         fail("signals/latest.md does not contain the latest title from signals/index.json")

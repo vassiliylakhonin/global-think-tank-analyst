@@ -142,7 +142,7 @@ agenda-intelligence score brief.json [--evidence evidence-pack.json] [--min-scor
 **Step 5 — Return to user:**
 Return markdown memo + validation pass/fail + score. Flag schema errors or low scores before handing off.
 
-For MCP integration: `agenda-intelligence-mcp` exposes `validate_brief`, `validate_evidence`, `score_output`, `source_plan` as MCP tools. See https://github.com/vassiliylakhonin/Agenda-Intelligence-md
+For MCP integration: `agenda-intelligence-mcp` exposes `validate_brief`, `validate_evidence`, `score_output`, `source_plan` as MCP tools. See https://github.com/vassiliylakhonin/agenda-intelligence-md
 
 ## Profile assumptions
 
@@ -168,7 +168,7 @@ Calibration is optional. If not provided, the skill proceeds with the profile as
 
 This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
 
-For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/Agenda-Intelligence-md). Do not assume those capabilities exist in this repository.
+For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/agenda-intelligence-md). Do not assume those capabilities exist in this repository.
 
 Runtime-specific guidance:
 

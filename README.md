@@ -78,7 +78,7 @@ Expected shape of a good answer:
 - not a benchmarked evaluation framework;
 - not a replacement for human analyst judgment.
 
-If you need validation, scoring, evidence audit, schemas, CLI, MCP, or CI checks for outputs produced with this skill, see the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
+If you need validation, scoring, evidence audit, schemas, CLI, MCP, or CI checks for outputs produced with this skill, see the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 
 ## Portfolio: how this skill composes
 
@@ -91,7 +91,7 @@ For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
 | **Horizontal domain skill** | **Global Think Tank Analyst** (this repo) | The reasoning method and memo modes. Region- and topic-agnostic. |
 | **Vertical specialist — V1** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk. |
 | **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
-| **Infrastructure / validation** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) | Machine-readable protocol, schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling. |
+| **Infrastructure / validation** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Machine-readable protocol, schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling. |
 
 ```mermaid
 flowchart LR
@@ -218,7 +218,7 @@ Lightweight, honest review materials in [`evals/`](evals/):
 - [`failure-modes.md`](evals/failure-modes.md) — common failure patterns
 - [`rubric.md`](evals/rubric.md) — starter scoring rubric
 
-These are *human review aids*, not a validated benchmark. For machine-readable validation, scoring, and audit, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
+These are *human review aids*, not a validated benchmark. For machine-readable validation, scoring, and audit, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 
 ## Signal archive
 
@@ -283,7 +283,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 - This project is intentionally conservative about evidence. It does not fabricate sources, imply live verification when none occurred, or present speculative geopolitical judgments as facts.
 - It is a **decision-support skill**, not legal, compliance, investment, sanctions, or intelligence advice.
 - It does not verify factuality. It enforces analytical *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing.
-- It does not retrieve sources, run validators, expose an MCP server, or score outputs. For those, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).
+- It does not retrieve sources, run validators, expose an MCP server, or score outputs. For those, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 - Examples in this repo are demonstrations of the skill style across `reasoning-only`, `user-provided sources`, and `live-source-backed` modes. Do not treat them as real intelligence products, and verify current facts before operational use.
 - Signals in `signals/` are public examples of the skill style, not official intelligence and not real-time.
 

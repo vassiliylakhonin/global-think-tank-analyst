@@ -14,7 +14,7 @@ The portfolio has four assets:
 | Horizontal skill | [Global Think Tank Analyst](https://github.com/vassiliylakhonin/global-think-tank-analyst) | General strategic-risk memo method: policy, sanctions, regulatory, trade, geopolitical and scenario analysis. |
 | Vertical specialist | [Central Asia + Caspian Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Regional depth for Central Asia, Caspian corridors, sanctions / AML, banking, logistics, energy and geopolitical risk. |
 | Vertical specialist | [Gulf + Middle East Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Regional depth for Gulf, Iran, Iraq, maritime chokepoints, Iran sanctions, GCC banking, energy and sovereign wealth. |
-| Infrastructure | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) | Schemas, validation, scoring, evidence audit, CLI / MCP tooling and package distribution. |
+| Infrastructure | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Schemas, validation, scoring, evidence audit, CLI / MCP tooling and package distribution. |
 
 ## What This Is Not
 
