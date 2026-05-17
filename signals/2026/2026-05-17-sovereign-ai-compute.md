@@ -1,11 +1,3 @@
-# Latest Policy Risk Signal
-
-Canonical file: [2026-05-17](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-17-sovereign-ai-compute.md)
-
-Canonical path: `signals/2026/2026-05-17-sovereign-ai-compute.md`
-
----
-
 # Policy Risk Signal — 2026-05-17
 
 <!-- title: Sovereign AI compute: tier access is the planning constraint, not chip price -->

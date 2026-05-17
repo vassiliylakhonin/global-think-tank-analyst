@@ -17,11 +17,11 @@ Public **examples** of the Global Think Tank Analyst skill style. Each signal sh
 
 ## Latest signals
 
+- [2026-05-17](2026/2026-05-17-sovereign-ai-compute.md): Sovereign AI compute: tier access is the planning constraint, not chip price
 - [2026-05-12](2026/2026-05-12-monetary-policy-divergence.md): Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem
 - [2026-05-12](2026/2026-05-12-us-china-tariff-de-escalation.md): US-China tariff de-escalation: a pause, not a reset — plan for structural competition while managing the tactical window
 - [2026-05-12](2026/2026-05-12-fed-stagflation-posture.md): Fed between tariff inflation and growth slowdown: the rate path is not a straight line
 - [2026-05-12](2026/2026-05-12-us-eu-trade-framework.md): US–EU tariff exposure: the negotiation phase is a planning input, not a resolution
-- [2026-05-09](2026/2026-05-09-hormuz.md): Hormuz oil-price corridor: $86 baseline / $95–115 upside is the planning frame
 
 ## Contributing a signal
 
