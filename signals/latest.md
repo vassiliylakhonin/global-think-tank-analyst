@@ -1,84 +1,88 @@
 # Latest Policy Risk Signal
 
-Canonical file: [2026-05-12](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-us-eu-trade-framework.md)
+Canonical file: [2026-05-17](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-17-sovereign-ai-compute.md)
 
-Canonical path: `signals/2026/2026-05-12-us-eu-trade-framework.md`
+Canonical path: `signals/2026/2026-05-17-sovereign-ai-compute.md`
 
 ---
 
-# Policy Risk Signal — 2026-05-12
+# Policy Risk Signal — 2026-05-17
 
-<!-- title: US–EU tariff exposure: the negotiation phase is a planning input, not a resolution -->
+<!-- title: Sovereign AI compute: tier access is the planning constraint, not chip price -->
 
 ```text
-Date: 2026-05-12
-Domain: trade / regulatory
-Region: US, EU, transatlantic corridors
+Date: 2026-05-17
+Domain: strategic / regulatory / technology
+Region: US, China, EU, Gulf, India
 Evidence mode: reasoning-only
 Confidence: Moderate
 ```
 
-> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not trade-legal, customs, or investment advice. No live sources were checked for this signal.
+> Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, export-control, sanctions, or investment advice. No live sources were checked for this signal.
 
-## Signal
-The US-EU tariff dispute that opened in 2025 established a new structural baseline for transatlantic trade economics. Periodic negotiation signals have not resolved the underlying tension between US industrial-policy priorities (reciprocal tariffs, domestic content requirements) and EU trade-policy constraints (WTO disciplines, state-aid rules, single-market consistency). Operators with transatlantic exposure face a choice: price the tariff cost as permanent, or hold off structural decisions pending a framework agreement that has not materialized.
+## Event
+
+US export controls on advanced AI accelerators have hardened into a multi-tier access regime: close allies retain near-full access, a middle tier of states faces capped national allocations through license review, and a restricted tier faces hard cutoffs on frontier-class hardware. Sovereign AI investment announcements from Gulf states, India, France, Japan, and Korea have accelerated in response. The structural constraint — durable access to leading-edge fabrication capacity, not just chip purchase orders — is rarely the headline.
 
 **EVIDENCE ACCESS LIMITED: no live verification performed in this environment.**
 
 ## Why it matters
-- Pricing decisions, contract renewals, and supplier restructuring made under "this will resolve soon" assumptions carry downside if the dispute extends another 12–18 months.
-- The EU and US have structurally different incentive constraints: EU negotiators must clear 27-member unanimity and WTO consistency; US negotiators face domestic industrial constituency pressure that resists concessions on core tariff levels.
-- Interim relief measures (pauses, sector carve-outs, quota expansions) can misread as framework progress; they are not the same as durable tariff reduction.
 
-## Decision question
-For an EU-headquartered operator with US market exposure, should transatlantic tariff costs be absorbed, passed through, or used to trigger supplier/logistics restructuring — and at what point does waiting for a framework deal become the costlier posture?
+For operators with AI-dependent product or research strategy, the relevant question is no longer "can we afford the compute" but "which tier do we have durable access to, and what shifts when policy or ownership thresholds change." Sovereign AI announcements move faster than fab capacity grows; the gap between announced national compute ambition and physically deliverable capacity through 2027–2028 is the planning constraint. Tier classification is policy, not geography: a subsidiary's location does not by itself determine access — end-use restrictions, beneficial-ownership thresholds, and parent-entity affiliations all bind.
 
-## Quick assessment
-- **Fact (inferred from structure):** US-EU tariff dispute creates cost asymmetry for goods-intensive transatlantic flows; financial services and software are largely insulated.
-- **Assessment:** Treat ongoing negotiation as noise until a ratifiable framework agreement is announced. Absorbing costs without restructuring buys time but not resolution.
-- **Assumption:** No comprehensive bilateral agreement has been announced as of this signal date; verify current status before acting.
-- **Unknown:** Duration of any pause mechanism; EU willingness to use retaliatory tariff authority as a negotiating lever; US administration's flexibility on sectoral carve-outs.
-- **Main risk:** Anchoring operational decisions on negotiation optimism rather than structural tariff reality.
+## Signal vs noise
+
+- **Noise:** headlines about new sovereign AI partnerships, national compute investment totals, regional "AI hub" launches.
+- **Signal:** whether the partnership is backed by a physical accelerator allocation commitment from a controlling vendor *and* a license posture compatible with the operator's beneficial ownership. Most are framework intent that depends on later licensing decisions, not durable capacity.
 
 ## Who gains leverage
-- US industrial producers protected by the tariff structure.
-- Non-EU third-country suppliers already outside the tariff regime (alternative sourcing options improve).
-- EU negotiators holding retaliatory authority as a credible lever, if the political coalition holds.
+
+- US-aligned operators with multi-region presence and clear end-use controls — they retain optionality across tiers.
+- Vendors with the only-game-in-town frontier accelerator product line — pricing power expands as substitution paths shrink.
+- States that can credibly commit capital and security alignment in exchange for durable tier classification.
 
 ## Who loses leverage
-- EU exporters of goods with high US market concentration and limited pricing power.
-- US importers of EU inputs with no near-term substitution path.
-- Operators with long-dated supply contracts priced before the tariff structure changed.
+
+- Operators with parent-entity exposure to restricted-tier jurisdictions or their affiliates — even legitimate workloads face license friction.
+- Mid-tier operators relying on cloud-API access for frontier-class training workloads — the cloud abstraction does not survive end-use restrictions on training-class compute.
+- Buyers who planned compute capacity on list price and quoted lead times rather than license-adjusted lead times.
+
+## Key uncertainty
+
+Will the multi-tier regime survive a US administration change, or consolidate into a binary aligned/non-aligned framework? Both directions are plausible, and the middle tier is the unstable equilibrium.
 
 ## Scenarios
-- **Baseline:** Tariff structure persists through 2026 with periodic sectoral carve-outs and quota expansions, but no comprehensive framework. Cost pass-through and supplier diversification are the operational responses.
-- **Partial resolution:** A sectoral agreement covers high-visibility categories (steel, EVs, or agriculture), reducing headline tension without addressing the full tariff exposure. Partial relief is likely to be priced as permanent by markets before formal ratification.
-- **Escalation:** EU retaliatory tariff authority is activated on a set of US goods; US responds with counter-escalation. Cost basis for transatlantic goods trade rises further; some supply-chain restructuring becomes irreversible.
-- **Disconfirming:** A rapid framework agreement — covering tariff reduction, mutual recognition, and reciprocal enforcement — is ratified within 12 months. This is the scenario most operators are implicitly betting on; it is also the least likely given current institutional constraints.
+
+- **Baseline:** the multi-tier regime persists through 2027 with periodic tier reclassifications and sectoral carve-outs. Sovereign AI announcements continue; physical compute delivery lags 18–30 months behind announced ambition. Operators with multi-region optionality outperform.
+- **Consolidation:** the middle tier collapses — either pulled up via bilateral commitments (Gulf, India) or pushed down via secondary-sanctions logic. Bimodal access becomes the planning frame.
+- **Erosion:** fab capacity expansion in non-US-controlled jurisdictions plus alternative-architecture maturation reduces US leverage. Tier walls become porous on a 3–5 year horizon, not 12 months.
+- **Disconfirming:** a bilateral US–China framework reopens broad commercial-grade access. Implausible without a structural geopolitical shift, but worth tracking.
 
 ## Watch next
-- Official announcement of a ratified framework agreement (not a "progress on talks" communiqué).
-- EU Council vote on retaliatory tariff activation: passage means escalation scenario becomes primary.
-- US import volume and pricing data for EU-exposed goods categories (steel, machinery, industrial components): divergence from pre-tariff trend confirms cost absorption is real.
-- WTO dispute panel decisions: procedural outcomes matter less than how parties respond to them.
-- Sector-specific carve-out announcements (EVs, pharmaceuticals, aerospace): track scope carefully — partial relief often signals negotiation stalemate, not progress.
+
+- BIS license-approval ratio data when published: a falling approval rate is a tier-tightening signal regardless of headline policy.
+- Specific country exits from a middle-tier cap — leading indicators of tier consolidation.
+- Frontier accelerator vendor backlog and lead-time disclosures in quarterly filings: delivery lead time is the real constraint, not list price.
+- Sovereign-fund AI commitments tied to specific fab capacity allocations (not just chip purchase orders) — the rare announcements that move durable capacity.
+- Court rulings or administrative review outcomes on existing license denials — they establish the precedent envelope for future applications.
 
 ## What would change the judgment
-- A ratified bilateral framework agreement with binding tariff-reduction commitments → disconfirming scenario becomes operative; restructuring decisions should accelerate.
-- EU retaliatory tariff activation on a significant US goods category → escalation scenario; cost basis revisions and supplier restructuring become urgent.
-- Unilateral US tariff suspension on a broad category without a reciprocal EU commitment → likely a domestic political move, not durable; treat as 90-day reprieve at most.
-- A change in US administration posture signaling willingness to accept WTO-consistent tariff levels → re-assess framework probability upward, but do not act ahead of formal announcement.
+
+- A formal multilateral agreement (US + EU + Japan + Korea + Netherlands) on uniform AI compute export rules → tier system becomes durable; planning should assume permanence.
+- A successful frontier-scale training run on a credible non-US accelerator architecture → erosion scenario probability rises materially.
+- A US–China bilateral export-control reset, even partial → disconfirming scenario; major repositioning warranted.
+- Significant fab capacity coming online in a middle-tier jurisdiction with sovereign-controlled offtake → tier system reconfigures around physical capacity, not policy alone.
 
 ## Sources
-No live sources were checked for this signal. Assessment is based on structural reasoning about US-EU trade architecture and negotiation dynamics.
 
-> Verify current tariff rates, any announced framework agreement status, and WTO dispute panel outcomes before any operational or contract decision.
+No live sources were checked for this signal. Assessment is based on structural reasoning about export-control architecture, fab-capacity timelines, and the gap between sovereign AI announcements and deliverable capacity.
+
+> Verify current BIS rule status, country-tier classifications, vendor license posture, and beneficial-ownership thresholds before any compute procurement, partnership, or location decision.
 
 ## Confidence and limitations
-Confidence: Moderate. The structural reasoning is sound; the specific current-status facts (tariff levels, negotiation stage, any pauses or carve-outs in effect) must be verified against live sources before operational use.
 
-## Example expansion prompt
-Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for an EU industrial operator with US market exposure: define the options (absorb, pass through, restructure), separate facts from assumptions, identify the negotiation-scenario triggers, and list watch-next indicators tied to posture changes.
+Confidence: Moderate. The structural argument is durable; the specific tier assignments and license posture are policy-volatile and must be verified against current BIS guidance before operational use.
 
 ## Disclaimer
-Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, trade-legal, customs, or investment advice.
+
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, export-control, sanctions, or investment advice.
