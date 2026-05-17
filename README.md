@@ -302,7 +302,7 @@ Stated honestly so readers can calibrate. These are not claims of weakness, only
 
 Directional, not committed. Items here are open, not yet implemented.
 
-**Signal coverage:** expand the archive into trade and monetary-policy domains (US-EU tariffs, interest-rate regime shifts, supply-chain re-routing events). The current archive covers energy, regulatory, critical minerals, and sanctions well; trade and macro are underrepresented.
+**Signal coverage:** the archive now covers energy, regulatory, critical minerals, sanctions, trade (US-EU, US-China), and monetary policy (Fed posture, central-bank divergence). Open gaps where future signals would add the most value: supply-chain re-routing events, sovereign-debt / fiscal stress in major economies, and EU regulatory implementation milestones.
 
 **Third vertical specialist:** EU regulatory affairs depth is a candidate if demand materialises. The Gulf & Middle East vertical is already live at [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill).
 
