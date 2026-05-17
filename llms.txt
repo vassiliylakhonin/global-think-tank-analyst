@@ -19,13 +19,14 @@ What this repository is not:
 Compatible agent environments:
 - ChatGPT, Claude, Gemini, Perplexity, and other chat agents (paste/attach);
 - Codex, Cursor, Windsurf, and repository-aware coding agents (repo context);
-- OpenClaw / ClawHub (only if a current package exists);
+- OpenClaw / ClawHub (not actively maintained; use paste/attach as fallback);
 - custom MCP agents, RAG systems, internal copilots (indexing).
 
-Portfolio (four layers, separately maintained):
+Portfolio (three layers, four repos, separately maintained):
 - Horizontal domain skill (this repo): the reasoning method and memo modes.
-- Vertical specialist V1: https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
-- Vertical specialist V2: https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
+- Vertical specialists (compose on top of the horizontal skill):
+  - https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
+  - https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
 - Infrastructure / validation: https://github.com/vassiliylakhonin/agenda-intelligence-md — schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling.
 
 Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the domain needs regional depth. Use Agenda Intelligence MD to validate, score, and audit the output.
