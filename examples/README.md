@@ -4,6 +4,16 @@ These examples show how Global Think Tank Analyst turns broad policy, sanctions,
 
 Use them as a learning path, not as operational advice. Examples marked `live-source-backed` cite public sources retrieved on the date stated in the memo; verify current facts before using them for any real decision.
 
+## Freshness policy
+
+The `live-source-backed` label is a snapshot, not a recency guarantee. Each example carries a retrieval date in its body.
+
+- **Re-verify** an example before treating any cited fact as current if its retrieval date is **older than 6 months**. The decision frame and reasoning structure remain useful; the specific facts may not.
+- **Re-verify sooner — within 30 to 90 days —** when the example covers a fast-moving domain: sanctions designations, OFAC / EU lists, tariff rates, regulatory effective dates, central-bank rate decisions, active enforcement actions. Recency expectations in these domains are weeks, not months.
+- **Archive or replace** an example when a cited fact has been materially superseded (new rule, lifted sanction, revised tariff) and the memo's judgment depends on the superseded fact. Move the file to `examples/archive/` with a header note pointing to the replacement, or update the example in place and bump its retrieval date.
+
+Examples that fail this policy and are kept anyway should be relabeled from `live-source-backed` to `illustrative source packet` so the evidence mode matches reality.
+
 ## Learning path
 
 1. Start with [`sanctions-exposure-memo.md`](sanctions-exposure-memo.md) to see the basic reasoning-only memo structure: decision frame, evidence limits, risks, options, indicators, confidence.
