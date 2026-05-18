@@ -584,10 +584,6 @@ Author Vassiliy Lakhonin
 
 ## Installation and integration
 
-```bash
-openclaw skills install vassiliylakhonin/global-think-tank-analyst
-```
-
 For Codex, include this file with:
 
 ```text
@@ -596,7 +592,7 @@ llms.txt
 codex/SKILL.md
 ```
 
-For any other AI agent, attach or paste:
+For other chat agents (ChatGPT, Claude, Gemini, Perplexity), attach or paste:
 
 ```text
 AGENTS.md
@@ -614,6 +610,8 @@ signals/index.json
 signals/latest.md
 signals/feed.json
 ```
+
+OpenClaw / ClawHub package distribution is not actively maintained — see Integration status in [`README.md`](../README.md). Use paste/attach as the supported path.
 
 ## Example Prompt
 
