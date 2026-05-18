@@ -15,7 +15,7 @@ Confidence: Moderate.
 
 ## Executive takeaway
 
-**Key judgment (Moderate confidence):** Treat the suspension as a **procurement window, not a policy reset**. Six months is enough to **build inventory or close a qualification cycle on a non-China supplier**, but not enough to reshape midstream processing dependence. The dominant downside scenario is **late-2026 reinstatement on tighter terms** (broader item scope or stricter end-use review). A plan that depends on the suspension being extended is the most regret-likely posture.
+**Key judgment (Moderate confidence):** Treat the suspension as a **procurement window, not a policy reset**. Six months appears sufficient to **build inventory or close a qualification cycle on a non-China supplier**, but not enough to reshape midstream processing dependence. The dominant downside scenario is **late-2026 reinstatement on tighter terms** (broader item scope or stricter end-use review). A plan that depends on the suspension being extended is the most regret-likely posture.
 
 ## Facts (from sources)
 
@@ -28,7 +28,7 @@ Confidence: Moderate.
 ## Assessments
 
 - **Assessment (Moderate confidence):** The binding structural risk for a mid-market US/EU manufacturer is **midstream processing concentration**, not the suspended export controls per se. The suspension lowers the *probability* of a near-term gallium/germanium shock; it does not reduce the *severity* of one if it returns.
-- **Assessment (Moderate confidence):** The **highest-value use** of the 6-month window is supplier-qualification work on non-China midstream sources where qualification cycles take 4–9 months — *if* such suppliers exist for the SKU in question. Where they do not, the window is best spent on inventory build with explicit reinstatement-cost accounting.
+- **Assessment (Moderate confidence):** The **highest-value use** of the 6-month window appears to be supplier-qualification work on non-China midstream sources where qualification cycles take 4–9 months — *if* such suppliers exist for the SKU in question. Where they do not, the window is best spent on inventory build with explicit reinstatement-cost accounting.
 - **Assessment (Low–Moderate confidence):** Customers downstream will not credit a suspension-period diversification narrative without **auditable documentation**; "we have a non-China backup" without qualification records will not survive scrutiny if reinstatement raises customer due-diligence pressure.
 
 ## Assumptions

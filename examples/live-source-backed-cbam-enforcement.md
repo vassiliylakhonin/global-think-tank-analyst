@@ -15,7 +15,7 @@ Confidence: Moderate.
 
 ## Executive takeaway
 
-**Key judgment (Moderate confidence):** Enforcement does not change *which* products are covered; it changes the *cost mechanics*. From 2026, importers must **purchase and surrender CBAM certificates annually based on reported emissions**, with certificate prices set quarterly against EU ETS auction clearing prices. The binding 2026 constraint is **supplier emissions-data quality** — buyers whose suppliers cannot defend product-level MRV will pay the default-value premium and face customer audit cost. Anchoring procurement on price alone, without product-level emissions data, is the most expensive posture across plausible scenarios.
+**Key judgment (Moderate confidence):** Enforcement does not change *which* products are covered; the principal change appears to be in the *cost mechanics*. From 2026, importers must **purchase and surrender CBAM certificates annually based on reported emissions**, with certificate prices set quarterly against EU ETS auction clearing prices. The binding 2026 constraint is **supplier emissions-data quality** — buyers whose suppliers cannot defend product-level MRV will pay the default-value premium and face customer audit cost. Anchoring procurement on price alone, without product-level emissions data, is the most expensive posture across plausible scenarios.
 
 ## Facts (from sources)
 
@@ -27,7 +27,7 @@ Confidence: Moderate.
 
 ## Assessments
 
-- **Assessment (Moderate confidence):** The dominant 12-month cost driver for an importer is not the certificate price level; it is **the spread between the importer's actual product-level emissions data and the relevant default value**. Suppliers that cannot deliver auditable product-level MRV force the importer onto defaults and into the worst end of the certificate-cost distribution.
+- **Assessment (Moderate confidence):** The dominant 12-month cost driver for an importer appears to be not the certificate price level, but **the spread between the importer's actual product-level emissions data and the relevant default value**. Suppliers that cannot deliver auditable product-level MRV force the importer onto defaults and into the worst end of the certificate-cost distribution.
 - **Assessment (Moderate confidence):** Customer-side procurement scrutiny will tighten faster than enforcement penalties; large buyers will increasingly disqualify suppliers whose CBAM data does not meet their own reporting standard, regardless of legal compliance.
 - **Assessment (Low–Moderate confidence):** Carbon-leakage and trade-friction concerns will produce ongoing methodology adjustments (default values, scope refinements) over 12 months; importers building rigid systems against today's parameters will pay re-tooling costs.
 
@@ -48,7 +48,7 @@ Confidence: Moderate.
 
 ## Scenarios (12 months)
 
-1. **Steady enforcement; methodology stabilizes (modal).** Quarterly certificate prices behave like ETS; defaults tighten gradually; large suppliers professionalize MRV. **Indicators:** Commission default-value updates; sustained webinar program; few public enforcement disputes.
+1. **Steady enforcement; methodology stabilizes (most likely).** Quarterly certificate prices behave like ETS; defaults tighten gradually; large suppliers professionalize MRV. **Indicators:** Commission default-value updates; sustained webinar program; few public enforcement disputes.
 2. **Strict enforcement; default-value tightening.** Commission narrows defaults and intensifies audits on declared product-level emissions. **Indicators:** Commission methodology revisions; named enforcement cases against importers using unverifiable supplier data.
 3. **Carbon-leakage carve-out.** Pressure from heavy industry yields temporary scope or threshold relief. **Indicators:** Council debate; Commission communication signaling adjustment; member-state lobbying intensification.
 4. **Trade-policy escalation.** Trade-partner retaliation (WTO action, mirror measures) prompts political adjustments. **Indicators:** WTO filings; bilateral trade-policy escalation; coordinated allied responses.

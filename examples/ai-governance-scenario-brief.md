@@ -68,9 +68,9 @@ A B2B AI provider (SaaS, API, or embedded AI) that serves customers in the US an
 **Why plausible:** Institutional inertia, domestic political incentives, and divergent underlying regulatory philosophies make convergence within 18 months structurally implausible.
 
 **Implications:**
-- EU customers begin requiring AI Act conformity documentation; non-compliant providers lose procurement consideration.
-- US customers face sector-specific AI requirements (financial services, healthcare) that may or may not align with EU compliance architecture.
-- China exposure creates a separate data-sovereignty and content-compliance track, incompatible with EU GDPR-based data architecture.
+- EU customers would begin requiring AI Act conformity documentation; non-compliant providers would lose procurement consideration.
+- US customers would face sector-specific AI requirements (financial services, healthcare) that may or may not align with EU compliance architecture.
+- China exposure would create a separate data-sovereignty and content-compliance track, incompatible with EU GDPR-based data architecture.
 
 **Decision-relevant takeaway:** Treat EU compliance as the most binding constraint and design for it first. US sectoral compliance can be layered on top if the EU architecture is built modularly. China requires a separate track if market access is sought.
 
@@ -86,10 +86,10 @@ A B2B AI provider (SaaS, API, or embedded AI) that serves customers in the US an
 
 **Implications:**
 - Providers with EU-compliant architectures would likely receive preferential treatment under a mutual recognition framework.
-- A "build for EU first" strategy becomes retrospectively validated.
-- China exposure remains unaffected — partial convergence is exclusively transatlantic.
+- A "build for EU first" strategy would become retrospectively validated.
+- China exposure would remain unaffected — partial convergence is exclusively transatlantic.
 
-**Decision-relevant takeaway:** Build for EU compliance now. If convergence materializes, the EU-compliant architecture is likely to be the reference standard. Do not wait for convergence before investing.
+**Decision-relevant takeaway:** Building for EU compliance now is the lower-regret posture under this scenario. If convergence materializes, the EU-compliant architecture is likely to be the reference standard; waiting for convergence before investing creates architecture-lag risk.
 
 **Indicators to watch:** TTC or successor-body communiqués referencing AI Act mutual recognition; NIST AI Risk Management Framework alignment with EU AI Act risk categories; joint statements on GPAI model governance.
 
