@@ -53,13 +53,13 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Hold current cover, monitor | Lowest near-term cost | Most exposed in scenario 2/3 |
-| Shorten contract tenors; build inventory at the lower end of the price range | Cheap optionality | Working-capital cost; storage operational risk |
-| Layer pre-authorized hedge triggers (pull-the-trigger conditions written before the next move) | Procedurally disciplined; removes panic decisions | Requires up-front governance work |
-| Restructure key supply contracts to cap-and-floor structures | Caps both sides of the corridor | Counterparty cost; renegotiation friction |
-| Reduce energy-intensive output for 30–60 days | Robust to scenarios 2 and 3 | Customer-impact; margin loss in scenarios 1 and 4 |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Hold current cover, monitor | Lowest near-term cost | Most exposed in scenario 2/3 | [inference] |
+| Shorten contract tenors; build inventory at the lower end of the price range | Cheap optionality | Working-capital cost; storage operational risk | [analyst-judgment] |
+| Layer pre-authorized hedge triggers (pull-the-trigger conditions written before the next move) | Procedurally disciplined; removes panic decisions | Requires up-front governance work | [analyst-judgment] |
+| Restructure key supply contracts to cap-and-floor structures | Caps both sides of the corridor | Counterparty cost; renegotiation friction | [analyst-judgment] |
+| Reduce energy-intensive output for 30–60 days | Robust to scenarios 2 and 3 | Customer-impact; margin loss in scenarios 1 and 4 | [inference] |
 
 ## Watch-next indicators
 

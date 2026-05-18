@@ -47,11 +47,11 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Hold and harden (deeper partner KYC, dual-use ring-fence) | Preserves position, proportionate cost | Does not protect against scenario 3 |
-| Restructure payment rails through compliant hub | Reduces banking-channel risk | Operational lift, slower receivables |
-| Contract footprint to lowest-risk segments | Robust to all scenarios | Forfeits market position, hard to reverse |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Hold and harden (deeper partner KYC, dual-use ring-fence) | Preserves position, proportionate cost | Does not protect against scenario 3 | [inference] |
+| Restructure payment rails through compliant hub | Reduces banking-channel risk | Operational lift, slower receivables | [analyst-judgment] |
+| Contract footprint to lowest-risk segments | Robust to all scenarios | Forfeits market position, hard to reverse | [analyst-judgment] |
 
 ## Watch-next indicators
 

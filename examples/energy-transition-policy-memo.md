@@ -42,12 +42,12 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Anchor portfolio plans to declared targets only | Simple, communicable | Mis-times capex; least robust to plumbing tightening |
-| Model marginal cost-of-carbon net of free allowances and CBAM | More accurate signal | Requires asset-level modelling capability |
-| Fund leading-asset transition capex now; pause laggards | Captures upside in scenario 1 | Concentration if scenario 3 plays out |
-| Build optionality (modular capex, phased commitments) | Robust across scenarios | Pays an option premium |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Anchor portfolio plans to declared targets only | Simple, communicable | Mis-times capex; least robust to plumbing tightening | [analyst-judgment] |
+| Model marginal cost-of-carbon net of free allowances and CBAM | More accurate signal | Requires asset-level modelling capability | [analyst-judgment] |
+| Fund leading-asset transition capex now; pause laggards | Captures upside in scenario 1 | Concentration if scenario 3 plays out | [inference] |
+| Build optionality (modular capex, phased commitments) | Robust across scenarios | Pays an option premium | [analyst-judgment] |
 
 ## Watch-next indicators
 

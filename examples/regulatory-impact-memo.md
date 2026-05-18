@@ -34,11 +34,11 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Build product-level MRV now | Defends premium positioning | Capex and reporting overhead |
-| Outsource emissions verification | Faster | Higher per-unit cost, less auditable |
-| Accept default values | Cheapest now | Worst long-term margin outcome |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Build product-level MRV now | Defends premium positioning | Capex and reporting overhead | [analyst-judgment] |
+| Outsource emissions verification | Faster | Higher per-unit cost, less auditable | [analyst-judgment] |
+| Accept default values | Cheapest now | Worst long-term margin outcome | [analyst-judgment] |
 
 ## Watch-next indicators
 

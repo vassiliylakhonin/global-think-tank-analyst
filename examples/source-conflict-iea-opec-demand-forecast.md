@@ -58,12 +58,12 @@ Two reputable, methodologically respectable institutions disagree on the H2 2026
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Size to IEA case; buy upside calls for OPEC case | Asymmetric regret profile; explicit cost of optionality | Option premium drag if neither extreme realizes |
-| Size to OPEC case; buy downside puts for IEA case | Captures upside; protected downside | Outright length carry is expensive given term structure |
-| Size to midpoint of two forecasts | Simplest implementation | Silently resolves the conflict; worst-of-both regret profile |
-| Stay flat until convergence | Zero conflict risk | Forgoes both directions; opportunity cost if disagreement persists |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Size to IEA case; buy upside calls for OPEC case | Asymmetric regret profile; explicit cost of optionality | Option premium drag if neither extreme realizes | [inference] |
+| Size to OPEC case; buy downside puts for IEA case | Captures upside; protected downside | Outright length carry is expensive given term structure | [inference] |
+| Size to midpoint of two forecasts | Simplest implementation | Silently resolves the conflict; worst-of-both regret profile | [analyst-judgment] |
+| Stay flat until convergence | Zero conflict risk | Forgoes both directions; opportunity cost if disagreement persists | [analyst-judgment] |
 
 ## Decision-relevant takeaway
 

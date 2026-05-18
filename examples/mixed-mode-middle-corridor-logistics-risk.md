@@ -72,13 +72,13 @@ Depth: standard memo
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Use corridor with no additional controls | Lowest setup cost | Highest enforcement and de-risking exposure |
-| Goods-classification review only | Addresses most visible risk | Does not cover counterparty or end-user gaps |
-| Full counterparty screening + UBO documentation for top routes | Credible compliance posture; correspondent-bank defensible | Ongoing cost; requires supplier cooperation |
-| Restrict corridor use to low-risk goods + screened counterparties | Lowest residual risk | Reduces commercial opportunity |
-| Pause corridor use until enforcement picture clarifies | Zero compliance exposure | Loses first-mover commercial advantage |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Use corridor with no additional controls | Lowest setup cost | Highest enforcement and de-risking exposure | [analyst-judgment] |
+| Goods-classification review only | Addresses most visible risk | Does not cover counterparty or end-user gaps | [analyst-judgment] |
+| Full counterparty screening + UBO documentation for top routes | Credible compliance posture; correspondent-bank defensible | Ongoing cost; requires supplier cooperation | [analyst-judgment] |
+| Restrict corridor use to low-risk goods + screened counterparties | Lowest residual risk | Reduces commercial opportunity | [analyst-judgment] |
+| Pause corridor use until enforcement picture clarifies | Zero compliance exposure | Loses first-mover commercial advantage | [analyst-judgment] |
 
 ---
 

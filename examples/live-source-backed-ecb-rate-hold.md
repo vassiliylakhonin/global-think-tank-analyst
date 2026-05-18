@@ -54,13 +54,13 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Hold current treasury structure | Lowest near-term cost | Most exposed in scenarios 3 and 4 |
-| Ladder refinancing tenors (e.g., split between 2y / 3y / 5y) | Robust across scenarios | Coordination cost; partial fees |
-| Move to floating with explicit cap | Captures cuts in scenario 2; protects against scenario 4 | Cap premium; ongoing reset complexity |
-| Pre-commit FX hedging on USD-denominated cost lines correlated with crude | Robust to crude–EUR–rate joint tail | Hedge cost; possible over-hedging in scenario 1 |
-| Defer refinancing to monitor next 1–2 ECB meetings | Optionality on rate-path information | Risk of window closing if spreads widen |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Hold current treasury structure | Lowest near-term cost | Most exposed in scenarios 3 and 4 | [inference] |
+| Ladder refinancing tenors (e.g., split between 2y / 3y / 5y) | Robust across scenarios | Coordination cost; partial fees | [analyst-judgment] |
+| Move to floating with explicit cap | Captures cuts in scenario 2; protects against scenario 4 | Cap premium; ongoing reset complexity | [inference] |
+| Pre-commit FX hedging on USD-denominated cost lines correlated with crude | Robust to crude–EUR–rate joint tail | Hedge cost; possible over-hedging in scenario 1 | [inference] |
+| Defer refinancing to monitor next 1–2 ECB meetings | Optionality on rate-path information | Risk of window closing if spreads widen | [analyst-judgment] |
 
 ## Watch-next indicators
 

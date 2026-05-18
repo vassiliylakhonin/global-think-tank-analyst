@@ -42,11 +42,11 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Maintain current posture, tighten end-user diligence | Lowest near-term cost | Most exposed in scenario 3 |
-| Pre-emptively de-feature one product line for export-sensitive markets | Defends scenarios 2 and 3 | Forfeits a defined revenue segment |
-| Geographic ring-fence (sales policy by jurisdiction class) | Robust across scenarios | Hard to reverse; signals to market |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Maintain current posture, tighten end-user diligence | Lowest near-term cost | Most exposed in scenario 3 | [inference] |
+| Pre-emptively de-feature one product line for export-sensitive markets | Defends scenarios 2 and 3 | Forfeits a defined revenue segment | [inference] |
+| Geographic ring-fence (sales policy by jurisdiction class) | Robust across scenarios | Hard to reverse; signals to market | [analyst-judgment] |
 
 ## Watch-next indicators
 

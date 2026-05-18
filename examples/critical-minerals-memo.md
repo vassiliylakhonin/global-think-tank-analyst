@@ -42,12 +42,12 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Diversify upstream mining only | Cheap, easy to communicate | Does not protect against scenarios 2 or 3 |
-| Diversify across both upstream and midstream | Genuine resilience | Higher cost; some midstream alternatives are immature |
-| Long-term contracts with processing-side hedges | Predictability | Locks in volume against possible chemistry shifts |
-| Scenario 4 hedge: chemistry-flexible system architecture | Robust to demand-side shock | Engineering cost; product complexity |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Diversify upstream mining only | Cheap, easy to communicate | Does not protect against scenarios 2 or 3 | [inference] |
+| Diversify across both upstream and midstream | Genuine resilience | Higher cost; some midstream alternatives are immature | [analyst-judgment] |
+| Long-term contracts with processing-side hedges | Predictability | Locks in volume against possible chemistry shifts | [analyst-judgment] |
+| Scenario 4 hedge: chemistry-flexible system architecture | Robust to demand-side shock | Engineering cost; product complexity | [inference] |
 
 ## Watch-next indicators
 

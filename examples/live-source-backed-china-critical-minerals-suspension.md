@@ -55,13 +55,13 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Hold current procurement plan | Lowest near-term cost | Misses a non-renewable window |
-| Build strategic inventory on highest-risk SKUs | Robust to scenarios 2 and 3 | Working-capital cost; storage and obsolescence risk |
-| Accelerate qualification of non-China midstream suppliers where available | Genuine resilience asset | Engineering and procurement capacity intensive; some classes have no near-term alternative |
-| Restructure customer contracts to include reinstatement-event clauses | Shifts some exposure | Counterparty friction; may erode price leverage |
-| Combination: priority inventory + parallel qualification + customer-contract update | Defensible across scenarios | Highest immediate bandwidth cost |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Hold current procurement plan | Lowest near-term cost | Misses a non-renewable window | [analyst-judgment] |
+| Build strategic inventory on highest-risk SKUs | Robust to scenarios 2 and 3 | Working-capital cost; storage and obsolescence risk | [inference] |
+| Accelerate qualification of non-China midstream suppliers where available | Genuine resilience asset | Engineering and procurement capacity intensive; some classes have no near-term alternative | [analyst-judgment] |
+| Restructure customer contracts to include reinstatement-event clauses | Shifts some exposure | Counterparty friction; may erode price leverage | [analyst-judgment] |
+| Combination: priority inventory + parallel qualification + customer-contract update | Defensible across scenarios | Highest immediate bandwidth cost | [analyst-judgment] |
 
 ## Watch-next indicators
 

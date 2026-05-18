@@ -55,13 +55,13 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Accept default values; pay the premium | Cheapest near-term setup cost | Worst expected cost across scenarios; customer-disqualification risk |
-| Build product-level MRV with current top suppliers; outsource verification | Reasonable balance | Ongoing audit and validation cost |
-| Restructure supplier panel toward MRV-capable producers | Genuine resilience asset; competitive procurement edge | Re-qualification cost; transition risk |
-| Layered approach: MRV-first on top tonnage SKUs; defaults on low-tonnage tail | Cost-effective at portfolio level | Audit complexity; methodology inconsistency risk |
-| Pass certificate cost through customer contracts via index-linking | Margin protection | Customer pushback; renegotiation friction |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Accept default values; pay the premium | Cheapest near-term setup cost | Worst expected cost across scenarios; customer-disqualification risk | [inference] |
+| Build product-level MRV with current top suppliers; outsource verification | Reasonable balance | Ongoing audit and validation cost | [analyst-judgment] |
+| Restructure supplier panel toward MRV-capable producers | Genuine resilience asset; competitive procurement edge | Re-qualification cost; transition risk | [analyst-judgment] |
+| Layered approach: MRV-first on top tonnage SKUs; defaults on low-tonnage tail | Cost-effective at portfolio level | Audit complexity; methodology inconsistency risk | [analyst-judgment] |
+| Pass certificate cost through customer contracts via index-linking | Margin protection | Customer pushback; renegotiation friction | [analyst-judgment] |
 
 ## Watch-next indicators
 

@@ -57,12 +57,12 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Maintain current compliance plan, monitor adoption | Lowest disruption | Misses near-term redeployment opportunity |
-| Redeploy: pull synthetic-content transparency forward; push high-risk system work to mid-2027 | Aligned with the agreement's actual structure | Re-plan friction; team capacity constraints |
-| Treat the agreement as a "haircut" and cut compliance budget | Cheapest now | Highest regret if scenarios 2–4 play out |
-| Build SMC-status documentation as a procurement asset | Possible competitive edge with EU customers | Eligibility framework still maturing |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Maintain current compliance plan, monitor adoption | Lowest disruption | Misses near-term redeployment opportunity | [analyst-judgment] |
+| Redeploy: pull synthetic-content transparency forward; push high-risk system work to mid-2027 | Aligned with the agreement's actual structure | Re-plan friction; team capacity constraints | [inference] |
+| Treat the agreement as a "haircut" and cut compliance budget | Cheapest now | Highest regret if scenarios 2–4 play out | [inference] |
+| Build SMC-status documentation as a procurement asset | Possible competitive edge with EU customers | Eligibility framework still maturing | [analyst-judgment] |
 
 ## Watch-next indicators
 

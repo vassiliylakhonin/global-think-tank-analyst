@@ -52,11 +52,11 @@ Confidence: Moderate.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons |
-|---|---|---|
-| Hold current EDD posture; rely on screening update for the 35 named SDNs | Lowest cost | Misses adjacency typology; weak in scenarios 1–3 |
-| Escalate EDD on UAE/HK/TR shell-company patterns matching the OFAC typology, time-boxed 90 days, with executive review | Proportionate; defensible | Operational overhead; correspondent-partner friction |
-| Reduce or pause new onboarding from highest-risk corridors pending re-scoring | Strongest defence | Customer impact; partial revenue loss |
+| Option | Pros | Cons | Provenance |
+|---|---|---|---|
+| Hold current EDD posture; rely on screening update for the 35 named SDNs | Lowest cost | Misses adjacency typology; weak in scenarios 1–3 | [inference] |
+| Escalate EDD on UAE/HK/TR shell-company patterns matching the OFAC typology, time-boxed 90 days, with executive review | Proportionate; defensible | Operational overhead; correspondent-partner friction | [analyst-judgment] |
+| Reduce or pause new onboarding from highest-risk corridors pending re-scoring | Strongest defence | Customer impact; partial revenue loss | [analyst-judgment] |
 
 ## Watch-next indicators
 
