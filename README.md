@@ -310,6 +310,19 @@ Directional, not committed. Items here are open, not yet implemented.
 
 If you'd like to influence the roadmap, open an issue.
 
+## Contact
+
+Author: **Vassiliy Lakhonin** — Almaty, Kazakhstan (UTC+5).
+
+- Portfolio: [vassiliylakhonin.github.io](https://vassiliylakhonin.github.io/)
+- Analyst entry route: [vassiliylakhonin.github.io/for-analysts.html](https://vassiliylakhonin.github.io/for-analysts.html)
+- Email: [vassiliy.lakhonin@gmail.com](mailto:vassiliy.lakhonin@gmail.com)
+- LinkedIn: [linkedin.com/in/vassiliy-lakhonin](https://www.linkedin.com/in/vassiliy-lakhonin/)
+- GitHub: [github.com/vassiliylakhonin](https://github.com/vassiliylakhonin)
+- Issues and PRs on this repo are welcome.
+
+For external review of an example or the starter rubric (sanctions, regulatory, energy-trading, policy or trade practitioners), please open an issue or email with your background. For bespoke analysis under retainer, email with decision context, geography and time horizon.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
