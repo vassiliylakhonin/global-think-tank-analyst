@@ -12,6 +12,7 @@ Use them as a learning path, not as operational advice. Examples marked `live-so
 4. Compare the paired projection files in [`agenda-projections/`](agenda-projections/) to see how a memo can be mapped into Agenda Intelligence MD JSON for validation and evidence-aware scoring.
 5. Read [`user-provided-sources-supply-chain-sanctions.md`](user-provided-sources-supply-chain-sanctions.md) to see the mode where the user's own documents become the primary evidence base.
 6. Use [`red-team-policy-brief.md`](red-team-policy-brief.md) when you need to challenge an existing claim rather than draft a neutral memo.
+7. Read [`source-conflict-iea-opec-demand-forecast.md`](source-conflict-iea-opec-demand-forecast.md) to see the **source-conflict-surfacing rule** applied: two reputable sources disagree on a load-bearing fact; the memo names both with provenance, assesses source independence, states a preferred position with reasoning, and carries the conflict through to the decision instead of silently averaging.
 
 ## Evidence modes
 
@@ -35,6 +36,7 @@ Use them as a learning path, not as operational advice. Examples marked `live-so
 | Geopolitical scenarios | [`geopolitical-scenario-brief.md`](geopolitical-scenario-brief.md) |
 | AI governance | [`ai-governance-scenario-brief.md`](ai-governance-scenario-brief.md) |
 | Central Asia / sanctions / logistics | [`mixed-mode-middle-corridor-logistics-risk.md`](mixed-mode-middle-corridor-logistics-risk.md) |
+| Energy / source-conflict method demonstration | [`source-conflict-iea-opec-demand-forecast.md`](source-conflict-iea-opec-demand-forecast.md) |
 
 ## How to judge an example
 
