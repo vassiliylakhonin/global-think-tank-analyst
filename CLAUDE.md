@@ -2,65 +2,37 @@
 
 # Claude Code working rules
 
-This repository is Global Think Tank Analyst.
+AGENTS.md is the canonical project contract: identity, scope, boundaries, honesty rules, evidence rules, provenance tags, three-value response logic, naming, portfolio relationships. Follow it. Do not re-derive or restate those rules — apply them.
 
-It should remain a strategic-risk analysis skill for AI agents.
+SKILL.md is the runtime contract for agents executing the skill (memo intake, evidence labels, output modes, self-check).
 
-It is a domain reasoning layer and behavior contract, not:
-- a generic prompt pack;
-- a CLI tool;
-- a framework;
-- a factuality verifier;
-- an MCP server;
-- an eval infrastructure project;
-- a legal, sanctions, compliance, or investment-advice product.
+This file (CLAUDE.md) contains only Claude-Code-specific working rules for this repo, on top of the global ~/.claude/CLAUDE.md.
 
-## How to work in this repo
+## Project-specific paths to inspect
 
-Before editing, inspect relevant project files when present:
-- README.md
-- AGENTS.md
+In addition to the global pre-edit checklist, scan these when relevant:
 - SKILL.md
 - llms.txt
 - examples/
 - docs/
 - signals/
 - evals/
+- scripts/
 
-Prefer small, safe, reviewable changes.
+## Validators before push
 
-Do not rewrite the project unless explicitly asked.
+CI hard-stops on these — run them locally before pushing or PR will go red on main:
 
-Preserve the existing project positioning and terminology unless there is a clear inconsistency.
+```
+python3 scripts/validate_signals.py
+python3 scripts/validate_json.py
+python3 scripts/validate_examples.py
+```
 
-## Preserve project boundaries
+`validate_signals.py` enforces the 4-file consistency invariant across signals/ (index, feed, latest, individual signal). Touching any one of those four requires updating the others in the same change.
 
-Do not add or imply:
-- live source retrieval;
-- factuality verification guarantees;
-- legal, sanctions, compliance, or investment advice;
-- production-grade guarantees;
-- benchmark claims;
-- MCP server functionality;
-- CLI validation;
-- schemas or scoring infrastructure.
+## Working style in this repo
 
-If validation, scoring, schemas, CLI, MCP, or CI checks are discussed, present them as possible future work only when explicitly requested, or point to the appropriate companion project if the repository already documents one.
+Small, reviewable changes. Do not rewrite the project unless I explicitly ask.
 
-## Content rules
-
-When editing docs, examples, or skill instructions:
-- separate facts, assessments, assumptions, scenarios, and unknowns;
-- preserve evidence-mode labels and uncertainty language;
-- do not fabricate citations, dates, policy changes, sanctions details, incidents, metrics, or benchmark results;
-- avoid hype and unsupported claims;
-- keep the project credible, conservative, and decision-useful.
-
-## Definition of done
-
-Before finishing, report:
-1. what changed;
-2. why it matters;
-3. what was not changed;
-4. how I can verify it;
-5. risks or follow-ups.
+If validation, scoring, schemas, CLI, MCP, or CI checks come up: present them as possible future work only when explicitly requested, or point to Agenda Intelligence MD if the appropriate companion already documents them. See AGENTS.md "Relationship to Agenda Intelligence MD".
