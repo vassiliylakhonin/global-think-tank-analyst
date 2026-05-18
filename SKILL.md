@@ -482,6 +482,7 @@ Silently verify:
 - Did I keep the conclusion bounded by evidence?
 - Did I remove paragraphs that sound sophisticated but do not improve a decision?
 - Did I tag factual claims with provenance (at minimum Axis A: `[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`)?
+- For each table that includes claims (Risks, Options, Indicators, Actors, Decision Map, Scenarios): does every factual cell carry an Axis A tag matching the tag the same claim would carry in body prose? If any cell drops or mutates a tag under layout pressure, restore it. A bulk-attribution footnote ("all cells: [analyst-judgment]") is not a substitute for per-cell tags.
 - Did my decisive language match the provenance tag — no confident framing for `[analyst-judgment]` or `[inference]`?
 - Where sources disagreed, did I surface both positions instead of silently resolving the conflict?
 - Did I rate Risk Severity and Decision Relevance independently for each material risk?

@@ -1,8 +1,14 @@
-# Self-critique pass for canon-rule failure modes — DRAFT
+# Self-critique pass for canon-rule failure modes — RESOLVED
 
-**Status:** PROPOSAL. Not integrated. Not part of the skill's runtime behavior.
-**Intent:** Draft a minimal, opt-in self-critique block to address two reproducibly observed failure modes before deciding whether to integrate into `SKILL.md`.
-**Author note:** Per project policy, canon (`SKILL.md`, `AGENTS.md`) is not edited based on a draft. Two prior floor-test observations are insufficient for canon integration — see [Decision gates](#decision-gates) below.
+**Status (updated 2026-05-18):** Decision gates ran in [`self-runs/2026-05-18-fm-validation.md`](self-runs/2026-05-18-fm-validation.md). Outcome:
+
+- **FM-A (table-cell tag drift) — ADOPTED.** Reproduced 2/2 in fresh context against current canon; proposed critic resolved it 2/2 with no length inflation. Self-check bullet integrated into `SKILL.md` and recorded as item 18 in [`failure-modes.md`](failure-modes.md).
+- **FM-B (ceremonial Rule 2 vs Step 5) — NOT ADOPTED.** Did not reproduce 0/2 in fresh context. Current canon already prevents the failure mode; adding a critic would solve a non-problem. If FM-B is observed again with a captured floor-test prompt, re-open this analysis.
+
+This file is retained as a record of the decision-gate process. Sections 1-8 below are the original PROPOSAL text from 2026-05-13/14, preserved for reference and not re-edited.
+
+**Intent (original):** Draft a minimal, opt-in self-critique block to address two reproducibly observed failure modes before deciding whether to integrate into `SKILL.md`.
+**Author note (original):** Per project policy, canon (`SKILL.md`, `AGENTS.md`) is not edited based on a draft. Two prior floor-test observations are insufficient for canon integration — see [Decision gates](#decision-gates) below.
 
 ---
 

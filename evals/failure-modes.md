@@ -110,3 +110,13 @@ The patterns below are derived from real integration runs (see [`docs/integratio
 **Symptom:** Sources tagged `freshness: current` in the evidence pack, but `retrieved_at` is weeks or months old.
 **Cue:** Mismatch between `retrieved_at` and the current date when the memo is being acted on.
 **Fix:** Re-fetch and re-validate. Sanctions designations, regulatory text, and price-sensitive data can change between retrieval and action; the freshness tag is about the source at retrieval time, not at decision time.
+
+---
+
+## 18. Table-cell provenance tag drift
+
+**Symptom:** Axis A tags (`[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`) are present in body prose but drop, mutate, or get bulk-attributed inside markdown table cells — typically in Risks, Options, Indicators, Actors, Decision Map, or Scenarios tables.
+**Cue:** Body paragraphs carry tags; tables either have no tags in factual cells or carry a single footnote like "all cells: [analyst-judgment]" outside the table. The same claim that would be tagged in prose loses its tag when moved into a cell.
+**Why it matters:** Tables are usually where the operational claims live (risk severities, option trade-offs, indicator triggers). Stripping their provenance hides exactly the claims a reviewer most needs to audit.
+**Fix:** Per the self-check rule in [`../SKILL.md`](../SKILL.md), every factual cell carries its own Axis A tag. A dedicated "Provenance" column is acceptable when it would otherwise crowd the cell. Bulk-attribution footnotes are not a substitute.
+**Reproduction record:** Reproduced 2/2 in fresh-context Mode E runs, resolved 2/2 by the self-check addition. See [`self-runs/2026-05-18-fm-validation.md`](self-runs/2026-05-18-fm-validation.md).
