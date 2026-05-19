@@ -206,6 +206,7 @@ For a guided route through the examples, start with [`examples/README.md`](examp
 | AI governance / strategic competition | reasoning-only | [AI governance regulatory divergence — US, EU, China (18–24 month)](examples/ai-governance-scenario-brief.md) |
 | Sanctions / supply-chain | user-provided sources | [Supply-chain sanctions exposure — user brings vendor register, payment rails, and product classification](examples/user-provided-sources-supply-chain-sanctions.md) |
 | Central Asia / sanctions / logistics | mixed | [Middle Corridor logistics risk for an EU logistics operator (1 live source + 2 `[verify]`)](examples/mixed-mode-middle-corridor-logistics-risk.md) |
+| Energy / source-conflict method | illustrative source packet | [IEA vs OPEC demand-forecast conflict — source-conflict surfacing rule applied](examples/source-conflict-iea-opec-demand-forecast.md) |
 | Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
 Live-source-backed examples cite real public sources retrieved on 2026-05-08; verify before any operational use. Reasoning-only examples do not cite live sources and are not intelligence products.
