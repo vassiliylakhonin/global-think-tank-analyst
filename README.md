@@ -323,6 +323,10 @@ Author: **Vassiliy Lakhonin** — Almaty, Kazakhstan (UTC+5).
 
 For external review of an example or the starter rubric (sanctions, regulatory, energy-trading, policy or trade practitioners), please open an issue or email with your background. For bespoke analysis under retainer, email with decision context, geography and time horizon.
 
+## Disclaimer
+
+This repository is for informational and educational purposes only. It does not constitute investment, financial, legal, compliance, or trading advice. It does not verify factual truth, predict outcomes, or replace professional judgment. Use at your own risk.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
