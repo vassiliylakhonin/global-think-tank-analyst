@@ -166,6 +166,8 @@ Use terms like:
 
 Do not call it a validated benchmark unless benchmark cases and results actually exist.
 
+When the downstream consumer of this skill is an AI agent (loaded via the Agenda Intelligence MCP `analyze` tool, pasted into Claude / ChatGPT / Codex, or otherwise wired into an agent workflow), the most honest validation is an **agent-eval**: same model, same question, with and without the skill attached, scored against a binary structural rubric. The methodology is canonical in the product layer at https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/agent-eval-methodology.md and produces one markdown file per case under `evals/agent-eval/`. Use this in addition to (not instead of) human review when the downstream audience also includes domain practitioners.
+
 ## Signals
 
 Signals are distribution examples of the skill style, not official intelligence or real-time operational guidance.
