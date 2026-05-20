@@ -5,6 +5,8 @@
 
 > **STRATEGIC-RISK REASONING CONTRACT FOR AI AGENTS** — a domain reasoning contract that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos with decision framing, evidence boundaries, scenarios and confidence. Open-source. No live data. No legal, compliance or investment advice.
 
+> **Reasoning engine behind Agenda Intelligence.** Use directly via paste/attach into Claude, ChatGPT, Codex or any agent, or programmatically through the [Agenda Intelligence MCP server](https://github.com/vassiliylakhonin/agenda-intelligence-md) — its `analyze` tool loads this skill as the reasoning method and validates output against the agenda-memo schema.
+
 **Strategic-risk analysis skill for AI agents.**
 
 A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos.
