@@ -94,5 +94,23 @@ details.
 
 ## Current Status
 
-No external validation is claimed by this plan. It prepares the workflow for
-external review.
+Updated 2026-05-21.
+
+- **External practitioner review:** none recorded. The [`reviews/`](reviews/)
+  directory contains only `TEMPLATE.md` and `README.md`. No reviewer record
+  exists yet. The plan prepares the workflow for external review; it does not
+  claim that review has happened.
+- **Agent-eval delta cases:** one case committed under
+  [`evals/agent-eval/`](evals/agent-eval/) — `2026-05-20-cbam-enforcement.md`.
+  Agent-eval is "in addition to, not instead of" practitioner review when the
+  downstream audience includes domain practitioners (see `AGENTS.md` "Eval
+  docs"). Self-scored structural delta only; not practitioner validation.
+- **Sibling vertical specialists (different framework):** as of 2026-05-21,
+  both `central-asia-caspian-hybrid-intelligence-skill` and
+  `gulf-middle-east-hybrid-intelligence-skill` report Bar 2 cleared for agent
+  integration under their own Bar 1 / Bar 2 canon (three agent-eval cases
+  each, source-anchored example majority, evidence-mode mapping through
+  `analyze`). That canon does not apply here; see `AGENTS.md` "Maturity
+  framework and portfolio canon alignment".
+- **No production usage, no adoption numbers, no benchmark scores** are
+  claimed by this repo or by the vertical specialists.
