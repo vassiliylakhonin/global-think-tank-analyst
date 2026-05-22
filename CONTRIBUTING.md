@@ -4,6 +4,37 @@ Thanks for contributing.
 
 Read [`AGENTS.md`](AGENTS.md) first — it sets the project's identity, honesty rules, evidence rules, and naming hierarchy. Contributions that conflict with those rules will be asked to revise.
 
+## First 15 minutes
+
+If you've just landed in this repo and want to understand it before editing, do these in order. Each step is real-time-boxed at ~5 minutes.
+
+**1. Read these three files, in order:**
+
+1. [`README.md`](README.md) — what this is (horizontal strategic-risk reasoning skill), the four-repo stack, and what the skill is *not* (it is not an agent framework, runtime, MCP server, or eval platform).
+2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, evidence rules, per-claim provenance tags (Axis A/B), three-value response logic, naming hierarchy, recommended README structure.
+3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see `AGENTS.md` "Maturity framework and portfolio canon alignment".
+
+**2. Get the validators running locally:**
+
+```bash
+git clone https://github.com/vassiliylakhonin/global-think-tank-analyst
+cd global-think-tank-analyst
+python3 scripts/validate_signals.py
+python3 scripts/validate_json.py
+python3 scripts/validate_examples.py
+```
+
+Requirements: Python 3.8+. No additional packages — all validators use the standard library. CI hard-stops on all three; run them locally before pushing or `main` will go red.
+
+**3. Read one concrete artifact end-to-end:**
+
+- [`examples/live-source-backed-memo.md`](examples/live-source-backed-memo.md) — the flagship live-source-backed memo (OFAC "Operation Economic Fury" Iran shadow-banking action, 2026-05-01). Paired with [`examples/agenda-projections/live-source-backed-memo.brief.json`](examples/agenda-projections/live-source-backed-memo.brief.json) and `.evidence.json`, this is the smallest complete loop showing how a memo composes with the Agenda Intelligence MD validators.
+- For signals: skim [`signals/latest.md`](signals/latest.md) and the [`signals/TEMPLATE.md`](signals/TEMPLATE.md). The 4-file consistency rule across `signals/` is the most common reason a partial signal-add fails CI.
+
+**When something is unclear**, the lookup order is: this repo's [`AGENTS.md`](AGENTS.md) → portfolio canon ([agenda-intelligence-md/AGENTS.md](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/AGENTS.md), vertical-skill AGENTS.md files) → open an issue using the template under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/).
+
+---
+
 ## Ground rules
 
 - Keep the skill decision-focused and evidence-disciplined.
