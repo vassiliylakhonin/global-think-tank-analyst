@@ -31,6 +31,8 @@ Requirements: Python 3.8+. No additional packages — all validators use the sta
 - [`examples/live-source-backed-memo.md`](examples/live-source-backed-memo.md) — the flagship live-source-backed memo (OFAC "Operation Economic Fury" Iran shadow-banking action, 2026-05-01). Paired with [`examples/agenda-projections/live-source-backed-memo.brief.json`](examples/agenda-projections/live-source-backed-memo.brief.json) and `.evidence.json`, this is the smallest complete loop showing how a memo composes with the Agenda Intelligence MD validators.
 - For signals: skim [`signals/latest.md`](signals/latest.md) and the [`signals/TEMPLATE.md`](signals/TEMPLATE.md). The 4-file consistency rule across `signals/` is the most common reason a partial signal-add fails CI.
 
+**Unfamiliar with a term in `AGENTS.md`?** See the [portfolio glossary](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md) — single source of truth across the four repos for evidence modes, uncertainty labels (`Verified`/`Plausible`/`Judgment`/`Unknown`), Axis A/B provenance tags, three-value response logic, table-cell discipline, and the maturity-framework asymmetry (this repo uses the Maturity framework from `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets — do not transplant terminology between them).
+
 **When something is unclear**, the lookup order is: this repo's [`AGENTS.md`](AGENTS.md) → portfolio canon ([agenda-intelligence-md/AGENTS.md](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/AGENTS.md), vertical-skill AGENTS.md files) → open an issue using the template under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/).
 
 ---
