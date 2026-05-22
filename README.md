@@ -22,15 +22,14 @@ This repository is a domain skill layer that teaches agents how to do that work.
 - risk, compliance and policy leadership whose AI tools must produce decision-ready output instead of generic regional or topical commentary
 - reviewers and editors of AI-produced memos who need explicit evidence boundaries and uncertainty labels
 
-**Where this sits in the production AI stack**
+**Where this fits in the Agenda Intelligence stack**
 
-Reasoning skills (markdown-first reasoning contracts for agents):
-- **→ Global Think Tank Analyst (this repo)** — horizontal: policy, sanctions, regulatory, geopolitical, trade memos
-- [Central Asia + Caspian Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) — vertical: sanctions, AML, banking, corridor risk in Central Asia / Caspian
-- [Gulf + Middle East Hybrid Intelligence Skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) — vertical: Iran sanctions, GCC banking, sovereign wealth, maritime chokepoint risk
-
-Evidence & audit layer (CI / MCP / schemas):
-- [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) — validate, score and audit strategic-risk agent output structure
+| Layer | Repo | Role |
+|---|---|---|
+| Product shell | [agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md) | MCP server, request/memo schemas, geography routing, evidence audit, scoring |
+| **Reasoning method** (this repo) | **global-think-tank-analyst** | Strategic-risk reasoning contract; loaded by `analyze` as the default method, or used standalone via paste/attach |
+| Vertical specialist | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia / Caspian / Middle Corridor domain depth; routed by geography |
+| Vertical specialist | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Iran / GCC / maritime chokepoint domain depth; routed by geography |
 
 The skills define how agents *reason*. Agenda Intelligence MD defines how the output is *audited*. Together they let agents produce auditable strategic-intelligence — not just plausible-sounding summaries.
 
