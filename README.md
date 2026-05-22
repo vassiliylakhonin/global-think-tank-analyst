@@ -24,12 +24,7 @@ This repository is a domain skill layer that teaches agents how to do that work.
 
 **Where this fits in the Agenda Intelligence stack**
 
-| Layer | Repo | Role |
-|---|---|---|
-| Product shell | [agenda-intelligence-md](https://github.com/vassiliylakhonin/agenda-intelligence-md) | MCP server, request/memo schemas, geography routing, evidence audit, scoring |
-| **Reasoning method** (this repo) | **global-think-tank-analyst** | Strategic-risk reasoning contract; loaded by `analyze` as the default method, or used standalone via paste/attach |
-| Vertical specialist | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia / Caspian / Middle Corridor domain depth; routed by geography |
-| Vertical specialist | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Iran / GCC / maritime chokepoint domain depth; routed by geography |
+This repo is the **reasoning method** layer — loaded by `analyze` as the default reasoning module, or used standalone via paste/attach. The canonical 4-layer map (product shell, reasoning method, two vertical specialists) lives in the product-shell repo: [Where this fits in the Agenda Intelligence stack](https://github.com/vassiliylakhonin/agenda-intelligence-md#where-this-fits-in-the-agenda-intelligence-stack). Maintained in one place to avoid drift across repos.
 
 The skills define how agents *reason*. Agenda Intelligence MD defines how the output is *audited*. Together they let agents produce auditable strategic-intelligence — not just plausible-sounding summaries.
 
