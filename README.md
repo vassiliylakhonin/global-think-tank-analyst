@@ -312,6 +312,12 @@ Directional, not committed. Items here are open, not yet implemented.
 
 If you'd like to influence the roadmap, open an issue.
 
+## Contributing
+
+New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 minutes" onboarding path — read the three load-bearing files (`README.md`, `AGENTS.md`, `VALIDATION_PLAN.md`), run the three validators (`validate_signals.py`, `validate_json.py`, `validate_examples.py`), and walk one concrete artifact end-to-end. CI hard-stops on all three validators; run them locally before pushing.
+
+Cross-repo terminology — evidence modes, Axis A/B provenance tags, three-value response logic, and the deliberate maturity-framework asymmetry across the four-repo stack (this repo uses `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets) — is consolidated in the portfolio glossary at [`agenda-intelligence-md/docs/glossary.md`](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md).
+
 ## Contact
 
 Author: **Vassiliy Lakhonin** — Almaty, Kazakhstan (UTC+5).
