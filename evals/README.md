@@ -12,5 +12,6 @@ For machine-readable validation, scoring, and evidence audit, see the companion 
 | [failure-modes.md](failure-modes.md) | Common ways memos go wrong, with diagnostic cues |
 | [rubric.md](rubric.md) | Starter scoring rubric across eight dimensions |
 | [adversarial/](adversarial/README.md) | Stress cases: inputs designed to fail predictably (prompt-injection in sources, conflicting evidence, source mislabeling) |
+| [skill-improvement/](skill-improvement/README.md) | Validation-gated checks for proposed edits to runtime skill instructions |
 
 Treat the rubric as opinionated and adjustable. It is not a standard. The adversarial cases are the negative counterpart to the checklist: not "did the memo look good," but "did the skill refuse the things it should refuse."
