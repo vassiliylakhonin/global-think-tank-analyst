@@ -27,6 +27,10 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
         run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::notice title=Policy Risk Signal::OPENAI_API_KEY secret is not configured for this repo; skipping weekly auto-generation. To enable, set the OPENAI_API_KEY repo secret (Settings → Secrets and variables → Actions). Subsequent steps will be no-ops because there is nothing to commit."
+            exit 0
+          fi
           DATE_INPUT="${{ inputs.date }}"
           if [ -n "$DATE_INPUT" ]; then
             ./scripts/generate_policy_risk_signal.py --date "$DATE_INPUT"
