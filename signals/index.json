@@ -2,19 +2,47 @@
   "title": "Policy Risk Signals",
   "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
   "latest": {
-    "date": "2026-05-17",
-    "slug": "2026-05-17-sovereign-ai-compute",
-    "title": "Sovereign AI compute: tier access is the planning constraint, not chip price",
-    "path": "signals/2026/2026-05-17-sovereign-ai-compute.md",
-    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-17-sovereign-ai-compute.md"
+    "date": "2026-05-27",
+    "slug": "2026-05-27-shadow-fleet-insurance",
+    "title": "Shadow-fleet sanctions arbitrage: Western maritime insurance is the binding constraint, not the export ban",
+    "path": "signals/2026/2026-05-27-shadow-fleet-insurance.md",
+    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-27-shadow-fleet-insurance.md"
   },
   "signals": [
     {
-      "date": "2026-05-17",
-      "slug": "2026-05-17-sovereign-ai-compute",
-      "title": "Sovereign AI compute: tier access is the planning constraint, not chip price",
-      "path": "signals/2026/2026-05-17-sovereign-ai-compute.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-17-sovereign-ai-compute.md"
+      "date": "2026-04-28",
+      "slug": "2026-04-28",
+      "title": "Evidence discipline is the product, not decoration",
+      "path": "signals/2026/2026-04-28.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-04-28.md"
+    },
+    {
+      "date": "2026-05-08",
+      "slug": "2026-05-08",
+      "title": "When honest evidence packs lower the score, the composition is working",
+      "path": "signals/2026/2026-05-08.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-08.md"
+    },
+    {
+      "date": "2026-05-09",
+      "slug": "2026-05-09-hormuz",
+      "title": "Hormuz oil-price corridor: $86 baseline / $95–115 upside is the planning frame",
+      "path": "signals/2026/2026-05-09-hormuz.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-hormuz.md"
+    },
+    {
+      "date": "2026-05-09",
+      "slug": "2026-05-09-eu-ai-act",
+      "title": "EU AI Act simplification: redeploy compliance budget, do not cut it",
+      "path": "signals/2026/2026-05-09-eu-ai-act.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-eu-ai-act.md"
+    },
+    {
+      "date": "2026-05-09",
+      "slug": "2026-05-09-china-minerals",
+      "title": "China critical-minerals suspension: a procurement window, not a policy reset",
+      "path": "signals/2026/2026-05-09-china-minerals.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-china-minerals.md"
     },
     {
       "date": "2026-05-12",
@@ -45,39 +73,18 @@
       "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-12-fed-stagflation-posture.md"
     },
     {
-      "date": "2026-05-09",
-      "slug": "2026-05-09-hormuz",
-      "title": "Hormuz oil-price corridor: $86 baseline / $95–115 upside is the planning frame",
-      "path": "signals/2026/2026-05-09-hormuz.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-hormuz.md"
+      "date": "2026-05-17",
+      "slug": "2026-05-17-sovereign-ai-compute",
+      "title": "Sovereign AI compute: tier access is the planning constraint, not chip price",
+      "path": "signals/2026/2026-05-17-sovereign-ai-compute.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-17-sovereign-ai-compute.md"
     },
     {
-      "date": "2026-05-09",
-      "slug": "2026-05-09-eu-ai-act",
-      "title": "EU AI Act simplification: redeploy compliance budget, do not cut it",
-      "path": "signals/2026/2026-05-09-eu-ai-act.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-eu-ai-act.md"
-    },
-    {
-      "date": "2026-05-09",
-      "slug": "2026-05-09-china-minerals",
-      "title": "China critical-minerals suspension: a procurement window, not a policy reset",
-      "path": "signals/2026/2026-05-09-china-minerals.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-09-china-minerals.md"
-    },
-    {
-      "date": "2026-05-08",
-      "slug": "2026-05-08",
-      "title": "When honest evidence packs lower the score, the composition is working",
-      "path": "signals/2026/2026-05-08.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-08.md"
-    },
-    {
-      "date": "2026-04-28",
-      "slug": "2026-04-28",
-      "title": "Evidence discipline is the product, not decoration",
-      "path": "signals/2026/2026-04-28.md",
-      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-04-28.md"
+      "date": "2026-05-27",
+      "slug": "2026-05-27-shadow-fleet-insurance",
+      "title": "Shadow-fleet sanctions arbitrage: Western maritime insurance is the binding constraint, not the export ban",
+      "path": "signals/2026/2026-05-27-shadow-fleet-insurance.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-27-shadow-fleet-insurance.md"
     }
   ]
 }

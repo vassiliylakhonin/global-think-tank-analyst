@@ -1,11 +1,3 @@
-# Latest Policy Risk Signal
-
-Canonical file: [2026-05-27](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-27-shadow-fleet-insurance.md)
-
-Canonical path: `signals/2026/2026-05-27-shadow-fleet-insurance.md`
-
----
-
 # Policy Risk Signal — 2026-05-27
 
 <!-- title: Shadow-fleet sanctions arbitrage: Western maritime insurance is the binding constraint, not the export ban -->
