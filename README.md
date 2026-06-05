@@ -102,6 +102,8 @@ flowchart LR
 
 This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; validation and tooling live in Agenda Intelligence MD.
 
+This method is loaded as the core reasoning layer in the portfolio's deployed vertical workers. Two have interactive browser demos you can run live: [Middle Corridor Deal Risk Gate](https://vassiliylakhonin.github.io/deal-risk-gate.html) and [CIS Secondary-Sanctions Exposure](https://vassiliylakhonin.github.io/cis-secondary-sanctions.html). Evidence triage only, not advice.
+
 For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md). For an end-to-end run with **real CLI output** — `agenda-intelligence score` on 2026-05-08 produced 95/100 brief-only → 83/100 with an honest evidence pack (full transcript and commands in [`docs/integrations/agenda-intelligence-md-live-demo.md`](docs/integrations/agenda-intelligence-md-live-demo.md)).
 
 For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), its machine-readable projections ([brief](docs/case-packet.brief.json), [evidence](docs/case-packet.evidence.json)), the [`docs/reviewer-workflow.md`](docs/reviewer-workflow.md) review path, [`docs/external-review-template.md`](docs/external-review-template.md), and the future review-record scaffold in [`reviews/`](reviews/). These are preparation assets, not evidence of external validation.
