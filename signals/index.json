@@ -2,11 +2,11 @@
   "title": "Policy Risk Signals",
   "description": "Public examples of the Global Think Tank Analyst skill style: short, source-aware policy risk notes for strategic-risk AI agents.",
   "latest": {
-    "date": "2026-05-27",
-    "slug": "2026-05-27-shadow-fleet-insurance",
-    "title": "Shadow-fleet sanctions arbitrage: Western maritime insurance is the binding constraint, not the export ban",
-    "path": "signals/2026/2026-05-27-shadow-fleet-insurance.md",
-    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-27-shadow-fleet-insurance.md"
+    "date": "2026-06-05",
+    "slug": "2026-06-05-central-asia-reexport-screening",
+    "title": "Central Asia re-export screening: the no-re-export clause and component-level lists are the binding control, not the entity list",
+    "path": "signals/2026/2026-06-05-central-asia-reexport-screening.md",
+    "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-06-05-central-asia-reexport-screening.md"
   },
   "signals": [
     {
@@ -85,6 +85,13 @@
       "title": "Shadow-fleet sanctions arbitrage: Western maritime insurance is the binding constraint, not the export ban",
       "path": "signals/2026/2026-05-27-shadow-fleet-insurance.md",
       "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-05-27-shadow-fleet-insurance.md"
+    },
+    {
+      "date": "2026-06-05",
+      "slug": "2026-06-05-central-asia-reexport-screening",
+      "title": "Central Asia re-export screening: the no-re-export clause and component-level lists are the binding control, not the entity list",
+      "path": "signals/2026/2026-06-05-central-asia-reexport-screening.md",
+      "url": "https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-06-05-central-asia-reexport-screening.md"
     }
   ]
 }
