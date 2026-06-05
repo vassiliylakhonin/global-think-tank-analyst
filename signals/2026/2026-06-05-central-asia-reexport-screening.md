@@ -1,11 +1,3 @@
-# Latest Policy Risk Signal
-
-Canonical file: [2026-06-05](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-06-05-central-asia-reexport-screening.md)
-
-Canonical path: `signals/2026/2026-06-05-central-asia-reexport-screening.md`
-
----
-
 # Policy Risk Signal — 2026-06-05
 
 <!-- title: Central Asia re-export screening: the no-re-export clause and component-level lists are the binding control, not the entity list -->
