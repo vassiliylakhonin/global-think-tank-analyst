@@ -1,11 +1,3 @@
-# Latest Policy Risk Signal
-
-Canonical file: [2026-06-21](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/signals/2026/2026-06-21-cis-ownership-control-screening.md)
-
-Canonical path: `signals/2026/2026-06-21-cis-ownership-control-screening.md`
-
----
-
 # Policy Risk Signal — 2026-06-21
 
 <!-- title: CIS counterparty diligence: ownership-and-control determination is the binding gate, not the name-screen -->
