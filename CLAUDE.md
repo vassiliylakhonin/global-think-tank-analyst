@@ -27,9 +27,12 @@ CI hard-stops on these — run them locally before pushing or PR will go red on 
 python3 scripts/validate_signals.py
 python3 scripts/validate_json.py
 python3 scripts/validate_examples.py
+python3 scripts/validate_codex_sync.py
 ```
 
 `validate_signals.py` enforces the 4-file consistency invariant across signals/ (index, feed, latest, individual signal). Touching any one of those four requires updating the others in the same change.
+
+`validate_codex_sync.py` enforces that the shared analytical contract in `codex/SKILL.md` matches the canonical root `SKILL.md`. When changing core behavior, edit `SKILL.md` first, then sync the shared section into `codex/SKILL.md`. Intentional codex-only or divergent sections are allowlisted at the top of the script (`CODEX_ONLY_SECTIONS`, `DIVERGENT_SECTIONS`); add a header there if a divergence is deliberate.
 
 ## Working style in this repo
 

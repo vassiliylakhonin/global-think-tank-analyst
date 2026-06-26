@@ -47,3 +47,6 @@ jobs:
 
       - name: Validate example evidence discipline
         run: python3 scripts/validate_examples.py
+
+      - name: Validate codex/SKILL.md shared-section sync
+        run: python3 scripts/validate_codex_sync.py
