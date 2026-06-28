@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Clarified the commercial role: this repo remains the horizontal reasoning-method dependency behind Agenda Intelligence MD, not a buyer-facing product surface. Added README/AGENTS guidance to route product positioning and evidence-readiness commercialization through Agenda Intelligence MD.
 - Added `scripts/validate_codex_sync.py` and wired it into CI: fails the build when the shared analytical contract in `codex/SKILL.md` drifts from the canonical root `SKILL.md`. Intentional codex-only / divergent sections are allowlisted in the script. Enforces the manual sync discipline declared in codex/SKILL.md's Contract provenance section.
 - Resynced `codex/SKILL.md` shared analytical contract with the canonical root `SKILL.md`: restored the `Stop and request — explicit triggers` subsection, restored two dropped self-check items (provenance-language match, conflict-surfacing), and reverted three paraphrased contract paragraphs (retrieved-content trust, conflict handling, linguistic faithfulness) to the canonical root wording. Intentional codex-only sections (Contract provenance, Codex Platform Setup, JSON Output Mode, Pipeline Integration, the Mode F agentic-loop note, and Installation) are unchanged.
 - Spawned three signals from existing live-source-backed memos: Hormuz oil-price corridor, EU AI Act simplification redeployment, China critical-minerals procurement window. Hardened the signal-generation script to support `YYYY-MM-DD-<topic>.md` filenames so multiple signals can share a date.
