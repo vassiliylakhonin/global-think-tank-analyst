@@ -15,6 +15,12 @@ LLMs are good at summarizing geopolitical events. They are weak at turning them 
 
 This repository is a domain skill layer that teaches agents how to do that work. It is a behavior contract, not a framework, runtime, or eval platform.
 
+## Commercial role
+
+This repo is a **reasoning-method dependency**, not the commercial product surface. The commercial product shell is [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md), which is being focused as an evidence-readiness / trust-routing runtime for high-stakes AI-assisted decisions.
+
+Use Global Think Tank Analyst to improve the reasoning inside evidence-readiness artifacts: RFP teardowns, vendor evidence packets, risk memos, and human-review packets. Do not treat this repo's existence, examples, or signal archive as market validation for any Agenda Intelligence MD wedge. It should not grow buyer-facing surfaces, pricing, vertical workers, or procurement positioning on its own.
+
 ## Who it is for
 
 - AI engineers and product teams building strategic-risk, sanctions, policy or geopolitical-risk agents

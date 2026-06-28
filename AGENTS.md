@@ -27,8 +27,15 @@ Agenda Intelligence MD:
 - provides schemas
 - supports evidence/eval/CLI/MCP/CI tooling
 - audits or scores outputs where implemented
+- is the commercial product shell for evidence-readiness / trust-routing workflows
 
 Do not duplicate Agenda Intelligence MD inside this repo. When referencing validation, scoring, CLI, MCP, schemas, or CI checks, point to Agenda Intelligence MD unless this repo actually implements them.
+
+## Commercial role
+
+This repo is a reasoning-method dependency, not a buyer-facing product. It should support Agenda Intelligence MD's evidence-readiness workflows by improving decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators.
+
+Do not add public product surfaces, vertical-worker positioning, pricing, outreach copy, or procurement-specific buyer claims here. If a request is commercially oriented, route the product decision to Agenda Intelligence MD and keep this repo focused on reasoning quality.
 
 ## Retrieved-content trust
 
