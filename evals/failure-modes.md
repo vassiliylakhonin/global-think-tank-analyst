@@ -120,3 +120,39 @@ The patterns below are derived from real integration runs (see [`docs/integratio
 **Why it matters:** Tables are usually where the operational claims live (risk severities, option trade-offs, indicator triggers). Stripping their provenance hides exactly the claims a reviewer most needs to audit.
 **Fix:** Per the self-check rule in [`../SKILL.md`](../SKILL.md), every factual cell carries its own Axis A tag. A dedicated "Provenance" column is acceptable when it would otherwise crowd the cell. Bulk-attribution footnotes are not a substitute.
 **Reproduction record:** Reproduced 2/2 in fresh-context Mode E runs, resolved 2/2 by the self-check addition. See [`self-runs/2026-05-18-fm-validation.md`](self-runs/2026-05-18-fm-validation.md).
+
+---
+
+## 19. Citation post-rationalization (tag–source faithfulness)
+
+**Symptom:** Claims carry `[primary]` / `[secondary]` tags or citations that look right, but the cited source does not actually establish the specific claim — the tag was attached after the conclusion was already formed.
+**Cue:** Spot-checking a tagged claim against its source shows partial or no support; the claim is broader than what the source carries.
+**Why it matters:** A correct-looking provenance tag on an unsupported claim is worse than no tag — it manufactures false confidence and passes the table-cell tag check while still being a fabrication. Tag *presence* is not tag *faithfulness*.
+**Fix:** Verify that each cited source supports the specific claim; narrow the claim to what the source actually carries. Per the self-check rule in [`../SKILL.md`](../SKILL.md).
+
+---
+
+## 20. Verbalized-confidence miscalibration
+
+**Symptom:** The decisiveness of the language does not track evidence strength — confident framing ("will", "clearly") on `[inference]` / `[analyst-judgment]` claims, or heavy hedging on a verified `[primary]` fact.
+**Cue:** Modal certainty on unverified claims; "may possibly suggest" on established facts.
+**Why it matters:** Tone is the confidence signal most readers actually parse. A mismatch misleads exactly as much as a wrong number.
+**Fix:** Match hedges to provenance and confidence; state an explicit confidence band where the right level is unclear. Per the Linguistic faithfulness canon in [`../AGENTS.md`](../AGENTS.md).
+
+---
+
+## 21. False-premise acceptance
+
+**Symptom:** The memo analyzes the consequences of a premise asserted in the question — a designation, ruling, event, attribution, or causal claim — without confirming the premise itself.
+**Cue:** A load-bearing premise is restated as settled fact in the opening block with no source.
+**Why it matters:** Polished downstream analysis of an unconfirmed premise is confident nonsense; the error is upstream of everything the memo does well.
+**Fix:** Name the premise, tag it `[verify]`, and Stop-and-request or Flag-but-don't-use before building dependent analysis. Per the Stop-and-request triggers in [`../SKILL.md`](../SKILL.md).
+
+---
+
+## 22. Single-hypothesis lock-in
+
+**Symptom:** An attribution or causation question is answered with one explanation; evidence is marshaled to confirm it and rival explanations are never built or only strawmanned.
+**Cue:** No competing hypotheses; evidence is all confirmatory; the favored explanation appeared early and never moved.
+**Why it matters:** Confirmation of a favored hypothesis is weak evidence — the diagnostic step is failing to disconfirm rivals, which lock-in skips entirely.
+**Fix:** Use Mode G (Competing Hypotheses / ACH): build 3+ mutually exclusive hypotheses and rank by disconfirmation, not by confirming evidence.
