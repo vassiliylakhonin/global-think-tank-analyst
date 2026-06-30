@@ -28,30 +28,32 @@ Sound prose reasoning, correctly cautious — but the two obvious outcomes (acci
 > **Sensitivity:** the diagnostic items are also the most manipulation-sensitive; an actor wanting H1 believed could supply exactly the ownership link. Treat any conveniently surfaced smoking gun as `[verify]`.
 > **Bounded judgment:** state-sabotage low-to-moderate on motive, not supported on evidence. Do not attribute publicly; commission forensics + ownership tracing; pre-decide the naming threshold.
 
-## Scoring (independent Haiku 4.5 judge, blind)
+## Scoring (two independent blind judges)
 
-| Criterion | A | B |
-|---|---|---|
-| C1. Builds 3+ explicitly competing, mutually exclusive hypotheses | 0 | 1 |
-| C2. Includes a hypothesis beyond accident-vs-sabotage (false-flag / third-party) | 0 | 1 |
-| C3. Explicitly assesses diagnostic value (some evidence does not discriminate) | 0 | 1 |
-| C4. Reasons by disconfirmation, not only confirmation | 1 | 1 |
-| C5. Names specific evidence that would flip the judgment | 1 | 1 |
-| C6. Flags planted/manipulated-evidence sensitivity | 0 | 1 |
-| C7. Separates given facts / judgment / missing evidence | 1 | 1 |
-| C8. Bounded judgment + recommendation against premature public attribution | 1 | 1 |
-| **Total** | **4 / 8** | **8 / 8** |
+Both judges scored the outputs blind (not told which used the skill): **Haiku 4.5** (same-vendor) and **GPT-5** (`gpt-5-2025-08-07`, cross-vendor, run via the user's OpenAI API on 2026-06-30 against the identical condensed texts).
 
-**Delta: +4.**
+| Criterion | A (Haiku) | B (Haiku) | A (GPT-5) | B (GPT-5) |
+|---|---|---|---|---|
+| C1. Builds 3+ explicitly competing, mutually exclusive hypotheses | 0 | 1 | 1 | 1 |
+| C2. Includes a hypothesis beyond accident-vs-sabotage (false-flag / third-party) | 0 | 1 | 0 | 1 |
+| C3. Explicitly assesses diagnostic value (some evidence does not discriminate) | 0 | 1 | 1 | 1 |
+| C4. Reasons by disconfirmation, not only confirmation | 1 | 1 | 1 | 1 |
+| C5. Names specific evidence that would flip the judgment | 1 | 1 | 1 | 1 |
+| C6. Flags planted/manipulated-evidence sensitivity | 0 | 1 | 0 | 1 |
+| C7. Separates given facts / judgment / missing evidence | 1 | 1 | 1 | 1 |
+| C8. Bounded judgment + recommendation against premature public attribution | 1 | 1 | 1 | 1 |
+| **Total** | **4 / 8** | **8 / 8** | **6 / 8** | **8 / 8** |
+
+**Delta: +4 (Haiku, same-vendor) / +2 (GPT-5, cross-vendor).** Both judges scored the treatment 8/8. They disagree only on the *baseline*: GPT-5 credits bare Opus for competing-hypotheses framing (C1) and diagnostic-value reasoning (C3) that Haiku marked absent. Both judges agree the baseline misses the false-flag hypothesis (C2) and the planted-evidence sensitivity (C6) — the two properties unique to Mode G here.
 
 ## Observations
 
-The delta is real but smaller than a weak baseline would show — Opus bare already refuses premature attribution and lists alternatives in prose. Mode G's value is concentrated in four places the baseline missed: enumerating mutually exclusive hypotheses (C1), surfacing the false-flag hypothesis the client did not propose (C2), stating explicitly that the suggestive AIS fact has *no* diagnostic value (C3), and flagging that the very evidence that would promote the favored hypothesis is what an adversary would plant (C6). These are exactly the single-hypothesis-lock-in defenses the mode was added for.
+The cross-vendor run is the honest correction to the same-vendor score. The Mode G delta is **smaller and judge-dependent** (+2 to +4), not a clean +4: a strong baseline (Opus bare) already enumerates alternatives and flags non-diagnostic evidence in prose, and a stricter cross-vendor judge credits that. What survives both judges is narrower and real: Mode G reliably adds the false-flag hypothesis the client did not propose (C2) and the planted-/injection-sensitivity flag (C6) — exactly the single-hypothesis-lock-in defenses the mode was added for. The structural-matrix format also makes the reasoning auditable rather than buried in prose, which the binary rubric does not fully capture.
 
 ## Limitations
 
 - **One run, one prompt, one model.** Not statistically significant.
 - **Structural, not factual.** The eval scores reasoning shape, not correctness. A hypothetical scenario carries no factual risk; on a real question the method does not catch factual error.
 - **Criteria are skill-aligned.** The rubric tests the properties Mode G is designed to produce, so it favors the treatment by construction. It measures whether the skill does what it claims, not general output quality.
-- **Judge is same-vendor.** Haiku 4.5 is an independent, blind scorer but is still an Anthropic model; same-vendor self-preference is reduced, not eliminated. A truly neutral judge would be a non-Anthropic model, run outside this environment.
-- **Condition B was authored by the host model knowing it was the treatment;** the independent blind judge mitigates but does not remove author-side enhancement bias. Per the skill's own honesty rule, this is not external or factual validation.
+- **Cross-vendor check done; it shrank the delta.** A non-Anthropic judge (GPT-5) was run in addition to Haiku and scored the baseline higher, cutting the delta from +4 to +2. This is the value of the cross-vendor judge: it caught same-vendor generosity toward the treatment / harshness toward the baseline. Two judges still are not a labelled dataset.
+- **Condition B was authored by the host model knowing it was the treatment;** the blind judges mitigate but do not remove author-side enhancement bias. Per the skill's own honesty rule, this is a structural delta, not external or factual validation.
