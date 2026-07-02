@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Packaged the repo as an installable Claude Code plugin: added `.claude-plugin/plugin.json` and `skills/global-think-tank-analyst/SKILL.md` (a symlink to the canonical root `SKILL.md`; packaging only, not a runtime overlay). Installable via `/plugin marketplace add vassiliylakhonin/agenda-intelligence-md`, then `/plugin install global-think-tank-analyst@agenda-intelligence`. Verified locally with `claude plugin install` from an isolated config (1 skill discovered via the symlink).
+
 - Clarified the commercial role: this repo remains the horizontal reasoning-method dependency behind Agenda Intelligence MD, not a buyer-facing product surface. Added README/AGENTS guidance to route product positioning and evidence-readiness commercialization through Agenda Intelligence MD.
 - Added `scripts/validate_codex_sync.py` and wired it into CI: fails the build when the shared analytical contract in `codex/SKILL.md` drifts from the canonical root `SKILL.md`. Intentional codex-only / divergent sections are allowlisted in the script. Enforces the manual sync discipline declared in codex/SKILL.md's Contract provenance section.
 - Resynced `codex/SKILL.md` shared analytical contract with the canonical root `SKILL.md`: restored the `Stop and request — explicit triggers` subsection, restored two dropped self-check items (provenance-language match, conflict-surfacing), and reverted three paraphrased contract paragraphs (retrieved-content trust, conflict handling, linguistic faithfulness) to the canonical root wording. Intentional codex-only sections (Contract provenance, Codex Platform Setup, JSON Output Mode, Pipeline Integration, the Mode F agentic-loop note, and Installation) are unchanged.
