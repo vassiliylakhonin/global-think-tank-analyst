@@ -112,6 +112,8 @@ The decisiveness of the language must match the stated confidence and the proven
 
 Mismatch between tone and evidence is treated as an honesty-rule violation, not a style issue.
 
+The rule exists because verbalized confidence cannot be trusted by default: measured across models and datasets, LLM confidence statements are largely detached from actual accuracy, and confidence expression is encoded separately from calibration (arXiv:2603.25052). Tying decisiveness to provenance tags and explicit confidence bands is the discipline that substitutes for calibration the model does not have.
+
 This is checkable, not vibes: the hedges and modal verbs in the prose should track the strength of the underlying evidence and its provenance tag. A claim stated more decisively than its evidence supports — or a verified `[primary]` fact buried under needless hedges — is a calibration failure in either direction. When the right level is unclear, state confidence explicitly (a range or a qualitative band) rather than leaning on tone to carry it.
 
 ## Three-value response logic
@@ -181,7 +183,7 @@ Do not call it a validated benchmark unless benchmark cases and results actually
 
 When the downstream consumer of this skill is an AI agent (loaded via the Agenda Intelligence MCP `analyze` tool, pasted into Claude / ChatGPT / Codex, or otherwise wired into an agent workflow), the most honest validation is an **agent-eval**: same model, same question, with and without the skill attached, scored against a binary structural rubric. The methodology is canonical in the product layer at https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/agent-eval-methodology.md and produces one markdown file per case under `evals/agent-eval/`. Use this in addition to (not instead of) human review when the downstream audience also includes domain practitioners.
 
-**Self-scoring honesty:** when the author or the same model family scores an agent-eval, treat the result as a structural sanity check, not validation. Same-family judges exhibit self-preference bias and can mark binary rubric criteria "satisfied" substantially more often than a neutral judge would — even on objective criteria. Where the claim matters, score with a different model family (or an ensemble) or disclose the self-scoring limitation explicitly. Never present a self-scored delta as external or factual validation.
+**Self-scoring honesty:** when the author or the same model family scores an agent-eval, treat the result as a structural sanity check, not validation. Same-family judges exhibit self-preference bias and can mark binary rubric criteria "satisfied" substantially more often than a neutral judge would — even on objective criteria. This is now measured, not just suspected: on programmatically verifiable rubrics, judges were up to 50% more likely to incorrectly mark a failed criterion as satisfied when the output was their own (arXiv:2604.06996). The same study found judge ensembles reduce but do not eliminate the bias, especially on negative rubrics and subjective criteria — so an ensemble is a mitigation to disclose, not a cure to rely on. Where the claim matters, score with a different model family or disclose the self-scoring limitation explicitly. Never present a self-scored delta as external or factual validation.
 
 ## Signals
 

@@ -156,3 +156,13 @@ The patterns below are derived from real integration runs (see [`docs/integratio
 **Cue:** No competing hypotheses; evidence is all confirmatory; the favored explanation appeared early and never moved.
 **Why it matters:** Confirmation of a favored hypothesis is weak evidence — the diagnostic step is failing to disconfirm rivals, which lock-in skips entirely.
 **Fix:** Use Mode G (Competing Hypotheses / ACH): build 3+ mutually exclusive hypotheses and rank by disconfirmation, not by confirming evidence.
+
+---
+
+## 23. Structured-domain confidence transfer
+
+**Symptom:** The memo carries the same confidence level across economically or logistically structured questions (trade flows, tariffs, infrastructure capacity) and politically ambiguous multi-actor questions (coalition behavior, escalation intent, regime decision-making), as if the evidence basis were equally strong.
+**Cue:** Uniform confidence bands across sections of very different epistemic character; multi-actor political judgments stated with the same decisiveness as supply-chain arithmetic.
+**Why it matters:** A temporally grounded evaluation of LLM reasoning on an unfolding geopolitical conflict found performance systematically uneven — stronger in economically and logistically structured settings, weaker in politically ambiguous multi-actor scenarios (arXiv:2603.16642). Confidence earned in the structured part of a memo does not transfer to the ambiguous part.
+**Fix:** Set confidence per section, not per memo. Multi-actor political judgments default to lower confidence than structured economic ones unless the evidence says otherwise; consider Mode G for the ambiguous part.
+**Status:** Literature-reported; not yet reproduced in fresh-context runs of this skill.
