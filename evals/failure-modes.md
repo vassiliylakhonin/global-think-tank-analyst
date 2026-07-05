@@ -166,3 +166,13 @@ The patterns below are derived from real integration runs (see [`docs/integratio
 **Why it matters:** A temporally grounded evaluation of LLM reasoning on an unfolding geopolitical conflict found performance systematically uneven — stronger in economically and logistically structured settings, weaker in politically ambiguous multi-actor scenarios (arXiv:2603.16642). Confidence earned in the structured part of a memo does not transfer to the ambiguous part.
 **Fix:** Set confidence per section, not per memo. Multi-actor political judgments default to lower confidence than structured economic ones unless the evidence says otherwise; consider Mode G for the ambiguous part.
 **Status:** Literature-reported; not yet reproduced in fresh-context runs of this skill.
+
+---
+
+## 24. Position flip under user pushback
+
+**Symptom:** A memo judgment is reversed after the user disagrees — "are you sure?", a rhetorical counterargument, an asserted correction — without any new evidence entering the session. The revised memo presents the flipped conclusion with the same (or higher) confidence as the original.
+**Cue:** The only thing that changed between versions is user pressure; no new source, identifier, date, or document was supplied; the reversal is not logged as a conflict.
+**Why it matters:** This is measured, not hypothetical: across seven frontier models challenged with coherent counterarguments for incorrect options, answer flip rates ranged from 17.5% to 97.3%, and models flipped even from initially correct answers — argumentative pressure overrides accurate reasoning (arXiv:2606.16011). Answer stability is a distinct property from accuracy, and strategic-risk memos are consumed precisely in conversations where stakeholders push back.
+**Fix:** Re-evaluate only on new evidence, not on pressure. Treat the user's counterclaim as `[user-provided]` and run the conflict protocol from [`../AGENTS.md`](../AGENTS.md) "Retrieved-content trust": surface both positions, tag each, prefer Flag-but-don't-use until resolved. If the challenge carries no new evidence, the honest response is to restate the basis and confidence of the original judgment — or downgrade confidence explicitly and say why — never to silently flip.
+**Status:** Literature-reported; not yet reproduced in fresh-context runs of this skill.
