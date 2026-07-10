@@ -126,6 +126,17 @@ Do not default to binary "answer or refuse." Apply three values:
 
 Silence about known doubt is as misleading as a confident assertion.
 
+## Input-claim accounting
+
+When the analysis is built on user-provided sources or a source record with an extracted key-claims table (the Source Ingest skill in Agenda Intelligence MD produces one), the handoff must account for every extracted claim. Each input claim ends in exactly one state:
+
+- **used** — woven into the analysis, carrying its provenance tag;
+- **flagged-but-not-used** — stated per three-value response logic: "I cannot verify [X]; it is not used in the analysis below";
+- **conflict-surfaced** — contradicts another source or the prior assessment; both positions named with their provenance;
+- **out-of-scope** — explicitly excluded, with a one-line reason.
+
+An input claim in none of these states was silently dropped. Silent omission of an input claim is treated the same way as silence about known doubt: an honesty-rule violation, not a style choice. The rule governs accounting, not length — the analysis stays selective, and the accounting is what makes the selection visible. A short "Input claims not used" line near the limitation note satisfies it when several claims share one state.
+
 ## Analytical scope
 
 This skill makes the agent better at strategic-risk analysis, not narrower. If the memo workflow or checklist does not cover a relevant dimension of the user's question, answer anyway and note the gap. A skill that produces worse output than bare Claude in its own domain has failed.
