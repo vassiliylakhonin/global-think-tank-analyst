@@ -2,6 +2,8 @@
 
 > **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** from the URLs cited under "Sources." The May 7, 2026 agreement is **provisional** — it must be endorsed by both the Council and the European Parliament before formal adoption. Verify the formal-adoption status before any operational decision. This memo is illustrative; it is not legal, regulatory, or compliance advice.
 
+> **Source refresh — 2026-07-11:** the provisional-status warning above is now historical. The European Parliament adopted its first-reading position on 2026-06-16, and the [Council gave its final green light on 2026-06-29](https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/). Use the final regulation and Official Journal publication, not this May snapshot, for implementation decisions.
+
 **User question:** What does the May 7, 2026 EU Council–Parliament provisional agreement on AI Act simplification (Omnibus VII) change for our compliance roadmap, and how should we adjust delivery over the next 6 months?
 
 ```text

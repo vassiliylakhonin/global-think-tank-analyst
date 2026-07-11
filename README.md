@@ -189,6 +189,8 @@ The first answer is a tone. The second is a decision input.
 
 ## Examples
 
+Latest source-maintenance pass: [`docs/source-refresh-2026-07-11.md`](docs/source-refresh-2026-07-11.md).
+
 Worked memos in [`examples/`](examples/), grouped by domain and evidence mode:
 
 For a guided route through the examples, start with [`examples/README.md`](examples/README.md).

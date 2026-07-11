@@ -2,6 +2,8 @@
 
 > **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** `[primary][stale-risk: 2026-05]`. Crude price levels and policy posture can change within hours; verify against current quotes and official statements before any operational decision. Structural reasoning below remains valid; specific Brent/WTI prints and Hormuz status reflect a 2026-05-08 snapshot and require re-verification. This memo is illustrative; it is not energy-trading, hedging, or investment advice.
 
+> **Source refresh — 2026-07-11:** the May market/status snapshot below is no longer current. The [IEA June 2026 OMR](https://www.iea.org/reports/oil-market-report-june-2026) reported an interim US-Iran agreement and partial recovery in Gulf exports and Strait flows, while stressing that normalization was incomplete. Recheck current shipping, agreement, and price status before use.
+
 **User question:** What does the May 2026 Strait of Hormuz disruption change for a European industrial energy buyer (chemicals, glass, ceramics) over the next 90 days, and what should be done about procurement and hedging?
 
 ```text

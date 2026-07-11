@@ -2,6 +2,8 @@
 
 > **Live-source-backed example.** Evidence mode: `live-source-backed`. Sources retrieved on **2026-05-08** `[primary][stale-risk: 2026-05]`. Monetary policy is meeting-by-meeting and data-dependent; verify against the next ECB statement before action. Structural reasoning below remains valid; specific rate levels and inter-meeting commentary require re-verification against current ECB releases. This memo is illustrative; it is not investment, treasury, hedging, or banking advice.
 
+> **Source refresh — 2026-07-11:** this remains an April 30 snapshot, not current ECB posture. On [2026-06-11](https://www.ecb.europa.eu/press/press_conference/monetary-policy-statement/2026/html/ecb.is260611~372040d313.en.html), the ECB raised all three key rates by 25 basis points, effective 2026-06-17. Do not use the April rate levels below as current.
+
 **User question:** The ECB held rates at its April 30, 2026 meeting (deposit 2.00%, MRO 2.15%, MLF 2.40%) under intensifying upside risks to inflation and downside risks to growth. What does that mean for our corporate-finance posture (refinancing, FX, working-capital tenor) over the next 6 months?
 
 ```text

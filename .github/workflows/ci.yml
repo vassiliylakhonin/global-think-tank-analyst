@@ -50,3 +50,6 @@ jobs:
 
       - name: Validate codex/SKILL.md shared-section sync
         run: python3 scripts/validate_codex_sync.py
+
+      - name: Validate local Markdown links
+        run: python3 scripts/check_markdown_links.py
