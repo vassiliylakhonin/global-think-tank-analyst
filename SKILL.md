@@ -549,7 +549,7 @@ signals/latest.md
 signals/feed.json
 ```
 
-OpenClaw / ClawHub package distribution is not actively maintained — see Integration status in [`README.md`](README.md). Use paste/attach as the supported path.
+OpenClaw / ClawHub package distribution is not actively maintained — see Integration status in [`README.md`](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/README.md). Use paste/attach as the supported path.
 
 ## Example Prompt
 
