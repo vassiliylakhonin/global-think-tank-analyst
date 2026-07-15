@@ -1,12 +1,26 @@
 # Integration: Agenda Intelligence MD
 
-This recipe shows how to compose **Global Think Tank Analyst** (this repo, horizontal domain skill) with **[Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md)** (companion infrastructure: schemas, validation, scoring, evidence audit, CLI / MCP).
+This recipe shows how to compose **Global Think Tank Analyst** (this repo, horizontal reasoning skill) with **[Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md)** (primarily a deterministic evidence-packet linter).
 
-Use this skill to **draft** the strategic-risk memo. Use Agenda Intelligence MD to **validate, score, and audit** what was produced.
+Use this skill to draft the strategic-risk memo. Then extract externally checkable claims and caller-supplied source text into an evidence packet before human review.
 
-This document is illustrative. Cross-check the exact CLI surface against the Agenda Intelligence MD repo, since its CLI evolves independently of this skill.
+## Primary v1.3 path — lint the claim/source packet
 
-## What Agenda Intelligence MD gives you
+The handoff contract and selection rules live in [`../evidence-packet-handoff.md`](../evidence-packet-handoff.md). A runnable synthetic packet lives at [`../../examples/evidence-packet-handoff.json`](../../examples/evidence-packet-handoff.json).
+
+```bash
+pip install "agenda-intelligence-md==1.3.0"
+agenda-intelligence check examples/evidence-packet-handoff.json --format json
+agenda-intelligence check examples/evidence-packet-handoff.json --strict
+```
+
+The linter reports broken source references, declared-quote mismatches, weak lexical support, unmatched numbers, and reviewer actions. It reports packet completeness, not factual truth.
+
+## Compatibility paths
+
+The older strategic-intelligence schemas, scoring commands, and MCP tools below remain available for callers that already depend on them. They are compatibility workflows, not the primary first-run path, and their heuristic scores do not measure current evidence-packet linter performance.
+
+### Older memo and evidence-pack capabilities
 
 | Capability | Command | Input | Output |
 |---|---|---|---|
@@ -17,9 +31,9 @@ This document is illustrative. Cross-check the exact CLI surface against the Age
 | Markdown structural score | `agenda-intelligence score memo.md` | Markdown with the protocol's signals | Score |
 | MCP server for the same operations | `agenda-intelligence-mcp` | stdio transport | `validate_brief`, `validate_evidence`, `score_output`, `get_protocol`, `list_lenses`, `get_lens`, `source_plan` |
 
-Scoring is a **heuristic structural rubric**. It does not verify factual truthfulness. That holds for both projects: this skill enforces analytical discipline; Agenda Intelligence MD audits structure and evidence support. Neither verifies truth.
+Scoring is a **heuristic structural rubric**. It does not verify factual truthfulness. These commands remain useful for regression and existing integrations, but should not be confused with `agenda-intelligence check <evidence-packet.json>`.
 
-## Recipe A — score a markdown memo for structure
+### Compatibility recipe A — score a markdown memo for structure
 
 Cheapest path. Works directly on a memo written with this skill, no JSON projection required. Best for quick "does the memo even hit the structural bar" checks.
 
@@ -37,10 +51,10 @@ What the score is good at:
 
 What the score is not:
 - not a factual check;
-- not a guarantee that the memo is correct;
+- does not establish that the memo is correct;
 - not a benchmark.
 
-## Recipe B — validate and score a structured brief
+### Compatibility recipe B — validate and score a structured brief
 
 Stricter path. Project the memo into a JSON brief that conforms to `agenda-brief.schema.json`, then validate and score. Best for pipelines that ingest memos and need machine-readable validation.
 
@@ -90,7 +104,7 @@ agenda-intelligence score brief.json
 
 The projection is lossy on purpose. The full memo (options, trade-offs, actor incentives detail, "what would change the judgment") stays in the markdown; the JSON is a structural surface for validators.
 
-## Recipe C — add an evidence pack for claim-level audit
+### Compatibility recipe C — add an evidence pack for claim-level audit
 
 When the memo was produced in `live-source-backed` or `user-provided sources` mode, you can pair the brief with an `evidence-pack.json` and get claim-level support feedback.
 
@@ -101,7 +115,7 @@ agenda-intelligence score brief.json --evidence pack.json
 
 In `reasoning-only` or `illustrative source packet` mode, do **not** assemble a fake evidence pack to make the score look better. That is exactly the failure mode this skill's evidence rules try to prevent. If there are no real sources, lower the confidence and skip the evidence step.
 
-## Recipe D — call from an MCP-aware agent
+### Compatibility recipe D — call from an MCP-aware agent
 
 Agenda Intelligence MD ships an MCP stdio server: `agenda-intelligence-mcp`. An MCP-aware agent (Claude Code, Cursor, Codex with MCP, etc.) can use it to call `validate_brief`, `validate_evidence`, `score_output`, and related tools as part of the agent loop.
 

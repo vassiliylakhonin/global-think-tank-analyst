@@ -22,6 +22,7 @@ cd global-think-tank-analyst
 python3 scripts/validate_signals.py
 python3 scripts/validate_json.py
 python3 scripts/validate_examples.py
+python3 scripts/validate_evidence_packet_handoff.py
 ```
 
 Requirements: Python 3.8+. No additional packages — all validators use the standard library. CI hard-stops on all three; run them locally before pushing or `main` will go red.
@@ -44,7 +45,7 @@ Requirements: Python 3.8+. No additional packages — all validators use the sta
 - Prefer concise, practical improvements over framework bloat.
 - Keep agent guidance runtime-neutral unless a section is explicitly for a specific tool.
 - When adding examples, make them useful in at least one real user workflow.
-- For validation, scoring, schemas, CLI, MCP, or CI tooling, contribute to the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md) instead.
+- For evidence-packet linting or changes to its contract, contribute to the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) instead. Older memo validation, scoring, and MCP contracts remain owned there as compatibility surfaces.
 
 ## Local environment
 
@@ -56,6 +57,7 @@ Run validators from the repo root:
 python3 scripts/validate_signals.py
 python3 scripts/validate_json.py
 python3 scripts/validate_examples.py
+python3 scripts/validate_evidence_packet_handoff.py
 ```
 
 CI hard-stops on all three. Run them before pushing — a red CI on `main` is the only feedback you will get otherwise. See [`scripts/README.md`](scripts/README.md) for what each script checks.

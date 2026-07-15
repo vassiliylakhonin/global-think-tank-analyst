@@ -1,0 +1,29 @@
+{
+  "packet_id": "gtta-synthetic-policy-notice-001",
+  "topic": "Synthetic policy-notice handoff from a strategic-risk memo",
+  "claims": [
+    {
+      "claim_id": "c1",
+      "text": "The consultation closes on 2026-09-15.",
+      "source_ids": ["synthetic-policy-notice"],
+      "quotes": [
+        {
+          "source_id": "synthetic-policy-notice",
+          "text": "The consultation closes on 2026-09-15"
+        }
+      ]
+    },
+    {
+      "claim_id": "c2",
+      "text": "Covered operators must publish a risk register within 30 days of the notice.",
+      "source_ids": ["synthetic-policy-notice"]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "synthetic-policy-notice",
+      "title": "Synthetic policy notice",
+      "text": "Synthetic example. The consultation closes on 2026-09-15. Covered operators must publish a risk register within 30 days of the notice. This source does not describe a real policy or organization."
+    }
+  ]
+}

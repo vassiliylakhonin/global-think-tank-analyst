@@ -1,6 +1,6 @@
 # Global Think Tank Analyst
 
-This context defines the language for the **horizontal strategic-risk reasoning skill** inside the broader Agenda Intelligence stack. It exists to keep reasoning-method scope, evidence discipline, and naming distinct from the product shell and the vertical specialists.
+This context defines the language for the **horizontal strategic-risk reasoning skill** inside the broader Agenda Intelligence stack. It exists to keep reasoning-method scope, evidence discipline, and naming distinct from the evidence-packet checker and the vertical specialists.
 
 ## Language
 
@@ -21,8 +21,12 @@ A reusable output shape (executive brief, decision-briefing pack, red-team memo,
 _Avoid_: Document template without analytical commitments, freeform summary
 
 **Agenda Intelligence MD**:
-The product shell and evidence-discipline layer that vendors this skill, routes geography to vertical specialists, validates output structure, audits evidence, and scores outputs where implemented.
-_Avoid_: Parent skill, source retriever, factual verifier, compliance product
+The deterministic evidence-packet linter that checks caller-supplied claim/source packets before human review. Older routing, memo validation, scoring, MCP, HTTP, and A2A behavior remains available for compatibility.
+_Avoid_: Parent skill, source retriever, factual verifier, commercial umbrella for this repo
+
+**Evidence-Packet Handoff**:
+The JSON seam between this reasoning skill and Agenda Intelligence MD: externally checkable `claims[]`, their declared `source_ids`, optional verbatim `quotes`, and caller-supplied `sources[]` text.
+_Avoid_: Full memo serialization, factuality result, source-discovery step, analyst-judgment ledger
 
 **Vertical Specialist**:
 A regional or sector reasoning skill (Central Asia + Caspian, Gulf + Middle East) that composes on top of GTTA's horizontal method and adds domain depth. Routed automatically by `analyze` when the geography matches.
@@ -49,7 +53,7 @@ A short public artifact in the `signals/` archive that demonstrates the skill's 
 _Avoid_: Real-time intelligence product, monitored feed, current-facts source-of-truth
 
 **Agent-eval Delta**:
-The validation methodology: same model, same question, run with and without the skill loaded, scored against a binary structural rubric tied to `agenda-memo.schema.json`. Canonical methodology lives in the product shell at `agenda-intelligence-md/docs/agent-eval-methodology.md`.
+The method-validation methodology: same model, same question, run with and without the skill loaded, scored against a binary structural rubric. Older `analyze` / MCP cases are compatibility evidence and do not validate the evidence-packet linter.
 _Avoid_: Aggregate benchmark, model-quality comparison, accuracy claim, practitioner validation
 
 **Practitioner Review**:

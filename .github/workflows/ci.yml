@@ -45,6 +45,9 @@ jobs:
       - name: Validate repository JSON
         run: python3 scripts/validate_json.py
 
+      - name: Validate evidence-packet handoff
+        run: python3 scripts/validate_evidence_packet_handoff.py
+
       - name: Validate example evidence discipline
         run: python3 scripts/validate_examples.py
 

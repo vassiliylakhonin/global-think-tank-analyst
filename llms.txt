@@ -27,9 +27,9 @@ Portfolio (three layers, four repos, separately maintained):
 - Vertical specialists (compose on top of the horizontal skill):
   - https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
   - https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
-- Infrastructure / validation: https://github.com/vassiliylakhonin/agenda-intelligence-md — schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling.
+- Evidence-packet checker: https://github.com/vassiliylakhonin/agenda-intelligence-md — deterministic checks for claim/source references, declared quotes, lexical support, and unmatched numbers; older memo and MCP surfaces remain compatible.
 
-Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the domain needs regional depth. Use Agenda Intelligence MD to validate, score, and audit the output.
+Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the region changes the mechanism. Export externally checkable claims and supplied source text through docs/evidence-packet-handoff.md, then use Agenda Intelligence MD to lint packet completeness before human review. It does not establish factual truth.
 
 Concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack):
 - docs/integrations/agenda-intelligence-md.md

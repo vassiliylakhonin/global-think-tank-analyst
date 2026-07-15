@@ -36,9 +36,9 @@ If the request is too broad, narrow it before analyzing.
 
 ## Strategic-risk skill contract
 
-This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or guarantee correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
+This is a domain reasoning skill, not an agent framework or runtime. It does not verify facts, retrieve sources, or establish correctness — it enforces analytical discipline. Apply the same behavior in ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG workflows, or internal copilots.
 
-For validation, scoring, schemas, CLI, MCP, or CI checks of memos produced with this skill, use the companion project Agenda Intelligence MD (https://github.com/vassiliylakhonin/agenda-intelligence-md). Do not assume those capabilities exist in this repository.
+For deterministic checks of claim/source references, declared quotes, lexical support, and unmatched numbers, use the companion Agenda Intelligence MD evidence-packet linter (https://github.com/vassiliylakhonin/agenda-intelligence-md). Its older memo validation, scoring, and MCP behavior is a compatibility surface. Do not assume any of those capabilities exist in this repository.
 
 Runtime-specific guidance:
 
@@ -158,6 +158,20 @@ When evidence access is limited:
 - avoid narrow numerical claims unless directly provided;
 - prefer bounded judgments over precise forecasts;
 - state what new information would most change the assessment.
+
+## Evidence-packet handoff
+
+When the user or orchestrator requests machine-readable evidence preflight, emit an Agenda Intelligence evidence packet in addition to the memo:
+
+- include externally checkable factual and quantitative statements in `claims[]`;
+- keep scenarios, assumptions, `[inference]`, and `[analyst-judgment]` statements in the memo rather than presenting them as sourced facts;
+- give each claim a stable `claim_id` and declare its `source_ids`;
+- copy caller-supplied source text into `sources[]`; a URL or citation alone is not source text;
+- add `quotes[]` only for verbatim spans present in the named source;
+- keep unsupported factual claims with an empty `source_ids` array so the linter exposes the gap;
+- never invent source text, quotes, identifiers, or citations to make a packet pass.
+
+Use [`examples/evidence-packet-handoff.json`](https://github.com/vassiliylakhonin/global-think-tank-analyst/blob/main/examples/evidence-packet-handoff.json) as the shape reference. Agenda Intelligence reports packet completeness, not factual truth. Human review remains required.
 
 ## Required workflow
 

@@ -23,17 +23,16 @@ Global Think Tank Analyst:
 - produces strategic-risk memos
 
 Agenda Intelligence MD:
-- validates output structure
-- provides schemas
-- supports evidence/eval/CLI/MCP/CI tooling
-- audits or scores outputs where implemented
-- is the commercial product shell for evidence-readiness / trust-routing workflows
+- is primarily a deterministic evidence-packet linter for claim-backed AI output
+- checks source references, declared quotes, lexical support, and unmatched numbers
+- reports packet completeness, not factual truth
+- keeps the older strategic-intelligence schemas, validation, scoring, CLI, MCP, HTTP, and A2A surfaces as compatibility interfaces
 
-Do not duplicate Agenda Intelligence MD inside this repo. When referencing validation, scoring, CLI, MCP, schemas, or CI checks, point to Agenda Intelligence MD unless this repo actually implements them.
+Do not duplicate Agenda Intelligence MD inside this repo. The primary composition seam is the claim/source packet documented in [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md). When referencing older validation, scoring, MCP, or memo-schema behavior, label it as compatibility behavior unless it is part of the current evidence-packet workflow.
 
 ## Commercial role
 
-This repo is a reasoning-method dependency, not a buyer-facing product. It should support Agenda Intelligence MD's evidence-readiness workflows by improving decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators.
+This repo is a reasoning-method dependency, not a buyer-facing product. It improves decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators; externally checkable memo claims can then be handed to Agenda Intelligence MD as an evidence packet before human review.
 
 Do not add public product surfaces, vertical-worker positioning, pricing, outreach copy, or procurement-specific buyer claims here. If a request is commercially oriented, route the product decision to Agenda Intelligence MD and keep this repo focused on reasoning quality.
 
@@ -192,7 +191,7 @@ Use terms like:
 
 Do not call it a validated benchmark unless benchmark cases and results actually exist.
 
-When the downstream consumer of this skill is an AI agent (loaded via the Agenda Intelligence MCP `analyze` tool, pasted into Claude / ChatGPT / Codex, or otherwise wired into an agent workflow), the most honest validation is an **agent-eval**: same model, same question, with and without the skill attached, scored against a binary structural rubric. The methodology is canonical in the product layer at https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/agent-eval-methodology.md and produces one markdown file per case under `evals/agent-eval/`. Use this in addition to (not instead of) human review when the downstream audience also includes domain practitioners.
+When the downstream consumer of this skill is an AI agent, the most honest method-level validation is an **agent-eval**: same model, same question, with and without the skill attached, scored against a binary structural rubric. Existing `analyze` / MCP cases remain compatibility evidence for the older strategic-intelligence runtime; they do not validate the current evidence-packet linter. Use method-level evals in addition to (not instead of) human review when the downstream audience also includes domain practitioners.
 
 **Self-scoring honesty:** when the author or the same model family scores an agent-eval, treat the result as a structural sanity check, not validation. Same-family judges exhibit self-preference bias and can mark binary rubric criteria "satisfied" substantially more often than a neutral judge would — even on objective criteria. This is now measured, not just suspected: on programmatically verifiable rubrics, judges were up to 50% more likely to incorrectly mark a failed criterion as satisfied when the output was their own (arXiv:2604.06996). The same study found judge ensembles reduce but do not eliminate the bias, especially on negative rubrics and subjective criteria — so an ensemble is a mitigation to disclose, not a cure to rely on. Where the claim matters, score with a different model family or disclose the self-scoring limitation explicitly. Never present a self-scored delta as external or factual validation.
 
@@ -219,7 +218,7 @@ Vertical specialists (compose on top of the horizontal skill, do not duplicate i
 - central-asia-caspian-hybrid-intelligence-skill — Central Asia & Caspian region depth.
 - gulf-middle-east-hybrid-intelligence-skill — Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea).
 
-Companion infrastructure: Agenda Intelligence MD (validation, scoring, schemas, CLI / MCP / CI).
+Companion checker: Agenda Intelligence MD (primary evidence-packet linter; older validation, scoring, schemas, CLI / MCP / CI remain compatibility surfaces).
 
 Do not present these as competing names. Do not duplicate vertical-specialist depth or Agenda Intelligence MD tooling inside this repo.
 

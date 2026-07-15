@@ -119,4 +119,4 @@ A high analyst-judgment count is not a defect — strategic-risk memos legitimat
 ---
 
 *For the full portfolio-demonstration format including claim traceability matrix and Agenda Intelligence MD projection, see [`docs/case-packet.md`](../docs/case-packet.md).*
-*For validation, scoring, and schema checks of structured memo output, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).*
+*For claim/source packet checks before human review, use the [evidence-packet handoff](../docs/evidence-packet-handoff.md) with [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md). It reports packet completeness, not factual truth.*

@@ -5,7 +5,7 @@
 
 > **STRATEGIC-RISK REASONING CONTRACT FOR AI AGENTS** — a domain reasoning contract that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos with decision framing, evidence boundaries, scenarios and confidence. Open-source. No live data. No legal, compliance or investment advice.
 
-> **Reasoning engine behind Agenda Intelligence.** Use directly via paste/attach into Claude, ChatGPT, Codex or any agent, or programmatically through the [Agenda Intelligence MCP server](https://github.com/vassiliylakhonin/agenda-intelligence-md) — its `analyze` tool loads this skill as the reasoning method and validates output against the agenda-memo schema.
+> **Horizontal reasoning method in the Agenda Intelligence portfolio.** Use directly via paste/attach into Claude, ChatGPT, Codex, or another agent. When sources are supplied, export the memo's externally checkable claims through the [evidence-packet handoff](docs/evidence-packet-handoff.md) and run Agenda Intelligence MD before human review.
 
 **Strategic-risk analysis skill for AI agents.**
 
@@ -17,7 +17,7 @@ This repository is a domain skill layer that teaches agents how to do that work.
 
 ## Commercial role
 
-This repo is a **reasoning-method dependency**, not the commercial product surface. The commercial product shell is [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md), which is being focused as an evidence-readiness / trust-routing runtime for high-stakes AI-assisted decisions.
+This repo is a **reasoning-method dependency**, not a commercial product surface. [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) is now primarily a deterministic evidence-packet linter for claim-backed AI output; the older strategic-intelligence runtime remains available for compatibility.
 
 Use Global Think Tank Analyst to improve the reasoning inside evidence-readiness artifacts: RFP teardowns, vendor evidence packets, risk memos, and human-review packets. Do not treat this repo's existence, examples, or signal archive as market validation for any Agenda Intelligence MD wedge. It should not grow buyer-facing surfaces, pricing, vertical workers, or procurement positioning on its own.
 
@@ -30,9 +30,9 @@ Use Global Think Tank Analyst to improve the reasoning inside evidence-readiness
 
 **Where this fits in the Agenda Intelligence stack**
 
-This repo is the **reasoning method** layer — loaded by `analyze` as the default reasoning module, or used standalone via paste/attach. The canonical 4-layer map (product shell, reasoning method, two vertical specialists) lives in the product-shell repo: [Where this fits in the Agenda Intelligence stack](https://github.com/vassiliylakhonin/agenda-intelligence-md#where-this-fits-in-the-agenda-intelligence-stack). Maintained in one place to avoid drift across repos.
+This repo is the **reasoning method** layer. It can be used standalone or inside the older `analyze` compatibility workflow. The current primary composition is: reasoning method → optional regional specialist → claim/source packet → Agenda Intelligence MD linter → human review.
 
-The skills define how agents *reason*. Agenda Intelligence MD defines how the output is *audited*. Together they let agents produce auditable strategic-intelligence — not just plausible-sounding summaries.
+The skills define how agents *reason*. Agenda Intelligence MD checks whether the supplied claim/source packet is structurally ready for review. It does not establish factual truth.
 
 ## Try this prompt
 
@@ -80,7 +80,7 @@ Expected shape of a good answer:
 - not a benchmarked evaluation framework;
 - not a replacement for human analyst judgment.
 
-If you need validation, scoring, evidence audit, schemas, CLI, MCP, or CI checks for outputs produced with this skill, see the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
+If you need deterministic checks for source references, declared quotes, lexical support, or unmatched numbers, use the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md). Its older memo validation, scoring, and MCP surfaces remain compatibility options.
 
 ## Portfolio: how this skill composes
 
@@ -93,24 +93,25 @@ For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
 | **Horizontal domain skill** | **Global Think Tank Analyst** (this repo) | The reasoning method and memo modes. Region- and topic-agnostic. |
 | **Vertical specialist — V1** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk. |
 | **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
-| **Infrastructure / validation** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Machine-readable protocol, schemas, validation, scoring, evidence audit, CLI / MCP / CI tooling. |
+| **Evidence-packet checker** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks for claim/source references, declared quotes, lexical support, and unmatched numbers before human review. |
 
 ```mermaid
 flowchart LR
     A[Global Think Tank Analyst<br/>horizontal method] -->|drafts memo| D[Strategic-risk memo]
     V1[V1 Central Asia Caspian<br/>vertical specialist] -->|adds regional depth| D
     V2[V2 Gulf + Middle East<br/>vertical specialist] -->|adds regional depth| D
-    D -->|validated, scored| C[Agenda Intelligence MD<br/>infrastructure]
-    C --> O[Decision-ready brief]
+    D -->|extract factual claims + supplied sources| P[Evidence packet]
+    P -->|lint packet completeness| C[Agenda Intelligence MD]
+    C --> O[Human review]
 ```
 
-> Use **Global Think Tank Analyst** for the analyst behavior and memo structure. Bring in a **vertical specialist** when the domain or region needs depth this skill alone cannot provide. Use **Agenda Intelligence MD** to validate, score, and audit the output.
+> Use **Global Think Tank Analyst** for analyst behavior and memo structure. Bring in a **vertical specialist** when the region changes the mechanism. Use **Agenda Intelligence MD** to lint the resulting claim/source packet; treat its result as packet completeness, not factual truth.
 
-This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; validation and tooling live in Agenda Intelligence MD.
+This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; evidence-packet checks live in Agenda Intelligence MD.
 
 This method is loaded as the core reasoning layer in the portfolio's deployed vertical workers. Two have interactive browser demos you can run live: [Middle Corridor Deal Risk Gate](https://vassiliylakhonin.github.io/deal-risk-gate.html) and [CIS Secondary-Sanctions Exposure](https://vassiliylakhonin.github.io/cis-secondary-sanctions.html). Evidence triage only, not advice.
 
-For a concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack), see [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md). For an end-to-end run with **real CLI output** — `agenda-intelligence score` on 2026-05-08 produced 95/100 brief-only → 83/100 with an honest evidence pack (full transcript and commands in [`docs/integrations/agenda-intelligence-md-live-demo.md`](docs/integrations/agenda-intelligence-md-live-demo.md)).
+For the current primary CLI handoff, see [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md) and the runnable synthetic [`examples/evidence-packet-handoff.json`](examples/evidence-packet-handoff.json). The older memo scoring / MCP recipe remains documented in [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md) as a compatibility workflow; its historical scores are not evidence of current linter performance.
 
 For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), its machine-readable projections ([brief](docs/case-packet.brief.json), [evidence](docs/case-packet.evidence.json)), the [`docs/reviewer-workflow.md`](docs/reviewer-workflow.md) review path, [`docs/external-review-template.md`](docs/external-review-template.md), and the future review-record scaffold in [`reviews/`](reviews/). These are preparation assets, not evidence of external validation.
 
@@ -122,7 +123,7 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | ChatGPT, Claude, Gemini, Perplexity | Compatible by paste/attach | Paste `AGENTS.md` or attach `SKILL.md` |
 | OpenClaw / ClawHub | Not actively maintained | Package may not be current; use paste/attach as fallback |
 | RAG / internal copilots | Compatible by indexing | Index `README.md`, `SKILL.md`, `AGENTS.md`, `llms.txt`, `signals/` |
-| Agenda Intelligence MD | Companion project | Use it for validation, evidence audit, scoring |
+| Agenda Intelligence MD | Companion checker | Use it for deterministic evidence-packet preflight; older memo validation and scoring are compatibility surfaces |
 | MCP server | Not implemented here | Use Agenda Intelligence MD if MCP is required |
 | CLI validation | Not implemented here | Use Agenda Intelligence MD |
 | Factuality verification | Not implemented here | This skill enforces *discipline*, not truth |
