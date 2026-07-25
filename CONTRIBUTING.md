@@ -11,7 +11,7 @@ If you've just landed in this repo and want to understand it before editing, do 
 **1. Read these three files, in order:**
 
 1. [`README.md`](README.md) — what this is (horizontal strategic-risk reasoning skill), the four-repo stack, and what the skill is *not* (it is not an agent framework, runtime, MCP server, or eval platform).
-2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, evidence rules, per-claim provenance tags (Axis A/B), three-value response logic, naming hierarchy, recommended README structure.
+2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, honesty rules, evidence rules, retrieved-content trust, naming hierarchy. It points to [`docs/analysis-contract.md`](docs/analysis-contract.md) (provenance tags, calibration, response modes), [`docs/repo-conventions.md`](docs/repo-conventions.md) (README, examples, eval docs, signals), and [`docs/maturity-framework.md`](docs/maturity-framework.md).
 3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see [`docs/maturity-framework.md`](docs/maturity-framework.md).
 
 **2. Get the validators running locally:**
@@ -72,7 +72,12 @@ CI hard-stops on all three. Run them before pushing — a red CI on `main` is th
 
 ## Where things live
 
-- [`AGENTS.md`](AGENTS.md) — project identity, honesty, evidence, naming rules.
+- [`AGENTS.md`](AGENTS.md) — project identity, honesty, evidence, naming rules. The contract, kept short.
+- [`docs/analysis-contract.md`](docs/analysis-contract.md) — provenance tags, calibration, response modes, input-claim accounting.
+- [`docs/repo-conventions.md`](docs/repo-conventions.md) — README structure, example requirements, eval-doc labelling, signals.
+- [`docs/maturity-framework.md`](docs/maturity-framework.md) — why this repo uses `VALIDATION_PLAN.md` and not Bar 1/2.
+
+**Where a new rule goes.** `AGENTS.md` stays short; task-specific detail lives in the three files above and is reached from it by a pointer — see AGENTS.md "Where a new rule goes". A rule belongs inline only if it is needed before any output. Adding a section to `AGENTS.md` when one of the `docs/` files owns it is the drift this layout exists to prevent.
 - [`SKILL.md`](SKILL.md) and [`codex/SKILL.md`](codex/SKILL.md) — runtime agent behavior.
 - [`examples/`](examples/) — illustrative memos. Always state evidence mode.
 - [`evals/`](evals/) — human review checklist, failure modes, starter rubric.
