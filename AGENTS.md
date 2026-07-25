@@ -91,6 +91,17 @@ Full detail in [`docs/analysis-contract.md`](docs/analysis-contract.md). Read it
 
 This skill makes the agent better at strategic-risk analysis, not narrower. If the memo workflow or checklist does not cover a relevant dimension of the user's question, answer anyway and note the gap. A skill that produces worse output than bare Claude in its own domain has failed.
 
+## Where a new rule goes
+
+This file is the contract, deliberately short. Detail that is only needed for a specific task lives in `docs/` and is reached from here by a pointer:
+
+- how a claim must be tagged, calibrated, or accounted for → [`docs/analysis-contract.md`](docs/analysis-contract.md)
+- README, example, eval-doc, and signal conventions → [`docs/repo-conventions.md`](docs/repo-conventions.md)
+- which maturity framework applies and why → [`docs/maturity-framework.md`](docs/maturity-framework.md)
+- operational behavior for agents executing the skill → [`SKILL.md`](SKILL.md), not this file
+
+Add a rule here only if it is needed before any output — identity, scope, honesty rules, evidence rules, retrieved-content trust. Everything else goes in the file above that owns it, with a one-line summary here at most. Do not move detail back inline so that "the agent sees it"; the pointer is the mechanism, and re-inlining is how this file grew to 2,300 words before 2026-07-25.
+
 ## Repository conventions
 
 README structure, example requirements, eval-doc labelling (including the self-scoring honesty rule), and how signals are described are in [`docs/repo-conventions.md`](docs/repo-conventions.md).
