@@ -110,7 +110,7 @@ Updated 2026-05-21.
   `gulf-middle-east-hybrid-intelligence-skill` report Bar 2 cleared for agent
   integration under their own Bar 1 / Bar 2 canon (three agent-eval cases
   each, source-anchored example majority, evidence-mode mapping through
-  `analyze`). That canon does not apply here; see `AGENTS.md` "Maturity
-  framework and portfolio canon alignment".
+  `analyze`). That canon does not apply here; see
+  `docs/maturity-framework.md`.
 - **No production usage, no adoption numbers, no benchmark scores** are
   claimed by this repo or by the vertical specialists.
