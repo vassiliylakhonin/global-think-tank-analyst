@@ -12,7 +12,7 @@ If you've just landed in this repo and want to understand it before editing, do 
 
 1. [`README.md`](README.md) — what this is (horizontal strategic-risk reasoning skill), the four-repo stack, and what the skill is *not* (it is not an agent framework, runtime, MCP server, or eval platform).
 2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, evidence rules, per-claim provenance tags (Axis A/B), three-value response logic, naming hierarchy, recommended README structure.
-3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see `AGENTS.md` "Maturity framework and portfolio canon alignment".
+3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see [`docs/maturity-framework.md`](docs/maturity-framework.md).
 
 **2. Get the validators running locally:**
 
