@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Conformed the repo to the Agent Plugins 1.0.0 layout: added a root `plugin.json` with the `$schema` identifier from <https://agent-plugins.org>. `.claude-plugin/plugin.json` is unchanged and still serves the Claude Code install path; the specification ignores that directory. `skills/global-think-tank-analyst/SKILL.md` already matched the spec's discovery rule. The manifest validates against the published Draft 2020-12 schema.
+
 - Added the Agenda Intelligence v1.3 evidence-packet handoff as the primary composition seam, with a runnable synthetic packet, dependency-free CI validator, and ADR 0001. Reclassified older memo-schema, scoring, `analyze`, and MCP recipes as compatibility workflows.
 
 - Packaged the repo as an installable Claude Code plugin: added `.claude-plugin/plugin.json` and `skills/global-think-tank-analyst/SKILL.md` (a symlink to the canonical root `SKILL.md`; packaging only, not a runtime overlay). Installable via `/plugin marketplace add vassiliylakhonin/agenda-intelligence-md`, then `/plugin install global-think-tank-analyst@agenda-intelligence`. Verified locally with `claude plugin install` from an isolated config (1 skill discovered via the symlink).

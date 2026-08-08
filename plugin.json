@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "global-think-tank-analyst",
+  "version": "1.0.0",
+  "description": "Horizontal strategic-risk reasoning method: decision-grade memos on geopolitics, sanctions, trade, and regulation with explicit evidence boundaries, uncertainty, scenarios, actor incentives, and watch-next indicators.",
+  "author": {
+    "name": "Vassiliy Lakhonin",
+    "url": "https://github.com/vassiliylakhonin"
+  },
+  "homepage": "https://github.com/vassiliylakhonin/global-think-tank-analyst",
+  "repository": "https://github.com/vassiliylakhonin/global-think-tank-analyst",
+  "license": "MIT",
+  "keywords": [
+    "strategic-risk",
+    "geopolitics",
+    "policy-analysis",
+    "think-tank",
+    "evidence-first"
+  ]
+}
