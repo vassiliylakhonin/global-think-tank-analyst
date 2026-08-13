@@ -6,7 +6,7 @@
 Date: YYYY-MM-DD
 Domain: [sanctions / trade / regulatory / geopolitical / strategic]
 Region: [country / corridor / market]
-Evidence mode: source-backed / reasoning-only / mixed
+Evidence mode: live-source-backed / user-provided sources / illustrative source packet / reasoning-only
 Confidence: Low / Moderate / High
 ```
 
@@ -46,7 +46,7 @@ Concrete, observable indicators that would update the picture. Not "monitor clos
 
 ## Sources
 
-If `source-backed` or `mixed`, list real sources here. If `reasoning-only`, write:
+If `live-source-backed` or `user-provided sources`, list the sources actually used here. If `illustrative source packet`, label the constructed packet. If `reasoning-only`, write:
 
 > No live sources were checked for this signal.
 

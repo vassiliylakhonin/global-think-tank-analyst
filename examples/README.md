@@ -18,7 +18,7 @@ Examples that fail this policy and are kept anyway should be relabeled from `liv
 
 1. Start with [`sanctions-exposure-memo.md`](sanctions-exposure-memo.md) to see the basic reasoning-only memo structure: decision frame, evidence limits, risks, options, indicators, confidence.
 2. Read [`live-source-backed-memo.md`](live-source-backed-memo.md) to see the same structure with public sources and explicit facts / assessments / assumptions.
-3. Read [`mixed-mode-middle-corridor-logistics-risk.md`](mixed-mode-middle-corridor-logistics-risk.md) to see how evidence modes degrade gracefully when some sources are inaccessible — one source live-retrieved, others marked `[verify]`, memo evidence mode set to `mixed`.
+3. Read [`mixed-mode-middle-corridor-logistics-risk.md`](mixed-mode-middle-corridor-logistics-risk.md) to see how a `live-source-backed` memo stops at the boundary of the source actually retrieved instead of using inaccessible sources.
 4. Compare the paired projection files in [`agenda-projections/`](agenda-projections/) to see how a memo can be mapped into Agenda Intelligence MD JSON for validation and evidence-aware scoring.
 5. Read [`user-provided-sources-supply-chain-sanctions.md`](user-provided-sources-supply-chain-sanctions.md) to see the mode where the user's own documents become the primary evidence base.
 6. Use [`red-team-policy-brief.md`](red-team-policy-brief.md) when you need to challenge an existing claim rather than draft a neutral memo.
@@ -30,7 +30,7 @@ Examples that fail this policy and are kept anyway should be relabeled from `liv
 |---|---|---|
 | `reasoning-only` | No live sources checked; the memo must disclose evidence limits and lower confidence. | [`sanctions-exposure-memo.md`](sanctions-exposure-memo.md) |
 | `live-source-backed` | Public sources were retrieved and cited for the example. | [`live-source-backed-memo.md`](live-source-backed-memo.md) |
-| `mixed` | Some sources live-retrieved, others inaccessible — each source and claim carries explicit mode and `[verify]` flags. | [`mixed-mode-middle-corridor-logistics-risk.md`](mixed-mode-middle-corridor-logistics-risk.md) |
+| `live-source-backed` | One primary source was retrieved; unsupported legal and compliance claims are accounted for but excluded from the conclusion. | [`mixed-mode-middle-corridor-logistics-risk.md`](mixed-mode-middle-corridor-logistics-risk.md) |
 | `user-provided sources` | The user's own documents, registers, classifications, or notes are treated as the evidence base. | [`user-provided-sources-supply-chain-sanctions.md`](user-provided-sources-supply-chain-sanctions.md) |
 
 ## Domain examples

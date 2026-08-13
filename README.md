@@ -142,7 +142,7 @@ Decision this informs: [what action depends on it]
 Audience: [founder / operator / investor / compliance / policy team / leadership]
 Geography: [countries, regions, corridors, markets]
 Time horizon: [days / months / 1–3 years]
-Evidence mode: source-backed / reasoning-only / mixed
+Evidence mode: live-source-backed / user-provided sources / illustrative source packet / reasoning-only
 Depth: quick brief / standard memo / scenario brief / red-team / decision pack / analyst training
 
 Separate facts, assumptions, assessments, scenarios, and unknowns.
@@ -212,7 +212,7 @@ For a guided route through the examples, start with [`examples/README.md`](examp
 | Geopolitical / scenarios | reasoning-only | [US–China semiconductor scenario brief](examples/geopolitical-scenario-brief.md) |
 | AI governance / strategic competition | reasoning-only | [AI governance regulatory divergence — US, EU, China (18–24 month)](examples/ai-governance-scenario-brief.md) |
 | Sanctions / supply-chain | user-provided sources | [Supply-chain sanctions exposure — user brings vendor register, payment rails, and product classification](examples/user-provided-sources-supply-chain-sanctions.md) |
-| Central Asia / sanctions / logistics | mixed | [Middle Corridor logistics risk for an EU logistics operator (1 live source + 2 `[verify]`)](examples/mixed-mode-middle-corridor-logistics-risk.md) |
+| Central Asia / sanctions / logistics | live-source-backed | [Middle Corridor logistics risk with one retrieved source and an explicit stop boundary](examples/mixed-mode-middle-corridor-logistics-risk.md) |
 | Energy / source-conflict method | illustrative source packet | [IEA vs OPEC demand-forecast conflict — source-conflict surfacing rule applied](examples/source-conflict-iea-opec-demand-forecast.md) |
 | Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
