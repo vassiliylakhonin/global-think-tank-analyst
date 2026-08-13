@@ -1,119 +1,80 @@
-# Middle Corridor logistics: sanctions and compliance risk memo (mixed evidence mode)
+# Middle Corridor logistics: a bounded source-backed memo
 
-> **Evidence mode: mixed.** Source 1 (World Bank, 2026-02-19) live-retrieved and cited. Sources 2–3 (EU 14th sanctions package, FATF Kazakhstan MER 2023) cited from general knowledge, not accessed in this session — marked `[verify]`. Verify all sources before any compliance decision. This memo is not legal, sanctions, customs, or compliance advice.
+> **Evidence mode:** `live-source-backed`. **Retrieval date: 2026-05-15.** One World Bank source was retrieved in the session that produced this example. EU sanctions materials, FATF materials, current designation lists, and transaction records were not retrieved. Claims that depend on them are excluded from the conclusion. Verify all current legal and counterparty facts before acting. This memo is not legal, sanctions, customs, or compliance advice.
 
-**User question:** A European logistics operator is evaluating routing freight through the Trans-Caspian International Transport Route (Middle Corridor) via Kazakhstan. What are the sanctions, export-control, and compliance risks over the next 12 months?
+**User question:** A European logistics operator is evaluating routing freight through the Trans-Caspian International Transport Route via Kazakhstan. What can the available evidence support?
 
 ```text
-Question: Sanctions and compliance risk for EU logistics operators using the Middle Corridor.
-Decision: Whether to route freight via the Middle Corridor and what controls are required.
-Audience: Head of compliance, European logistics or freight-forwarding operator.
-Geography: Kazakhstan, Caspian transit, Uzbekistan, Azerbaijan, Georgia.
-Time horizon: 12 months (to May 2027).
-Evidence mode: mixed
+Question: What does the retrieved corridor evidence support, and where must the analysis stop?
+Decision: Whether to continue commercial route assessment or approve the route for operational use.
+Audience: Head of compliance at a European logistics or freight-forwarding operator.
+Geography: Kazakhstan and the Trans-Caspian corridor.
+Time horizon: 12 months from the original retrieval date.
+Evidence mode: live-source-backed
 Depth: standard memo
 ```
 
----
-
 ## Executive takeaway
 
-**Key judgment (Moderate confidence):** The Middle Corridor is commercially legitimate and institutionally backed — the World Bank's $846M guarantee confirms long-term strategic commitment. The compliance risk for a European operator is not the corridor itself but the overlap of three factors: goods categories (dual-use or sanctions-sensitive), counterparty opacity (beneficial ownership gaps in Central Asian intermediaries), and end-user uncertainty on the Russia-adjacent leg. An operator that controls goods classification, screens counterparties, and documents route rationale can use the corridor with manageable compliance cost. An operator that cannot is exposed to EU sanctions circumvention liability and correspondent-bank de-risking risk.
+The retrieved source supports one narrow conclusion: Kazakhstan rail capacity and Middle Corridor connectivity had material institutional financing behind them as of 2026-05-15 `[primary]`. It does not establish that a shipment, counterparty, payment route, or end user is acceptable under current sanctions or export-control rules `[inference]`.
 
----
+Continue the commercial route assessment. Do not approve operational use until current legal sources and transaction-specific evidence are supplied `[analyst-judgment]`.
 
-## Facts (from sources)
+## Facts used
 
-- **Fact:** World Bank Board approved an IBRD guarantee of $846M for Kazakhstan rail infrastructure (KTZ), mobilizing $1.41B in long-term commercial financing; AIIB co-guarantee of $564M. `[primary]` — [World Bank press release, 2026-02-19](https://www.worldbank.org/en/news/press-release/2026/02/19/world-bank-support-to-enhance-rail-connectivity-and-logistics-in-kazakhstan).
-- **Fact:** The project includes a 322.3 km greenfield railway between Mointy and Kyzylzhar, shortening the corridor by 149 km; freight volume projected to triple and transit times to halve by 2030. `[primary][stale-risk: 2026-02]` — projections, not realized results.
-- **Fact:** The EU 14th sanctions package (Council Regulation 2024/1745, June 2024) introduced "no-re-export to Russia" obligations for EU operators selling or transferring sensitive goods through third countries, and referenced Central Asian intermediaries as circumvention vectors. `[primary][verify]` — not accessed in this session.
-- **Fact:** FATF's 2023 Mutual Evaluation of Kazakhstan identified deficiencies in AML/CFT effectiveness including in trade finance, legal-person transparency, and cross-border currency flows. `[primary][verify][stale-risk: 2023]` — not accessed in this session.
+- The World Bank approved an $846 million IBRD guarantee for Kazakhstan rail infrastructure, intended to mobilize $1.41 billion in long-term commercial financing `[primary][stale-risk: 2026-05]`. Source: [World Bank, 2026-02-19](https://www.worldbank.org/en/news/press-release/2026/02/19/world-bank-support-to-enhance-rail-connectivity-and-logistics-in-kazakhstan).
+- The announced project included a 322.3 km railway between Mointy and Kyzylzhar. The source described shorter routing and projected future freight and transit-time gains `[primary][stale-risk: 2026-05]`. These were projections, not observed results.
 
----
+## Claims flagged but not used
 
-## Assessments
+- Current EU sanctions and no-re-export obligations were not retrieved. They are not used to characterize the route as permitted or prohibited `[inference][verify]`.
+- Current OFAC, EU, and UK designations were not retrieved. No entity-level conclusion is made `[inference][verify]`.
+- FATF or EAG findings on Kazakhstan were not retrieved. No AML effectiveness conclusion is made `[inference][verify]`.
+- Goods classification, ownership records, end-user documents, contracts, and payment-rail data were not supplied. No shipment-level conclusion is possible `[inference][verify]`.
 
-- **Assessment (Moderate confidence):** The primary compliance exposure is not Kazakhstan as a jurisdiction but the inability to document end-use and beneficial ownership at each handoff point — particularly where Central Asian intermediaries, UAE-linked trading houses, or Russia-adjacent counterparties appear in the chain. `[inference]`
-- **Assessment (Moderate confidence):** Correspondent banks will apply stricter risk appetite than legal minimums. Repeated route-specific queries from banking partners should be treated as a leading indicator of emerging enforcement focus, earlier than any regulatory action. `[analyst-judgment]`
-- **Assessment (Low–Moderate confidence):** EU enforcement of no-re-export obligations is likely to intensify over 12 months as 14th package implementation matures. Early enforcement cases tend to target the most visible intermediary types. `[secondary][verify]`
+## Assessment
 
----
+- The financing is evidence of continued investment in corridor capacity, not evidence of transaction safety `[inference]`.
+- The route decision has two separate gates: commercial feasibility and compliance acceptability. The retrieved source informs only the first `[analyst-judgment]`.
+- A clean jurisdiction label would not resolve the second gate. The operator still needs current rules, goods classification, counterparty ownership, end use, and payment data `[analyst-judgment]`.
 
-## Assumptions
+## Actor incentives
 
-- The operator handles general freight, not exclusively dual-use or defence-related goods.
-- The operator has basic KYC capability but not a fully dedicated sanctions-screening system.
-- No new EU sanctions package fundamentally changes the corridor's legal status within 12 months.
-- Kazakhstan does not face primary sanctions from the EU or US within the horizon.
+- Kazakhstan and its rail operator have an incentive to expand capacity and attract transit volume `[inference]`.
+- The World Bank has an incentive to support the financed project's stated connectivity and development objectives `[inference]`.
+- The logistics operator has an incentive to diversify routes, but its compliance decision must be based on the specific shipment and counterparties `[analyst-judgment]`.
 
----
+## Scenarios
 
-## Actor incentives and leverage
-
-- **Kazakhstan government / KTZ:** wants corridor utilization and foreign investment — will cooperate with EU compliance requests to protect trade access, but cannot force private intermediaries to improve UBO transparency quickly.
-- **EU Commission / OFAC:** wants to close circumvention gaps without blocking legitimate trade — will pursue enforcement cases that are documentable and high-profile, not routine corridor freight.
-- **Correspondent banks:** want zero enforcement exposure — will de-risk relationships faster than regulators act; de-risking is a leading indicator.
-- **Central Asian intermediaries:** incentives are heterogeneous — legitimate traders want corridor access; evasion-adjacent intermediaries benefit from opacity. An operator cannot distinguish these without documentation.
-- **European logistics operator:** wants route diversification and competitive advantage; the corridor is attractive precisely because it avoids Russia, but the compliance burden is real.
-
----
-
-## Scenarios (12 months)
-
-1. **Controlled compliance posture (modal).** Operator implements goods classification review, counterparty screening, and UBO documentation for high-risk segments. Corridor use continues profitably. **Indicators:** No correspondent-bank de-risking; no enforcement action naming similar operator types; EU no-re-export guidance stable.
-
-2. **Enforcement shock — intermediary named.** A Central Asian trading house or forwarder in the operator's chain is named in an EU or OFAC action. Operator faces retroactive audit and potential supply-chain suspension. **Indicators:** New OFAC/EU designations of Central Asian logistics or trading entities; media coverage of circumvention via specific corridor nodes.
-
-3. **Corridor regulatory upgrade.** EU or bilateral agreements formalize compliance standards for Middle Corridor operators (mandatory UBO disclosure, goods-classification requirements). Operators with existing compliance infrastructure gain competitive advantage. **Indicators:** EU-Kazakhstan trade/sanctions dialogue outcomes; WB/EBRD corridor governance discussions.
-
-4. **Correspondent-bank withdrawal.** Major EU correspondent bank de-risks from Kazakhstan-linked freight-finance flows regardless of operator compliance posture. **Indicators:** Bank-to-bank de-risking notices; trade-finance cost increases on Kazakhstan-routed transactions.
-
----
+1. **Commercially viable, compliance evidence complete.** Current legal sources and transaction records support the route. The operator proceeds with documented controls `[analyst-judgment]`.
+2. **Commercially viable, evidence incomplete.** The infrastructure case remains attractive, but missing ownership, end-use, or classification evidence keeps the shipment on hold `[analyst-judgment]`.
+3. **Current rule or counterparty conflict.** A current restriction, designation, or unresolved ownership link blocks the proposed shipment regardless of corridor investment `[analyst-judgment]`.
 
 ## Options and trade-offs
 
-| Option | Pros | Cons | Provenance |
+| Option | What it resolves | What remains | Provenance |
 |---|---|---|---|
-| Use corridor with no additional controls | Lowest setup cost | Highest enforcement and de-risking exposure | [analyst-judgment] |
-| Goods-classification review only | Addresses most visible risk | Does not cover counterparty or end-user gaps | [analyst-judgment] |
-| Full counterparty screening + UBO documentation for top routes | Credible compliance posture; correspondent-bank defensible | Ongoing cost; requires supplier cooperation | [analyst-judgment] |
-| Restrict corridor use to low-risk goods + screened counterparties | Lowest residual risk | Reduces commercial opportunity | [analyst-judgment] |
-| Pause corridor use until enforcement picture clarifies | Zero compliance exposure | Loses first-mover commercial advantage | [analyst-judgment] |
+| Continue route economics and capacity review | Commercial feasibility | All transaction-specific compliance questions | `[analyst-judgment]` |
+| Retrieve current rules and screen the proposed transaction | Legal and counterparty evidence gaps | Human legal and compliance judgment | `[analyst-judgment]` |
+| Approve the route from the infrastructure source alone | Nothing beyond the capacity signal | Unbounded compliance exposure | `[analyst-judgment]` |
+| Hold the operational decision until the evidence pack is complete | Prevents unsupported approval | May delay the commercial decision | `[analyst-judgment]` |
 
----
+## Watch next
 
-## Watch-next indicators
-
-- EU sanctions package updates: any new Central Asian entity designations or tightened no-re-export obligations.
-- OFAC advisories on Russia sanctions evasion via Central Asia — check treasury.gov/ofac directly.
-- Correspondent-bank communications: route-specific queries or de-risking notices.
-- FATF/EAG follow-up on Kazakhstan AML/CFT effectiveness (next evaluation cycle).
-- KTZ / corridor operator UBO disclosure requirements: any new Kazakhstan regulatory requirements on freight-forwarding transparency.
-- EU-Kazakhstan bilateral dialogue outcomes on sanctions cooperation.
-
----
-
-## Confidence and key unknowns
-
-**Confidence: Moderate** for the structural risk mechanism. **Low** for claim-level precision on EU 14th package specifics and FATF findings — those sources were not accessed in this session and must be verified independently.
-
-**Key unknowns:** (1) Whether the operator's specific goods categories appear on EU dual-use or sanctions-sensitive lists. (2) Whether current counterparties have been screened against OFAC/EU designation lists. (3) Whether corridor-specific enforcement cases exist that would raise the urgency level.
-
----
+- Current EU, US, and UK measures relevant to the goods, entities, and route.
+- Current ownership and control records for every counterparty.
+- End-user and end-use documentation for the shipment.
+- Payment currencies, banks, and correspondent routes.
+- Observed project delivery, freight capacity, and transit-time data rather than projections.
 
 ## What would change the judgment
 
-- **More permissive:** operator's goods are clearly non-dual-use, counterparties are large listed entities with transparent ownership, route documentation is complete.
-- **More restrictive:** any counterparty in the chain named in a current designation; goods show dual-use characteristics; UBO documentation missing for key intermediaries.
-- **Immediate escalation:** direct link between the operator's counterparties and a current OFAC or EU sanctions designation.
+- Current primary legal sources and transaction data support operational use. The recommendation can move from hold to a bounded proceed decision.
+- A current designation, restricted end use, unsupported ownership chain, or unresolved goods classification appears. The shipment should stop for qualified review.
+- Observed corridor performance materially differs from the financed project assumptions. The commercial assessment should be rebuilt.
 
----
+## Confidence and limitations
 
-## Limitation note
+Confidence is high that the retrieved World Bank source supports the two infrastructure facts above. Confidence is low on operational suitability because the evidence needed for that conclusion was not available.
 
-This memo does not screen any counterparty, goods shipment, beneficial owner, route, or payment provider. Sources 2–3 (EU 14th sanctions package, FATF Kazakhstan MER 2023) were not accessed in this session — treat claims from those sources as `[verify]` before any compliance decision. This memo is not legal, sanctions, customs, or compliance advice.
-
----
-
-*Produced using the [`source-ingest`](https://github.com/vassiliylakhonin/Agenda-Intelligence-md/tree/main/skills/source-ingest) workflow (Agenda Intelligence MD) and the [`templates/memo-blank.md`](../templates/memo-blank.md) template.*
-*For validation and evidence scoring of a structured version of this memo, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/Agenda-Intelligence-md).*
+This example demonstrates a source boundary. It does not screen a counterparty, classify goods, interpret current sanctions, or establish that any route is compliant. Human review and current primary sources are required before commercial action.

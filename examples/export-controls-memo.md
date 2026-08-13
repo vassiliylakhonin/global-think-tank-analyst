@@ -1,6 +1,6 @@
 # Export-controls exposure memo (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked.
 
 **User question:** What is our exposure to tightening US/EU dual-use export controls on advanced semiconductor equipment, and what should we do about it over the next 18 months?
 

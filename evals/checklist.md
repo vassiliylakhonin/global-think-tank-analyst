@@ -11,7 +11,7 @@ Use this as a yes/no review pass over any memo produced with the skill. It is an
 ## Evidence discipline
 
 - [ ] Are **facts**, **assessments**, **assumptions**, **scenarios**, and **unknowns** distinguishable?
-- [ ] Is **evidence mode** declared (`source-backed`, `reasoning-only`, or `mixed`)?
+- [ ] Is **evidence mode** declared (`live-source-backed`, `user-provided sources`, `illustrative source packet`, or `reasoning-only`)?
 - [ ] If live verification was not performed, is the `EVIDENCE ACCESS LIMITED` notice present?
 - [ ] Are sources only claimed where they were actually checked?
 - [ ] Are there no fabricated citations, dates, or numerical claims?

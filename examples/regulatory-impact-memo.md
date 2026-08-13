@@ -1,6 +1,6 @@
 # Regulatory impact memo (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked.
 
 **User question:** What is the EU CBAM (Carbon Border Adjustment Mechanism) exposure for a Kazakh metals exporter over the next 12 months, and what should we plan for?
 

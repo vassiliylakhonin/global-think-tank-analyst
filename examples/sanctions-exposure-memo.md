@@ -1,6 +1,6 @@
 # Sanctions exposure memo (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked. Do not use as real intelligence.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked. Do not use as real intelligence.
 
 **User question:** What is our secondary-sanctions exposure operating in Central Asia, and should we expand, hold, or contract over the next 12 months?
 

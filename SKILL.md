@@ -83,7 +83,7 @@ Providing any of these at the start of a session improves output precision:
 - **Time horizon**: immediate, near-term, or structural.
 - **Audience for the output**: who will read the memo and what action it informs.
 - **Source packets**: documents, reports, or filings to ground the analysis in.
-- **Evidence mode preference**: `source-backed`, `reasoning-only`, or `mixed`.
+- **Evidence mode preference**: `live-source-backed`, `user-provided sources`, `illustrative source packet`, or `reasoning-only`.
 
 Calibration is optional. If not provided, the skill proceeds with the profile assumptions above and states them when they affect the output.
 
@@ -101,9 +101,10 @@ Before deep analysis, identify or infer:
 - Evidence mode.
 
 Evidence mode must be one of:
-- source-backed;
-- reasoning-only;
-- mixed.
+- live-source-backed;
+- user-provided sources;
+- illustrative source packet;
+- reasoning-only.
 
 If critical context is missing, ask up to 4 targeted clarifying questions.
 If the user wants speed, proceed with explicit assumptions.
@@ -116,7 +117,7 @@ At the start of the memo, write:
 **Decision:** what action, prioritization, or posture this informs
 **Audience:** who this memo is for
 **Time horizon:** immediate / near-term / medium-term / long-term
-**Evidence mode:** source-backed / reasoning-only / mixed
+**Evidence mode:** live-source-backed / user-provided sources / illustrative source packet / reasoning-only
 
 If any of these are inferred, say so.
 

@@ -1,6 +1,6 @@
 # Geopolitical scenario brief (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked.
 
 **User question:** Plausible US–China semiconductor export-control developments, 2026–2028, and what they mean for a mid-sized European chip-design firm.
 

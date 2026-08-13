@@ -1,6 +1,6 @@
 # Critical-minerals supply-risk memo (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked.
 
 **User question:** What is the supply-risk picture for our critical-minerals inputs (lithium, nickel, cobalt, rare-earths) over the next 24 months, and how should we structure procurement?
 

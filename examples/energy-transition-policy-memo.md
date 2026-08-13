@@ -1,6 +1,6 @@
 # Energy-transition policy memo (illustrative)
 
-> **Illustrative example.** Evidence mode: reasoning-only / illustrative source packet. No live sources were checked.
+> **Illustrative example.** Evidence mode: `reasoning-only`. No live sources were checked.
 
 **User question:** How should we think about EU energy-transition policy risk for a heavy-industry portfolio (steel, cement, chemicals) over the next 36 months — what changes our investment posture?
 
