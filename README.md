@@ -3,40 +3,19 @@
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **STRATEGIC-RISK REASONING CONTRACT FOR AI AGENTS** — a domain reasoning contract that runs inside AI agents and produces structured policy-risk, sanctions, regulatory, geopolitical and trade memos with decision framing, evidence boundaries, scenarios and confidence. Open-source. No live data. No legal, compliance or investment advice.
+**Strategic-risk memo skill for AI agents.**
 
-> **Horizontal reasoning method in the Agenda Intelligence portfolio.** Use directly via paste/attach into Claude, ChatGPT, Codex, or another agent. When sources are supplied, export the memo's externally checkable claims through the [evidence-packet handoff](docs/evidence-packet-handoff.md) and run Agenda Intelligence MD before human review.
+Attach [`SKILL.md`](SKILL.md) to Claude, ChatGPT, Codex, or another agent. It turns a broad policy or geopolitical-risk question into a memo that states the decision, separates facts from assessments, shows uncertainty and scenarios, and ends with indicators that could change the judgment.
 
-**Strategic-risk analysis skill for AI agents.**
+It is for analysts, researchers, reviewers, and AI engineers working on policy, sanctions, regulation, trade, or geopolitical-risk memos.
 
-A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos.
+[Try one prompt](#try-it-in-one-prompt) · [Open the skill file](SKILL.md) · [See worked examples](#examples)
 
-LLMs are good at summarizing geopolitical events. They are weak at turning them into decision-ready intelligence: framing the decision, separating facts from assessments, stating uncertainty, reasoning through actor incentives, identifying scenarios, and defining what to watch next.
+> No live source retrieval. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
 
-This repository is a domain skill layer that teaches agents how to do that work. It is a behavior contract, not a framework, runtime, or eval platform.
+## Try it in one prompt
 
-## Commercial role
-
-This repo is a **reasoning-method dependency**, not a commercial product surface. [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) is now primarily a deterministic evidence-packet linter for claim-backed AI output; the older strategic-intelligence runtime remains available for compatibility.
-
-Use Global Think Tank Analyst to improve the reasoning inside evidence-readiness artifacts: RFP teardowns, vendor evidence packets, risk memos, and human-review packets. Do not treat this repo's existence, examples, or signal archive as market validation for any Agenda Intelligence MD wedge. It should not grow buyer-facing surfaces, pricing, vertical workers, or procurement positioning on its own.
-
-## Who it is for
-
-- AI engineers and product teams building strategic-risk, sanctions, policy or geopolitical-risk agents
-- analysts, consultants and researchers using AI assistants for memo work in policy, trade, regulation or sanctions
-- risk, compliance and policy leadership whose AI tools must produce decision-ready output instead of generic regional or topical commentary
-- reviewers and editors of AI-produced memos who need explicit evidence boundaries and uncertainty labels
-
-**Where this fits in the Agenda Intelligence stack**
-
-This repo is the **reasoning method** layer. It can be used standalone or inside the older `analyze` compatibility workflow. The current primary composition is: reasoning method → optional regional specialist → claim/source packet → Agenda Intelligence MD linter → human review.
-
-The skills define how agents *reason*. Agenda Intelligence MD checks whether the supplied claim/source packet is structurally ready for review. It does not establish factual truth.
-
-## Try this prompt
-
-Paste this into an AI agent that can reason over policy, sanctions, trade, or geopolitical risk:
+Attach [`SKILL.md`](SKILL.md), then paste:
 
 ```text
 Use Global Think Tank Analyst.
