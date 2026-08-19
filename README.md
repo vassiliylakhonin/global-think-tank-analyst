@@ -88,7 +88,7 @@ flowchart LR
 
 This repo does not duplicate either neighbor. Vertical depth lives in vertical-specialist repos; evidence-packet checks live in Agenda Intelligence MD.
 
-This method is loaded as the core reasoning layer in the portfolio's deployed vertical workers. Two have interactive browser demos you can run live: [Middle Corridor Deal Risk Gate](https://vassiliylakhonin.github.io/deal-risk-gate.html) and [CIS Secondary-Sanctions Exposure](https://vassiliylakhonin.github.io/cis-secondary-sanctions.html). Evidence triage only, not advice.
+This method is loaded as the core reasoning layer in the portfolio's deployed vertical workers. The public browser demos that previously accompanied them are no longer published; [`examples/`](examples/) shows the output shape instead.
 
 For the current primary CLI handoff, see [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md) and the runnable synthetic [`examples/evidence-packet-handoff.json`](examples/evidence-packet-handoff.json). The older memo scoring / MCP recipe remains documented in [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md) as a compatibility workflow; its historical scores are not evidence of current linter performance.
 
@@ -308,7 +308,7 @@ Cross-repo terminology — evidence modes, Axis A/B provenance tags, three-value
 Author: **Vassiliy Lakhonin** — Almaty, Kazakhstan (UTC+5).
 
 - Portfolio: [vassiliylakhonin.github.io](https://vassiliylakhonin.github.io/)
-- Analyst entry route: [vassiliylakhonin.github.io/for-analysts.html](https://vassiliylakhonin.github.io/for-analysts.html)
+- Case study for this skill: [vassiliylakhonin.github.io/case-study-global-think-tank-analyst.html](https://vassiliylakhonin.github.io/case-study-global-think-tank-analyst.html)
 - Email: [vassiliy.lakhonin@gmail.com](mailto:vassiliy.lakhonin@gmail.com)
 - LinkedIn: [linkedin.com/in/vassiliy-lakhonin](https://www.linkedin.com/in/vassiliy-lakhonin/)
 - GitHub: [github.com/vassiliylakhonin](https://github.com/vassiliylakhonin)
