@@ -60,7 +60,7 @@ Each packet should include:
 2. Evidence mode and source boundary.
 3. Memo produced using Global Think Tank Analyst.
 4. Any vertical-specialist augmentation used.
-5. Agenda Intelligence MD validation/scoring output, if used.
+5. Agenda Intelligence MD evidence-packet review output, if used.
 6. Final decision brief.
 7. Known limitations.
 8. Reviewer questions.
@@ -94,23 +94,29 @@ details.
 
 ## Current Status
 
-Updated 2026-05-21.
+Updated 2026-08-24.
 
 - **External practitioner review:** none recorded. The [`reviews/`](reviews/)
   directory contains only `TEMPLATE.md` and `README.md`. No reviewer record
   exists yet. The plan prepares the workflow for external review; it does not
   claim that review has happened.
-- **Agent-eval delta cases:** one case committed under
-  [`evals/agent-eval/`](evals/agent-eval/) — `2026-05-20-cbam-enforcement.md`.
-  Agent-eval is "in addition to, not instead of" practitioner review when the
-  downstream audience includes domain practitioners (see `AGENTS.md` "Eval
-  docs"). Self-scored structural delta only; not practitioner validation.
-- **Sibling vertical specialists (different framework):** as of 2026-05-21,
-  both `central-asia-caspian-hybrid-intelligence-skill` and
-  `gulf-middle-east-hybrid-intelligence-skill` report Bar 2 cleared for agent
-  integration under their own Bar 1 / Bar 2 canon (three agent-eval cases
-  each, source-anchored example majority, evidence-mode mapping through
-  `analyze`). That canon does not apply here; see
-  `docs/maturity-framework.md`.
+- **Agent-eval delta cases:** three cases are committed under
+  [`evals/agent-eval/`](evals/agent-eval/): CBAM enforcement, Baltic cable
+  attribution, and input-claim accounting for an LNG sanctions packet. The
+  CBAM case is a self-scored structural delta. The Baltic case uses two blind
+  judges, including one cross-vendor judge, and reports a judge-dependent
+  delta of +2 to +4. The input-claim-accounting case uses one same-vendor blind
+  judge and reports a delta of 0. These are structural checks, not factual,
+  practitioner, or production validation.
+- **Skill change-control cases:**
+  [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
+  cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were
+  manually rescored from 52/60 to 58/60 after a runtime-contract sync. The two
+  test cases are labelled as holdouts but have not been executed as a release
+  gate. The case validator checks JSONL structure only. These results are not
+  a benchmark or an external validation claim.
+- **Sibling vertical specialists use a different framework:** their Bar 1 /
+  Bar 2 status is tracked in their own `STATUS.md` files and is not validation
+  evidence for this repo. See [`docs/maturity-framework.md`](docs/maturity-framework.md).
 - **No production usage, no adoption numbers, no benchmark scores** are
   claimed by this repo or by the vertical specialists.
