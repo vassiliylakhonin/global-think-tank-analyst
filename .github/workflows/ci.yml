@@ -12,47 +12,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate SKILL frontmatter
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re, sys
-          p = Path('SKILL.md')
-          if not p.exists():
-              print('SKILL.md missing')
-              sys.exit(1)
-          t = p.read_text(encoding='utf-8')
-          if not t.startswith('---\n'):
-              print('Frontmatter missing')
-              sys.exit(1)
-          end = t.find('\n---\n', 4)
-          if end == -1:
-              print('Frontmatter closing delimiter missing')
-              sys.exit(1)
-          fm = t[4:end]
-          if not re.search(r'^name:\s*\S+', fm, re.M):
-              print('name missing in frontmatter')
-              sys.exit(1)
-          if not re.search(r'^description:\s*.+', fm, re.M):
-              print('description missing in frontmatter')
-              sys.exit(1)
-          print('Frontmatter OK')
-          PY
-
-      - name: Validate signal JSON feeds
-        run: python3 scripts/validate_signals.py
-
-      - name: Validate repository JSON
-        run: python3 scripts/validate_json.py
-
-      - name: Validate evidence-packet handoff
-        run: python3 scripts/validate_evidence_packet_handoff.py
-
-      - name: Validate example evidence discipline
-        run: python3 scripts/validate_examples.py
-
-      - name: Validate codex/SKILL.md shared-section sync
-        run: python3 scripts/validate_codex_sync.py
-
-      - name: Validate local Markdown links
-        run: python3 scripts/check_markdown_links.py
+      - name: Run repository checks
+        run: python3 scripts/check.py

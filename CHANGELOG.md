@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Fixed the packaged skill identifier so `SKILL.md` uses the lowercase, hyphenated `global-think-tank-analyst` name exposed by its discovery directory.
+- Added `scripts/check.py` as the single local/CI check interface and a narrowly scoped package validator for discovery fields, the canonical skill symlink, and synchronized plugin manifests.
+- Synchronized public documentation with Mode G (Competing Hypotheses) and distinguished development-time repository checks from memo/output validation.
+
 - Fixed two dead links to the author's site. `deal-risk-gate.html` and `for-analysts.html` have returned 404 since the site was restructured; the README also claimed two interactive browser demos that are no longer published. The demo sentence now points at `examples/`, and the contact section links the live case-study page.
 - Extended `scripts/check_markdown_links.py` to fail on 404/410 for links to the author's own site, which previously went unchecked because every `http(s)://` target was skipped. Network errors and other statuses are reported without failing, so an offline run stays deterministic; `SKIP_SITE_LINK_CHECK=1` skips the network step.
 

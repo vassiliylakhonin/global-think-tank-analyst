@@ -1,5 +1,5 @@
 ---
-name: policy_risk_memo_architect
+name: global-think-tank-analyst
 description: Strategic-risk analysis skill for AI agents producing decision-ready memos on geopolitics, sanctions, trade, regulation, and strategic risk with explicit evidence boundaries, uncertainty, scenarios, actor incentives, trade-offs, and watch-next indicators. Use for a country risk brief, policy memo, sanctions or export-control exposure assessment, trade or regulatory implications memo, geopolitical scenario brief, strategic implications note for leadership, stakeholder and incentives analysis, a red-team challenge to an existing policy or risk view, or a decision briefing pack for founders, operators, investors, NGOs, compliance teams, policy teams, or leadership. Do not use for a simple news recap, encyclopedia-style overview, academic literature review, legal advice, intelligence-style certainty, decorative analysis, or unsupported quantitative forecasting.
 ---
 
