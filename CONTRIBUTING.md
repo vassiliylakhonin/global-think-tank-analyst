@@ -19,13 +19,10 @@ If you've just landed in this repo and want to understand it before editing, do 
 ```bash
 git clone https://github.com/vassiliylakhonin/global-think-tank-analyst
 cd global-think-tank-analyst
-python3 scripts/validate_signals.py
-python3 scripts/validate_json.py
-python3 scripts/validate_examples.py
-python3 scripts/validate_evidence_packet_handoff.py
+python3 scripts/check.py
 ```
 
-Requirements: Python 3.8+. No additional packages — all validators use the standard library. CI hard-stops on all three; run them locally before pushing or `main` will go red.
+Requirements: Python 3.8+. No additional packages — all validators use the standard library. CI runs the same command and stops on the first failed check.
 
 **3. Read one concrete artifact end-to-end:**
 
@@ -54,13 +51,10 @@ Requirements: Python 3.8+. No additional packages needed — all validators use 
 Run validators from the repo root:
 
 ```bash
-python3 scripts/validate_signals.py
-python3 scripts/validate_json.py
-python3 scripts/validate_examples.py
-python3 scripts/validate_evidence_packet_handoff.py
+python3 scripts/check.py
 ```
 
-CI hard-stops on all three. Run them before pushing — a red CI on `main` is the only feedback you will get otherwise. See [`scripts/README.md`](scripts/README.md) for what each script checks.
+The runner stops on the first failure. See [`scripts/README.md`](scripts/README.md) for what each script checks.
 
 ## Development workflow
 
@@ -108,12 +102,12 @@ Signals require four files to be updated atomically in the same commit. CI enfor
 
 ## PR checklist
 
-- [ ] `name` and `description` remain valid in `SKILL.md` and `codex/SKILL.md` frontmatter
+- [ ] Packaged `SKILL.md` discovery fields pass `scripts/validate_skill_package.py`; Codex variant frontmatter remains present
 - [ ] Behavior or positioning change is documented in `CHANGELOG.md` (under `Unreleased` or a new version)
 - [ ] `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt`, and `README.md` remain aligned
 - [ ] Naming hierarchy preserved: Product = Global Think Tank Analyst; Method = Policy Risk Memo Architect; Companion = Agenda Intelligence MD
 - [ ] Examples state evidence mode and do not fabricate citations
 - [ ] No claims of external verification, validation, MCP, CLI, or CI checks unless truly implemented in this repo
 - [ ] No exaggerated language ("revolutionary", "production-grade", "guarantees correctness", "fully autonomous")
-- [ ] All three validators pass locally: `validate_signals.py`, `validate_json.py`, `validate_examples.py`
+- [ ] `python3 scripts/check.py` passes locally
 - [ ] If an example was added or renamed: both `README.md` examples table and `examples/README.md` domain table are updated in the same PR

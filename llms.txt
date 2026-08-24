@@ -4,7 +4,7 @@ Purpose: a reusable domain skill layer for AI agents that produce policy-risk, s
 
 Use this repository when an AI agent needs:
 - to convert a broad geopolitical/policy question into a decision problem;
-- to produce a structured strategic-risk memo (quick brief, standard, scenario, red-team, decision pack, analyst training);
+- to produce a structured strategic-risk memo (quick brief, standard, scenario, red-team, decision pack, analyst training, competing hypotheses);
 - to enforce fact / assessment / assumption / scenario / unknown separation;
 - to disclose evidence limits when live verification is unavailable;
 - to produce concrete watch-next indicators and decision triggers;
@@ -12,7 +12,7 @@ Use this repository when an AI agent needs:
 
 What this repository is not:
 - not a factuality verifier, source retriever, or RAG pipeline;
-- not an MCP server, CLI tool, validator, schema layer, or eval framework;
+- not an MCP server, memo-validation CLI, factuality validator, domain schema layer, or eval framework;
 - not legal, compliance, sanctions, or investment advice;
 - not a generic agent framework.
 
@@ -47,6 +47,7 @@ Core files:
 - examples/ — worked memo examples across reasoning-only, live-source-backed, and user-provided source modes
 - evals/ — human review checklist, failure modes, starter rubric
 - signals/ — public examples of the skill style (not official intelligence)
+- scripts/check.py — one command for development-time repository consistency checks
 
 Agent guidance:
 - Treat this repository as a behavior contract, not just documentation.

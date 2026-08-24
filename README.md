@@ -43,7 +43,7 @@ Expected shape of a good answer:
 
 - frames broad geopolitical or policy questions as decision problems;
 - separates facts, assessments, assumptions, scenarios, and unknowns;
-- produces structured strategic-risk memos in six modes (quick brief, standard, scenario, red-team, decision pack, analyst training);
+- produces structured strategic-risk memos in seven modes (quick brief, standard, scenario, red-team, decision pack, analyst training, competing hypotheses);
 - enforces evidence-boundary language when live verification is not possible;
 - avoids unsupported certainty and source theater;
 - helps agents produce concrete watch-next indicators and decision triggers;
@@ -104,10 +104,10 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | RAG / internal copilots | Compatible by indexing | Index `README.md`, `SKILL.md`, `AGENTS.md`, `llms.txt`, `signals/` |
 | Agenda Intelligence MD | Companion checker | Use it for deterministic evidence-packet preflight; older memo validation and scoring are compatibility surfaces |
 | MCP server | Not implemented here | Use Agenda Intelligence MD if MCP is required |
-| CLI validation | Not implemented here | Use Agenda Intelligence MD |
+| Memo/output validation CLI | Not implemented here | Use Agenda Intelligence MD |
 | Factuality verification | Not implemented here | This skill enforces *discipline*, not truth |
 
-This repository ships only markdown skill files, examples, eval checklists, and a small signal-generation script. It does not include validators, schemas, or runtimes.
+This repository ships markdown skill files, examples, eval checklists, development-time consistency validators, and a small signal-generation script. It does not include a memo-validation runtime, domain schema layer, or application runtime.
 
 ## Quick usage
 
@@ -122,7 +122,7 @@ Audience: [founder / operator / investor / compliance / policy team / leadership
 Geography: [countries, regions, corridors, markets]
 Time horizon: [days / months / 1–3 years]
 Evidence mode: live-source-backed / user-provided sources / illustrative source packet / reasoning-only
-Depth: quick brief / standard memo / scenario brief / red-team / decision pack / analyst training
+Depth: quick brief / standard memo / scenario brief / red-team / decision pack / analyst training / competing hypotheses
 
 Separate facts, assumptions, assessments, scenarios, and unknowns.
 Give options, trade-offs, indicators to watch, and bounded confidence.
@@ -135,11 +135,12 @@ If the agent has live browsing, ask it to cite sources. If it does not, it must 
 | Mode | Use when you need | Typical output |
 |---|---|---|
 | **A — Quick Brief** | Fast orientation | Bottom line, why it matters, main risks, watchlist, confidence |
-| **B — Standard Memo** | Default decision memo | Executive takeaway, context, evidence limits, actors, assessment, options |
+| **B — Standard Policy/Risk Memo** | Default decision memo | Executive takeaway, context, evidence limits, actors, assessment, options |
 | **C — Scenario Brief** | Divergent futures matter | Baseline, 2–4 scenarios, triggers, implications, indicators |
 | **D — Red-Team Challenge** | Stress-test a claim | Failure modes, alternative explanations, missing assumptions, revised judgment |
 | **E — Decision Briefing Pack** | A team needs to act | Memo, options table, watchlist, questions for owners, next-step cadence |
 | **F — Analyst Training** | Develop your own reasoning | Coaching questions, Socratic challenge, not a finished memo |
+| **G — Competing Hypotheses (ACH)** | Several explanations compete and attribution matters | Hypotheses, evidence matrix, disconfirmation ranking, sensitivity, bounded judgment |
 
 ## Before / after
 
@@ -262,7 +263,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 ├── evals/                # Human review checklist, failure modes, rubric
 ├── reviews/              # Future external review records
 ├── signals/              # Public signal archive + template
-├── scripts/              # Signal generation helper
+├── scripts/              # Repository checks and signal generation helper
 └── .github/              # CI, issue templates, workflows
 ```
 
@@ -271,7 +272,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 - This project is intentionally conservative about evidence. It does not fabricate sources, imply live verification when none occurred, or present speculative geopolitical judgments as facts.
 - It is a **decision-support skill**, not legal, compliance, investment, sanctions, or intelligence advice.
 - It does not verify factuality. It enforces analytical *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing.
-- It does not retrieve sources, run validators, expose an MCP server, or score outputs. For those, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
+- It does not retrieve sources, validate memo content, expose an MCP server, or score outputs. Development-time repository checks do not establish memo factuality. For memo preflight, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 - Examples in this repo are demonstrations of the skill style across `reasoning-only`, `user-provided sources`, and `live-source-backed` modes. Do not treat them as real intelligence products, and verify current facts before operational use.
 - Signals in `signals/` are public examples of the skill style, not official intelligence and not real-time.
 
@@ -299,7 +300,7 @@ If you'd like to influence the roadmap, open an issue.
 
 ## Contributing
 
-New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 minutes" onboarding path — read the three load-bearing files (`README.md`, `AGENTS.md`, `VALIDATION_PLAN.md`), run the three validators (`validate_signals.py`, `validate_json.py`, `validate_examples.py`), and walk one concrete artifact end-to-end. CI hard-stops on all three validators; run them locally before pushing.
+New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 minutes" onboarding path — read the three load-bearing files (`README.md`, `AGENTS.md`, `VALIDATION_PLAN.md`), run `python3 scripts/check.py`, and walk one concrete artifact end-to-end. CI runs the same command before changes can merge.
 
 Cross-repo terminology — evidence modes, Axis A/B provenance tags, three-value response logic, and the deliberate maturity-framework asymmetry across the four-repo stack (this repo uses `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets) — is consolidated in the portfolio glossary at [`agenda-intelligence-md/docs/glossary.md`](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md).
 
