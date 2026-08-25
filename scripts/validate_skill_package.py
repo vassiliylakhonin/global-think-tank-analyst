@@ -20,7 +20,9 @@ MANIFESTS = (
     ROOT / "plugin.json",
     ROOT / ".claude-plugin" / "plugin.json",
 )
+CHANGELOG = ROOT / "CHANGELOG.md"
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+RELEASE_HEADING = re.compile(r"^## (\d+\.\d+\.\d+) - \d{4}-\d{2}-\d{2}\s*$", re.MULTILINE)
 
 
 def fail(message):
@@ -66,6 +68,18 @@ def validate_skill():
         fail("skill description must contain between 1 and 1024 characters")
 
 
+def released_version():
+    """Return the newest version with a dated heading in CHANGELOG.md.
+
+    `## Unreleased` is skipped on purpose: the manifests describe what is
+    published, so they track the last cut release rather than every merge.
+    """
+    match = RELEASE_HEADING.search(CHANGELOG.read_text(encoding="utf-8"))
+    if not match:
+        fail("CHANGELOG.md has no dated release heading (`## X.Y.Z - YYYY-MM-DD`)")
+    return match.group(1)
+
+
 def validate_manifests():
     documents = []
     for path in MANIFESTS:
@@ -84,11 +98,25 @@ def validate_manifests():
         if values[0] != values[1]:
             fail(f"plugin manifests disagree on {field!r}")
 
+    # Agreeing with each other is not enough: both manifests sat at 1.0.0 while
+    # CHANGELOG.md documented releases through 1.3.0, and nothing caught it.
+    expected = released_version()
+    for path, document in documents:
+        if document.get("version") != expected:
+            fail(
+                f"{path.relative_to(ROOT)} declares version "
+                f"{document.get('version')!r}, but the newest release in "
+                f"CHANGELOG.md is {expected!r}"
+            )
+
 
 def main():
     validate_skill()
     validate_manifests()
-    print("ok: skill discovery fields, canonical symlink, and plugin manifests are consistent")
+    print(
+        "ok: skill discovery fields, canonical symlink, and plugin manifests "
+        f"are consistent at version {released_version()}"
+    )
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ Development and CI helper scripts. Not part of the published skill.
 | Script | Purpose | Used in CI |
 |---|---|---|
 | `check.py` | Run every supported repository check through one command | Yes |
-| `validate_skill_package.py` | Guard skill discovery fields, the canonical symlink, and synchronized plugin manifests | Yes |
+| `validate_skill_package.py` | Guard skill discovery fields, the canonical symlink, and plugin manifests synchronized with each other and with the released version in `CHANGELOG.md` | Yes |
 | `validate_signals.py` | 4-file consistency check across signals/ (index, feed, latest, individual signal) | Yes |
 | `test_signal_pipeline.py` | Unit tests: generator index output must satisfy `validate_signals.py` | Yes |
 | `validate_examples.py` | Evidence-mode and retrieval-date discipline for examples/ | Yes |
