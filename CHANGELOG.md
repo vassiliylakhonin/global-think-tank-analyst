@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+_Nothing yet._
+
+## 1.4.0 - 2026-08-25
+
+- Reconciled the plugin manifests with the release history. `plugin.json` and `.claude-plugin/plugin.json` were added during the 1.3.0 development cycle and both declared `1.0.0`, three releases behind `CHANGELOG.md`. Both now declare the released repository version.
+- `scripts/validate_skill_package.py` now checks each manifest against the newest dated release heading in `CHANGELOG.md`, not only against the other manifest. Agreeing with each other was what let the pair sit at `1.0.0` unnoticed. `## Unreleased` is skipped: the manifests describe what is published, so ordinary merges do not force a bump.
+
 - Added `scripts/test_signal_pipeline.py` and wired it into `scripts/check.py`: the generator's index, feed, and latest-signal output is now run through `scripts/validate_signals.py` on a throwaway tree, so a title or filename regression fails locally instead of surfacing in the weekly automated pull request. Both fixed defects reproduce as failing tests against the previous behaviour.
 - `scripts/check_markdown_links.py` no longer inspects link syntax inside fenced code blocks, where a link is an illustration rather than a repository target. No currently tracked link is affected; the change removes a false-failure trap for future documentation.
 - `scripts/validate_examples.py` now walks `examples/` recursively instead of its top level only, and accepts the `**Evidence mode**:` form alongside `**Evidence mode:**`.

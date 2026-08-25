@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "global-think-tank-analyst",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "Horizontal strategic-risk reasoning method: decision-grade memos on geopolitics, sanctions, trade, and regulation with explicit evidence boundaries, uncertainty, scenarios, actor incentives, and watch-next indicators.",
   "author": {
     "name": "Vassiliy Lakhonin",
