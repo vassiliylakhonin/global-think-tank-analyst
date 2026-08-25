@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added `scripts/test_signal_pipeline.py` and wired it into `scripts/check.py`: the generator's index, feed, and latest-signal output is now run through `scripts/validate_signals.py` on a throwaway tree, so a title or filename regression fails locally instead of surfacing in the weekly automated pull request. Both fixed defects reproduce as failing tests against the previous behaviour.
+- `scripts/check_markdown_links.py` no longer inspects link syntax inside fenced code blocks, where a link is an illustration rather than a repository target. No currently tracked link is affected; the change removes a false-failure trap for future documentation.
+- `scripts/validate_examples.py` now walks `examples/` recursively instead of its top level only, and accepts the `**Evidence mode**:` form alongside `**Evidence mode:**`.
+
 - Fixed `scripts/generate_policy_risk_signal.py` recording an index title that `scripts/validate_signals.py` then rejects. The title was normalized through `strip_text()` and truncated, and when the `<!-- title: ... -->` marker was absent it reconstructed a sentence from the `## Signal` paragraph. The validator requires the recorded title to appear verbatim in the signal markdown, so both paths could open a pull request that fails CI. The marker is now required, and the verbatim invariant is checked at generation time.
 - Fixed the same script silently overwriting an existing signal when a run landed on a date that already had one. It always wrote `signals/YYYY/YYYY-MM-DD.md`, although the archive documents `YYYY-MM-DD-<topic>.md` for shared dates; it now derives a topic slug from the title.
 - Fixed the archive footer written by the generator, which dropped the documented same-day filename convention from `signals/README.md` on every automated run.

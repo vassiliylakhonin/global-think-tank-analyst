@@ -16,7 +16,7 @@ CANONICAL_EVIDENCE_MODES = {
     "illustrative source packet",
     "reasoning-only",
 }
-EVIDENCE_MODE_RE = re.compile(r"evidence mode:\*{0,2}\s*`?([^`\n.]+)`?", re.IGNORECASE)
+EVIDENCE_MODE_RE = re.compile(r"evidence mode\*{0,2}:\*{0,2}\s*`?([^`\n.]+)`?", re.IGNORECASE)
 RETRIEVAL_DATE_RE = re.compile(
     r"(?:retrieval date|sources retrieved on)(?:\s*:\s*|\s+\*{0,2})(20\d{2}-\d{2}-\d{2})",
     re.IGNORECASE,
@@ -29,7 +29,7 @@ def fail(message: str) -> None:
 
 
 def main() -> None:
-    examples = sorted(path for path in EXAMPLES_DIR.glob("*.md") if path.name != "README.md")
+    examples = sorted(path for path in EXAMPLES_DIR.rglob("*.md") if path.name != "README.md")
     if not examples:
         fail("examples/: no markdown examples found")
 

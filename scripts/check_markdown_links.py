@@ -21,6 +21,7 @@ from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+FENCE_RE = re.compile(r"^\s*(?:```|~~~)")
 OWN_SITE_PREFIX = "https://vassiliylakhonin.github.io"
 GONE_STATUSES = {404, 410}
 REQUEST_TIMEOUT = 10
@@ -88,7 +89,13 @@ def main() -> int:
     site_links: dict[str, list[str]] = {}
     for markdown in tracked_markdown_files():
         text = markdown.read_text(encoding="utf-8")
+        in_fence = False
         for line_number, line in enumerate(text.splitlines(), 1):
+            if FENCE_RE.match(line):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
             for raw_target in LINK_RE.findall(line):
                 site_url = own_site_target(raw_target)
                 if site_url is not None:

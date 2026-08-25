@@ -11,6 +11,7 @@ CHECKS = (
     ("skill package", ("scripts/validate_skill_package.py",)),
     ("repository JSON", ("scripts/validate_json.py",)),
     ("signal archive", ("scripts/validate_signals.py",)),
+    ("signal pipeline tests", ("scripts/test_signal_pipeline.py",)),
     ("evidence-packet handoff", ("scripts/validate_evidence_packet_handoff.py",)),
     ("example evidence discipline", ("scripts/validate_examples.py",)),
     ("Codex variant sync", ("scripts/validate_codex_sync.py",)),
