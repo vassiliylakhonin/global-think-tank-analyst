@@ -25,7 +25,6 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES_PATH = ROOT / ".github" / "policy-risk-signal" / "sources.json"
 SIGNALS_DIR = ROOT / "signals"
-README_PATH = ROOT / "README.md"
 ARCHIVE_PATH = SIGNALS_DIR / "README.md"
 LATEST_PATH = SIGNALS_DIR / "latest.md"
 INDEX_JSON_PATH = SIGNALS_DIR / "index.json"
@@ -208,6 +207,8 @@ def openai_generate(prompt: str, model: str) -> str:
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
         raise SystemExit(f"OpenAI API error {exc.code}: {body[:1000]}") from exc
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise SystemExit(f"OpenAI API request failed: {exc}") from exc
 
     chunks: list[str] = []
     for item in data.get("output", []):
@@ -220,15 +221,58 @@ def openai_generate(prompt: str, model: str) -> str:
     return text
 
 
-def signal_title(markdown: str) -> str:
-    meta = re.search(r"<!--\s*title:\s*(.+?)\s*-->", markdown)
-    if meta:
-        return strip_text(meta.group(1))[:140]
-    match = re.search(r"## Signal\s+(.+?)(?:\n## |\Z)", markdown, re.S)
-    if match:
-        paragraph = strip_text(match.group(1)).split(".")[0]
-        return paragraph[:110].rstrip() or "weekly policy risk signal"
-    return "weekly policy risk signal"
+TITLE_LIMIT = 140
+TITLE_RE = re.compile(r"<!--\s*title:\s*(.+?)\s*-->")
+
+
+def signal_title(markdown: str, source: str = "generated signal") -> str:
+    """Read the index title from the `<!-- title: ... -->` marker.
+
+    scripts/validate_signals.py requires the title recorded in index.json and
+    feed.json to appear verbatim in the signal markdown, so the title is never
+    reconstructed from prose: a normalized or truncated paragraph would not
+    match its own source file and would fail CI after the PR was opened.
+    """
+    meta = TITLE_RE.search(markdown)
+    if not meta:
+        raise SystemExit(
+            f"{source}: missing the `<!-- title: ... -->` marker; "
+            "signals/index.json and signals/feed.json are built from it"
+        )
+    title = meta.group(1).strip()
+    if len(title) > TITLE_LIMIT:
+        raise SystemExit(
+            f"{source}: title marker exceeds {TITLE_LIMIT} characters; shorten it"
+        )
+    if title not in markdown:
+        raise SystemExit(f"{source}: title must appear verbatim in the signal markdown")
+    return title
+
+
+SLUG_LIMIT = 60
+
+
+def topic_slug(title: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:SLUG_LIMIT].rstrip("-")
+
+
+def signal_path(out_dir: Path, date: str, title: str) -> Path:
+    """Pick a filename for `date` that does not overwrite an existing signal.
+
+    signals/README.md documents `YYYY-MM-DD-<topic>.md` for days carrying more
+    than one signal. Without this, a second run on the same date silently
+    replaced the first file and left a duplicate date in the indexes.
+    """
+    plain = out_dir / f"{date}.md"
+    if not plain.exists() and not any(out_dir.glob(f"{date}-*.md")):
+        return plain
+    slug = topic_slug(title) or "signal"
+    candidate = out_dir / f"{date}-{slug}.md"
+    suffix = 2
+    while candidate.exists():
+        candidate = out_dir / f"{date}-{slug}-{suffix}.md"
+        suffix += 1
+    return candidate
 
 
 ARCHIVE_HEADER = """# Policy Risk Signals
@@ -256,7 +300,7 @@ ARCHIVE_FOOTER = """
 
 ## Contributing a signal
 
-Copy [`TEMPLATE.md`](TEMPLATE.md) to `signals/YYYY/YYYY-MM-DD.md`, fill in every section, and open a pull request. Reviewers will check evidence mode, confidence calibration, and that no citations are fabricated.
+Copy [`TEMPLATE.md`](TEMPLATE.md) to `signals/YYYY/YYYY-MM-DD.md` (or `YYYY-MM-DD-<topic>.md` if multiple signals fall on the same day), fill in every section, and open a pull request. Reviewers will check evidence mode, confidence calibration, and that no citations are fabricated.
 """
 
 
@@ -288,7 +332,7 @@ def collect_signal_entries() -> list[dict[str, str]]:
             {
                 "date": date,
                 "slug": slug,
-                "title": signal_title(markdown),
+                "title": signal_title(markdown, source=path.relative_to(ROOT).as_posix()),
                 "path": rel_path,
                 "url": f"{REPO_URL}/blob/main/{rel_path}",
             }
@@ -352,6 +396,10 @@ def main() -> None:
     args = parser.parse_args()
 
     date = args.date
+    try:
+        dt.date.fromisoformat(date)
+    except ValueError:
+        raise SystemExit(f"--date must be YYYY-MM-DD, got {date!r}") from None
     year = date[:4]
     snippets = collect_snippets()
     prompt = USER_TEMPLATE.format(date=date, snippets=snippets)
@@ -370,16 +418,22 @@ def main() -> None:
         raise SystemExit(f"Generated signal is missing required sections: {', '.join(missing)}")
     if "Evidence mode:" not in markdown:
         raise SystemExit("Generated signal is missing the evidence mode header block")
+    if f"Date: {date}" not in markdown:
+        raise SystemExit(
+            f"Generated signal is missing the `Date: {date}` header line required "
+            "by scripts/validate_signals.py"
+        )
 
-    out_dir = SIGNALS_DIR / year
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"{date}.md"
-    rel_path = out_path.relative_to(ROOT).as_posix()
     title = signal_title(markdown)
 
     if args.dry_run:
         print(markdown)
         return
+
+    out_dir = SIGNALS_DIR / year
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = signal_path(out_dir, date, title)
+    rel_path = out_path.relative_to(ROOT).as_posix()
 
     out_path.write_text(markdown.rstrip() + "\n", encoding="utf-8")
     update_archive(date, rel_path, title)

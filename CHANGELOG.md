@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+- Added `scripts/test_signal_pipeline.py` and wired it into `scripts/check.py`: the generator's index, feed, and latest-signal output is now run through `scripts/validate_signals.py` on a throwaway tree, so a title or filename regression fails locally instead of surfacing in the weekly automated pull request. Both fixed defects reproduce as failing tests against the previous behaviour.
+- `scripts/check_markdown_links.py` no longer inspects link syntax inside fenced code blocks, where a link is an illustration rather than a repository target. No currently tracked link is affected; the change removes a false-failure trap for future documentation.
+- `scripts/validate_examples.py` now walks `examples/` recursively instead of its top level only, and accepts the `**Evidence mode**:` form alongside `**Evidence mode:**`.
+
+- Fixed `scripts/generate_policy_risk_signal.py` recording an index title that `scripts/validate_signals.py` then rejects. The title was normalized through `strip_text()` and truncated, and when the `<!-- title: ... -->` marker was absent it reconstructed a sentence from the `## Signal` paragraph. The validator requires the recorded title to appear verbatim in the signal markdown, so both paths could open a pull request that fails CI. The marker is now required, and the verbatim invariant is checked at generation time.
+- Fixed the same script silently overwriting an existing signal when a run landed on a date that already had one. It always wrote `signals/YYYY/YYYY-MM-DD.md`, although the archive documents `YYYY-MM-DD-<topic>.md` for shared dates; it now derives a topic slug from the title.
+- Fixed the archive footer written by the generator, which dropped the documented same-day filename convention from `signals/README.md` on every automated run.
+- Added generation-time checks for the `Date: YYYY-MM-DD` header line and the `--date` argument format, both of which `scripts/validate_signals.py` only enforces after the file is written.
+- Fixed unhandled network errors in the OpenAI request path, which raised a traceback instead of a message.
+- Removed the unused `README_PATH` constant and corrected the weekly workflow, which diffed `README.md` and asked reviewers to check a README signal index that the generator never writes.
+- Fixed `scripts/validate_codex_sync.py` silently ignoring a single path argument: `len(sys.argv) > 2` guarded the read of `sys.argv[1]`.
+- `scripts/validate_signals.py` now fails with a message instead of a traceback when `signals/latest.md` is missing or the JSON payloads hold unexpected types.
+- Synced `signals/TEMPLATE.md` with the archive. It lacked the `<!-- title: ... -->` marker that every archived signal carries and that the indexes are built from, used a `## Event` heading no recent signal uses, and documented only the single-signal-per-day filename.
+- Corrected the README claim that every live-source-backed example was retrieved on 2026-05-08; the Middle Corridor example states 2026-05-15.
+- Relaxed the `agenda-intelligence-md` install pin in the integration doc from `==1.3.0` to `>=1.3.0` and normalized the repository URL casing. The repository's synthetic packet lints clean under 1.6.0.
+
 - Fixed the packaged skill identifier so `SKILL.md` uses the lowercase, hyphenated `global-think-tank-analyst` name exposed by its discovery directory.
 - Added `scripts/check.py` as the single local/CI check interface and a narrowly scoped package validator for discovery fields, the canonical skill symlink, and synchronized plugin manifests.
 - Synchronized public documentation with Mode G (Competing Hypotheses) and distinguished development-time repository checks from memo/output validation.

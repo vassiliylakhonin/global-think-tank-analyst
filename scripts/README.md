@@ -7,6 +7,7 @@ Development and CI helper scripts. Not part of the published skill.
 | `check.py` | Run every supported repository check through one command | Yes |
 | `validate_skill_package.py` | Guard skill discovery fields, the canonical symlink, and synchronized plugin manifests | Yes |
 | `validate_signals.py` | 4-file consistency check across signals/ (index, feed, latest, individual signal) | Yes |
+| `test_signal_pipeline.py` | Unit tests: generator index output must satisfy `validate_signals.py` | Yes |
 | `validate_examples.py` | Evidence-mode and retrieval-date discipline for examples/ | Yes |
 | `validate_json.py` | Parse-check all repository JSON files | Yes |
 | `validate_evidence_packet_handoff.py` | Validate the synthetic claim/source packet and primary Agenda composition language | Yes |

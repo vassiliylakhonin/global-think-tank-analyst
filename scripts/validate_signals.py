@@ -49,6 +49,8 @@ def main() -> None:
         fail("signals/feed.json: items must be a list")
 
     latest = index["latest"]
+    if not isinstance(latest, dict):
+        fail("signals/index.json: latest must be an object")
     require_keys(index_path, latest, ("date", "slug", "title", "path", "url"))
     canonical_latest = ROOT / latest["path"]
     if not canonical_latest.exists():
@@ -62,12 +64,17 @@ def main() -> None:
                 f"but newest signal by date is '{newest['slug']}' ({newest['date']})"
             )
 
+    if not latest_path.exists():
+        fail("signals/latest.md missing")
     latest_text = latest_path.read_text(encoding="utf-8")
     if latest["title"] not in latest_text:
         fail("signals/latest.md does not contain the latest title from signals/index.json")
     if latest["path"] not in latest_text:
         fail("signals/latest.md does not contain the latest canonical path from signals/index.json")
 
+    for position, item in enumerate(feed["items"]):
+        if not isinstance(item, dict):
+            fail(f"signals/feed.json: items[{position}] must be an object")
     feed_by_url = {item.get("url"): item for item in feed["items"]}
 
     for signal in index["signals"]:

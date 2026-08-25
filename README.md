@@ -196,7 +196,7 @@ For a guided route through the examples, start with [`examples/README.md`](examp
 | Energy / source-conflict method | illustrative source packet | [IEA vs OPEC demand-forecast conflict — source-conflict surfacing rule applied](examples/source-conflict-iea-opec-demand-forecast.md) |
 | Sanctions / red-team | reasoning-only | [Red-team policy brief](examples/red-team-policy-brief.md) |
 
-Live-source-backed examples cite real public sources retrieved on 2026-05-08; verify before any operational use. Reasoning-only examples do not cite live sources and are not intelligence products.
+Live-source-backed examples cite real public sources and each states its own retrieval date (2026-05-08, except the Middle Corridor example at 2026-05-15); verify before any operational use. Reasoning-only examples do not cite live sources and are not intelligence products.
 
 ## Evaluation
 

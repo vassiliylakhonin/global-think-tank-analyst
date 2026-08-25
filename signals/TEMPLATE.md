@@ -1,6 +1,16 @@
-# Policy Risk Signal — Template
+# Policy Risk Signal — YYYY-MM-DD
 
-> Copy this file to `signals/YYYY/YYYY-MM-DD.md` for new signals.
+<!-- title: short title under 80 chars -->
+
+> Template. Copy this file to `signals/YYYY/YYYY-MM-DD.md` (or
+> `YYYY-MM-DD-<topic>.md` if multiple signals fall on the same day) and replace
+> the heading date and the `title` marker above.
+>
+> The `<!-- title: ... -->` marker is not decoration: `signals/index.json`,
+> `signals/feed.json`, and `signals/latest.md` are built from it, and
+> `scripts/validate_signals.py` fails CI when the recorded title does not appear
+> verbatim in the signal. Run `python3 scripts/validate_signals.py` before
+> opening the pull request.
 
 ```text
 Date: YYYY-MM-DD
@@ -10,9 +20,11 @@ Evidence mode: live-source-backed / user-provided sources / illustrative source 
 Confidence: Low / Moderate / High
 ```
 
-## Event
+## Signal
 
-What happened, in 2–4 sentences. Be specific. No decoration.
+What happened, in 2–4 sentences. Be specific. No decoration. Every signal in the
+archive uses this heading; the generator in
+`scripts/generate_policy_risk_signal.py` requires it.
 
 ## Why it matters
 

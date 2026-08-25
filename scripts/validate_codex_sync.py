@@ -63,8 +63,14 @@ def sections(path):
 
 
 def main():
-    root_path = sys.argv[1] if len(sys.argv) > 2 else "SKILL.md"
-    codex_path = sys.argv[2] if len(sys.argv) > 2 else "codex/SKILL.md"
+    argv = sys.argv[1:]
+    if argv and len(argv) != 2:
+        print(
+            "usage: validate_codex_sync.py [root_path codex_path]",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+    root_path, codex_path = argv or ("SKILL.md", "codex/SKILL.md")
 
     root = sections(root_path)
     codex = sections(codex_path)

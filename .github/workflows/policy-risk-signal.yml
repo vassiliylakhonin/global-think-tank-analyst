@@ -39,7 +39,7 @@ jobs:
           fi
 
       - name: Show generated changes
-        run: git diff -- README.md signals/
+        run: git diff -- signals/
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
@@ -55,7 +55,7 @@ jobs:
             - [ ] Sources are real and relevant
             - [ ] Facts are source-backed
             - [ ] Assessment is bounded and not legal/compliance/investment advice
-            - [ ] README signal index looks right
+            - [ ] `signals/` index, feed, latest, and archive list agree (`python3 scripts/validate_signals.py`)
           labels: |
             documentation
             automated-signal
