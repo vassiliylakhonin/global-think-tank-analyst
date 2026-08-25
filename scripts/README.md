@@ -13,7 +13,7 @@ Development and CI helper scripts. Not part of the published skill.
 | `validate_evidence_packet_handoff.py` | Validate the synthetic claim/source packet and primary Agenda composition language | Yes |
 | `validate_codex_sync.py` | Guard shared-section sync between canonical and Codex skill files | Yes |
 | `check_markdown_links.py` | Validate local Markdown targets and known author-site links | Yes |
-| `generate_policy_risk_signal.py` | Automated weekly policy-risk signal generation (OpenAI API, opens PR) | Yes (scheduled workflow) |
+| `generate_policy_risk_signal.py` | Draft a policy-risk signal from public feeds (OpenAI API, opens PR) | No (manual `workflow_dispatch` only) |
 
 Run the same checks as CI from the repository root:
 

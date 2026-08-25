@@ -8,6 +8,10 @@ import sys
 from pathlib import Path
 
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import generate_policy_risk_signal as generator  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 SIGNALS_DIR = ROOT / "signals"
 
@@ -30,6 +34,29 @@ def require_keys(path: Path, payload: dict, keys: tuple[str, ...]) -> None:
     missing = [key for key in keys if key not in payload]
     if missing:
         fail(f"{path.relative_to(ROOT)} missing keys: {missing}")
+
+
+def check_archive_readme() -> None:
+    """signals/README.md is rewritten by the generator; the two must agree.
+
+    The generator owns the prose around the signal list. When its constants
+    drifted from the file, every run silently reverted the documented
+    same-day filename convention.
+    """
+    readme_path = SIGNALS_DIR / "README.md"
+    if not readme_path.exists():
+        fail("signals/README.md missing")
+    readme = readme_path.read_text(encoding="utf-8")
+    if not readme.startswith(generator.ARCHIVE_HEADER):
+        fail(
+            "signals/README.md header differs from ARCHIVE_HEADER in "
+            "scripts/generate_policy_risk_signal.py; edit both together"
+        )
+    if not readme.endswith(generator.ARCHIVE_FOOTER):
+        fail(
+            "signals/README.md footer differs from ARCHIVE_FOOTER in "
+            "scripts/generate_policy_risk_signal.py; edit both together"
+        )
 
 
 def main() -> None:
@@ -105,6 +132,8 @@ def main() -> None:
             fail(f"signals/feed.json date mismatch for {signal['slug']}")
         if signal["title"] not in feed_item.get("content_text", ""):
             fail(f"signals/feed.json content missing title for {signal['slug']}")
+
+    check_archive_readme()
 
     print("ok: signal archive validated")
 

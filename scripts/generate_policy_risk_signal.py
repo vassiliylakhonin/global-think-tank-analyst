@@ -284,6 +284,7 @@ Public **examples** of the Global Think Tank Analyst skill style. Each signal sh
 - a public set of example outputs;
 - a way to see the memo style at signal-length scale;
 - a starting point for adapting the skill to your own internal signals.
+- maintained by hand, on no fixed cadence: a signal appears when there is something worth saying.
 
 ## What this archive is not
 

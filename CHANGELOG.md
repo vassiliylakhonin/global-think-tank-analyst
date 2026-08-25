@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-_Nothing yet._
+- Removed the weekly `cron` from `.github/workflows/policy-risk-signal.yml`. The signal archive is maintained by hand: every signal in it was written and merged by a person, and the schedule never produced one. Of its 17 runs, four failed in May and the following thirteen reported success while doing nothing, because the branch that handles a missing `OPENAI_API_KEY` exited zero. A dead channel sat behind thirteen consecutive green checks. The workflow remains available as a manual `workflow_dispatch` draft.
+- A dispatch without `OPENAI_API_KEY` now fails with an error instead of reporting success, and its pull-request body points at the manual route through `signals/TEMPLATE.md`.
+- `signals/README.md` now states that the archive is maintained by hand on no fixed cadence, so a reader does not infer a schedule from the dated files.
+- `scripts/validate_signals.py` now checks `signals/README.md` against the `ARCHIVE_HEADER` and `ARCHIVE_FOOTER` constants that rewrite it. The pair had already drifted once, silently reverting a documented convention on every run; the guard replaces remembering to edit both.
 
 ## 1.4.0 - 2026-08-25
 
