@@ -7,9 +7,6 @@ on:
         description: "Signal date (YYYY-MM-DD). Defaults to today's UTC date."
         required: false
         type: string
-  schedule:
-    # Every Monday at 06:15 UTC. The workflow opens a PR; it does not publish directly to main.
-    - cron: "15 6 * * 1"
 
 permissions:
   contents: write
@@ -22,14 +19,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate weekly Policy Risk Signal
+      - name: Generate a Policy Risk Signal draft
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
-            echo "::notice title=Policy Risk Signal::OPENAI_API_KEY secret is not configured for this repo; skipping weekly auto-generation. To enable, set the OPENAI_API_KEY repo secret (Settings → Secrets and variables → Actions). Subsequent steps will be no-ops because there is nothing to commit."
-            exit 0
+            echo "::error title=Policy Risk Signal::OPENAI_API_KEY is not configured for this repository, so this run cannot generate anything. Set the OPENAI_API_KEY repository secret (Settings -> Secrets and variables -> Actions), or write the signal by hand from signals/TEMPLATE.md."
+            exit 1
           fi
           DATE_INPUT="${{ inputs.date }}"
           if [ -n "$DATE_INPUT" ]; then
@@ -46,10 +43,14 @@ jobs:
         with:
           branch: automation/policy-risk-signal
           delete-branch: true
-          commit-message: "docs: add weekly policy risk signal"
-          title: "docs: add weekly Policy Risk Signal"
+          commit-message: "docs: add policy risk signal draft"
+          title: "docs: add Policy Risk Signal draft"
           body: |
-            Automated weekly Policy Risk Signal draft.
+            Policy Risk Signal draft from a manual workflow run.
+
+            This repository's signal archive is maintained by hand: the normal
+            route is to copy `signals/TEMPLATE.md` and open a pull request. This
+            draft is a starting point, not a finished signal.
 
             Review checklist:
             - [ ] Sources are real and relevant
