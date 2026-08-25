@@ -9,7 +9,7 @@ Use this skill to draft the strategic-risk memo. Then extract externally checkab
 The handoff contract and selection rules live in [`../evidence-packet-handoff.md`](../evidence-packet-handoff.md). A runnable synthetic packet lives at [`../../examples/evidence-packet-handoff.json`](../../examples/evidence-packet-handoff.json).
 
 ```bash
-pip install "agenda-intelligence-md==1.3.0"
+pip install "agenda-intelligence-md>=1.3.0"
 agenda-intelligence check examples/evidence-packet-handoff.json --format json
 agenda-intelligence check examples/evidence-packet-handoff.json --strict
 ```
@@ -127,7 +127,7 @@ Pattern:
 4. Agent calls `validate_brief` and `score_output` via MCP.
 5. If validation fails or the score is too low, the agent re-drafts with the gap explicitly named.
 
-For exact MCP setup, see the [Agenda Intelligence MD integrations docs](https://github.com/vassiliylakhonin/Agenda-Intelligence-md/tree/main/docs/integrations).
+For exact MCP setup, see the [Agenda Intelligence MD integrations docs](https://github.com/vassiliylakhonin/agenda-intelligence-md/tree/main/docs/integrations).
 
 ## Honest limits of this composition
 
@@ -139,7 +139,7 @@ For exact MCP setup, see the [Agenda Intelligence MD integrations docs](https://
 
 ## See also
 
-- [Agenda Intelligence MD on GitHub](https://github.com/vassiliylakhonin/Agenda-Intelligence-md)
+- [Agenda Intelligence MD on GitHub](https://github.com/vassiliylakhonin/agenda-intelligence-md)
 - [`SKILL.md`](../../SKILL.md) — canonical skill behavior
 - [`AGENTS.md`](../../AGENTS.md) — project rules
 - [`evals/`](../../evals/) — human review checklist, failure modes, starter rubric
