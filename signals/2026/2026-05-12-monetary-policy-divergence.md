@@ -88,6 +88,3 @@ Confidence: Moderate. The structural mechanics of interest-rate divergence and F
 
 Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for a CFO with significant EUR-revenue and USD-debt exposure: (1) quantify the cost range across the three divergence scenarios; (2) identify the specific FX hedging instruments available and their cost at current implied volatility; (3) define the trigger conditions that would justify changing the hedging posture.
 
-## Disclaimer
-
-Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not investment, financial, treasury, or legal advice.

@@ -70,6 +70,3 @@ Why the confidence level, and what would raise or lower it.
 
 Specific evidence whose appearance would force a re-write of the signal.
 
-## Disclaimer
-
-Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, compliance, sanctions, or investment advice.

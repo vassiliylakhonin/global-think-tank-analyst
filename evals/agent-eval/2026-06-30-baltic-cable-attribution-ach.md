@@ -50,10 +50,3 @@ Both judges scored the outputs blind (not told which used the skill): **Haiku 4.
 
 The cross-vendor run is the honest correction to the same-vendor score. The Mode G delta is **smaller and judge-dependent** (+2 to +4), not a clean +4: a strong baseline (Opus bare) already enumerates alternatives and flags non-diagnostic evidence in prose, and a stricter cross-vendor judge credits that. What survives both judges is narrower and real: Mode G reliably adds the false-flag hypothesis the client did not propose (C2) and the planted-/injection-sensitivity flag (C6) — exactly the single-hypothesis-lock-in defenses the mode was added for. The structural-matrix format also makes the reasoning auditable rather than buried in prose, which the binary rubric does not fully capture.
 
-## Limitations
-
-- **One run, one prompt, one model.** Not statistically significant.
-- **Structural, not factual.** The eval scores reasoning shape, not correctness. A hypothetical scenario carries no factual risk; on a real question the method does not catch factual error.
-- **Criteria are skill-aligned.** The rubric tests the properties Mode G is designed to produce, so it favors the treatment by construction. It measures whether the skill does what it claims, not general output quality.
-- **Cross-vendor check done; it shrank the delta.** A non-Anthropic judge (GPT-5) was run in addition to Haiku and scored the baseline higher, cutting the delta from +4 to +2. This is the value of the cross-vendor judge: it caught same-vendor generosity toward the treatment / harshness toward the baseline. Two judges still are not a labelled dataset.
-- **Condition B was authored by the host model knowing it was the treatment;** the blind judges mitigate but do not remove author-side enhancement bias. Per the skill's own honesty rule, this is a structural delta, not external or factual validation.

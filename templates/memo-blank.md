@@ -112,7 +112,6 @@ A high analyst-judgment count is not a defect — strategic-risk memos legitimat
 
 ---
 
-## Limitation note
 
 [State the specific limits of this memo: what it does not screen, assess, verify, or constitute. Be concrete. Do not use generic boilerplate — name the actual gap relevant to this memo.]
 

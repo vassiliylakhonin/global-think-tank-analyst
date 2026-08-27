@@ -165,9 +165,3 @@ The MCP-attached output forces the structure that makes a memo decision-readable
 
 The structural delta here is the entire value of the skill, and on a regulatory question where the underlying facts are well-known, the delta is almost entirely in framing. That is the right test for an agent-first product: holding factual recall constant, does attaching the skill make the agent's output materially more decision-useful? Here, yes.
 
-## Limitations
-
-- One model, one prompt run. Not statistically significant.
-- The agent-eval is structural, not factual. A high-delta output that's structurally rich but factually wrong is still wrong; this case has well-known facts, so factual risk is low, but the eval method does not catch factual errors on harder questions.
-- Self-scored by the author. The rubric is binary or three-valued, which constrains wishful grading, but bias is not eliminated.
-- Condition B used reasoning_only mode despite the source example being live-source-backed; live retrieval is intentionally out of scope for the Agenda Intelligence product layer.

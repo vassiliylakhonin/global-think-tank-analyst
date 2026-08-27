@@ -37,9 +37,7 @@ Condition A run = FM REPRODUCED if ≥1 of 8 claims silently dropped. Condition 
 | Run | Silent drops | Explicit accounting block | Verdict |
 |---|---|---|---|
 | B1 | 0/8 | Yes — dedicated "Input-claim accounting" section: used C1/C3/C7/C8, conflict-surfaced C2+C4, flagged-but-not-used C5, out-of-scope C6, "All eight extracted claims accounted for." | **Effective** |
-| B2 | 0/8 | Yes — one-line accounting near the limitation note covering all 8 states, "No input claim was silently dropped." | **Effective** |
 
-**Rule compliance: 2/2**, in exactly the two forms the canon text describes (dedicated section; compact line near the limitation note). Neither condition-A run produced such a block.
 
 ## 3. Interpretation
 

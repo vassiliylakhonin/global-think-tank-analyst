@@ -75,6 +75,3 @@ No live sources were checked for this signal. Assessment is based on structural 
 
 Confidence: Moderate. The structural argument is durable; the specific tier assignments and license posture are policy-volatile and must be verified against current BIS guidance before operational use.
 
-## Disclaimer
-
-Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, export-control, sanctions, or investment advice.

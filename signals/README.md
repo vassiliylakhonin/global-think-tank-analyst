@@ -24,6 +24,7 @@ Public **examples** of the Global Think Tank Analyst skill style. Each signal sh
 - [2026-05-17](2026/2026-05-17-sovereign-ai-compute.md): Sovereign AI compute: tier access is the planning constraint, not chip price
 - [2026-05-12](2026/2026-05-12-monetary-policy-divergence.md): Central bank divergence: when the Fed holds and others cut, the FX and funding-cost implications are the planning problem
 
+
 ## Contributing a signal
 
 Copy [`TEMPLATE.md`](TEMPLATE.md) to `signals/YYYY/YYYY-MM-DD.md` (or `YYYY-MM-DD-<topic>.md` if multiple signals fall on the same day), fill in every section, and open a pull request. Reviewers will check evidence mode, confidence calibration, and that no citations are fabricated.

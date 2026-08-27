@@ -184,6 +184,3 @@ The regulatory architecture description is grounded in established law (EU AI Ac
 
 ---
 
-## Disclaimer
-
-Reasoning-only illustrative example of the Global Think Tank Analyst skill style. Not legal, regulatory, or compliance advice. Not an intelligence product. Specific regulatory texts, deadlines, and enforcement actions must be verified against current primary sources.

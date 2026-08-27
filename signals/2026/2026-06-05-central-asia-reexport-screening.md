@@ -81,6 +81,3 @@ No live sources were checked for this signal. Assessment is based on structural 
 
 Confidence: Moderate. The structural argument that the binding control has moved from the entity list to the component-and-end-use layer is durable. The pace and consistency of enforcement against corridor intermediaries — as opposed to Russian end-users — is policy-volatile and must be checked against current regulator and correspondent-bank guidance before operational use. Scenarios are framed at the level of corridor market structure, not at the level of any specific shipment, company, or bank.
 
-## Disclaimer
-
-Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, sanctions, export-control, financial, or trade-finance advice. Verify all current legal, regulatory, and market facts against authoritative sources before any operational, commercial, or compliance decision.
