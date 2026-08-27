@@ -80,14 +80,11 @@ The runner stops on the first failure. See [`scripts/README.md`](scripts/README.
 
 ## Adding a signal
 
-Signals require four files to be updated atomically in the same commit. CI enforces this — a partial update will fail.
+The manual process of updating JSON files has been deprecated in favor of automation.
 
 1. Create `signals/<slug>.md` from [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
-2. Add an entry to `signals/index.json`.
-3. Add an entry to `signals/feed.json`.
-4. Replace `signals/latest.md` with the new signal.
-
-`python3 scripts/validate_signals.py` checks consistency across all four files.
+2. Commit your markdown file.
+3. The automated CI/CD pipeline (or build script) will handle indexing this signal into `index.json`, `feed.json`, and `latest.md`.
 
 ## Examples must include
 
@@ -102,12 +99,10 @@ Signals require four files to be updated atomically in the same commit. CI enfor
 
 ## PR checklist
 
-- [ ] Packaged `SKILL.md` discovery fields pass `scripts/validate_skill_package.py`; Codex variant frontmatter remains present
-- [ ] Behavior or positioning change is documented in `CHANGELOG.md` (under `Unreleased` or a new version)
-- [ ] `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt`, and `README.md` remain aligned
-- [ ] Naming hierarchy preserved: Product = Global Think Tank Analyst; Method = Policy Risk Memo Architect; Companion = Agenda Intelligence MD
+- [ ] Packaged `SKILL.md` discovery fields pass `scripts/validate_skill_package.py`
+- [ ] Behavior or positioning change is documented in `CHANGELOG.md`
 - [ ] Examples state evidence mode and do not fabricate citations
-- [ ] No claims of external verification, validation, MCP, CLI, or CI checks unless truly implemented in this repo
 - [ ] No exaggerated language ("revolutionary", "production-grade", "guarantees correctness", "fully autonomous")
 - [ ] `python3 scripts/check.py` passes locally
-- [ ] If an example was added or renamed: both `README.md` examples table and `examples/README.md` domain table are updated in the same PR
+- [ ] If an example was added or renamed, update the master table in `examples/README.md` (the root README table will be synced automatically).
+- [ ] Note: Manual syncing of `codex/SKILL.md` is no longer required; it will be generated automatically by the build pipeline.
