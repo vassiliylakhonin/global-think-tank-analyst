@@ -288,15 +288,25 @@ Stated honestly so readers can calibrate. These are not claims of weakness, only
 
 ## Roadmap
 
-Directional, not committed. Items here are open, not yet implemented.
+This project is evolving from a static collection of prompts into a software-driven analytical tool.
 
-**Signal coverage:** the archive now covers energy, regulatory, critical minerals, sanctions, trade (US-EU, US-China), and monetary policy (Fed posture, central-bank divergence). Open gaps where future signals would add the most value: supply-chain re-routing events, sovereign-debt / fiscal stress in major economies, and EU regulatory implementation milestones.
+**Phase 1: Infrastructure & Packaging (Completed)**
+- Python package `gtta` and interactive CLI for scaffolding memos.
+- MCP (Model Context Protocol) server for seamless IDE/Agent integration.
+- Static documentation site generation via MkDocs.
+- Localized system prompts (`SKILL_RU.md`).
 
-**Third vertical specialist:** EU regulatory affairs depth is a candidate if demand materialises. The Gulf & Middle East vertical is already live at [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill).
+**Phase 2: Automation & DX (Current)**
+- **Automated syncing:** `codex/SKILL.md` and other format variations will be auto-generated from the root `SKILL.md`.
+- **Automated signal indexing:** Replacing manual updates to `feed.json` and `index.json` with build-time automation.
+- **CI/CD Evaluations:** Integration of `promptfoo` for LLM-as-a-judge tests on PRs, enforcing evidence discipline.
 
-**Eval improvement:** failure-mode patterns are currently derived from the examples and the live integration run. Adding patterns from actual user review feedback would improve the checklist's practical value. Not possible until broader external usage generates structured feedback.
+**Phase 3: Advanced AI Integration (Future)**
+- **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex to simplify RAG deployments.
+- **Agentic Pipelines:** A reference implementation demonstrating agents actively retrieving news via MCP and outputting decision-grade memos automatically.
+- **Continuous Signals:** Expand signal coverage across Macro and Supply Chain verticals using scheduled news scrapers.
 
-If you'd like to influence the roadmap, open an issue.
+If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
 ## Contributing
 
