@@ -27,6 +27,8 @@ gtta = "gtta.cli:app"
 [project.optional-dependencies]
 docs = ["mkdocs-material"]
 eval = ["promptfoo"]
+ui = ["streamlit>=1.30.0"]
+agent = ["langchain-openai", "langchain-anthropic", "tavily-python", "langgraph"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
