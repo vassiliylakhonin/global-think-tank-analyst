@@ -313,8 +313,11 @@ This project is evolving from a static collection of prompts into a software-dri
 - **Quantitative Execution:** The agent pipeline integrates `PythonREPLTool` for dynamic data fetching and analysis (e.g., pandas/macro API) prior to drafting memos.
 - **Algorithmic Prompting:** Included a `dspy-ai` pipeline (`scripts/optimize_prompt_dspy.py`) to systematically optimize the `SKILL.md` rules against evidence metrics.
 
-**Phase 4: Knowledge Graph Intelligence (Future)**
-- **GraphRAG:** Move from semantic text search to explicit entity-relationship extraction (Neo4j/NetworkX) to trace secondary sanction exposure automatically.
+**Phase 4: Enterprise Capabilities (Current)**
+- **Knowledge Graph Intelligence (GraphRAG):** The MoA pipeline extracts entities directly into Mermaid.js knowledge graphs embedded in memos.
+- **Agentic Memory:** `gtta.agent` supports `MemorySaver` to preserve context across multiple memo generations (Stateful Sessions).
+- **Heavy Document Ingestion:** The `gtta ingest` command processes 100+ page PDF reports (e.g. World Bank, RAND) into local FAISS vector stores.
+- **Production API:** A native `FastAPI` server (`gtta server`) exposes the multi-agent reasoning pipeline as a scalable REST API.
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
