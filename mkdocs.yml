@@ -1,0 +1,30 @@
+site_name: Global Think Tank Analyst
+site_description: Strategic-risk analysis skill for AI agents producing decision-ready memos
+site_author: Vassiliy Lakhonin
+repo_url: https://github.com/vassiliylakhonin/global-think-tank-analyst
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+
+nav:
+  - Home: index.md
+  - Analyst Skill: SKILL.md
+  - Russian Skill (RU): SKILL_RU.md
+  - Portfolio & Architecture: PORTFOLIO.md
+  - Contributing: CONTRIBUTING.md
+  - Validation Plan: VALIDATION_PLAN.md
+  - CHANGELOG: CHANGELOG.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

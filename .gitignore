@@ -3,3 +3,16 @@
 *.tmp
 __pycache__/
 *.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# MkDocs
+site/
+
+# Python packaging
+*.egg-info/
+dist/
+build/
