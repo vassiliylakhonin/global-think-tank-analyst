@@ -347,6 +347,9 @@ For each scenario, specify:
 - indicators to watch;
 - practical relevance for the user.
 
+> [!TIP]
+> Consider outputting a `mermaid.js` flowchart (using the `mermaid` codeblock) to visually map out scenarios, triggers, and divergent outcomes, especially for complex dependencies.
+
 ### 8. Produce options
 
 When recommendations are appropriate, provide actionable options.
@@ -426,7 +429,7 @@ Use when a team needs to act, assign owners, or prepare a leadership discussion.
 
 Output:
 - Executive takeaway
-- Decision map
+- Decision map (use a `mermaid.js` flowchart to visualize dependencies)
 - Options table
 - Risk and trade-off register
 - Actor incentives
