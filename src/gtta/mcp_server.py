@@ -27,6 +27,17 @@ async def list_tools() -> list[types.Tool]:
                 },
                 "required": ["mode"]
             }
+        ),
+        types.Tool(
+            name="validate_memo_evidence",
+            description="Checks a draft memo for evidence discipline violations (e.g. missing tags).",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "draft": {"type": "string", "description": "The markdown text of the draft memo."}
+                },
+                "required": ["draft"]
+            }
         )
     ]
 
@@ -40,6 +51,24 @@ async def call_tool(name: str, arguments: dict) -> list[types.TextContent]:
     if name == "get_mode_template":
         mode = arguments.get("mode", "B")
         return [types.TextContent(type="text", text=f"Template for Mode {mode} is requested. See SKILL.md for details.")]
+    
+    if name == "validate_memo_evidence":
+        draft = arguments.get("draft", "")
+        errors = []
+        if "Evidence mode:" not in draft:
+            errors.append("- Missing 'Evidence mode:' declaration.")
+        if "Facts vs Assessments" not in draft and "## Quick assessment" not in draft:
+            errors.append("- Missing explicit separation of facts and assessments.")
+        if "[primary]" not in draft and "[secondary]" not in draft and "[user-provided]" not in draft:
+            errors.append("- Missing Axis A provenance tags (e.g., [primary], [secondary]).")
+        if "[inference]" not in draft and "[analyst-judgment]" not in draft:
+            errors.append("- Missing analytical tags (e.g., [inference], [analyst-judgment]).")
+            
+        if not errors:
+            return [types.TextContent(type="text", text="✅ Validation passed. Evidence discipline appears to be followed.")]
+        
+        report = "❌ Validation Failed. Please fix the following:\n" + "\n".join(errors)
+        return [types.TextContent(type="text", text=report)]
     
     raise ValueError(f"Unknown tool: {name}")
 

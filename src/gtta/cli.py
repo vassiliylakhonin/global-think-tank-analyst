@@ -29,5 +29,15 @@ Use the `gtta` package or your LLM to expand this draft according to Mode {mode}
 """
     console.print(Markdown(draft))
 
+@app.command()
+def ui():
+    """Launch the interactive web UI (requires 'streamlit' extra)."""
+    import os
+    from pathlib import Path
+    
+    app_path = Path(__file__).parent / "app.py"
+    console.print(f"[bold green]Starting Streamlit UI...[/bold green]")
+    os.system(f"streamlit run {app_path}")
+
 if __name__ == "__main__":
     app()
