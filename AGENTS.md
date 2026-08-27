@@ -136,3 +136,10 @@ The target outcome is practitioner feedback on a small number of reviewable case
 ## Runtime agent behavior
 
 Operational behavior for agents *executing* the skill (memo intake, evidence labels, output modes, self-check) lives in [`SKILL.md`](SKILL.md). Treat this AGENTS.md as project-level rules; treat SKILL.md as runtime instructions.
+
+
+## Paradigm: Dark Factories (Stage 4)
+This reasoning engine operates in the Stage 4 paradigm:
+- **Lingua Franca:** Guardrails
+- **UI:** No human review (Headless A2A Engine)
+- **Agent to Human Ratio:** ∞

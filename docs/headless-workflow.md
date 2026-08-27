@@ -1,4 +1,4 @@
-# Case Packet Reviewer Workflow
+# Case Packet Headless Workflow
 
 Use this workflow when asking a domain practitioner to review a public case
 packet.
@@ -25,7 +25,7 @@ Send the reviewer these files:
   logic, scenarios, watchlist, evidence mode, and confidence.
 - [case-packet.evidence.json](case-packet.evidence.json) - source mapping,
   support status, source limits, unsupported claims, and missing sources.
-- [external-review-template.md](external-review-template.md) - response form.
+- [external-headless-template.md](external-headless-template.md) - response form.
 
 Optional context:
 
@@ -44,7 +44,7 @@ Optional context:
 5. Skim the source-backed memo for decision usefulness.
 6. Compare the markdown packet against `case-packet.brief.json`.
 7. Compare key claims against `case-packet.evidence.json`.
-8. Fill in `external-review-template.md`.
+8. Fill in `external-headless-template.md`.
 
 ## Reviewer Should Check
 

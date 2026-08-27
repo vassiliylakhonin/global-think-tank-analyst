@@ -130,7 +130,7 @@ This method is loaded as the core reasoning layer in the portfolio's deployed ve
 
 For the current primary CLI handoff, see [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md) and the runnable synthetic [`examples/evidence-packet-handoff.json`](examples/evidence-packet-handoff.json). The older memo scoring / MCP recipe remains documented in [`docs/integrations/agenda-intelligence-md.md`](docs/integrations/agenda-intelligence-md.md) as a compatibility workflow; its historical scores are not evidence of current linter performance.
 
-For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), its machine-readable projections ([brief](docs/case-packet.brief.json), [evidence](docs/case-packet.evidence.json)), the [`docs/reviewer-workflow.md`](docs/reviewer-workflow.md) review path, [`docs/external-review-template.md`](docs/external-review-template.md), and the future review-record scaffold in [`reviews/`](reviews/). These are preparation assets, not evidence of external validation.
+For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the source-backed public demo [`docs/case-packet.md`](docs/case-packet.md), its machine-readable projections ([brief](docs/case-packet.brief.json), [evidence](docs/case-packet.evidence.json)), the [`docs/headless-workflow.md`](docs/headless-workflow.md) review path, [`docs/external-headless-template.md`](docs/external-headless-template.md), and the future review-record scaffold in [`reviews/`](reviews/). These are preparation assets, not evidence of external validation.
 
 ## Integration status
 
@@ -334,9 +334,10 @@ This project is evolving from a static collection of prompts into a software-dri
 - **Heavy Document Ingestion:** The `gtta ingest` command processes 100+ page PDF reports (e.g. World Bank, RAND) into local FAISS vector stores.
 - **Production API:** A native `FastAPI` server (`gtta server`) exposes the multi-agent reasoning pipeline as a scalable REST API.
 
-**Phase 5: Autonomous Fleets (Current)**
+**Phase 5: Autonomous Fleets & Dark Factories (Current)**
 - **Background Agents:** Moved from synchronous requests to an asynchronous task queue.
-- **Fleet Control Center:** The `gtta ui` now features an "Agent Inbox" dashboard. Users can dispatch hundreds of topics simultaneously, spawning parallel background agents (Dark Factories architecture).
+- **Fleet Control Center:** The `gtta ui` now features an "Agent Inbox" dashboard. Users can dispatch hundreds of topics simultaneously, spawning parallel background agents.
+- **Dark Factories:** The `gtta dark-factory` worker runs a continuous autonomous loop. It scrapes breaking geopolitical news, synthesizes risk targets, dispatches the MoA pipeline, and validates output against strict Guardrails (no human review), saving the finalized intelligence directly to `signals/autonomous/`.
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
@@ -363,3 +364,10 @@ For external review of an example or the starter rubric (sanctions, regulatory, 
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## Paradigm: Dark Factories (Stage 4)
+This reasoning engine operates in the Stage 4 paradigm:
+- **Lingua Franca:** Guardrails
+- **UI:** No human review (Headless A2A Engine)
+- **Agent to Human Ratio:** ∞

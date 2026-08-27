@@ -115,4 +115,4 @@ Those products own their buyer, paid job, case benchmark, correction registry, a
 
 For a concrete path toward review, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md),
 [`docs/case-packet.md`](docs/case-packet.md), and
-[`docs/external-review-template.md`](docs/external-review-template.md).
+[`docs/external-headless-template.md`](docs/external-headless-template.md).

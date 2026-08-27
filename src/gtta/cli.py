@@ -51,5 +51,14 @@ def ingest(file_path: str):
     pages = loader.load_and_split()
     console.print(f"[bold green]Success![/bold green] Ingested {len(pages)} pages into local FAISS index (Simulated).")
 
+@app.command()
+def dark_factory():
+    """Launch the Stage 4 Autonomous 'Dark Factory' worker (zero human review)."""
+    import os
+    from pathlib import Path
+    script = Path(__file__).parent.parent.parent / "scripts" / "dark_factory_worker.py"
+    console.print(f"[bold black on white] ⬛️ STARTING DARK FACTORY ⬛️ [/bold black on white]")
+    os.system(f"python3 {script}")
+
 if __name__ == "__main__":
     app()

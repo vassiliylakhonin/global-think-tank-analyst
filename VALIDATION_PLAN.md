@@ -80,7 +80,7 @@ Ask every reviewer:
 - Would this be useful, useful with revisions, or not useful?
 
 For the current Central Asia fintech routing-risk packet, use
-[`docs/reviewer-workflow.md`](docs/reviewer-workflow.md) to send the packet,
+[`docs/headless-workflow.md`](docs/headless-workflow.md) to send the packet,
 machine-readable projections, and response template in a consistent order.
 
 ## Recording Findings
