@@ -111,6 +111,8 @@ For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
 | **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
 | **Evidence-packet checker** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks for claim/source references, declared quotes, lexical support, and unmatched numbers before human review. |
 
+> **Ecosystem Expansion:** You can deploy the Dark Factory engine (API, UI, Agents) from this horizontal skill into any vertical specialist repo using `scripts/deploy_engine_to_vertical.py <target_path> <pkg_name>`.
+
 
 ```mermaid
 flowchart LR
