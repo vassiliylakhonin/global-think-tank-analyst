@@ -321,6 +321,7 @@ This project is evolving from a static collection of prompts into a software-dri
 - **Automated signal indexing:** Replacing manual updates to `feed.json` and `index.json` with build-time automation.
 - **CI/CD Evaluations:** Integration of `promptfoo` for LLM-as-a-judge tests on PRs, enforcing evidence discipline.
 
+
 **Phase 3: Advanced AI Integration (Current)**
 - **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex.
 - **Multi-Agent Debate (MoA):** `gtta.agent` now features a LangGraph pipeline with explicit Researcher, Drafter, Critic (Red-Teamer), and Editor nodes to enforce absolute Evidence Discipline.
@@ -332,6 +333,10 @@ This project is evolving from a static collection of prompts into a software-dri
 - **Agentic Memory:** `gtta.agent` supports `MemorySaver` to preserve context across multiple memo generations (Stateful Sessions).
 - **Heavy Document Ingestion:** The `gtta ingest` command processes 100+ page PDF reports (e.g. World Bank, RAND) into local FAISS vector stores.
 - **Production API:** A native `FastAPI` server (`gtta server`) exposes the multi-agent reasoning pipeline as a scalable REST API.
+
+**Phase 5: Autonomous Fleets (Current)**
+- **Background Agents:** Moved from synchronous requests to an asynchronous task queue.
+- **Fleet Control Center:** The `gtta ui` now features an "Agent Inbox" dashboard. Users can dispatch hundreds of topics simultaneously, spawning parallel background agents (Dark Factories architecture).
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
