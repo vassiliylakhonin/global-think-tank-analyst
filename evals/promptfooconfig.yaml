@@ -1,0 +1,35 @@
+description: "Global Think Tank Analyst - Evidence Discipline Evals"
+
+providers:
+  - id: openai:gpt-4o-mini
+    label: GPT-4o-Mini
+
+prompts:
+  - file://../SKILL.md
+
+tests:
+  - description: "Mode B - Standard Memo Test"
+    vars:
+      question: "What is the regulatory risk of expanding operations into Kazakhstan for a European logistics firm?"
+      mode: "B"
+    assert:
+      - type: "icontains"
+        value: "Question:"
+      - type: "icontains"
+        value: "Decision:"
+      - type: "icontains"
+        value: "Evidence mode:"
+      - type: "icontains"
+        value: "EVIDENCE ACCESS LIMITED"
+
+  - description: "Mode A - Quick Brief Test"
+    vars:
+      question: "Quick brief on EU CBAM exposure for a Kazakh metals exporter"
+      mode: "A"
+    assert:
+      - type: "icontains"
+        value: "Bottom line"
+      - type: "icontains"
+        value: "Why it matters now"
+      - type: "icontains"
+        value: "Main risks"
