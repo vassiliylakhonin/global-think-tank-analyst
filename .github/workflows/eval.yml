@@ -1,0 +1,34 @@
+name: Prompt Evaluation (LLM-as-a-Judge)
+
+on:
+  pull_request:
+    paths:
+      - 'SKILL.md'
+      - 'SKILL_RU.md'
+      - 'evals/promptfooconfig.yaml'
+
+jobs:
+  promptfoo-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install promptfoo
+        run: npm install -g promptfoo
+        
+      - name: Run promptfoo evaluation
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "OPENAI_API_KEY secret is not set. Skipping evaluation."
+            exit 0
+          fi
+          cd evals
+          promptfoo eval
