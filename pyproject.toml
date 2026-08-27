@@ -5,10 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "global-think-tank-analyst"
 version = "1.4.0"
-description = "Strategic-risk analysis skill for AI agents, packaged as a developer toolkit with a CLI, MCP server, and framework connectors."
+description = "Enterprise-grade AI toolkit for strategic-risk analysis featuring LangGraph MoA, MCP server, and autonomous Dark Factories."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {file = "LICENSE"}
+keywords = ["ai-agents", "langgraph", "mcp", "geopolitics", "risk-analysis", "dark-factories", "graphrag"]
 authors = [
     {name = "Vassiliy Lakhonin"}
 ]

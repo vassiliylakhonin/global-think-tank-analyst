@@ -4,11 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/global-think-tank-analyst.svg)](https://pypi.org/project/global-think-tank-analyst/)
 
-**A strategic-risk reasoning skill for AI agents, packaged as a developer toolkit.**
+**An enterprise-grade AI toolkit for strategic-risk analysis, featuring Multi-Agent Debate (MoA) and autonomous Dark Factories.**
 
-`global-think-tank-analyst` turns your AI agents (Claude, ChatGPT, LangChain bots, etc.) into disciplined policy and geopolitical-risk analysts. It enforces evidence separation, uncertainty handling, scenario generation, and outputs structured, decision-ready memos.
+`global-think-tank-analyst` turns your AI agents (Claude, ChatGPT, LangChain) into a disciplined geopolitical-risk factory. It enforces evidence separation, uncertainty handling, scenario generation, and outputs structured, decision-ready memos with embedded Knowledge Graphs.
 
-The project is now a **Python package** equipped with an **MCP Server**, **CLI wizard**, and **Framework connectors**, making it trivial to integrate advanced analytical reasoning into any pipeline.
+The project has evolved into a complete **Python package** equipped with an **MCP Server**, a **FastAPI backend**, a **Streamlit Fleet Control Center**, and **LangGraph MoA pipelines**, making it trivial to deploy advanced analytical reasoning from local laptops to scalable cloud environments.
 
 [Read the core analytical prompt (SKILL.md)](SKILL.md) · [See worked examples](#examples)
 
