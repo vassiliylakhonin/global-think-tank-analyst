@@ -1,13 +1,20 @@
 from langchain_core.messages import SystemMessage
-import pathlib
+from pathlib import Path
+from typing import Optional
 
-def get_system_prompt() -> SystemMessage:
+def get_skill_prompt(language: str = "en") -> str:
+    """Read the analytical skill instructions."""
+    root = Path(__file__).parent.parent.parent
+    filename = "SKILL_RU.md" if language.lower() in ("ru", "russian") else "SKILL.md"
+    path = root / filename
+    if not path.exists():
+        return "You are a strategic-risk analyst."
+    return path.read_text(encoding="utf-8")
+
+def get_system_prompt(language: str = "en", extra_instructions: Optional[str] = None) -> SystemMessage:
     """Returns the Global Think Tank Analyst SKILL.md as a LangChain SystemMessage."""
-    skill_path = pathlib.Path(__file__).parent.parent.parent / "SKILL.md"
-    if not skill_path.exists():
-        return SystemMessage(content="You are Global Think Tank Analyst. Use structured memo formats.")
+    prompt = get_skill_prompt(language)
+    if extra_instructions:
+        prompt += f"\n\n## Additional Context/Instructions\n{extra_instructions}"
     
-    with open(skill_path, "r", encoding="utf-8") as f:
-        content = f.read()
-    
-    return SystemMessage(content=content)
+    return SystemMessage(content=prompt)
