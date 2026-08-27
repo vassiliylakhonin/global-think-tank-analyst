@@ -323,10 +323,14 @@ This project is evolving from a static collection of prompts into a software-dri
 - **Automated signal indexing:** Replacing manual updates to `feed.json` and `index.json` with build-time automation.
 - **CI/CD Evaluations:** Integration of `promptfoo` for LLM-as-a-judge tests on PRs, enforcing evidence discipline.
 
-**Phase 3: Advanced AI Integration (Future)**
-- **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex to simplify RAG deployments.
-- **Agentic Pipelines:** A reference implementation demonstrating agents actively retrieving news via MCP and outputting decision-grade memos automatically.
-- **Continuous Signals:** Expand signal coverage across Macro and Supply Chain verticals using scheduled news scrapers.
+**Phase 3: Advanced AI Integration (Current)**
+- **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex.
+- **Multi-Agent Debate (MoA):** `gtta.agent` now features a LangGraph pipeline with explicit Researcher, Drafter, Critic (Red-Teamer), and Editor nodes to enforce absolute Evidence Discipline.
+- **Quantitative Execution:** The agent pipeline integrates `PythonREPLTool` for dynamic data fetching and analysis (e.g., pandas/macro API) prior to drafting memos.
+- **Algorithmic Prompting:** Included a `dspy-ai` pipeline (`scripts/optimize_prompt_dspy.py`) to systematically optimize the `SKILL.md` rules against evidence metrics.
+
+**Phase 4: Knowledge Graph Intelligence (Future)**
+- **GraphRAG:** Move from semantic text search to explicit entity-relationship extraction (Neo4j/NetworkX) to trace secondary sanction exposure automatically.
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
