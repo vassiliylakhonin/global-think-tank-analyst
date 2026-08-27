@@ -1,0 +1,41 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material
+          
+      - name: Prepare Docs Directory
+        run: |
+          # Mkdocs expects docs in docs_dir (default: docs/)
+          # Our MD files are in root, so we copy them to docs/ for deployment
+          cp SKILL.md docs/SKILL.md
+          cp SKILL_RU.md docs/SKILL_RU.md
+          cp PORTFOLIO.md docs/PORTFOLIO.md
+          cp CONTRIBUTING.md docs/CONTRIBUTING.md
+          cp VALIDATION_PLAN.md docs/VALIDATION_PLAN.md
+          cp CHANGELOG.md docs/CHANGELOG.md
+          # Create index.md from README.md
+          cp README.md docs/index.md
+          
+      - name: Deploy to GitHub Pages
+        run: mkdocs gh-deploy --force
