@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    command: gtta server --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+
+  ui:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    command: gtta ui --host 0.0.0.0 --port 8501
+    volumes:
+      - .:/app

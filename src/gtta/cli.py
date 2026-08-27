@@ -16,13 +16,13 @@ def new(
     console.print(Markdown(draft))
 
 @app.command()
-def ui():
+def ui(host: str = "0.0.0.0", port: int = 8501):
     """Launch the interactive web UI (requires 'streamlit' extra)."""
     import os
     from pathlib import Path
     app_path = Path(__file__).parent / "app.py"
-    console.print(f"[bold green]Starting Streamlit UI...[/bold green]")
-    os.system(f"streamlit run {app_path}")
+    console.print(f"[bold green]Starting Streamlit UI on {host}:{port}...[/bold green]")
+    os.system(f"streamlit run {app_path} --server.address {host} --server.port {port}")
 
 @app.command()
 def server(host: str = "0.0.0.0", port: int = 8000):

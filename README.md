@@ -16,36 +16,49 @@ The project is now a **Python package** equipped with an **MCP Server**, **CLI w
 
 ## Quick Start & Installation
 
+### Option 1: Docker Compose (Recommended)
+The repository includes a ready-to-use Docker configuration that spins up both the FastAPI backend and the Streamlit UI.
+
+```bash
+git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
+cd global-think-tank-analyst
+
+export OPENAI_API_KEY="your-api-key"
+docker-compose up --build
+```
+- **UI:** http://localhost:8501
+- **API:** http://localhost:8000/docs
+
+### Option 2: Python / pip
 Install the package via pip:
 ```bash
-pip install global-think-tank-analyst
+pip install "global-think-tank-analyst[ui,enterprise,agent]"
 ```
 
-### 1. Developer Integrations (RAG / AI Agents)
-Drop the analyst instructions directly into your **LangChain** or **LlamaIndex** agents. We support English and Russian native prompts.
+**Launch the CLI, UI or Server:**
+```bash
+# Scaffold a blank memo interactively
+gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
 
-**LangChain:**
+# Launch the interactive web UI
+export OPENAI_API_KEY="your-api-key"
+gtta ui
+
+# Launch the Enterprise REST API
+gtta server
+```
+
+**Developer Integrations (RAG / AI Agents):**
+Drop the analyst instructions directly into your agents. We support English and Russian.
+
 ```python
 from gtta.langchain import get_system_prompt
 prompt = get_system_prompt(language="ru", extra_instructions="Focus on logistics.")
 ```
 
-**LlamaIndex:**
-```python
-from gtta.llamaindex import get_chat_template
-chat_history = get_chat_template(language="en")
-```
-
-### 2. Model Context Protocol (MCP) Server
-Expose the skill dynamically to desktop apps (like Claude Desktop) via our MCP server:
+**Model Context Protocol (MCP) Server:**
 ```bash
 mcp run src/gtta/mcp_server.py
-```
-
-### 3. CLI Wizard
-Scaffold a blank memo interactively from your terminal:
-```bash
-gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
 ```
 
 ## Try it in one prompt (Zero-Code)
@@ -97,6 +110,7 @@ For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
 | **Vertical specialist — V1** | [central-asia-caspian-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Central Asia & Caspian: sanctions, AML, corridors, banking, logistics, energy, geopolitical risk. |
 | **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
 | **Evidence-packet checker** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks for claim/source references, declared quotes, lexical support, and unmatched numbers before human review. |
+
 
 ```mermaid
 flowchart LR
