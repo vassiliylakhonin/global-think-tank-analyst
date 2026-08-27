@@ -1,21 +1,56 @@
-# Global Think Tank Analyst
+# Global Think Tank Analyst (`gtta`)
 
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/global-think-tank-analyst.svg)](https://pypi.org/project/global-think-tank-analyst/)
 
-**Strategic-risk memo skill for AI agents.**
+**A strategic-risk reasoning skill for AI agents, packaged as a developer toolkit.**
 
-Attach [`SKILL.md`](SKILL.md) to Claude, ChatGPT, Codex, or another agent. It turns a broad policy or geopolitical-risk question into a memo that states the decision, separates facts from assessments, shows uncertainty and scenarios, and ends with indicators that could change the judgment.
+`global-think-tank-analyst` turns your AI agents (Claude, ChatGPT, LangChain bots, etc.) into disciplined policy and geopolitical-risk analysts. It enforces evidence separation, uncertainty handling, scenario generation, and outputs structured, decision-ready memos.
 
-It is for analysts, researchers, reviewers, and AI engineers working on policy, sanctions, regulation, trade, or geopolitical-risk memos.
+The project is now a **Python package** equipped with an **MCP Server**, **CLI wizard**, and **Framework connectors**, making it trivial to integrate advanced analytical reasoning into any pipeline.
 
-[Try one prompt](#try-it-in-one-prompt) · [Open the skill file](SKILL.md) · [See worked examples](#examples)
+[Read the core analytical prompt (SKILL.md)](SKILL.md) · [See worked examples](#examples)
 
-> No live source retrieval. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
+> No live source retrieval natively. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
 
-## Try it in one prompt
+## Quick Start & Installation
 
-Attach [`SKILL.md`](SKILL.md), then paste:
+Install the package via pip:
+```bash
+pip install global-think-tank-analyst
+```
+
+### 1. Developer Integrations (RAG / AI Agents)
+Drop the analyst instructions directly into your **LangChain** or **LlamaIndex** agents. We support English and Russian native prompts.
+
+**LangChain:**
+```python
+from gtta.langchain import get_system_prompt
+prompt = get_system_prompt(language="ru", extra_instructions="Focus on logistics.")
+```
+
+**LlamaIndex:**
+```python
+from gtta.llamaindex import get_chat_template
+chat_history = get_chat_template(language="en")
+```
+
+### 2. Model Context Protocol (MCP) Server
+Expose the skill dynamically to desktop apps (like Claude Desktop) via our MCP server:
+```bash
+mcp run src/gtta/mcp_server.py
+```
+
+### 3. CLI Wizard
+Scaffold a blank memo interactively from your terminal:
+```bash
+gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
+```
+
+## Try it in one prompt (Zero-Code)
+
+If you just want to use it in ChatGPT or Claude without writing code, attach [`SKILL.md`](SKILL.md), then paste:
 
 ```text
 Use Global Think Tank Analyst.
@@ -32,31 +67,20 @@ Separate facts, assumptions, assessments, scenarios, and unknowns.
 Give options, trade-offs, concrete watch-next indicators, confidence, and what would change the judgment.
 ```
 
-Expected shape of a good answer:
-- opens with the decision being supported, not generic background;
-- labels evidence mode and confidence;
-- separates facts, assumptions, assessments, scenarios, and unknowns;
-- names concrete options with trade-offs;
-- ends with observable indicators, not "monitor closely."
-
 ## What it does
 
 - frames broad geopolitical or policy questions as decision problems;
 - separates facts, assessments, assumptions, scenarios, and unknowns;
 - produces structured strategic-risk memos in seven modes (quick brief, standard, scenario, red-team, decision pack, analyst training, competing hypotheses);
 - enforces evidence-boundary language when live verification is not possible;
-- avoids unsupported certainty and source theater;
 - helps agents produce concrete watch-next indicators and decision triggers;
-- gives a reusable analyst behavior contract that travels across runtimes.
 
 ## What it is not
 
 - not an autonomous intelligence system;
-- not a factuality verifier;
-- not a live source retriever or RAG pipeline;
+- not a factuality verifier (it structures reasoning, but does not guarantee truth);
+- not a live source retriever;
 - not legal, compliance, sanctions, or investment advice;
-- not a generic agent framework, CLI tool, or MCP server;
-- not a benchmarked evaluation framework;
 - not a replacement for human analyst judgment.
 
 If you need deterministic checks for source references, declared quotes, lexical support, or unmatched numbers, use the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md). Its older memo validation, scoring, and MCP surfaces remain compatibility options.
