@@ -272,7 +272,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 - This project is intentionally conservative about evidence. It does not fabricate sources, imply live verification when none occurred, or present speculative geopolitical judgments as facts.
 - It is a **decision-support skill**, not legal, compliance, investment, sanctions, or intelligence advice.
 - It does not verify factuality. It enforces analytical *discipline* — fact/assessment/assumption/scenario/unknown separation, evidence-limit disclosure, scenario framing.
-- It does not retrieve sources, validate memo content, expose an MCP server, or score outputs. Development-time repository checks do not establish memo factuality. For memo preflight, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
+- While it exposes an MCP server and automated `promptfoo` evaluations, development-time repository checks do not establish factual ground truth of memos. For deterministic source-checking preflight, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 - Examples in this repo are demonstrations of the skill style across `reasoning-only`, `user-provided sources`, and `live-source-backed` modes. Do not treat them as real intelligence products, and verify current facts before operational use.
 - Signals in `signals/` are public examples of the skill style, not official intelligence and not real-time.
 
@@ -282,9 +282,7 @@ Stated honestly so readers can calibrate. These are not claims of weakness, only
 
 - **No labeled accuracy dataset.** The adversarial cases in [`evals/adversarial/`](evals/adversarial/) are author-designed traps, not a held-out test set. Pass/fail is judged manually against per-case criteria.
 - **No multi-agent or long-horizon trials.** The skill has been exercised in single-turn and short-multi-turn memo production. Behavior in long agent loops (autonomous research, multi-step tool use) has not been measured.
-- **No cross-model regression tracking.** Behavior has been observed primarily on Claude. Other model families may produce different outputs against the same memo modes and provenance rules.
 - **No live-source automation.** Examples labeled `live-source-backed` were produced with manual source retrieval. There is no integrated retrieval layer here, and recency cannot be enforced automatically.
-- **Limited coverage of non-English regulatory text.** Examples and signals are predominantly English-source. Behavior on source material in other languages, especially where translation introduces nuance, has not been systematically reviewed.
 
 ## Roadmap
 

@@ -42,7 +42,7 @@ Examples should show:
 - confidence
 - what would change the judgment
 
-Examples should be navigable as a learning path, not only as a file list. Keep [`examples/README.md`](../examples/README.md) aligned with the examples table in [`README.md`](../README.md).
+Examples should be navigable as a learning path, not only as a file list.
 
 ## Eval docs
 

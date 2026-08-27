@@ -2,17 +2,17 @@
 
 ## Project identity
 
-Global Think Tank Analyst is a strategic-risk analysis skill for AI agents.
+Global Think Tank Analyst is a strategic-risk analysis skill for AI agents, packaged with developer tools.
 
-It is a domain reasoning layer, not an agent framework, CLI tool, factuality verifier, MCP server, or eval infrastructure project.
+It serves as a domain reasoning layer, now augmented with a Python package, CLI tool, and MCP server to streamline integration into agent workflows.
 
 Use this positioning:
 
-> Strategic-risk analysis skill for AI agents.
+> Strategic-risk analysis skill for AI agents (with Python, CLI, and MCP support).
 
 Longer description:
 
-> A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos with explicit evidence boundaries, uncertainty, scenarios, actor incentives, trade-offs, and watch-next indicators.
+> A reusable domain skill for agents that produce policy-risk, sanctions, regulatory, geopolitical, trade, and strategic-risk memos with explicit evidence boundaries, uncertainty, scenarios, actor incentives, trade-offs, and watch-next indicators. Includes an MCP server and CLI for automated scaffolding.
 
 ## Relationship to Agenda Intelligence MD
 
@@ -21,20 +21,21 @@ Global Think Tank Analyst:
 - defines memo modes and analytical workflow
 - handles domain framing
 - produces strategic-risk memos
+- provides developer onboarding tools (CLI, MCP server)
 
 Agenda Intelligence MD:
 - is primarily a deterministic evidence-packet linter for claim-backed AI output
 - checks source references, declared quotes, lexical support, and unmatched numbers
 - reports packet completeness, not factual truth
-- keeps the older strategic-intelligence schemas, validation, scoring, CLI, MCP, HTTP, and A2A surfaces as compatibility interfaces
+- keeps the older strategic-intelligence schemas, validation, scoring, HTTP, and A2A surfaces as compatibility interfaces
 
-Do not duplicate Agenda Intelligence MD inside this repo. The primary composition seam is the claim/source packet documented in [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md). When referencing older validation, scoring, MCP, or memo-schema behavior, label it as compatibility behavior unless it is part of the current evidence-packet workflow.
+Do not duplicate Agenda Intelligence MD inside this repo. The primary composition seam is the claim/source packet documented in [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md).
 
 ## Commercial role
 
-This repo is a reasoning-method dependency, not a buyer-facing product. It improves decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators; externally checkable memo claims can then be handed to Agenda Intelligence MD as an evidence packet before human review.
+This repo is a reasoning-method dependency and developer toolkit, not a buyer-facing product. It improves decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators; externally checkable memo claims can then be handed to Agenda Intelligence MD as an evidence packet before human review.
 
-Do not add public product surfaces, vertical-worker positioning, pricing, outreach copy, or procurement-specific buyer claims here. If a request is commercially oriented, route the product decision to Agenda Intelligence MD and keep this repo focused on reasoning quality.
+Do not add public product surfaces, vertical-worker positioning, pricing, outreach copy, or procurement-specific buyer claims here. If a request is commercially oriented, route the product decision to Agenda Intelligence MD and keep this repo focused on reasoning quality and developer experience.
 
 ## Retrieved-content trust
 
