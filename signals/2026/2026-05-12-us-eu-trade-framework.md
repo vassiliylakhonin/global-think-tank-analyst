@@ -72,3 +72,5 @@ Confidence: Moderate. The structural reasoning is sound; the specific current-st
 ## Example expansion prompt
 Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for an EU industrial operator with US market exposure: define the options (absorb, pass through, restructure), separate facts from assumptions, identify the negotiation-scenario triggers, and list watch-next indicators tied to posture changes.
 
+## Disclaimer
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, trade-legal, customs, or investment advice.

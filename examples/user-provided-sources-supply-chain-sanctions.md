@@ -152,3 +152,12 @@ Questions the skill works through:
 | Product reclassification shows ECCN above EAR99 | Activates export-control license requirements; separate BIS filing obligation |
 | OFAC issues a specific advisory naming your product category or supply chain | Read the advisory; it may expand or narrow permissible activity relative to the current baseline |
 
+## Limitation note
+
+This is a `user-provided sources` decision-support template. It structures the analytical questions; it does not substitute for:
+- primary OFAC, EU, and UK sanctions list screening current as of each transaction;
+- qualified legal and compliance counsel familiar with your entity's jurisdiction, supply chain, and product classification;
+- BIS export-control counsel if dual-use products are in scope;
+- entity-level KYC to beneficial ownership.
+
+A "clean" structural analysis from this template does not constitute a compliance clearance. Operational sanctions compliance requires live list screening, qualified review, and documented due diligence.

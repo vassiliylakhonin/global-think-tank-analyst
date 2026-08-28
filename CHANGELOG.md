@@ -20,6 +20,16 @@
 - Removed unsupported model choices and documented the API/batch surfaces as
   local, in-process experiments rather than production infrastructure.
 
+- **fix(docs,evals,signals): restore the honest-scope layer removed in 592867a.** That commit stripped the
+  `Disclaimer` section from the README and from every published signal, removed the `Limitations` and
+  "what this skill has not been tested on" sections, took the limitation-note requirement out of
+  `templates/memo-blank.md`, and cut the honest-scope observations from three agent-eval cases,
+  `evals/failure-modes.md`, a self-run, and two worked examples. The method itself never changed: it still
+  reports evidence mode, still separates fact from assumption, and still routes to human review. The
+  `[2.0.0] Autonomous Compliance Edition` CHANGELOG block, which announced definitive legal, compliance,
+  and sanctions determinations, is removed with it — the skill does not do that, and AGENTS.md forbids
+  claiming it.
+
 ## 1.4.0 - 2026-08-25
 
 - Removed the weekly `cron` from `.github/workflows/policy-risk-signal.yml`. The signal archive is maintained by hand: every signal in it was written and merged by a person, and the schedule never produced one. Of its 17 runs, four failed in May and the following thirteen reported success while doing nothing, because the branch that handles a missing `OPENAI_API_KEY` exited zero. A dead channel sat behind thirteen consecutive green checks. The workflow remains available as a manual `workflow_dispatch` draft.
