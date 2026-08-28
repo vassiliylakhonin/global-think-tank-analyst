@@ -16,7 +16,8 @@ with st.sidebar:
     api_key = st.text_input("OpenAI / Anthropic API Key", type="password")
     if api_key:
         os.environ["OPENAI_API_KEY"] = api_key
-    model_choice = st.selectbox("Model", ["gpt-4o", "gpt-4o-mini"])
+    frontier_choice = st.selectbox("Frontier Model (Critic/Drafter)", ["gpt-4o", "gpt-4o-mini", "claude-3-5-sonnet-20240620"])
+    fast_choice = st.selectbox("Fast Model (Scraper/Graph)", ["gpt-4o-mini", "deepseek-chat", "gemini-1.5-flash"])
     language = st.selectbox("Prompt Language", ["en", "ru"])
     st.markdown("---")
     st.markdown("**API Status:**")
@@ -36,12 +37,23 @@ with tab1:
         if not api_key:
             st.error("Please enter an API Key in the sidebar.")
         else:
-            with st.spinner("Agent is researching, extracting graphs, drafting, and red-teaming..."):
+            with st.spinner("Agent is cascading models, checking proprietary registry, drafting, and red-teaming..."):
                 try:
                     from gtta.agent import AnalystAgent
-                    agent = AnalystAgent(model_name=model_choice, language=language)
-                    result = agent.generate_memo(topic=topic, mode=mode_letter, thread_id="ui_thread_1")
-                    st.markdown(result)
+                    agent = AnalystAgent(frontier_model=frontier_choice, fast_model=fast_choice, language=language)
+                    result_data = agent.generate_memo_with_metrics(topic=topic, mode=mode_letter, thread_id="ui_thread_1")
+                    
+                    # Display Unit Economics Card (MA7 Slide 7 & 16)
+                    econ = result_data.get("economics", {})
+                    col1, col2, col3, col4 = st.columns(4)
+                    col1.metric("Query Cost", f"${econ.get('query_cost_usd', 0.0):.4f}")
+                    col2.metric("Gross Margin", f"{econ.get('gross_margin_pct', 99.0)}%")
+                    col3.metric("Tokens", f"{econ.get('total_tokens', 0):,}")
+                    col4.metric("Cascade Savings", f"{econ.get('cascading_savings_pct', 0)}%")
+                    
+                    st.info(f"**Strategy:** {econ.get('routing_strategy', '')} | Iterations: {result_data.get('iterations', 1)}")
+                    st.markdown("---")
+                    st.markdown(result_data["memo"])
                 except Exception as e:
                     st.error(f"Error: {e}")
 

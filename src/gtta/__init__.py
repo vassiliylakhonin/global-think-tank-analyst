@@ -16,3 +16,9 @@ try:
     from .agent import AnalystAgent
 except ImportError:
     pass
+
+try:
+    from .economics import calculate_unit_economics, calculate_cost
+    from .knowledge import lookup_regional_knowledge
+except ImportError:
+    pass
