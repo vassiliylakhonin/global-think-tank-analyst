@@ -321,7 +321,6 @@ This project is evolving from a static collection of prompts into a software-dri
 **Phase 3: Advanced AI Integration (Current)**
 - **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex.
 - **Multi-Agent Debate (MoA):** `gtta.agent` now features a LangGraph pipeline with explicit Researcher, Drafter, Critic (Red-Teamer), and Editor nodes to enforce absolute Evidence Discipline.
-- **Quantitative Execution:** The agent pipeline integrates `PythonREPLTool` for dynamic data fetching and analysis (e.g., pandas/macro API) prior to drafting memos.
 - **Algorithmic Prompting:** Included a `dspy-ai` pipeline (`scripts/optimize_prompt_dspy.py`) to systematically optimize the `SKILL.md` rules against evidence metrics.
 
 **Phase 4: Enterprise Capabilities (Current)**

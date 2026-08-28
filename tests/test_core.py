@@ -59,3 +59,38 @@ def test_proprietary_knowledge_lookup():
     
     res_cbam = lookup_regional_knowledge("EU CBAM impact on Kazakh metals")
     assert "PROPRIETARY DOMAIN REGISTER: CBAM_KAZAKHSTAN" in res_cbam
+
+
+def test_agent_module_has_no_code_execution_tool():
+    """The researcher node once built Python source from the user-supplied topic
+    and handed it to PythonREPLTool, which made `topic` a remote code-execution
+    vector through the FastAPI memo route. Keep the interpreter out of the graph.
+    """
+    from pathlib import Path
+
+    import gtta.agent as agent_module
+
+    source = Path(agent_module.__file__).read_text(encoding="utf-8")
+    assert "PythonREPLTool" not in source
+    assert "langchain_experimental" not in source
+
+
+def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
+    from fastapi import HTTPException
+    from fastapi.security import HTTPAuthorizationCredentials
+
+    from gtta.server import require_api_key
+
+    monkeypatch.delenv("GTTA_API_KEY", raising=False)
+    assert require_api_key(None) is None  # open demo while unset
+
+    monkeypatch.setenv("GTTA_API_KEY", "correct-key")
+    with pytest.raises(HTTPException) as missing:
+        require_api_key(None)
+    assert missing.value.status_code == 401
+
+    with pytest.raises(HTTPException):
+        require_api_key(HTTPAuthorizationCredentials(scheme="Bearer", credentials="wrong"))
+
+    ok = HTTPAuthorizationCredentials(scheme="Bearer", credentials="correct-key")
+    assert require_api_key(ok) is None
