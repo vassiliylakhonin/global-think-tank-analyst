@@ -74,3 +74,5 @@ Confidence: Moderate. The structural constraint is real and well-established in 
 ## Example expansion prompt
 Use Global Think Tank Analyst to expand this signal into a Decision Briefing Pack for a corporate CFO with significant floating-rate debt maturing in 2026–2027: define refinancing options against the three Fed scenarios, identify FX hedging implications, and list the watch-next indicators tied to posture changes.
 
+## Disclaimer
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not investment, financial, treasury, or legal advice.

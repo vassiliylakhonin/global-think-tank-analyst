@@ -81,3 +81,6 @@ No live sources were checked for this signal. Assessment is based on structural 
 
 Confidence: Moderate. The structural argument that the binding constraint has shifted from cargo to insurance chain is durable. The pace and intensity of enforcement against insurance intermediaries is policy-volatile and must be checked against current regulator guidance before operational use. The scenarios are framed at the level of market structure, not at the level of any specific transaction, vessel, or operator.
 
+## Disclaimer
+
+Public example of the Global Think Tank Analyst skill style. Not official intelligence. Not legal, sanctions, insurance, financial, or investment advice. Verify all current legal, regulatory, and market facts against authoritative sources before any operational, commercial, or compliance decision.

@@ -39,3 +39,10 @@ This is a **rule-level canon eval**, not a skill-vs-no-skill delta case: both co
 
 The rule produced **no measurable delta on a labeled 8-claim packet**. This eval does not validate the rule's incremental value; it also records no harm. The rule remains in the canon on its logic (it makes silent drops a named violation and gives reviewers a checkable state per claim), not on eval-backed evidence.
 
+## Limitations
+
+- **One run per condition; single-run variance is unmeasured** and, per the sibling Hormuz case, can exceed any rule effect.
+- **The packet is labeled (K1–K8), which itself cues accounting.** The failure mode the rule targets — silent drops — is most likely with unlabeled prose sources, larger claim sets (20+), or multi-document packets. A harder eval would use those.
+- **Selectivity pressure was mild** (8 claims vs 400 words). Stronger compression pressure may separate the conditions.
+- **Same-vendor blind judge (Haiku 4.5).** Per the canon's self-scoring honesty rule, treat this as a structural sanity check, not validation; no cross-vendor judge was run.
+- **Author-constructed case:** the eval author wrote both conditions and the rubric; the rubric tests exactly what the rule mandates, so it favors the treatment by construction — which makes the zero delta more informative than a positive one would have been.
