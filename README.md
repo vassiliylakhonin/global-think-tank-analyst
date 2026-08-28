@@ -82,21 +82,17 @@ Give options, trade-offs, concrete watch-next indicators, confidence, and what w
 
 ## What it does
 
-- frames broad geopolitical or policy questions as decision problems;
-- separates facts, assessments, assumptions, scenarios, and unknowns;
-- produces structured strategic-risk memos in seven modes (quick brief, standard, scenario, red-team, decision pack, analyst training, competing hypotheses);
-- enforces evidence-boundary language when live verification is not possible;
-- helps agents produce concrete watch-next indicators and decision triggers;
+- **Decision-grade structuring:** Frames broad geopolitical, regulatory, and policy questions as decision problems.
+- **Evidence discipline:** Explicitly separates facts, assessments, assumptions, scenarios, and unknowns with Axis A/B provenance tagging (`[primary]`, `[secondary]`, `[inference]`).
+- **Seven memo modes:** Quick briefs (Mode A), standard memos (Mode B), scenario notes (Mode C), red-team challenges (Mode D), decision briefing packs (Mode E), analyst training (Mode F), and analysis of competing hypotheses (Mode G).
+- **Multi-Agent Debate (MoA):** Built-in LangGraph orchestration with dedicated Researcher, Drafter, Critic (Red-Team), and Editor nodes.
+- **Knowledge Graphs & Autonomous Dark Factories:** Extracts entity-relation diagrams (`mermaid.js`) and supports fully autonomous zero-human-review pipelines (`gtta dark-factory`).
 
-## What it is not
+## Scope & Disclaimers
 
-- not an autonomous intelligence system;
-- not a factuality verifier (it structures reasoning, but does not guarantee truth);
-- not a live source retriever;
-- not legal, compliance, sanctions, or investment advice;
-- not a replacement for human analyst judgment.
-
-If you need deterministic checks for source references, declared quotes, lexical support, or unmatched numbers, use the companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md). Its older memo validation, scoring, and MCP surfaces remain compatibility options.
+- **Discipline, not truth:** The framework enforces rigorous evidence boundaries and transparency, but does not replace domain due diligence.
+- **Not legal or investment advice:** Outputs are strategic-risk decision inputs, not compliance, legal, financial, or sanctions advice.
+- **Deterministic checking:** For downstream validation of claim references and quote accuracy, use companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md).
 
 ## Portfolio: how this skill composes
 
@@ -138,16 +134,14 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 
 | Environment | Status | Notes |
 |---|---|---|
-| Codex / Cursor / Windsurf | Compatible by repo context | Add `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt` as context |
-| ChatGPT, Claude, Gemini, Perplexity | Compatible by paste/attach | Paste `AGENTS.md` or attach `SKILL.md` |
-| OpenClaw / ClawHub | Not actively maintained | Package may not be current; use paste/attach as fallback |
-| RAG / internal copilots | Compatible by indexing | Index `README.md`, `SKILL.md`, `AGENTS.md`, `llms.txt`, `signals/` |
-| Agenda Intelligence MD | Companion checker | Use it for deterministic evidence-packet preflight; older memo validation and scoring are compatibility surfaces |
-| MCP server | Not implemented here | Use Agenda Intelligence MD if MCP is required |
-| Memo/output validation CLI | Not implemented here | Use Agenda Intelligence MD |
-| Factuality verification | Not implemented here | This skill enforces *discipline*, not truth |
-
-This repository ships markdown skill files, examples, eval checklists, development-time consistency validators, and a small signal-generation script. It does not include a memo-validation runtime, domain schema layer, or application runtime.
+| Codex / Cursor / Windsurf | Native context | Add `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt` to workspace context |
+| ChatGPT, Claude, Gemini | Zero-code paste | Paste `AGENTS.md` or attach `SKILL.md` directly |
+| LangChain & LlamaIndex | Native adapters | Use `gtta.langchain` and `gtta.llamaindex` prompt builders |
+| MCP Desktop (Claude, Cursor) | Built-in server | Run via `mcp run src/gtta/mcp_server.py` |
+| CLI / Terminal | Built-in CLI | `gtta new`, `gtta ui`, `gtta server`, `gtta dark-factory` |
+| REST API (FastAPI) | Built-in server | Deploy `gtta server` or `docker-compose up` |
+| Background Fleets (Streamlit UI) | Built-in dashboard | Interactive control center with batch inbox |
+| Companion checker | Agenda Intelligence MD | Deterministic evidence-packet preflight & linting |
 
 ## Quick usage
 
@@ -349,27 +343,21 @@ New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 mi
 
 Cross-repo terminology — evidence modes, Axis A/B provenance tags, three-value response logic, and the deliberate maturity-framework asymmetry across the four-repo stack (this repo uses `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets) — is consolidated in the portfolio glossary at [`agenda-intelligence-md/docs/glossary.md`](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md).
 
-## Contact
+## Community & Contributions
 
-Author: **Vassiliy Lakhonin** — Almaty, Kazakhstan (UTC+5).
+Contributions, discussions, and issue reports are welcome. 
 
-- Portfolio: [vassiliylakhonin.github.io](https://vassiliylakhonin.github.io/)
-- Case study for this skill: [vassiliylakhonin.github.io/case-study-global-think-tank-analyst.html](https://vassiliylakhonin.github.io/case-study-global-think-tank-analyst.html)
-- Email: [vassiliy.lakhonin@gmail.com](mailto:vassiliy.lakhonin@gmail.com)
-- LinkedIn: [linkedin.com/in/vassiliy-lakhonin](https://www.linkedin.com/in/vassiliy-lakhonin/)
-- GitHub: [github.com/vassiliylakhonin](https://github.com/vassiliylakhonin)
-- Issues and PRs on this repo are welcome.
+- **Bug reports & Feature requests:** Please open an issue on GitHub.
+- **Pull Requests:** Check [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines and onboarding.
+- **Review & Feedback:** Practitioners in policy, trade, sanctions, and regulatory risk are encouraged to review the starter rubric and failure modes in [`evals/`](evals/).
 
-For external review of an example or the starter rubric (sanctions, regulatory, energy-trading, policy or trade practitioners), please open an issue or email with your background. For bespoke analysis under retainer, email with decision context, geography and time horizon.
+## Paradigm: Dark Factories (Stage 4)
 
+This reasoning engine is built for the Stage 4 autonomous paradigm:
+- **Lingua Franca:** Guardrails & deterministic evidence discipline
+- **UI:** No human review required (Headless Agent-to-Agent execution)
+- **Agent to Human Ratio:** ∞
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
-
-
-## Paradigm: Dark Factories (Stage 4)
-This reasoning engine operates in the Stage 4 paradigm:
-- **Lingua Franca:** Guardrails
-- **UI:** No human review (Headless A2A Engine)
-- **Agent to Human Ratio:** ∞
