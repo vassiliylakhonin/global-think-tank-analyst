@@ -4,11 +4,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/global-think-tank-analyst.svg)](https://pypi.org/project/global-think-tank-analyst/)
 
-**An enterprise-grade AI toolkit for strategic-risk analysis, featuring Multi-Agent Debate (MoA) and autonomous Dark Factories.**
+**An experimental strategic-risk reasoning framework with memo scaffolding, MCP support, and an optional LangGraph draft-and-critique pipeline.**
 
-`global-think-tank-analyst` turns your AI agents (Claude, ChatGPT, LangChain) into a disciplined geopolitical-risk factory. It enforces evidence separation, uncertainty handling, scenario generation, and outputs structured, decision-ready memos with embedded Knowledge Graphs.
+`global-think-tank-analyst` supplies instructions and developer tools for evidence-aware strategic-risk memos. It helps separate evidence, uncertainty, scenarios, and judgments; it does not verify facts or remove the need for review.
 
-The project has evolved into a complete **Python package** equipped with an **MCP Server**, a **FastAPI backend**, a **Streamlit Fleet Control Center**, and **LangGraph MoA pipelines**, making it trivial to deploy advanced analytical reasoning from local laptops to scalable cloud environments.
+The repository includes a **Python package**, **MCP server**, experimental **FastAPI/Streamlit surfaces**, and an optional **LangGraph pipeline**. The web surfaces are local-development tools, not a production deployment architecture.
 
 [Read the core analytical prompt (SKILL.md)](SKILL.md) · [See worked examples](#examples)
 
@@ -24,6 +24,7 @@ git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
 cd global-think-tank-analyst
 
 export OPENAI_API_KEY="your-api-key"
+export GTTA_API_KEY="a-long-random-bearer-key"
 docker-compose up --build
 ```
 - **UI:** http://localhost:8501
@@ -44,7 +45,8 @@ gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
 export OPENAI_API_KEY="your-api-key"
 gtta ui
 
-# Launch the Enterprise REST API
+# Launch the experimental local REST API (protected routes require GTTA_API_KEY)
+export GTTA_API_KEY="a-long-random-bearer-key"
 gtta server
 ```
 
@@ -82,11 +84,12 @@ Give options, trade-offs, concrete watch-next indicators, confidence, and what w
 
 ## What it does
 
-- **Decision-grade structuring:** Frames broad geopolitical, regulatory, and policy questions as decision problems.
+- **Decision-oriented structuring:** Frames broad geopolitical, regulatory, and policy questions as decision problems.
 - **Evidence discipline:** Explicitly separates facts, assessments, assumptions, scenarios, and unknowns with Axis A/B provenance tagging (`[primary]`, `[secondary]`, `[inference]`).
 - **Seven memo modes:** Quick briefs (Mode A), standard memos (Mode B), scenario notes (Mode C), red-team challenges (Mode D), decision briefing packs (Mode E), analyst training (Mode F), and analysis of competing hypotheses (Mode G).
 - **Multi-Agent Debate (MoA):** Built-in LangGraph orchestration with dedicated Researcher, Drafter, Critic (Red-Team), and Editor nodes.
-- **Knowledge Graphs & Autonomous Dark Factories:** Extracts entity-relation diagrams (`mermaid.js`) and supports fully autonomous zero-human-review pipelines (`gtta dark-factory`).
+- **Knowledge graph draft:** The optional pipeline asks a model for a Mermaid entity-relation diagram. Treat it as generated content requiring verification.
+- **Review queue worker:** The legacy `gtta dark-factory` command now produces one experimental draft in `signals/review-queue/`; it never marks or publishes the draft as reviewed.
 
 ## Scope & Disclaimers
 
@@ -107,7 +110,7 @@ For the full portfolio map, see [`PORTFOLIO.md`](PORTFOLIO.md).
 | **Vertical specialist — V2** | [gulf-middle-east-hybrid-intelligence-skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf & Middle East: Iran sanctions, GCC financial and energy hubs, maritime chokepoint risk (Hormuz, Bab-el-Mandeb, Red Sea), sovereign wealth. |
 | **Evidence-packet checker** | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks for claim/source references, declared quotes, lexical support, and unmatched numbers before human review. |
 
-> **Ecosystem Expansion:** You can deploy the Dark Factory engine (API, UI, Agents) from this horizontal skill into any vertical specialist repo using `scripts/deploy_engine_to_vertical.py <target_path> <pkg_name>`.
+The runtime is intentionally kept here. Regional specialist repositories remain thin reasoning layers and do not receive copied API or worker code.
 
 
 ```mermaid
@@ -140,7 +143,7 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | MCP Desktop (Claude, Cursor) | Built-in server | Run via `mcp run src/gtta/mcp_server.py` |
 | CLI / Terminal | Built-in CLI | `gtta new`, `gtta ui`, `gtta server`, `gtta dark-factory` |
 | REST API (FastAPI) | Built-in server | Deploy `gtta server` or `docker-compose up` |
-| Background Fleets (Streamlit UI) | Built-in dashboard | Interactive control center with batch inbox |
+| Local batch inbox (Streamlit UI) | Experimental dashboard | Bounded, non-durable in-process jobs |
 | Companion checker | Agenda Intelligence MD | Deterministic evidence-packet preflight & linting |
 
 ## Quick usage
@@ -304,7 +307,7 @@ Signals are not real-time intelligence. Before using one for an operational deci
 
 ## Roadmap
 
-This project is evolving from a static collection of prompts into a software-driven analytical tool.
+This project is evolving from a static collection of prompts into a testable developer toolkit.
 
 **Phase 1: Infrastructure & Packaging (Completed)**
 - Python package `gtta` and interactive CLI for scaffolding memos.
@@ -318,21 +321,21 @@ This project is evolving from a static collection of prompts into a software-dri
 - **CI/CD Evaluations:** Integration of `promptfoo` for LLM-as-a-judge tests on PRs, enforcing evidence discipline.
 
 
-**Phase 3: Advanced AI Integration (Current)**
+**Phase 3: Experimental AI Integration (Current)**
 - **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex.
-- **Multi-Agent Debate (MoA):** `gtta.agent` now features a LangGraph pipeline with explicit Researcher, Drafter, Critic (Red-Teamer), and Editor nodes to enforce absolute Evidence Discipline.
+- **Draft and critique graph:** `gtta.agent` includes Researcher, Drafter, Critic, and Editor nodes. The returned `validation_passed` field records whether the critic actually returned `PASS`.
 - **Algorithmic Prompting:** Included a `dspy-ai` pipeline (`scripts/optimize_prompt_dspy.py`) to systematically optimize the `SKILL.md` rules against evidence metrics.
 
-**Phase 4: Enterprise Capabilities (Current)**
-- **Knowledge Graph Intelligence (GraphRAG):** The MoA pipeline extracts entities directly into Mermaid.js knowledge graphs embedded in memos.
+**Phase 4: Developer experiments (Current)**
+- **Knowledge graph drafting:** The model can produce Mermaid.js graphs embedded in memos; these are generated artifacts, not a verified GraphRAG store.
 - **Agentic Memory:** `gtta.agent` supports `MemorySaver` to preserve context across multiple memo generations (Stateful Sessions).
-- **Heavy Document Ingestion:** The `gtta ingest` command processes 100+ page PDF reports (e.g. World Bank, RAND) into local FAISS vector stores.
-- **Production API:** A native `FastAPI` server (`gtta server`) exposes the multi-agent reasoning pipeline as a scalable REST API.
+- **Document parsing demo:** `gtta ingest` currently parses PDF pages and reports a simulated index; it does not persist a production retrieval store.
+- **Local API:** `gtta server` exposes the pipeline for local integration tests. It binds to loopback by default and disables protected routes when `GTTA_API_KEY` is absent.
 
-**Phase 5: Autonomous Fleets & Dark Factories (Current)**
-- **Background Agents:** Moved from synchronous requests to an asynchronous task queue.
-- **Fleet Control Center:** The `gtta ui` now features an "Agent Inbox" dashboard. Users can dispatch hundreds of topics simultaneously, spawning parallel background agents.
-- **Dark Factories:** The `gtta dark-factory` worker runs a continuous autonomous loop. It scrapes breaking geopolitical news, synthesizes risk targets, dispatches the MoA pipeline, and validates output against strict Guardrails (no human review), saving the finalized intelligence directly to `signals/autonomous/`.
+**Phase 5: Reviewable batch experiments (Current)**
+- **In-process batch jobs:** FastAPI can queue a bounded batch after returning the request. This is not a durable or distributed task queue; a process restart can interrupt work.
+- **Batch inbox:** The Streamlit UI can submit jobs and read their status through the authenticated API.
+- **Signal draft worker:** `gtta dark-factory` is retained as a legacy command name. It generates a single review-required draft and does not publish it.
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 
@@ -349,13 +352,6 @@ Contributions, discussions, and issue reports are welcome.
 - **Bug reports & Feature requests:** Please open an issue on GitHub.
 - **Pull Requests:** Check [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines and onboarding.
 - **Review & Feedback:** Practitioners in policy, trade, sanctions, and regulatory risk are encouraged to review the starter rubric and failure modes in [`evals/`](evals/).
-
-## Paradigm: Dark Factories (Stage 4)
-
-This reasoning engine is built for the Stage 4 autonomous paradigm:
-- **Lingua Franca:** Guardrails & deterministic evidence discipline
-- **UI:** No human review required (Headless Agent-to-Agent execution)
-- **Agent to Human Ratio:** ∞
 
 ## License
 

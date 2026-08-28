@@ -5,11 +5,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "global-think-tank-analyst"
 version = "1.4.0"
-description = "Enterprise-grade AI toolkit for strategic-risk analysis featuring LangGraph MoA, MCP server, and autonomous Dark Factories."
+description = "Experimental strategic-risk reasoning framework with memo scaffolding, MCP, and an optional LangGraph pipeline."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {file = "LICENSE"}
-keywords = ["ai-agents", "langgraph", "mcp", "geopolitics", "risk-analysis", "dark-factories", "graphrag"]
+keywords = ["ai-agents", "langgraph", "mcp", "geopolitics", "risk-analysis", "evidence"]
 authors = [
     {name = "Vassiliy Lakhonin"}
 ]
@@ -28,9 +28,9 @@ gtta = "gtta.cli:app"
 [project.optional-dependencies]
 docs = ["mkdocs-material"]
 eval = ["promptfoo"]
-ui = ["streamlit>=1.30.0"]
-agent = ["langchain-openai", "langchain-anthropic", "langchain-community", "duckduckgo-search", "tavily-python", "langgraph", "networkx"]
-test = ["pytest>=7.0.0", "pytest-asyncio"]
+ui = ["streamlit>=1.30.0", "requests>=2.31.0"]
+agent = ["langchain-openai", "langchain-community", "duckduckgo-search", "tavily-python", "langgraph", "networkx"]
+test = ["pytest>=7.0.0", "pytest-asyncio", "fastapi>=0.115.0"]
 dspy = ["dspy-ai"]
 enterprise = ["fastapi", "uvicorn", "pypdf", "faiss-cpu", "langchain-huggingface"]
 
