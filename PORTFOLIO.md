@@ -109,7 +109,7 @@ This four-repository map describes the strategic-risk stack, not every repositor
 Two separate workflow products may consume its methods without becoming additional layers in this stack:
 
 - Corridor Bankability Analyst produces bankability-review deliverables for infrastructure and corridor source packs.
-- [GrantFlow](https://github.com/vassiliylakhonin/grantflow) produces human-reviewable grant proposal and evidence artifacts from donor source packs.
+- GrantFlow produces human-reviewable grant proposal and evidence artifacts from donor source packs.
 
 Those products own their buyer, paid job, case benchmark, correction registry, and kill criteria. Global Think Tank Analyst and the regional specialists may improve their reasoning, but must not inherit their commercial positioning or claim their usage as validation.
 

@@ -50,7 +50,7 @@ def deploy(target_repo_path: str, new_pkg_name: str):
 docs = ["mkdocs-material"]
 eval = ["promptfoo"]
 ui = ["streamlit>=1.30.0"]
-agent = ["langchain-openai", "langchain-anthropic", "langchain-community", "duckduckgo-search", "tavily-python", "langgraph", "langchain-experimental", "networkx"]
+agent = ["langchain-openai", "langchain-anthropic", "langchain-community", "duckduckgo-search", "tavily-python", "langgraph", "networkx"]
 test = ["pytest>=7.0.0", "pytest-asyncio"]
 dspy = ["dspy-ai"]
 enterprise = ["fastapi", "uvicorn", "pypdf", "faiss-cpu", "langchain-huggingface"]

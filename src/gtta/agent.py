@@ -34,7 +34,6 @@ class AnalystAgent:
             from langgraph.graph import StateGraph, END
             from langgraph.checkpoint.memory import MemorySaver
             from langchain_community.tools import DuckDuckGoSearchResults
-            from langchain_experimental.tools import PythonREPLTool
         except ImportError:
             raise ImportError("Agent dependencies missing. Run: pip install global-think-tank-analyst[agent]")
             
@@ -46,7 +45,6 @@ class AnalystAgent:
         self.llm_frontier = ChatOpenAI(model=self.frontier_model, temperature=0.2)
         
         self.search_tool = DuckDuckGoSearchResults()
-        self.repl_tool = PythonREPLTool()
         self.memory = MemorySaver()
         
         # Build LangGraph
@@ -82,14 +80,9 @@ class AnalystAgent:
         # 2. Live stream search
         search_results = self.search_tool.invoke(f"latest news policy geopolitics {topic}")
         
-        # 3. Macro simulation / quant REPL
-        code = f"print('Simulated quantitative macro calculation for: {topic}')"
-        quant_results = self.repl_tool.invoke(code)
-        
         data = (
             f"{proprietary_context}\n\n"
-            f"LIVE SEARCH RESULTS:\n{search_results}\n\n"
-            f"QUANT/CODE RESULTS:\n{quant_results}"
+            f"LIVE SEARCH RESULTS:\n{search_results}"
         )
         return {"research_data": data, "iterations": 0}
 
