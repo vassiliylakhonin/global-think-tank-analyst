@@ -7,6 +7,7 @@ services:
       - "8000:8000"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GTTA_API_KEY=${GTTA_API_KEY:?Set GTTA_API_KEY before starting the API}
     command: gtta server --host 0.0.0.0 --port 8000
     volumes:
       - .:/app
@@ -17,6 +18,7 @@ services:
       - "8501:8501"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GTTA_API_KEY=${GTTA_API_KEY:?Set GTTA_API_KEY before starting the UI}
     command: gtta ui --host 0.0.0.0 --port 8501
     volumes:
       - .:/app

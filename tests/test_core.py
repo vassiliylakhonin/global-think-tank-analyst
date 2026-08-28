@@ -2,63 +2,76 @@ import pytest
 from gtta.langchain import get_system_prompt
 from gtta.llamaindex import get_system_message
 
+
 def test_langchain_prompt():
     prompt = get_system_prompt(language="en")
     assert prompt is not None
     assert "Evidence mode" in prompt.content
+
 
 def test_langchain_ru_prompt():
     prompt = get_system_prompt(language="ru")
     assert prompt is not None
     assert len(prompt.content) > 1000
 
+
 def test_llamaindex_prompt():
     msg = get_system_message(language="en")
     assert msg.role.value == "system"
     assert "Evidence mode" in msg.content
 
+
 def test_extra_instructions():
     prompt = get_system_prompt(extra_instructions="Focus on logistics.")
     assert "Focus on logistics." in prompt.content
 
+
 def test_mcp_validation_tool():
     import asyncio
     from gtta.mcp_server import validate_memo_evidence
-    
+
     # Missing tags
     result_fail = asyncio.run(validate_memo_evidence("Just some text."))
     assert "❌ Validation Failed" in result_fail
     assert "Missing 'Evidence mode:' declaration." in result_fail
-    
+
     # Valid text
     valid_text = "Evidence mode: reasoning-only\n## Quick assessment\n[primary] Some fact.\n[inference] Some thought."
     result_pass = asyncio.run(validate_memo_evidence(valid_text))
     assert "✅ Validation passed" in result_pass
 
+
 def test_unit_economics_calculation():
     from gtta.economics import calculate_unit_economics, calculate_cost
-    
+
     cost = calculate_cost(1000, 500, model_name="deepseek-chat")
     assert cost > 0
     assert cost < 0.01
-    
+
     econ = calculate_unit_economics(
         input_text="Sample input about sanctions on Middle Corridor." * 50,
-        output_text="Sample output memo with executive summary and scenarios." * 100
+        output_text="Sample output memo with executive summary and scenarios." * 100,
     )
     assert econ["total_tokens"] > 0
-    assert econ["gross_margin_pct"] > 95.0
-    assert econ["cascading_savings_pct"] >= 0.0
+    assert econ["estimated_query_cost_usd"] > 0
+    assert econ["estimated_cascading_savings_pct"] >= 0.0
+    assert econ["estimation_method"] == "character_count_divided_by_four"
+    assert "gross_margin_pct" not in econ
 
-def test_proprietary_knowledge_lookup():
+
+def test_illustrative_knowledge_lookup_has_sources_and_freshness_warning():
     from gtta.knowledge import lookup_regional_knowledge
-    
-    res = lookup_regional_knowledge("What is the impact of Middle Corridor transport bottleneck in Aktau?")
-    assert "PROPRIETARY DOMAIN REGISTER: MIDDLE_CORRIDOR" in res
+
+    res = lookup_regional_knowledge(
+        "What is the impact of Middle Corridor transport bottleneck in Aktau?"
+    )
+    assert "ILLUSTRATIVE CONTEXT: MIDDLE_CORRIDOR" in res
     assert "Kazakhstan Temir Zholy" in res
-    
+    assert "Freshness: verify current primary sources" in res
+
     res_cbam = lookup_regional_knowledge("EU CBAM impact on Kazakh metals")
-    assert "PROPRIETARY DOMAIN REGISTER: CBAM_KAZAKHSTAN" in res_cbam
+    assert "ILLUSTRATIVE CONTEXT: CBAM_KAZAKHSTAN" in res_cbam
+    assert "taxation-customs.ec.europa.eu" in res_cbam
 
 
 def test_agent_module_has_no_code_execution_tool():
@@ -85,7 +98,9 @@ def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
     from gtta.server import require_api_key
 
     monkeypatch.delenv("GTTA_API_KEY", raising=False)
-    assert require_api_key(None) is None  # open demo while unset
+    with pytest.raises(HTTPException) as unconfigured:
+        require_api_key(None)
+    assert unconfigured.value.status_code == 503
 
     monkeypatch.setenv("GTTA_API_KEY", "correct-key")
     with pytest.raises(HTTPException) as missing:
@@ -93,7 +108,32 @@ def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
     assert missing.value.status_code == 401
 
     with pytest.raises(HTTPException):
-        require_api_key(HTTPAuthorizationCredentials(scheme="Bearer", credentials="wrong"))
+        require_api_key(
+            HTTPAuthorizationCredentials(scheme="Bearer", credentials="wrong")
+        )
 
     ok = HTTPAuthorizationCredentials(scheme="Bearer", credentials="correct-key")
     assert require_api_key(ok) is None
+
+
+def test_cli_does_not_use_shell_execution():
+    from pathlib import Path
+
+    import gtta.cli as cli_module
+
+    source = Path(cli_module.__file__).read_text(encoding="utf-8")
+    assert "os.system" not in source
+    assert "subprocess.run" in source
+
+
+def test_agent_result_exposes_failed_critic_state_without_claiming_pass():
+    from gtta.agent import AnalystAgent
+
+    agent = object.__new__(AnalystAgent)
+    state = {
+        "critique": "Missing source support",
+        "iterations": 2,
+        "validation_passed": False,
+    }
+    assert agent._route_critique(state) == "finish"
+    assert state["validation_passed"] is False

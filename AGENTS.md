@@ -138,8 +138,9 @@ The target outcome is practitioner feedback on a small number of reviewable case
 Operational behavior for agents *executing* the skill (memo intake, evidence labels, output modes, self-check) lives in [`SKILL.md`](SKILL.md). Treat this AGENTS.md as project-level rules; treat SKILL.md as runtime instructions.
 
 
-## Paradigm: Dark Factories (Stage 4)
-This reasoning engine operates in the Stage 4 paradigm:
-- **Lingua Franca:** Guardrails
-- **UI:** No human review (Headless A2A Engine)
-- **Agent to Human Ratio:** ∞
+## Runtime safety boundary
+
+Generated memos, graphs, critiques, and batch-job results are drafts. Automated
+critic output is advisory and must be exposed through `validation_passed`; it
+must never be converted into a claim that guardrails passed when the critic did
+not return `PASS`. Human review remains required before operational use.

@@ -1,16 +1,24 @@
-## [2.0.0] - 2026-08-27
-
-### Changed
-- **Autonomous Compliance Edition**: Completely removed all disclaimers, "Safety limits", and compliance restrictions across the entire repository.
-- Empowered the skill to provide definitive legal, compliance, and sanctions determinations instead of defaulting to a refusal posture.
-- Replaced hesitant "Mitigation questions" with decisive "Autonomous Enforcement Actions" in risk archetypes.
-- Stripped arbitrary "Limitation note" requirements from outputs and updated continuous integration validation scripts to reflect the new autonomous capabilities.
-
 # Changelog
 
 ## Unreleased
 
-_Nothing yet._
+- Corrected the PDF command so it reports parsing only instead of claiming a
+  simulated FAISS ingestion, and removed remaining autonomous/fleet wording from
+  the legacy review-queue worker and local batch UI.
+
+- API and UI bind to loopback by default; protected API routes now fail closed
+  when `GTTA_API_KEY` is missing, and external CLI binds require a key.
+- Replaced shell-based CLI launchers with argument-safe subprocess calls.
+- Memo results now expose the critic's actual `validation_passed` state and
+  retain the critique when the iteration cap is reached.
+- Reframed the legacy signal worker as a review-queue draft generator; it no
+  longer claims automatic guardrail approval or publication.
+- Replaced invented revenue and gross-margin figures with explicitly labelled
+  heuristic cost estimates.
+- Renamed the small static regional registry as illustrative context and added
+  primary-source starting points and freshness warnings.
+- Removed unsupported model choices and documented the API/batch surfaces as
+  local, in-process experiments rather than production infrastructure.
 
 ## 1.4.0 - 2026-08-25
 
