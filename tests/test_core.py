@@ -76,6 +76,9 @@ def test_agent_module_has_no_code_execution_tool():
 
 
 def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
+    # gtta.server lives behind the `enterprise` extra; skip where it is absent
+    # rather than failing the base test job.
+    pytest.importorskip("fastapi")
     from fastapi import HTTPException
     from fastapi.security import HTTPAuthorizationCredentials
 
