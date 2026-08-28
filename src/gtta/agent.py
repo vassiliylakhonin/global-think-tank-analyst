@@ -1,8 +1,10 @@
-"""Advanced RAG Agent pipeline with Memory and GraphRAG for Global Think Tank Analyst."""
+"""Advanced RAG Agent pipeline with Memory, GraphRAG, Model Cascading, and Unit Economics."""
 
 import os
-from typing import TypedDict
+from typing import TypedDict, Dict, Any, Optional
 from .langchain import get_system_prompt
+from .economics import calculate_unit_economics
+from .knowledge import lookup_regional_knowledge
 
 class AgentState(TypedDict):
     topic: str
@@ -13,10 +15,17 @@ class AgentState(TypedDict):
     critique: str
     final_memo: str
     iterations: int
+    economics: Dict[str, Any]
 
 class AnalystAgent:
-    def __init__(self, model_name: str = "gpt-4o", language: str = "en"):
-        self.model_name = model_name
+    def __init__(
+        self,
+        frontier_model: str = "gpt-4o",
+        fast_model: str = "gpt-4o-mini",
+        language: str = "en"
+    ):
+        self.frontier_model = frontier_model
+        self.fast_model = fast_model
         self.language = language
         self.system_prompt = get_system_prompt(language=self.language).content
         
@@ -32,7 +41,10 @@ class AnalystAgent:
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError("OPENAI_API_KEY environment variable is required.")
             
-        self.llm = ChatOpenAI(model=self.model_name, temperature=0.2)
+        # Model Cascading: Fast model for extraction, Frontier model for analytical synthesis & critique
+        self.llm_fast = ChatOpenAI(model=self.fast_model, temperature=0.0)
+        self.llm_frontier = ChatOpenAI(model=self.frontier_model, temperature=0.2)
+        
         self.search_tool = DuckDuckGoSearchResults()
         self.repl_tool = PythonREPLTool()
         self.memory = MemorySaver()
@@ -51,7 +63,6 @@ class AnalystAgent:
         workflow.add_edge("graph_extractor", "drafter")
         workflow.add_edge("drafter", "critic")
         
-        # Conditional edge: if critique is clean or max iterations reached, end.
         workflow.add_conditional_edges(
             "critic",
             self._route_critique,
@@ -63,28 +74,40 @@ class AnalystAgent:
 
     def _node_researcher(self, state: AgentState):
         topic = state["topic"]
-        print(f"--- [Researcher] Gathering data for: {topic} ---")
+        print(f"--- [Researcher / Cascade Tier 1] Gathering data for: {topic} ---")
+        
+        # 1. Query proprietary structured knowledge layer
+        proprietary_context = lookup_regional_knowledge(topic)
+        
+        # 2. Live stream search
         search_results = self.search_tool.invoke(f"latest news policy geopolitics {topic}")
-        code = f"print('Simulated quantitative macro data fetching for: {topic}')"
+        
+        # 3. Macro simulation / quant REPL
+        code = f"print('Simulated quantitative macro calculation for: {topic}')"
         quant_results = self.repl_tool.invoke(code)
         
-        data = f"SEARCH RESULTS:\n{search_results}\n\nQUANT/CODE RESULTS:\n{quant_results}"
+        data = (
+            f"{proprietary_context}\n\n"
+            f"LIVE SEARCH RESULTS:\n{search_results}\n\n"
+            f"QUANT/CODE RESULTS:\n{quant_results}"
+        )
         return {"research_data": data, "iterations": 0}
 
     def _node_graph_extractor(self, state: AgentState):
-        print("--- [Graph Extractor] Building Knowledge Graph (Mermaid) ---")
+        print(f"--- [Graph Extractor / Fast Tier: {self.fast_model}] Extracting Knowledge Graph ---")
         prompt = (
             f"Extract key entities (countries, companies, sanctions, policies) and their relationships "
             f"from the following research data.\n\n"
             f"Output ONLY a valid mermaid.js flowchart showing how they are connected. Do not include markdown code blocks.\n\n"
             f"Data:\n{state['research_data']}"
         )
-        response = self.llm.invoke(prompt)
+        # Use Fast model for structured extraction (Cascade cost optimization)
+        response = self.llm_fast.invoke(prompt)
         mermaid_clean = response.content.replace('```mermaid', '').replace('```', '').strip()
         return {"graph_data": mermaid_clean}
 
     def _node_drafter(self, state: AgentState):
-        print("--- [Drafter] Writing initial memo ---")
+        print(f"--- [Drafter / Frontier Tier: {self.frontier_model}] Drafting Strategy Memo ---")
         prompt = (
             f"SYSTEM: {self.system_prompt}\n\n"
             f"You are the Drafter. Write a Mode {state['mode']} memo on '{state['topic']}'.\n"
@@ -92,19 +115,19 @@ class AnalystAgent:
             f"Also, embed this Knowledge Graph exactly as a mermaid block in your memo:\n"
             f"```mermaid\n{state['graph_data']}\n```"
         )
-        response = self.llm.invoke(prompt)
+        response = self.llm_frontier.invoke(prompt)
         return {"draft": response.content}
 
     def _node_critic(self, state: AgentState):
-        print(f"--- [Critic] Red-teaming draft (Iteration {state['iterations']}) ---")
+        print(f"--- [Critic / Frontier Red-Team: {self.frontier_model}] Evaluating Evidence Discipline (Iteration {state['iterations']}) ---")
         prompt = (
             f"You are a strict Red-Teamer and Editor for the Global Think Tank Analyst.\n"
             f"Review the draft memo against Evidence Discipline rules.\n"
-            f"Rules:\n1. Must separate Facts vs Assessments.\n2. Must have [primary]/[secondary] tags.\n\n"
+            f"Rules:\n1. Must separate Facts vs Assessments.\n2. Must have [primary]/[secondary] tags.\n3. Must avoid source theater.\n\n"
             f"Draft:\n{state['draft']}\n\n"
             f"If it passes, reply EXACTLY with 'PASS'. Otherwise, list ruthless criticisms."
         )
-        response = self.llm.invoke(prompt)
+        response = self.llm_frontier.invoke(prompt)
         return {"critique": response.content.strip(), "iterations": state["iterations"] + 1}
 
     def _route_critique(self, state: AgentState):
@@ -113,7 +136,7 @@ class AnalystAgent:
         return "revise"
 
     def _node_editor(self, state: AgentState):
-        print("--- [Editor] Revising based on criticism ---")
+        print(f"--- [Editor / Frontier Tier: {self.frontier_model}] Revising based on criticism ---")
         prompt = (
             f"SYSTEM: {self.system_prompt}\n\n"
             f"Fix this draft based on the Critic's feedback.\n"
@@ -121,11 +144,16 @@ class AnalystAgent:
             f"Criticism:\n{state['critique']}\n\n"
             f"Provide ONLY the revised Markdown memo."
         )
-        response = self.llm.invoke(prompt)
+        response = self.llm_frontier.invoke(prompt)
         return {"draft": response.content}
 
-    def generate_memo(self, topic: str, mode: str = "B", thread_id: str = "default") -> str:
-        """Run the LangGraph pipeline with Memory."""
+    def generate_memo_with_metrics(
+        self,
+        topic: str,
+        mode: str = "B",
+        thread_id: str = "default"
+    ) -> Dict[str, Any]:
+        """Run the LangGraph pipeline and return memo with full Unit Economics telemetry."""
         initial_state = {
             "topic": topic, 
             "mode": mode, 
@@ -134,9 +162,28 @@ class AnalystAgent:
             "draft": "", 
             "critique": "", 
             "final_memo": "", 
-            "iterations": 0
+            "iterations": 0,
+            "economics": {}
         }
-        # Execute with thread_id for conversational memory
         config = {"configurable": {"thread_id": thread_id}}
         final_state = self.graph.invoke(initial_state, config=config)
-        return final_state["draft"]
+        draft = final_state["draft"]
+        
+        # Calculate unit economics
+        economics = calculate_unit_economics(
+            input_text=topic + "\n" + final_state.get("research_data", ""),
+            output_text=draft,
+            fast_model=self.fast_model,
+            frontier_model=self.frontier_model
+        )
+        
+        return {
+            "memo": draft,
+            "economics": economics,
+            "iterations": final_state.get("iterations", 1)
+        }
+
+    def generate_memo(self, topic: str, mode: str = "B", thread_id: str = "default") -> str:
+        """Standard backwards-compatible generation returning markdown string."""
+        result = self.generate_memo_with_metrics(topic=topic, mode=mode, thread_id=thread_id)
+        return result["memo"]

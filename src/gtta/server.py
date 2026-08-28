@@ -3,7 +3,7 @@
 import os
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional, Dict, Any
 
 try:
     from .agent import AnalystAgent
@@ -42,14 +42,21 @@ class MemoRequest(BaseModel):
 class MemoResponse(BaseModel):
     thread_id: str
     memo: str
+    economics: Optional[dict] = None
+    iterations: Optional[int] = 1
 
 @app.post("/api/v1/memo", response_model=MemoResponse)
 async def generate_memo(req: MemoRequest):
-    """Generate a single strategic-risk memo synchronously."""
+    """Generate a single strategic-risk memo synchronously with Unit Economics."""
     agent = get_agent()
     try:
-        result = agent.generate_memo(topic=req.topic, mode=req.mode, thread_id=req.thread_id)
-        return MemoResponse(thread_id=req.thread_id, memo=result)
+        data = agent.generate_memo_with_metrics(topic=req.topic, mode=req.mode, thread_id=req.thread_id)
+        return MemoResponse(
+            thread_id=req.thread_id,
+            memo=data["memo"],
+            economics=data["economics"],
+            iterations=data["iterations"]
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
