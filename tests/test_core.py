@@ -26,18 +26,18 @@ def test_extra_instructions():
     assert "Focus on logistics." in prompt.content
 
 
-@pytest.mark.asyncio
-async def test_mcp_validation_tool():
+def test_mcp_validation_tool():
+    import asyncio
     from gtta.mcp_server import validate_memo_evidence
 
     # Missing tags
-    result_fail = await validate_memo_evidence("Just some text.")
+    result_fail = asyncio.run(validate_memo_evidence("Just some text."))
     assert "❌ Validation Failed" in result_fail
     assert "Missing 'Evidence mode:' declaration." in result_fail
 
     # Valid text
     valid_text = "Evidence mode: reasoning-only\n## Quick assessment\n[primary] Some fact.\n[inference] Some thought."
-    result_pass = await validate_memo_evidence(valid_text)
+    result_pass = asyncio.run(validate_memo_evidence(valid_text))
     assert "✅ Validation passed" in result_pass
 
 

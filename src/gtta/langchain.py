@@ -1,6 +1,12 @@
-from langchain_core.messages import SystemMessage
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
+
+try:
+    from langchain_core.messages import SystemMessage
+except ImportError:
+    class SystemMessage:  # type: ignore
+        def __init__(self, content: str):
+            self.content = content
 
 def get_skill_prompt(language: str = "en") -> str:
     """Read the analytical skill instructions."""

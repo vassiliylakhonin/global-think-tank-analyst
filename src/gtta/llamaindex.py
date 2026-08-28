@@ -1,6 +1,19 @@
+from enum import Enum
 from pathlib import Path
-from typing import Optional
-from llama_index.core.llms import ChatMessage, MessageRole
+from typing import Any, Optional
+
+try:
+    from llama_index.core.llms import ChatMessage, MessageRole
+except ImportError:
+    class MessageRole(Enum):  # type: ignore
+        SYSTEM = "system"
+        USER = "user"
+        ASSISTANT = "assistant"
+
+    class ChatMessage:  # type: ignore
+        def __init__(self, role: Any, content: str):
+            self.role = role
+            self.content = content
 
 def get_skill_prompt(language: str = "en") -> str:
     """Read the analytical skill instructions."""
