@@ -10,8 +10,8 @@
 - Migrated four legacy examples that lacked any provenance marker to explicit
   provenance, calibrated confidence, and declared memo structure.
 
-- Began the `1.5.0.dev0` distribution-integrity pass. The complete English and
-  Russian analytical method now ships as package data and loads through a
+- Prepared the `1.5.0rc1` distribution-integrity candidate. The complete
+  English and Russian analytical method now ships as package data and loads through a
   single fail-closed resource interface used by framework and MCP adapters.
 - Added a built-wheel installation smoke test and a repository check that keeps
   packaged runtime resources synchronized with the canonical root skill files.
