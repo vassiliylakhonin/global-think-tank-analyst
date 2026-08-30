@@ -34,6 +34,9 @@ Do not duplicate Agenda Intelligence MD inside this repo. The primary compositio
 The local method-contract checker is narrower: it checks observable GTTA method
 shape only. Its ownership seam and explicit non-goals are documented in
 [`docs/contract-checker.md`](docs/contract-checker.md).
+Exact machine-readable claim accounting is owned by the versioned
+[`MemoArtifact`](docs/memo-artifact.md) interface; Markdown checking remains
+heuristic.
 Its v1 compatibility promise and automated release gate are documented in
 [`docs/contract-release-criteria.md`](docs/contract-release-criteria.md).
 
@@ -103,8 +106,10 @@ This skill makes the agent better at strategic-risk analysis, not narrower. If t
 This file is the contract, deliberately short. Detail that is only needed for a specific task lives in `docs/` and is reached from here by a pointer:
 
 - how a claim must be tagged, calibrated, or accounted for → [`docs/analysis-contract.md`](docs/analysis-contract.md)
+- how structured claims and rendered memo blocks connect → [`docs/memo-artifact.md`](docs/memo-artifact.md)
 - README, example, eval-doc, and signal conventions → [`docs/repo-conventions.md`](docs/repo-conventions.md)
-- which maturity framework applies and why → [`docs/maturity-framework.md`](docs/maturity-framework.md)
+- current maturity evidence and claim gates → [`STATUS.md`](STATUS.md) and [`docs/definition-of-done.md`](docs/definition-of-done.md)
+- maturity-axis definitions → [`docs/maturity-framework.md`](docs/maturity-framework.md)
 - operational behavior for agents executing the skill → [`SKILL.md`](SKILL.md), not this file
 
 Add a rule here only if it is needed before any output — identity, scope, honesty rules, evidence rules, retrieved-content trust. Everything else goes in the file above that owns it, with a one-line summary here at most. Do not move detail back inline so that "the agent sees it"; the pointer is the mechanism, and re-inlining is how this file grew to 2,300 words before 2026-07-25.
@@ -131,11 +136,14 @@ Do not present these as competing names. Do not duplicate vertical-specialist de
 
 ## Definition of done
 
-A senior AI or agent engineering reviewer should understand that this repo is not a generic prompt pack. It should read as an early but credible domain skill layer for high-stakes strategic-risk agents.
+Done is claim-specific, not a single project bar. Use
+[`docs/definition-of-done.md`](docs/definition-of-done.md) for gates and
+[`STATUS.md`](STATUS.md) for current evidence across release readiness (`R`),
+method evidence (`M`), and external usefulness (`U`).
 
-This repo measures itself against [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), not the vertical siblings' Bar 1 / Bar 2 framework. The two are not interchangeable — when this repo says "the canon" or "the Definition of Done" it means `VALIDATION_PLAN.md`. Why they differ, and what each is stricter about, is in [`docs/maturity-framework.md`](docs/maturity-framework.md). Portfolio write-ups must name which framework they reference, per repo.
-
-The target outcome is practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/) only after a real external reviewer responds. Author self-review does not count as external validation.
+Practitioner review is required before usefulness claims, but it is not a
+software release gate. Author self-review does not count as external evidence.
+Unqualified Bar 1 / Bar 2 language is retired in this repo.
 
 ---
 

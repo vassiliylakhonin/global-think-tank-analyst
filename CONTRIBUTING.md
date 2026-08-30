@@ -12,7 +12,10 @@ If you've just landed in this repo and want to understand it before editing, do 
 
 1. [`README.md`](README.md) — what this is (a horizontal strategic-risk reasoning skill with a small developer toolkit), the four-repo stack, and which runtime surfaces are explicitly experimental.
 2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, honesty rules, evidence rules, retrieved-content trust, naming hierarchy. It points to [`docs/analysis-contract.md`](docs/analysis-contract.md) (provenance tags, calibration, response modes), [`docs/repo-conventions.md`](docs/repo-conventions.md) (README, examples, eval docs, signals), and [`docs/maturity-framework.md`](docs/maturity-framework.md).
-3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see [`docs/maturity-framework.md`](docs/maturity-framework.md).
+3. [`STATUS.md`](STATUS.md) — the current evidence behind the independent
+   release (`R`), method (`M`), and usefulness (`U`) coordinates. The level
+   definitions and claim gates live in [`docs/maturity-framework.md`](docs/maturity-framework.md)
+   and [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
 **2. Get the validators running locally:**
 
@@ -31,7 +34,7 @@ checks and then smoke-tests a built wheel.
 - [`examples/live-source-backed-memo.md`](examples/live-source-backed-memo.md) — the flagship live-source-backed memo (OFAC "Operation Economic Fury" Iran shadow-banking action, 2026-05-01). Paired with [`examples/agenda-projections/live-source-backed-memo.brief.json`](examples/agenda-projections/live-source-backed-memo.brief.json) and `.evidence.json`, this is the smallest complete loop showing how a memo composes with the Agenda Intelligence MD validators.
 - For signals: skim [`signals/latest.md`](signals/latest.md) and the [`signals/TEMPLATE.md`](signals/TEMPLATE.md). The 4-file consistency rule across `signals/` is the most common reason a partial signal-add fails CI.
 
-**Unfamiliar with a term in `AGENTS.md`?** See the [portfolio glossary](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md) — single source of truth across the four repos for evidence modes, uncertainty labels (`Verified`/`Plausible`/`Judgment`/`Unknown`), Axis A/B provenance tags, three-value response logic, table-cell discipline, and the maturity-framework asymmetry (this repo uses the Maturity framework from `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets — do not transplant terminology between them).
+**Unfamiliar with a term in `AGENTS.md`?** See the [portfolio glossary](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md) for shared evidence terminology. Maturity scores are repository-native: GTTA uses the `R/M/U` axes in [`docs/maturity-framework.md`](docs/maturity-framework.md), and sibling scores must not be transplanted.
 
 **When something is unclear**, the lookup order is: this repo's [`AGENTS.md`](AGENTS.md) → portfolio canon ([agenda-intelligence-md/AGENTS.md](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/AGENTS.md), vertical-skill AGENTS.md files) → open an issue using the template under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/).
 
@@ -78,10 +81,12 @@ repository.
 
 - [`AGENTS.md`](AGENTS.md) — project identity, honesty, evidence, naming rules. The contract, kept short.
 - [`docs/analysis-contract.md`](docs/analysis-contract.md) — provenance tags, calibration, response modes, input-claim accounting.
+- [`docs/memo-artifact.md`](docs/memo-artifact.md) — canonical structured memo and claim-ledger interface.
 - [`docs/repo-conventions.md`](docs/repo-conventions.md) — README structure, example requirements, eval-doc labelling, signals.
-- [`docs/maturity-framework.md`](docs/maturity-framework.md) — why this repo uses `VALIDATION_PLAN.md` and not Bar 1/2.
+- [`docs/maturity-framework.md`](docs/maturity-framework.md) — release, method-evidence, and usefulness axes.
+- [`docs/definition-of-done.md`](docs/definition-of-done.md) — minimum evidence for each public claim.
 
-**Where a new rule goes.** `AGENTS.md` stays short; task-specific detail lives in the three files above and is reached from it by a pointer — see AGENTS.md "Where a new rule goes". A rule belongs inline only if it is needed before any output. Adding a section to `AGENTS.md` when one of the `docs/` files owns it is the drift this layout exists to prevent.
+**Where a new rule goes.** `AGENTS.md` stays short; task-specific detail lives in the owning file above and is reached from it by a pointer — see AGENTS.md "Where a new rule goes". A rule belongs inline only if it is needed before any output. Adding a section to `AGENTS.md` when one of the `docs/` files owns it is the drift this layout exists to prevent.
 - [`SKILL.md`](SKILL.md) and [`codex/SKILL.md`](codex/SKILL.md) — runtime agent behavior.
 - [`examples/`](examples/) — illustrative memos. Always state evidence mode.
 - [`evals/`](evals/) — human review checklist, failure modes, starter rubric.

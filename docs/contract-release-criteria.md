@@ -24,8 +24,8 @@ A package release may expose contract v1 only when all of the following pass:
 3. Every canonical example has a supported evidence mode and no contract
    `error` finding.
 4. The 10-20 case paired agent-eval suite validates structurally.
-5. The built wheel exposes the same resources, CLI, checker, and MCP tools as
-   the source tree.
+5. The built wheel exposes the same resources, CLI, checker, `MemoArtifact`
+   schema/renderer, and MCP tools as the source tree.
 
 The paired agent-eval does not have to claim a positive quality delta for a
 software release. If it is executed and results are published, the exact model,

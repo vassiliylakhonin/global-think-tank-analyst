@@ -11,6 +11,10 @@ The repository includes a **Python package**, **MCP server**, experimental **Fas
 
 [Read the core analytical prompt (SKILL.md)](SKILL.md) · [See worked examples](#examples)
 
+**Current maturity:** `R2 / M2 / U0` — release candidate and executable method
+contract exist; no external practitioner review is claimed. See
+[`STATUS.md`](STATUS.md).
+
 > The core skill has no native source retrieval. The optional agent experiment performs public-web search without producing a verified evidence packet. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
 
 ## Quick Start & Installation
@@ -40,6 +44,10 @@ gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
 
 # Check deterministic method-contract requirements
 gtta check-contract memo.md --mode B
+
+# Validate and render a structured claim ledger
+gtta check-artifact memo.json
+gtta render-artifact memo.json
 
 # Run the MCP server over stdio
 gtta mcp
@@ -101,12 +109,20 @@ Give options, trade-offs, concrete watch-next indicators, confidence, and what w
 - **Knowledge graph draft:** The optional pipeline asks a model for a Mermaid entity-relation diagram. Treat it as generated content requiring verification.
 - **Packaged runtime resources:** English and Russian skill instructions ship inside the wheel and are loaded through one fail-closed resource interface.
 - **Versioned method preflight:** `gtta check-contract` reports stable rule IDs for deterministic method-shape violations; it does not claim factual or evidence validation.
+- **Structured memo contract:** `gtta.memo@1.0` links atomic claims, provenance,
+  narrative blocks, options, and indicators through one validated interface for
+  Python, CLI, and MCP.
 
 ## Scope & Disclaimers
 
 - **Discipline, not truth:** The framework enforces rigorous evidence boundaries and transparency, but does not replace domain due diligence.
 - **Not legal or investment advice:** Outputs are strategic-risk decision inputs, not compliance, legal, financial, or sanctions advice.
-- **Two distinct checks:** [`gtta check-contract`](docs/contract-checker.md) checks observable method conformance. For claim/source references, quote accuracy, and unmatched numbers, use companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md).
+- **Three distinct checks:** [`gtta check-contract`](docs/contract-checker.md)
+  heuristically checks Markdown method conformance;
+  [`MemoArtifact`](docs/memo-artifact.md) strictly checks declared claim-ledger
+  structure. For source support, quote accuracy, and unmatched numbers, use
+  companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md)
+  and the [evidence-packet handoff](docs/evidence-packet-handoff.md).
 
 ## Portfolio: how this skill composes
 
@@ -152,7 +168,7 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | ChatGPT, Claude, Gemini | Zero-code paste | Paste `AGENTS.md` or attach `SKILL.md` directly |
 | LangChain & LlamaIndex | Native adapters | Use `gtta.langchain` and `gtta.llamaindex` prompt builders |
 | MCP Desktop (Claude, Cursor) | Built-in adapter | Install `.[mcp]`, then run `gtta mcp` |
-| CLI / Terminal | Built-in CLI | `gtta new`, `gtta check-contract`, `gtta mcp`, `gtta parse-pdf`, `gtta ui`, `gtta server` |
+| CLI / Terminal | Built-in CLI | `gtta new`, `gtta check-contract`, `gtta check-artifact`, `gtta render-artifact`, `gtta mcp`, `gtta parse-pdf`, `gtta ui`, `gtta server` |
 | REST API (FastAPI) | Built-in server | Deploy `gtta server` or `docker-compose up` |
 | Local batch inbox (Streamlit UI) | Experimental dashboard | Bounded, non-durable in-process jobs |
 | Companion checker | Agenda Intelligence MD | Deterministic evidence-packet preflight & linting |
@@ -381,9 +397,9 @@ If you'd like to influence the roadmap or contribute to the automation, open an 
 
 ## Contributing
 
-New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 minutes" onboarding path — read the three load-bearing files (`README.md`, `AGENTS.md`, `VALIDATION_PLAN.md`), run `python3 scripts/check.py`, and walk one concrete artifact end-to-end. CI runs the same command before changes can merge.
+New contributors: [`CONTRIBUTING.md`](CONTRIBUTING.md) opens with a "First 15 minutes" onboarding path — read the three load-bearing files (`README.md`, `AGENTS.md`, `STATUS.md`), run `python3 scripts/check.py`, and walk one concrete artifact end-to-end. CI runs the same command before changes can merge.
 
-Cross-repo terminology — evidence modes, Axis A/B provenance tags, three-value response logic, and the deliberate maturity-framework asymmetry across the four-repo stack (this repo uses `VALIDATION_PLAN.md`; vertical specialists use Bar 1/2; `agenda-intelligence-md` uses `ROADMAP.md` version targets) — is consolidated in the portfolio glossary at [`agenda-intelligence-md/docs/glossary.md`](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md).
+Cross-repo evidence terminology is consolidated in the portfolio glossary at [`agenda-intelligence-md/docs/glossary.md`](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md). Maturity scores remain repository-native; GTTA's `R/M/U` model is documented in [`docs/maturity-framework.md`](docs/maturity-framework.md).
 
 ## Community & Contributions
 

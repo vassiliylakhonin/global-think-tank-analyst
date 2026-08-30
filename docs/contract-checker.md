@@ -7,7 +7,9 @@ severity, and the report records its ruleset version.
 This is a deliberately narrow interface:
 
 - Global Think Tank Analyst checks method declarations, provenance-tag
-  presence, explicit confidence, selected mode shape, and empty generic advice.
+  presence, likely untagged claims, explicit confidence, selected mode shape,
+  and empty generic advice. Exact per-claim accounting uses the structured
+  [`MemoArtifact`](memo-artifact.md) interface.
 - Agenda Intelligence MD checks the evidence-packet seam: claim/source
   references, declared quotes, lexical support, unmatched numbers, and packet
   completeness.
@@ -25,7 +27,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@1.0.0`
+## Ruleset `gtta-method-contract@1.1.0`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -38,11 +40,16 @@ understands analytical quality.
 | GTTA007 | warning | Deeper modes state what would change the judgment |
 | GTTA008 | warning | Requested mode output markers are visible |
 | GTTA009 | warning | Generic advice is replaced by an observable trigger |
+| GTTA010 | warning | A likely material prose or table-cell claim has an inline Axis A provenance tag |
 
 The rules intentionally do not require URLs to resolve, decide whether a cited
 source supports a claim, forbid citations on inferences, or treat high
 confidence under `reasoning-only` as an automatic error. Those judgments are
 not deterministic consequences of the method contract.
+
+GTTA010 is intentionally a warning: Markdown claim boundaries are heuristic.
+Use `gtta check-artifact` when exact ledger coverage and cross-reference
+validation are required.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).

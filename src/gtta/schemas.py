@@ -1,11 +1,20 @@
+"""Legacy schemas kept for compatibility.
+
+New integrations should use :mod:`gtta.artifact`, whose ``MemoArtifact`` owns
+the complete, versioned analytical contract and per-claim provenance ledger.
+"""
+
+from typing import List, Literal
+
 from pydantic import BaseModel, Field
-from typing import List, Optional, Literal
+
 
 class Risk(BaseModel):
     name: str = Field(..., description="The name of the risk")
     severity: Literal["Low", "Moderate", "High"] = Field(..., description="Risk severity globally")
     relevance: Literal["Low", "Moderate", "High"] = Field(..., description="Risk relevance to the decision maker")
     description: str = Field(..., description="Description of the risk and trade-offs")
+
 
 class Option(BaseModel):
     name: str = Field(..., description="Option name")
@@ -14,9 +23,11 @@ class Option(BaseModel):
     downside: str = Field(..., description="Main downside or cost")
     conditions: str = Field(..., description="Conditions under which it is sensible")
 
+
 class Indicator(BaseModel):
     name: str = Field(..., description="Observable indicator to watch")
     trigger: str = Field(..., description="What trigger should change posture")
+
 
 class StandardMemo(BaseModel):
     executive_takeaway: str = Field(..., description="Clearest plain-language answer")

@@ -68,9 +68,12 @@ def test_mcp_contract_preflight_tool():
 
     tools = asyncio.run(app.list_tools())
     assert {tool.name for tool in tools} == {
+        "check_memo_artifact",
         "check_memo_contract",
+        "get_memo_artifact_schema",
         "get_mode_template",
         "get_skill_prompt",
+        "render_memo_artifact",
     }
 
 

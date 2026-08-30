@@ -16,11 +16,15 @@ nav:
   - Analyst Skill: SKILL.md
   - Russian Skill (RU): SKILL_RU.md
   - Method Contract Checker: contract-checker.md
+  - MemoArtifact: memo-artifact.md
   - Contract Release Criteria: contract-release-criteria.md
+  - Definition of Done: definition-of-done.md
+  - Maturity Framework: maturity-framework.md
   - Publishing Python Releases: publishing.md
   - Portfolio & Architecture: PORTFOLIO.md
   - Contributing: CONTRIBUTING.md
   - Validation Plan: VALIDATION_PLAN.md
+  - Project Status: STATUS.md
   - CHANGELOG: CHANGELOG.md
 
 markdown_extensions:

@@ -9,6 +9,8 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 
+from . import __version__
+
 try:
     from .agent import AnalystAgent
 except ImportError:
@@ -56,7 +58,7 @@ async def lifespan(_: FastAPI):
 app = FastAPI(
     title="Global Think Tank Analyst API",
     description="REST API and batch-job experiment for structured strategic-risk memo drafts",
-    version="1.4.0",
+    version=__version__,
     lifespan=lifespan,
 )
 

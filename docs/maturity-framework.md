@@ -1,17 +1,58 @@
-# Maturity framework and portfolio canon alignment
+# Maturity framework
 
-Which framework this repo measures itself against, and why it differs from the vertical-specialist siblings.
+GTTA reports maturity as three independent coordinates. A single bar was
+misleading because a package can be releasable without practitioner evidence,
+and practitioner enthusiasm cannot prove that a build is reproducible.
 
-Referenced from `AGENTS.md`.
+The current coordinates and supporting evidence live in [`STATUS.md`](../STATUS.md).
+The claim-specific gates live in
+[`definition-of-done.md`](definition-of-done.md).
 
-This repo uses [`VALIDATION_PLAN.md`](../VALIDATION_PLAN.md) as its maturity framework. The target outcome is **practitioner feedback** on a small number of reviewable case packets, recorded under [`reviews/`](../reviews/) only after a real external reviewer responds. Author self-review does not count as external validation.
+## R — release readiness
 
-The sibling vertical-specialist repos in this portfolio (`central-asia-caspian-hybrid-intelligence-skill`, `gulf-middle-east-hybrid-intelligence-skill`) use a different framework — a two-bar Definition of Done with explicit Bar 1 (early but credible) and Bar 2 (agent-validated specialist resource) criteria, encoded as a `STATUS.md` file in each repo. Bar 2 accepts self-scored agent-eval delta cases plus source-anchored examples; practitioner review is the optional B2.8 layer.
+| Level | Meaning |
+|---|---|
+| R0 | Source exists, but no repeatable package or automated gate exists. |
+| R1 | Package builds locally and automated source tests exist. |
+| R2 | A versioned release candidate is built, smoke-tested as an installed artifact, published on GitHub, and covered by green CI. |
+| R3 | The package is installable from its declared public channel through a reproducible, authenticated release workflow. |
 
-The two frameworks are not interchangeable and not in conflict:
+R measures distribution integrity. It does not say that the analytical method
+improves output or that practitioners find it useful.
 
-- The vertical-specialist Bar 1 / Bar 2 canon centers on **source-anchored majority** (B2.1) and **evidence-mode mapping through `analyze`** (B2.3). Both criteria are designed around region-deep specialist examples that cite primary regulator / IFI / IMO / FATF sources. They do not map cleanly onto a horizontal reasoning-method skill, where the asset is memo shape across many domains rather than depth in one source-rich region.
-- GTTA's `VALIDATION_PLAN.md` is **stricter on the practitioner-review axis** (self-review explicitly does not count) and **looser on the per-criterion structural axis** (it does not require a 50%-source-anchored ratio across examples). This reflects what an honest maturity claim looks like for a horizontal method skill, not a vertical specialist.
-- Both frameworks share the same **agent-eval delta methodology** ([agenda-intelligence-md/docs/agent-eval-methodology.md](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/agent-eval-methodology.md)) and the same **honesty rules** (no self-scored aggregate benchmarks, no fabricated metrics, no real-use claims without attributable evidence).
+## M — method evidence
 
-When this repo or its case studies refer to "the canon" or "the Definition of Done", they refer to `VALIDATION_PLAN.md`, not to vertical Bar 1 / Bar 2. Portfolio-level write-ups must state which framework they are referencing, per repo, to avoid implying that "agent-validated" in a vertical context and "early but credible" in the horizontal context mean the same thing.
+| Level | Meaning |
+|---|---|
+| M0 | The method is prose-only and has no explicit testable contract. |
+| M1 | Rules, examples, and failure modes are explicit, but conformance is mostly manual. |
+| M2 | A versioned deterministic contract, structured artifact, regression tests, and a predeclared paired evaluation set exist. No positive quality delta is implied. |
+| M3 | A disclosed same-task baseline/skill evaluation has been executed under controlled settings and supports a bounded, predeclared structural-improvement claim. Results and limitations are published. |
+
+M measures evidence about observable method behavior. Deterministic checks can
+establish structure and declaration coverage; they cannot establish factual
+truth, source adequacy, or decision quality.
+
+## U — external usefulness evidence
+
+| Level | Meaning |
+|---|---|
+| U0 | No attributable external practitioner review is recorded. |
+| U1 | One relevant external practitioner has reviewed a complete case packet and the response is recorded with consent. |
+| U2 | At least two independent relevant practitioners have reviewed case packets; recurring findings and resulting changes are recorded. |
+| U3 | Evidence exists from repeated real workflows over time, including known failures and revisions. |
+
+U measures whether the workflow appears useful to people doing relevant work.
+Author self-review, LLM feedback, stars, downloads, and CI do not raise U.
+
+## Why GTTA no longer uses Bar 1 / Bar 2
+
+The vertical-specialist sibling repositories may retain their own Bar 1 / Bar 2
+criteria. Those bars combine source depth, specialist examples, and validation
+in ways suited to those repositories. Transplanting them here obscured the
+difference between shipping software, testing a horizontal reasoning method,
+and obtaining external feedback.
+
+Within GTTA, unqualified `Bar 1`, `Bar 2`, and “the canon” language is retired.
+Portfolio comparisons must name the repository and its native framework rather
+than map one score onto another.

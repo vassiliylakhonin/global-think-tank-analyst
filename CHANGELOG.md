@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Started `1.6.0.dev0` development with the versioned `gtta.memo@1.0`
+  `MemoArtifact`: a strict per-claim provenance ledger, cross-reference and
+  mode validation, canonical Markdown rendering, and shared Python, CLI, and
+  MCP interfaces.
+- Added GTTA010 to `gtta-method-contract@1.1.0` as a warning for likely
+  untagged Markdown prose and table-cell claims. Exact claim accounting remains
+  the structured artifact's responsibility.
+- Replaced the ambiguous single maturity bar with independent release (`R`),
+  method-evidence (`M`), and external-usefulness (`U`) axes. Current evidence is
+  recorded as R2 / M2 / U0; unavailable practitioner access no longer blocks an
+  honest software release, but still blocks usefulness claims.
 - Promoted the deterministic checker interface to
   `gtta-method-contract@1.0.0` with explicit compatibility criteria.
 - Added a 12-case paired baseline/skill agent-eval harness; it reports

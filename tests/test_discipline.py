@@ -12,19 +12,19 @@ Evidence mode: reasoning-only
 [analyst-judgment] Maintain the current posture.
 
 ## Decision context
-The decision concerns timing.
+[inference] The decision concerns timing.
 
 ## Actors
-The operator and regulator have different incentives.
+[analyst-judgment] The operator and regulator have different incentives.
 
 ## Options
-Use a reversible pilot.
+[analyst-judgment] Use a reversible pilot.
 
 ## Confidence
 Moderate confidence because evidence access is limited.
 
 ## What would change this judgment
-A primary-source rule change would alter the posture.
+[inference] A primary-source rule change would alter the posture.
 """
 
 
@@ -41,7 +41,7 @@ def test_valid_mode_b_contract_passes_without_findings():
 
 
 def test_ruleset_exposes_stable_v1_interface():
-    assert RULESET_VERSION == "gtta-method-contract@1.0.0"
+    assert RULESET_VERSION == "gtta-method-contract@1.1.0"
 
 
 def test_missing_required_declarations_are_errors():
@@ -82,6 +82,24 @@ def test_generic_advice_is_a_warning_with_a_line():
     assert finding.severity is Severity.WARNING
     assert finding.line is not None
     assert report.passed is True
+
+
+def test_likely_untagged_claim_is_a_warning_with_a_line():
+    report = check_contract(
+        VALID_MODE_B
+        + "\n## Additional assessment\n"
+        + "The regulator is likely to delay implementation beyond the announced date.\n",
+        mode="B",
+    )
+    finding = next(item for item in report.findings if item.rule_id == "GTTA010")
+    assert finding.severity is Severity.WARNING
+    assert finding.line is not None
+    assert report.passed is True
+
+
+def test_metadata_headings_and_table_separators_are_not_claims():
+    report = check_contract(VALID_MODE_B, mode="B")
+    assert "GTTA010" not in finding_ids(report)
 
 
 def test_report_is_machine_readable_and_states_its_limit():

@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@1.0.0"
+RULESET_VERSION = "gtta-method-contract@1.1.0"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",
@@ -121,6 +121,84 @@ def _extract_evidence_mode(text: str) -> tuple[Optional[str], Optional[int]]:
     return None, None
 
 
+_NON_CLAIM_HEADINGS = {
+    "decision context",
+    "confidence",
+    "key unknowns",
+    "what would change the judgment",
+    "what would change this judgment",
+    "limitations",
+    "sources",
+}
+_METADATA_PREFIXES = (
+    "question:",
+    "decision:",
+    "audience:",
+    "time horizon:",
+    "evidence mode:",
+    "depth:",
+    "retrieval date:",
+    "confidence:",
+)
+
+
+def _looks_like_material_claim(fragment: str) -> bool:
+    plain = re.sub(r"[`*_>#-]", " ", fragment).strip()
+    lowered = plain.lower()
+    if not plain or lowered.startswith(_METADATA_PREFIXES):
+        return False
+    if plain.startswith("[") and plain.endswith("]"):
+        return False
+    words = re.findall(r"\b[^\W\d_][\w'-]*\b", plain, flags=re.UNICODE)
+    return len(plain) >= 35 and len(words) >= 5
+
+
+def _find_untagged_claims(text: str) -> list[Finding]:
+    """Flag likely claims; exact coverage is only possible in MemoArtifact JSON."""
+    findings: list[Finding] = []
+    in_fence = False
+    current_heading = ""
+    for line_number, raw_line in enumerate(text.splitlines(), start=1):
+        stripped = raw_line.strip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = not in_fence
+            continue
+        if in_fence or not stripped:
+            continue
+        heading = re.match(r"^#{1,6}\s+(.+?)\s*$", stripped)
+        if heading:
+            current_heading = heading.group(1).strip().lower()
+            continue
+        if current_heading in _NON_CLAIM_HEADINGS:
+            continue
+        if re.fullmatch(r"\|?(?:\s*:?-+:?\s*\|)+\s*", stripped):
+            continue
+
+        fragments = (
+            [cell.strip() for cell in stripped.strip("|").split("|")]
+            if "|" in stripped
+            else [stripped]
+        )
+        for fragment in fragments:
+            lowered = fragment.lower()
+            if any(tag in lowered for tag in AXIS_A_TAGS):
+                continue
+            if "[basis:" in lowered:
+                continue
+            if _looks_like_material_claim(fragment):
+                findings.append(
+                    Finding(
+                        "GTTA010",
+                        Severity.WARNING,
+                        "Likely material claim lacks an inline Axis A provenance tag.",
+                        line_number,
+                    )
+                )
+                if len(findings) == 25:
+                    return findings
+    return findings
+
+
 def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
     """Check deterministic, observable parts of the analytical contract.
 
@@ -226,6 +304,9 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
                     _line_number(text, position),
                 )
             )
+
+    if normalized_mode != "F":
+        findings.extend(_find_untagged_claims(text))
 
     return ContractReport(
         ruleset_version=RULESET_VERSION,

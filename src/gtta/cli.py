@@ -9,6 +9,11 @@ import typer
 from rich.console import Console
 from rich.markdown import Markdown
 
+from .artifact import (
+    check_memo_artifact,
+    get_memo_artifact_schema,
+    render_memo_artifact,
+)
 from .discipline import check_contract
 from .resources import get_mode_template
 
@@ -56,6 +61,71 @@ def check_contract_command(
         console.print(report.render_text(), markup=False)
     if not report.passed:
         raise typer.Exit(1)
+
+
+@app.command(name="artifact-schema")
+def artifact_schema_command():
+    """Print the canonical MemoArtifact JSON Schema."""
+    console.print_json(
+        json.dumps(get_memo_artifact_schema(), ensure_ascii=False)
+    )
+
+
+@app.command(name="check-artifact")
+def check_artifact_command(
+    file_path: str = typer.Argument(..., help="MemoArtifact JSON path, or '-' for stdin"),
+    json_output: bool = typer.Option(False, "--json", help="Emit structured JSON"),
+):
+    """Validate a structured memo artifact and its claim ledger."""
+    try:
+        payload = sys.stdin.read() if file_path == "-" else Path(file_path).read_text(
+            encoding="utf-8"
+        )
+    except OSError as exc:
+        console.print(f"[bold red]Error:[/bold red] {exc}")
+        raise typer.Exit(2)
+
+    report = check_memo_artifact(payload)
+    if json_output:
+        console.print_json(json.dumps(report.to_dict(), ensure_ascii=False))
+    elif report.passed:
+        console.print(
+            f"MemoArtifact: PASS ({report.to_dict()['schema_version']})",
+            markup=False,
+        )
+    else:
+        console.print("MemoArtifact: FAIL", markup=False)
+        for finding in report.findings:
+            console.print(
+                f"- {finding.code} {finding.path}: {finding.message}", markup=False
+            )
+    if not report.passed:
+        raise typer.Exit(1)
+
+
+@app.command(name="render-artifact")
+def render_artifact_command(
+    file_path: str = typer.Argument(..., help="MemoArtifact JSON path, or '-' for stdin"),
+):
+    """Render a validated MemoArtifact as a human-readable Markdown memo."""
+    try:
+        payload = sys.stdin.read() if file_path == "-" else Path(file_path).read_text(
+            encoding="utf-8"
+        )
+    except OSError as exc:
+        console.print(f"[bold red]Error:[/bold red] {exc}")
+        raise typer.Exit(2)
+
+    report = check_memo_artifact(payload)
+    if not report.passed or report.artifact is None:
+        for finding in report.findings:
+            console.print(
+                f"[bold red]{finding.code}[/bold red] {finding.path}: "
+                f"{finding.message}"
+            )
+        raise typer.Exit(1)
+    # Preserve exact Markdown when redirected to a file; Rich would hard-wrap it.
+    typer.echo(render_memo_artifact(report.artifact), nl=False)
 
 
 @app.command()

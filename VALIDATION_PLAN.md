@@ -1,7 +1,8 @@
 # Validation Plan
 
-This plan describes how to move the strategic-risk agent portfolio from
-"early but credible public artifacts" toward externally reviewed usefulness.
+This plan owns the external-usefulness (`U`) axis: how to move from no recorded
+practitioner evidence toward externally reviewed usefulness. Release readiness
+and method evidence are tracked separately in [`STATUS.md`](STATUS.md).
 
 It is not evidence that validation has happened. It is the operating plan for
 collecting that evidence without inflating claims.
@@ -94,12 +95,15 @@ details.
 
 ## Current Status
 
-Updated 2026-08-24.
+Updated 2026-08-30.
 
 - **External practitioner review:** none recorded. The [`reviews/`](reviews/)
   directory contains only `TEMPLATE.md` and `README.md`. No reviewer record
   exists yet. The plan prepares the workflow for external review; it does not
   claim that review has happened.
+- **Current usefulness coordinate:** U0. This does not block software releases
+  or method experiments; it blocks practitioner-usefulness and production-use
+  claims. See [`docs/definition-of-done.md`](docs/definition-of-done.md).
 - **Agent-eval delta cases:** three cases are committed under
   [`evals/agent-eval/`](evals/agent-eval/): CBAM enforcement, Baltic cable
   attribution, and input-claim accounting for an LNG sanctions packet. The
@@ -120,8 +124,8 @@ Updated 2026-08-24.
   test cases are labelled as holdouts but have not been executed as a release
   gate. The case validator checks JSONL structure only. These results are not
   a benchmark or an external validation claim.
-- **Sibling vertical specialists use a different framework:** their Bar 1 /
-  Bar 2 status is tracked in their own `STATUS.md` files and is not validation
-  evidence for this repo. See [`docs/maturity-framework.md`](docs/maturity-framework.md).
+- **Sibling repository scores are not evidence for this repo:** portfolio
+  comparisons must name each repository's native framework. See
+  [`docs/maturity-framework.md`](docs/maturity-framework.md).
 - **No production usage, no adoption numbers, no benchmark scores** are
   claimed by this repo or by the vertical specialists.
