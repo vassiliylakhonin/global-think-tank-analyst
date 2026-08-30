@@ -1,0 +1,14 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.11.0",
+  "model": "Gemini 3.7 Flash (High)",
+  "generation_settings": {
+    "thinking": "high",
+    "temperature": 1.0
+  },
+  "notes": "Fresh-context rerun after GTTA warning-precision changes.",
+  "imported_at": "2026-08-30T16:49:18.684540+00:00",
+  "sample_count": 24,
+  "requests_sha256": "8cd3d5bed547809bba9dbf9ae3c1953933a5ada4d4596d51402ec0122a45abe5",
+  "outputs_sha256": "51b6d828a8ca7b1be9158a34e22f1d573ce47bb3285015d50764cde8d6e321ea"
+}

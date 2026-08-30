@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Published a freshness-gated same-model Antigravity replication at seed
+  `20260831`. The updated skill arm again passed 12/12 contract checks versus
+  0/12 for the generic baseline, with 13 versus 254 warnings. Exact inputs,
+  outputs, metadata, hashes, score, freshness report, and limitations are
+  committed; the result remains structural M3 evidence and does not change U0.
 - Added a replication freshness gate to the offline paired-eval harness. It
   rejects exact output reuse and high-confidence cosmetic rewrites using
   disclosed whole-text and shared-line thresholds; passing remains a heuristic

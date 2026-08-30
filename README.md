@@ -233,15 +233,19 @@ The repository contains:
 - a predeclared 12-case same-task, with/without-skill structural harness under
   [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
   export/import path and no model API client;
-- a published
-  [`2026-08-30 Antigravity paired run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
-  with exact requests, outputs, settings, hashes, mapping, and deterministic
-  report.
+- two published same-model Antigravity runs: the
+  [`seed 20260830 run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
+  and a freshness-gated
+  [`seed 20260831 replication`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/),
+  each with exact requests, outputs, settings, hashes, mapping, and a
+  deterministic report.
 
-The completed run found a 12/12 contract pass rate with the skill and 0/12 for
-the generic baseline. This supports only a bounded structural-discipline claim:
-the scorer does not assess factuality, source support, decision quality, or
-practitioner usefulness. Practitioner review remains `U0`.
+Both completed runs found a 12/12 contract pass rate with the skill and 0/12
+for the generic baseline. The replication is same-model evidence, not an
+independent model-family result. These runs support only a bounded structural-
+discipline claim: the scorer does not assess factuality, source support,
+decision quality, or practitioner usefulness. Practitioner review remains
+`U0`.
 
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent

@@ -535,12 +535,23 @@ def verify_freshness(
 
         exact_duplicates: list[dict[str, Any]] = []
         near_duplicates: list[dict[str, Any]] = []
+        max_sequence: tuple[float, str, str] = (-1.0, "", "")
+        max_shared_lines: tuple[float, str, str] = (-1.0, "", "")
         for (case_id, arm), candidate in sorted(current.items()):
             prior = reference[(case_id, arm)]
             if candidate == prior:
                 exact_duplicates.append({"case_id": case_id, "arm": arm})
+                sequence_similarity, shared_line_ratio = 1.0, 1.0
+            else:
+                sequence_similarity, shared_line_ratio = _similarity(candidate, prior)
+            max_sequence = max(
+                max_sequence, (sequence_similarity, case_id, arm)
+            )
+            max_shared_lines = max(
+                max_shared_lines, (shared_line_ratio, case_id, arm)
+            )
+            if candidate == prior:
                 continue
-            sequence_similarity, shared_line_ratio = _similarity(candidate, prior)
             if (
                 sequence_similarity >= max_sequence_similarity
                 or shared_line_ratio >= max_shared_line_ratio
@@ -568,6 +579,18 @@ def verify_freshness(
                 "passed": comparison_passed,
                 "exact_duplicates": exact_duplicates,
                 "near_duplicates": near_duplicates,
+                "max_observed": {
+                    "sequence_similarity": {
+                        "value": round(max_sequence[0], 6),
+                        "case_id": max_sequence[1],
+                        "arm": max_sequence[2],
+                    },
+                    "shared_line_ratio": {
+                        "value": round(max_shared_lines[0], 6),
+                        "case_id": max_shared_lines[1],
+                        "arm": max_shared_lines[2],
+                    },
+                },
             }
         )
 

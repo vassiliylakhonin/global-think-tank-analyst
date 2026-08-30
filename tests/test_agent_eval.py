@@ -14,6 +14,13 @@ PUBLISHED_RUN = (
     / "runs"
     / "2026-08-30-antigravity-gemini-3.7-flash-high"
 )
+REPLICATION_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -238,6 +245,8 @@ def test_freshness_gate_rejects_exact_and_cosmetic_reuse(tmp_path):
     assert [
         (row["case_id"], row["arm"]) for row in comparison["near_duplicates"]
     ] == [near_key]
+    assert comparison["max_observed"]["sequence_similarity"]["value"] == 1.0
+    assert comparison["max_observed"]["shared_line_ratio"]["value"] == 1.0
 
 
 def test_freshness_gate_accepts_materially_distinct_outputs(tmp_path):
@@ -266,7 +275,11 @@ def test_freshness_gate_accepts_materially_distinct_outputs(tmp_path):
         str(first / "outputs.jsonl"),
     )
     assert result.returncode == 0, result.stderr
-    assert json.loads(result.stdout)["passed"] is True
+    report = json.loads(result.stdout)
+    assert report["passed"] is True
+    assert report["comparisons"][0]["max_observed"]["sequence_similarity"][
+        "value"
+    ] < 0.90
 
 
 def test_published_antigravity_run_reproduces(tmp_path):
@@ -327,3 +340,68 @@ def test_published_antigravity_run_reproduces(tmp_path):
     assert json.loads(recomputed_path.read_text()) == json.loads(
         (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.0.json").read_text()
     )
+
+
+def test_published_antigravity_replication_reproduces(tmp_path):
+    metadata = json.loads((REPLICATION_RUN / "run-metadata.json").read_text())
+    mapping = json.loads((REPLICATION_RUN / "private-mapping.json").read_text())
+    report = json.loads((REPLICATION_RUN / "report.json").read_text())
+    requests = [
+        json.loads(line)
+        for line in (REPLICATION_RUN / "requests.jsonl").read_text().splitlines()
+    ]
+    embedded_skill_hashes = set()
+    for request in requests:
+        system = request["messages"][0]["content"]
+        if "<gtta-skill>" not in system:
+            continue
+        skill_text = system.split("<gtta-skill>\n", 1)[1].rsplit(
+            "\n</gtta-skill>", 1
+        )[0]
+        embedded_skill_hashes.add(hashlib.sha256(skill_text.encode()).hexdigest())
+
+    assert hashlib.sha256(
+        (REPLICATION_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (REPLICATION_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert metadata["sample_count"] == 24
+    assert mapping["seed"] == report["seed"] == 20260831
+    assert embedded_skill_hashes == {mapping["skill_sha256"]}
+    assert report["skill_sha256"] == mapping["skill_sha256"]
+    assert report["ruleset_version"] == "gtta-method-contract@1.2.0"
+    assert report["aggregates"]["baseline"]["passed"] == 0
+    assert report["aggregates"]["skill"]["passed"] == 12
+    assert report["aggregates"]["skill"]["warning_findings"] == 13
+
+    recomputed_score = tmp_path / "replication-score.json"
+    score = _run(
+        "score",
+        str(REPLICATION_RUN),
+        str(REPLICATION_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed_score),
+    )
+    assert score.returncode == 0, score.stderr
+    assert json.loads(recomputed_score.read_text()) == report
+
+    recomputed_freshness = tmp_path / "replication-freshness.json"
+    replication_relative = REPLICATION_RUN.relative_to(ROOT)
+    published_relative = PUBLISHED_RUN.relative_to(ROOT)
+    freshness = _run(
+        "verify-freshness",
+        str(replication_relative),
+        str(replication_relative / "outputs.jsonl"),
+        "--against",
+        str(published_relative),
+        str(published_relative / "outputs.jsonl"),
+        "--report",
+        str(recomputed_freshness),
+    )
+    assert freshness.returncode == 0, freshness.stderr
+    published_freshness = json.loads(
+        (REPLICATION_RUN / "freshness-report.json").read_text()
+    )
+    assert json.loads(recomputed_freshness.read_text()) == published_freshness
+    assert published_freshness["passed"] is True
