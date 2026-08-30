@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added a zero-paid-API Antigravity eval path: `prepare` emits opaque Markdown
+  tasks, `import-antigravity` validates saved responses and records run hashes,
+  model/app metadata, settings, skill hash, and seed before deterministic
+  scoring. The harness never calls a model API.
 - Rewrote the README around the stable reasoning and executable-contract
   surfaces, moved optional agent/API/UI experiments out of the primary
   positioning, and aligned package and GitHub discovery metadata.

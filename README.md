@@ -226,7 +226,8 @@ The repository contains:
 - an installed-wheel smoke test;
 - human review checklists and failure modes under [`evals/`](evals/);
 - a predeclared 12-case same-task, with/without-skill structural harness under
-  [`evals/agent-eval/`](evals/agent-eval/).
+  [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
+  export/import path and no model API client.
 
 No completed aggregate paired-run result is claimed. Self-scored cases are
 structural checks, not external validation. Practitioner review remains `U0`.

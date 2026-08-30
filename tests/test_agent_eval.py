@@ -24,6 +24,19 @@ def test_benchmark_cases_validate():
     assert "12 benchmark cases" in result.stdout
 
 
+def test_harness_has_no_model_or_network_client():
+    source = SCRIPT.read_text(encoding="utf-8")
+    for forbidden in (
+        "import openai",
+        "from openai",
+        "import anthropic",
+        "from anthropic",
+        "import requests",
+        "urllib.request",
+    ):
+        assert forbidden not in source
+
+
 def test_prepare_and_score_structural_comparison(tmp_path):
     run_dir = tmp_path / "run"
     prepared = _run("prepare", str(run_dir), "--seed", "7")
@@ -37,6 +50,12 @@ def test_prepare_and_score_structural_comparison(tmp_path):
     assert len(requests) == 24
     assert all("arm" not in request for request in requests)
     assert mapping["case_count"] == 12
+    antigravity_manifest = json.loads(
+        (run_dir / "antigravity-manifest.json").read_text()
+    )
+    assert len(antigravity_manifest) == 24
+    assert all("arm" not in row for row in antigravity_manifest)
+    assert len(list((run_dir / "antigravity-tasks").glob("[0-9]*.md"))) == 24
 
     outputs = []
     for sample in mapping["samples"]:
@@ -52,11 +71,36 @@ def test_prepare_and_score_structural_comparison(tmp_path):
             output = f"Evidence mode: {evidence_mode}.\nConfidence: Moderate."
         outputs.append({"sample_id": sample["sample_id"], "output": output})
 
-    output_path = run_dir / "outputs.jsonl"
-    output_path.write_text(
-        "\n".join(json.dumps(row) for row in outputs) + "\n",
+    response_dir = run_dir / "antigravity-responses"
+    for row in outputs:
+        (response_dir / f"{row['sample_id']}.md").write_text(
+            row["output"], encoding="utf-8"
+        )
+    metadata_path = run_dir / "run-metadata.input.json"
+    metadata_path.write_text(
+        json.dumps(
+            {
+                "runner": "Antigravity",
+                "app_version": "2.11.0",
+                "model": "test-model",
+                "generation_settings": {"temperature": "default"},
+                "notes": "Synthetic test outputs; no model was called.",
+            }
+        ),
         encoding="utf-8",
     )
+    output_path = run_dir / "outputs.jsonl"
+    imported = _run(
+        "import-antigravity",
+        str(run_dir),
+        str(response_dir),
+        "--metadata",
+        str(metadata_path),
+        "--output",
+        str(output_path),
+    )
+    assert imported.returncode == 0, imported.stderr
+    assert "imported 24 Antigravity responses" in imported.stdout
     report_path = run_dir / "report.json"
     scored = _run(
         "score",
@@ -71,3 +115,55 @@ def test_prepare_and_score_structural_comparison(tmp_path):
     assert report["aggregates"]["baseline"]["passed"] == 0
     assert report["aggregates"]["baseline"]["rule_counts"]["GTTA004"] == 12
     assert report["scope"] == "deterministic-method-contract-only"
+    assert report["seed"] == 7
+    assert report["skill_sha256"] == mapping["skill_sha256"]
+    assert report["run_metadata"]["runner"] == "Antigravity"
+    assert report["run_metadata"]["sample_count"] == 24
+
+
+def test_antigravity_import_rejects_incomplete_response_set(tmp_path):
+    run_dir = tmp_path / "run"
+    assert _run("prepare", str(run_dir)).returncode == 0
+    metadata_path = run_dir / "metadata.json"
+    metadata_path.write_text(
+        json.dumps(
+            {
+                "runner": "Antigravity",
+                "app_version": "2.11.0",
+                "model": "test-model",
+                "generation_settings": {},
+                "notes": "",
+            }
+        ),
+        encoding="utf-8",
+    )
+    output_path = run_dir / "outputs.jsonl"
+    result = _run(
+        "import-antigravity",
+        str(run_dir),
+        str(run_dir / "antigravity-responses"),
+        "--metadata",
+        str(metadata_path),
+        "--output",
+        str(output_path),
+    )
+    assert result.returncode == 2
+    assert "missing=24" in result.stderr
+    assert not output_path.exists()
+
+
+def test_antigravity_import_does_not_overwrite_recorded_metadata_path(tmp_path):
+    run_dir = tmp_path / "run"
+    assert _run("prepare", str(run_dir)).returncode == 0
+    result = _run(
+        "import-antigravity",
+        str(run_dir),
+        str(run_dir / "antigravity-responses"),
+        "--metadata",
+        str(run_dir / "run-metadata.template.json"),
+        "--output",
+        str(run_dir / "run-metadata.json"),
+    )
+    assert result.returncode == 2
+    assert "must not overwrite run-metadata.json" in result.stderr
+    assert not (run_dir / "run-metadata.json").exists()

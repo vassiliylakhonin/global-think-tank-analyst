@@ -9,7 +9,7 @@ Development and CI helper scripts. Not part of the published skill.
 | `validate_runtime_resources.py` | Guard packaged EN/RU skill resources against drift from the root canon | Yes |
 | `sync_runtime_resources.py` | Copy canonical skill files into the installable Python package | No (explicit build step) |
 | `test_wheel_install.py` | Unpack the built wheel into an isolated import path and verify resources, CLI, contract checker, and MCP tools | Yes |
-| `agent_eval.py` | Validate, prepare, and score the 12-case paired structural agent-eval | Yes (case validation) |
+| `agent_eval.py` | Validate, prepare, import offline Antigravity responses, and score the 12-case paired structural agent-eval; it never calls a model API | Yes (case validation) |
 | `validate_signals.py` | 4-file consistency check across signals/ (index, feed, latest, individual signal) | Yes |
 | `test_signal_pipeline.py` | Unit tests: generator index output must satisfy `validate_signals.py` | Yes |
 | `validate_examples.py` | Evidence-mode and retrieval-date discipline for examples/ | Yes |

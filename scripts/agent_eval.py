@@ -9,6 +9,7 @@ import json
 import random
 import sys
 from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,7 +20,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from gtta.discipline import SUPPORTED_EVIDENCE_MODES, check_contract  # noqa: E402
 
 
-BENCHMARK_VERSION = "gtta-agent-eval@1.0.0"
+BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
 DEFAULT_CASES = ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl"
 BASELINE_INSTRUCTIONS = """You are a strategic-risk analyst. Answer the user directly, distinguish uncertainty from known information, and give decision-useful analysis. Do not claim to have checked sources that you did not access."""
 REQUIRED_CASE_FIELDS = {
@@ -101,6 +102,81 @@ def _user_message(case: dict[str, Any]) -> str:
     )
 
 
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(64 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _write_antigravity_bundle(
+    output_dir: Path, requests: list[dict[str, Any]]
+) -> None:
+    """Write provider-neutral Markdown tasks for manual Antigravity execution."""
+    task_dir = output_dir / "antigravity-tasks"
+    response_dir = output_dir / "antigravity-responses"
+    task_dir.mkdir()
+    response_dir.mkdir()
+
+    manifest: list[dict[str, str]] = []
+    for position, request in enumerate(requests, start=1):
+        sample_id = request["sample_id"]
+        filename = f"{position:02d}-{sample_id}.md"
+        messages = request["messages"]
+        task = f"""# GTTA paired-eval sample `{sample_id}`
+
+Run this sample in a fresh Antigravity conversation. Keep the same model and
+generation settings for every sample. Do not add instructions beyond the two
+messages below. Save only the model's final response as
+`../antigravity-responses/{sample_id}.md`.
+
+## System message
+
+<system>
+{messages[0]["content"]}
+</system>
+
+## User message
+
+<user>
+{messages[1]["content"]}
+</user>
+"""
+        (task_dir / filename).write_text(task, encoding="utf-8")
+        manifest.append({"sample_id": sample_id, "task_file": filename})
+
+    (output_dir / "antigravity-manifest.json").write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    metadata_template = {
+        "runner": "Antigravity",
+        "app_version": "",
+        "model": "",
+        "generation_settings": {},
+        "notes": "",
+    }
+    (output_dir / "run-metadata.template.json").write_text(
+        json.dumps(metadata_template, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    (task_dir / "README.md").write_text(
+        """# Antigravity run instructions
+
+1. Fill `../run-metadata.template.json` before generation.
+2. Use one fresh conversation per numbered task.
+3. Use exactly the same model and generation settings for all tasks.
+4. Save only each final response to the filename stated in its task.
+5. Do not inspect `../private-mapping.json` until all responses are saved.
+6. Run `agent_eval.py import-antigravity`, then `agent_eval.py score`.
+
+The harness performs no API or network calls.
+""",
+        encoding="utf-8",
+    )
+
+
 def prepare_run(case_path: Path, output_dir: Path, seed: int) -> dict[str, Any]:
     """Create opaque paired requests and a private arm mapping."""
     cases = load_cases(case_path)
@@ -167,7 +243,97 @@ def prepare_run(case_path: Path, output_dir: Path, seed: int) -> dict[str, Any]:
         + "\n",
         encoding="utf-8",
     )
+    _write_antigravity_bundle(output_dir, requests)
     return mapping
+
+
+def import_antigravity_responses(
+    run_dir: Path,
+    response_dir: Path,
+    metadata_path: Path,
+    output_path: Path,
+) -> dict[str, Any]:
+    """Import one Markdown response per opaque sample without model API calls."""
+    mapping_path = run_dir / "private-mapping.json"
+    requests_path = run_dir / "requests.jsonl"
+    recorded_metadata_path = run_dir / "run-metadata.json"
+    if not mapping_path.is_file() or not requests_path.is_file():
+        raise EvalInputError("run directory is missing prepare output")
+    if output_path.absolute() == recorded_metadata_path.absolute():
+        raise EvalInputError("output path must not overwrite run-metadata.json")
+    if output_path.exists():
+        raise EvalInputError(f"output path already exists: {output_path}")
+    if recorded_metadata_path.exists():
+        raise EvalInputError(
+            f"recorded run metadata already exists: {recorded_metadata_path}"
+        )
+    if not response_dir.is_dir():
+        raise EvalInputError(f"response directory does not exist: {response_dir}")
+
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    requests = _read_jsonl(requests_path)
+    expected_ids = {sample["sample_id"] for sample in mapping["samples"]}
+    request_ids = [request["sample_id"] for request in requests]
+    if set(request_ids) != expected_ids:
+        raise EvalInputError("request IDs do not match the private mapping")
+
+    response_files = {
+        path.stem: path
+        for path in response_dir.glob("*.md")
+        if not path.name.startswith(".")
+    }
+    missing = expected_ids - response_files.keys()
+    unknown = response_files.keys() - expected_ids
+    if missing or unknown:
+        raise EvalInputError(
+            "response files mismatch; "
+            f"missing={len(missing)}, unknown={sorted(unknown)}"
+        )
+
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    required_metadata = {
+        "runner",
+        "app_version",
+        "model",
+        "generation_settings",
+        "notes",
+    }
+    if set(metadata) != required_metadata:
+        raise EvalInputError(
+            "run metadata fields mismatch; expected "
+            + ", ".join(sorted(required_metadata))
+        )
+    for field in ("runner", "app_version", "model"):
+        if not isinstance(metadata[field], str) or not metadata[field].strip():
+            raise EvalInputError(f"run metadata {field} must be non-empty")
+    if not isinstance(metadata["generation_settings"], dict):
+        raise EvalInputError("run metadata generation_settings must be an object")
+    if not isinstance(metadata["notes"], str):
+        raise EvalInputError("run metadata notes must be text")
+
+    output_rows: list[dict[str, str]] = []
+    for sample_id in request_ids:
+        response = response_files[sample_id].read_text(encoding="utf-8").strip()
+        if not response:
+            raise EvalInputError(f"empty response for sample id: {sample_id}")
+        output_rows.append({"sample_id": sample_id, "output": response})
+    output_path.write_text(
+        "\n".join(json.dumps(row, ensure_ascii=False) for row in output_rows) + "\n",
+        encoding="utf-8",
+    )
+
+    recorded_metadata = {
+        **metadata,
+        "imported_at": datetime.now(timezone.utc).isoformat(),
+        "sample_count": len(output_rows),
+        "requests_sha256": _sha256_file(requests_path),
+        "outputs_sha256": _sha256_file(output_path),
+    }
+    recorded_metadata_path.write_text(
+        json.dumps(recorded_metadata, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return recorded_metadata
 
 
 def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
@@ -243,17 +409,31 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
         aggregate["rule_counts"] = dict(sorted(aggregate["rule_counts"].items()))
         aggregate["pass_rate"] = aggregate["passed"] / aggregate["samples"]
 
+    metadata_path = run_dir / "run-metadata.json"
+    run_metadata = (
+        json.loads(metadata_path.read_text(encoding="utf-8"))
+        if metadata_path.is_file()
+        else None
+    )
+    limitations = [
+        "This report does not score factuality, source support, or decision quality.",
+        "A same-model or author-run comparison is a structural sanity check, not external validation.",
+        "External practitioner validation remains a separate unmet evidence layer.",
+    ]
+    if run_metadata is None:
+        limitations.append(
+            "Run metadata was not recorded; do not use this report for an M3 claim."
+        )
     return {
         "benchmark_version": mapping["benchmark_version"],
         "ruleset_version": check_contract("", mode=None).ruleset_version,
         "scope": "deterministic-method-contract-only",
+        "seed": mapping["seed"],
+        "skill_sha256": mapping["skill_sha256"],
+        "run_metadata": run_metadata,
         "aggregates": aggregates,
         "samples": sorted(detail, key=lambda row: (row["case_id"], row["arm"])),
-        "limitations": [
-            "This report does not score factuality, source support, or decision quality.",
-            "A same-model or author-run comparison is a structural sanity check, not external validation.",
-            "External practitioner validation remains a separate unmet evidence layer.",
-        ],
+        "limitations": limitations,
     }
 
 
@@ -268,6 +448,15 @@ def _parser() -> argparse.ArgumentParser:
     prepare.add_argument("output_dir", type=Path)
     prepare.add_argument("--cases", type=Path, default=DEFAULT_CASES)
     prepare.add_argument("--seed", type=int, default=20260830)
+
+    import_antigravity = subparsers.add_parser(
+        "import-antigravity",
+        help="import manually generated Antigravity Markdown responses",
+    )
+    import_antigravity.add_argument("run_dir", type=Path)
+    import_antigravity.add_argument("responses", type=Path)
+    import_antigravity.add_argument("--metadata", type=Path, required=True)
+    import_antigravity.add_argument("--output", type=Path, required=True)
 
     score = subparsers.add_parser("score", help="score a completed paired run")
     score.add_argument("run_dir", type=Path)
@@ -288,6 +477,18 @@ def main(argv: list[str] | None = None) -> int:
             print(
                 f"OK: prepared {mapping['sample_count']} samples from "
                 f"{mapping['case_count']} cases in {args.output_dir}"
+            )
+            return 0
+        if args.command == "import-antigravity":
+            metadata = import_antigravity_responses(
+                args.run_dir,
+                args.responses,
+                args.metadata,
+                args.output,
+            )
+            print(
+                f"OK: imported {metadata['sample_count']} Antigravity responses "
+                f"to {args.output}"
             )
             return 0
         report = score_run(args.run_dir, args.outputs)

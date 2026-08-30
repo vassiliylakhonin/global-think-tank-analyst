@@ -27,10 +27,38 @@ The generated directory contains:
 - `private-mapping.json` — sample-to-arm mapping, case metadata, seed, and the
   exact SHA-256 of `SKILL.md`;
 - `outputs.template.jsonl` — the required result shape.
+- `antigravity-tasks/` — one provider-neutral Markdown task per opaque sample;
+- `antigravity-responses/` — destination for one Markdown response per sample;
+- `run-metadata.template.json` — model, app version, and generation settings to
+  record before running the tasks.
 
 Send each request's messages to the same model with the same generation
 settings. Put each response in the matching `output` field. Do not use the
 private mapping to change generation behavior.
+
+## Zero-paid-API Antigravity path
+
+The harness contains no model client and makes no API or network calls. To run
+the suite through the locally installed Antigravity application:
+
+1. Fill `run-metadata.template.json` with the visible Antigravity version,
+   selected model, and every exposed generation setting.
+2. Open each file under `antigravity-tasks/` in a fresh conversation.
+3. Save only the final model response as
+   `antigravity-responses/<sample_id>.md`.
+4. Do not inspect `private-mapping.json` until all 24 responses are saved.
+5. Import the responses:
+
+```bash
+python3 scripts/agent_eval.py import-antigravity \
+  /tmp/gtta-agent-eval \
+  /tmp/gtta-agent-eval/antigravity-responses \
+  --metadata /tmp/gtta-agent-eval/run-metadata.template.json \
+  --output /tmp/gtta-agent-eval/outputs.jsonl
+```
+
+Import records hashes of the request and output files in `run-metadata.json`.
+It fails on missing, unknown, or empty responses.
 
 ## Score a completed run
 
