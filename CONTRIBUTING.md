@@ -70,6 +70,10 @@ The runner stops on the first failure. See [`scripts/README.md`](scripts/README.
 5. Keep changes scoped and explain the decision value in the PR.
 6. Open a PR with before/after where positioning or behavior changed.
 
+Release publication uses PyPI Trusted Publishing. Follow
+[`docs/publishing.md`](docs/publishing.md); do not add a PyPI token to the
+repository.
+
 ## Where things live
 
 - [`AGENTS.md`](AGENTS.md) — project identity, honesty, evidence, naming rules. The contract, kept short.

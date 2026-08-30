@@ -9,6 +9,8 @@
 - Added method-contract enforcement to the canonical example gate.
 - Migrated four legacy examples that lacked any provenance marker to explicit
   provenance, calibrated confidence, and declared memo structure.
+- Added a two-job PyPI Trusted Publishing workflow that builds and verifies
+  distributions without elevated permissions before a separate OIDC publish.
 
 - Prepared the `1.5.0rc1` distribution-integrity candidate. The complete
   English and Russian analytical method now ships as package data and loads through a
