@@ -14,9 +14,9 @@ options, and watch indicators explicit.
 [Use the skill](SKILL.md) · [Read the Russian version](SKILL_RU.md) ·
 [See examples](examples/README.md) · [Inspect project status](STATUS.md)
 
-**Current maturity: `R2 / M2 / U0`.** A tested GitHub release candidate and an
-executable method contract exist. No practitioner validation or production
-reliability is claimed.
+**Current maturity: `R2 / M3 / U0`.** A tested GitHub release candidate, an
+executable method contract, and a disclosed paired evaluation run exist.
+No practitioner validation or production reliability is claimed.
 
 > GTTA improves analytical structure; it does not establish factual truth. It
 > is not legal, compliance, sanctions, financial, investment, or trading
@@ -232,10 +232,16 @@ The repository contains:
 - human review checklists and failure modes under [`evals/`](evals/);
 - a predeclared 12-case same-task, with/without-skill structural harness under
   [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
-  export/import path and no model API client.
+  export/import path and no model API client;
+- a published
+  [`2026-08-30 Antigravity paired run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
+  with exact requests, outputs, settings, hashes, mapping, and deterministic
+  report.
 
-No completed aggregate paired-run result is claimed. Self-scored cases are
-structural checks, not external validation. Practitioner review remains `U0`.
+The completed run found a 12/12 contract pass rate with the skill and 0/12 for
+the generic baseline. This supports only a bounded structural-discipline claim:
+the scorer does not assess factuality, source support, decision quality, or
+practitioner usefulness. Practitioner review remains `U0`.
 
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
@@ -302,8 +308,8 @@ by running its example prompt through the skill.
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and improve their
    regression coverage.
-2. Execute the predeclared 12-case paired structural evaluation under disclosed
-   model settings before claiming a method delta.
+2. Replicate the paired structural evaluation across independent model families
+   and reduce recurring warning-level contract misses.
 3. Complete PyPI Trusted Publishing after account access is restored.
 4. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.

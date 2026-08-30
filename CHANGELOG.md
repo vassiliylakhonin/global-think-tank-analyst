@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Published the first controlled paired structural run: 12 cases and 24 opaque
+  samples generated in Antigravity with Gemini 3.7 Flash (High), then scored by
+  `gtta-method-contract@1.1.0`. The skill arm passed 12/12 and the generic
+  baseline 0/12; exact inputs, outputs, settings, hashes, report, and strict
+  limitations are committed. Method evidence is now M3; external usefulness
+  remains U0.
 - Added a zero-paid-API Antigravity eval path: `prepare` emits opaque Markdown
   tasks, `import-antigravity` validates saved responses and records run hashes,
   model/app metadata, settings, skill hash, and seed before deterministic
@@ -18,7 +24,7 @@
   the structured artifact's responsibility.
 - Replaced the ambiguous single maturity bar with independent release (`R`),
   method-evidence (`M`), and external-usefulness (`U`) axes. Current evidence is
-  recorded as R2 / M2 / U0; unavailable practitioner access no longer blocks an
+  recorded as R2 / M3 / U0; unavailable practitioner access no longer blocks an
   honest software release, but still blocks usefulness claims.
 - Promoted the deterministic checker interface to
   `gtta-method-contract@1.0.0` with explicit compatibility criteria.

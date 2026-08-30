@@ -1,0 +1,14 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.11.0",
+  "model": "Gemini 3.7 Flash (High)",
+  "generation_settings": {
+    "thinking": "high",
+    "temperature": 1.0
+  },
+  "notes": "Evaluation run in Antigravity with Gemini 3.7 Flash (High) on 24 paired tasks. App version verified from the installed macOS bundle after generation.",
+  "imported_at": "2026-08-30T11:54:14.286035+00:00",
+  "sample_count": 24,
+  "requests_sha256": "4ead20edb05644335f8f3facb75e975d1b6915e2a25b7518fc6ff8d4689fe4c0",
+  "outputs_sha256": "16bfd3f04bbaf560bf4de8e1a31c11f03518e060840bb53759d9f9fbda76ac2f"
+}

@@ -72,3 +72,10 @@ python3 scripts/agent_eval.py score \
 The report compares pass rates and rule-level findings. A same-family or
 author-run delta must remain labelled as self-scored structural evidence. It
 must not be described as external validation or overall model quality.
+
+## Published runs
+
+- [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High)`](runs/2026-08-30-antigravity-gemini-3.7-flash-high/):
+  12/12 contract passes with the skill vs. 0/12 for the generic baseline. Exact
+  requests, outputs, metadata, private mapping, report, hashes, and limitations
+  are committed for audit and deterministic rescoring.

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import subprocess
 import sys
@@ -6,6 +7,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "agent_eval.py"
+PUBLISHED_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-08-30-antigravity-gemini-3.7-flash-high"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -167,3 +175,31 @@ def test_antigravity_import_does_not_overwrite_recorded_metadata_path(tmp_path):
     assert result.returncode == 2
     assert "must not overwrite run-metadata.json" in result.stderr
     assert not (run_dir / "run-metadata.json").exists()
+
+
+def test_published_antigravity_run_reproduces(tmp_path):
+    metadata = json.loads((PUBLISHED_RUN / "run-metadata.json").read_text())
+    requests_hash = hashlib.sha256(
+        (PUBLISHED_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest()
+    outputs_hash = hashlib.sha256(
+        (PUBLISHED_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest()
+    mapping = json.loads((PUBLISHED_RUN / "private-mapping.json").read_text())
+    skill_hash = hashlib.sha256((ROOT / "SKILL.md").read_bytes()).hexdigest()
+    assert requests_hash == metadata["requests_sha256"]
+    assert outputs_hash == metadata["outputs_sha256"]
+    assert skill_hash == mapping["skill_sha256"]
+
+    recomputed_path = tmp_path / "report.json"
+    result = _run(
+        "score",
+        str(PUBLISHED_RUN),
+        str(PUBLISHED_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed_path),
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(recomputed_path.read_text()) == json.loads(
+        (PUBLISHED_RUN / "report.json").read_text()
+    )
