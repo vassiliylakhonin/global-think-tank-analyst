@@ -15,7 +15,7 @@
 
 ## Executive Takeaway
 
-The dominant risk is not any single regulation — it is the compounding cost of designing for three incompatible regulatory logics simultaneously. US AI governance remains sectoral and largely voluntary; EU governance is horizontal and binding; China's approach is state-centric and extraterritorially contested. No convergence is likely in 18 months. The decision is not whether to comply — it is whether to build one architecture with compliance overhead for all three, or to segment deliberately.
+[analyst-judgment] The dominant risk is not any single regulation — it is the compounding cost of designing for three incompatible regulatory logics simultaneously. US AI governance remains sectoral and largely voluntary; EU governance is horizontal and binding; China's approach is state-centric and extraterritorially contested. No convergence is likely in 18 months. The decision is not whether to comply — it is whether to build one architecture with compliance overhead for all three, or to segment deliberately.
 
 ---
 
@@ -27,15 +27,15 @@ A B2B AI provider (SaaS, API, or embedded AI) that serves customers in the US an
 
 ## What Is Known / Evidence Limits
 
-**Fact:** The EU AI Act is law; it establishes horizontal, risk-tiered obligations on AI providers placing systems on the EU market, with binding deadlines for high-risk systems and prohibited practices.
+**[inference] Unverified background claim:** The EU AI Act is law; it establishes horizontal, risk-tiered obligations on AI providers placing systems on the EU market, with binding deadlines for high-risk systems and prohibited practices.
 
-**Fact:** US AI governance at the federal level remains primarily sectoral (financial services, healthcare, national security) and executive-order-based, without a comprehensive horizontal AI law in force.
+**[inference] Unverified background claim:** US AI governance at the federal level remains primarily sectoral (financial services, healthcare, national security) and executive-order-based, without a comprehensive horizontal AI law in force.
 
-**Fact:** China's AI regulatory framework includes the Interim Measures for Generative AI and algorithmic-recommendation rules, with extraterritorial reach asserted for content affecting Chinese users.
+**[inference] Unverified background claim:** China's AI regulatory framework includes the Interim Measures for Generative AI and algorithmic-recommendation rules, with extraterritorial reach asserted for content affecting Chinese users.
 
-**Assumption:** No US-EU AI governance convergence agreement is ratified in the 18-month window. This is the central working assumption; disconfirm it first if you have evidence of advanced bilateral talks.
+**[analyst-judgment] Assumption:** No US-EU AI governance convergence agreement is ratified in the 18-month window. This is the central working assumption; disconfirm it first if you have evidence of advanced bilateral talks.
 
-**Assumption:** China's AI governance regime continues to tighten, particularly around cross-border data flows and model training data sourcing.
+**[analyst-judgment] Assumption:** China's AI governance regime continues to tighten, particularly around cross-border data flows and model training data sourcing.
 
 **Unknown:** Enforcement priorities within the EU AI Office for the 2026–2027 period — which sectors and which obligations will be prioritized.
 
@@ -65,7 +65,7 @@ A B2B AI provider (SaaS, API, or embedded AI) that serves customers in the US an
 
 **Trigger / pathway:** No bilateral convergence; EU AI Act enforcement begins, particularly on GPAI model obligations and high-risk system transparency. US remains sectoral. China tightens data-flow rules.
 
-**Why plausible:** Institutional inertia, domestic political incentives, and divergent underlying regulatory philosophies make convergence within 18 months structurally implausible.
+**[analyst-judgment] Why plausible:** Institutional inertia, domestic political incentives, and divergent underlying regulatory philosophies make convergence within 18 months structurally implausible.
 
 **Implications:**
 - EU customers would begin requiring AI Act conformity documentation; non-compliant providers would lose procurement consideration.
@@ -167,7 +167,7 @@ Separate EU and non-EU product stacks from the outset. Operate China as a distin
 
 **Confidence: Moderate.**
 
-The regulatory architecture description is grounded in established law (EU AI Act) and documented regulatory postures (US sectoral, China state-centric). The scenario weighting is analytical judgment, not quantified probability. Two dominant unknowns drive the moderate confidence rating:
+[analyst-judgment] The regulatory architecture description depends on unverified background knowledge about established law (EU AI Act) and regulatory postures (US sectoral, China state-centric). The scenario weighting is analytical judgment, not quantified probability. Two dominant unknowns drive the moderate confidence rating:
 
 1. EU AI Office enforcement priorities and capacity — the difference between aggressive and slow enforcement determines how quickly compliance becomes commercially necessary versus merely contractually necessary.
 2. US federal AI legislation trajectory — a horizontal US AI law would materially change the convergence scenario probability.

@@ -5,6 +5,7 @@
 **Audience:** Corporate sanctions compliance, procurement, and supply-chain risk teams.
 **Time horizon:** 12–18 months, with immediate action on any SDN-adjacent finding.
 **Evidence mode:** `user-provided sources`.
+**Depth:** Mode B — Decision Memo template.
 **How to use this template:** Replace all `[USER INPUT REQUIRED]` fields with your actual documentation. The skill works from the documents you provide. Do not leave fields blank — without your documents, the analysis is structural only and cannot assess your specific exposure.
 **Limitation note:** This is a decision-support template. It is not legal advice, sanctions screening, AML transaction monitoring, or a compliance determination. Operational sanctions decisions require qualified legal and compliance counsel, primary OFAC/EU/UK list checks current as of each transaction, and entity-level KYC. This template structures the analytical questions; it does not answer them without your documents.
 
@@ -27,15 +28,15 @@
 
 ---
 
-## Bottom line framework
+## Executive takeaway framework
 
 *[Completed once user documents are provided.]*
 
-Supply-chain sanctions exposure concentrates at three points: (1) the entity level — whether any specific vendor or counterparty is SDN-listed or owned/controlled by a blocked person; (2) the payment level — whether any USD payment leg touches a blocked party or blocked property; (3) the product level — whether any product or technology being bought, sold, or transferred is subject to export-control restrictions independent of OFAC sanctions. Jurisdiction labels ("this vendor is in a safe country") do not substitute for entity-level screening.
+[analyst-judgment] Before user documents are supplied, the structural hypothesis is that supply-chain sanctions exposure concentrates at three points: (1) the entity level — whether any specific vendor or counterparty is listed or owned/controlled by a blocked person; (2) the payment level — whether a payment leg touches a blocked party or blocked property; (3) the product level — whether a product or technology is subject to export-control restrictions independent of sanctions. These are framework hypotheses, not findings about the user's supply chain.
 
-## Scope and evidence mode
+## Decision context and evidence mode
 
-`user-provided sources`. Structural framework is pre-loaded. Specific conclusions require the user-provided documents listed above.
+`user-provided sources`. Structural framework is pre-loaded. Specific conclusions require the user-provided documents listed above. Each supplied claim or document excerpt must be tagged `[user-provided]`; any conclusion drawn from it must be tagged `[inference]` or `[analyst-judgment]`.
 
 ## Sanctions regime map — applicable to most global supply chains
 
@@ -98,7 +99,7 @@ Questions the skill works through:
 - Does the product appear on the EU dual-use list (EC Regulation 2021/821)? If yes, EU export-control authorisation requirements apply.
 - What is the end-use and end-user? A civilian-stated end-use for a dual-use product to an entity on a government procurement list in a high-risk jurisdiction is an elevated risk regardless of product classification.
 
-## Role-based implications
+## Actors and role-based implications
 
 **Sanctions compliance team:**
 - Work through the vendor register against the tier framework. Priority: Tier 1 vendors first.
@@ -114,6 +115,16 @@ Questions the skill works through:
 **Supply-chain risk team:**
 - Geographic concentration in sanctioned-adjacent jurisdictions is a supply-chain resilience risk as well as a compliance risk. Develop alternative sourcing for any single-source supplier in Tier 1 jurisdictions.
 - Free-zone concentration risk: if more than 20% of supply-chain spend routes through free-zone entities with opaque UBO, that is a concentration worth addressing structurally.
+
+## Options framework
+
+Once the evidence packet is complete, compare at least these three postures rather than treating every flag as an automatic termination decision:
+
+1. **Maintain with controls:** retain the relationship while adding ownership verification, transaction-level screening, audit rights, or tighter payment routing.
+2. **Restructure:** change the contracting entity, payment rail, delivery path, product scope, or sourcing concentration where the underlying activity is lawful but the present structure creates avoidable exposure.
+3. **Suspend or exit:** pause transactions and seek qualified legal review where a blocked-person nexus, prohibited end-use, or unresolved ownership gap could make continued performance unlawful.
+
+[analyst-judgment] The appropriate option depends on verified entity, payment, product, and jurisdiction facts. The template must not infer an exit decision from geography alone.
 
 ## Trigger points
 
@@ -142,6 +153,8 @@ Questions the skill works through:
 - `Plausible`: beneficial ownership inference from available public records; risk tier assignment based on jurisdiction and product
 - `Judgment`: assessment of whether a specific pattern constitutes "willful blindness" in OFAC's enforcement lens
 - `Unknown`: any UBO layer that cannot be confirmed through available documentation
+
+Until the required documents are supplied, **Confidence: Low** for any entity-specific conclusion and **Moderate** only for the usefulness of the structural triage framework.
 
 ## What would change the judgment
 

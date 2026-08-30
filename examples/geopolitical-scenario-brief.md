@@ -16,20 +16,20 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Baseline
 
-The current direction of travel — narrowing access at the leading edge, friend-shoring of advanced fab capacity, broadening of end-use controls — continues with periodic incremental tightening.
+[analyst-judgment] The current direction of travel — narrowing access at the leading edge, friend-shoring of advanced fab capacity, broadening of end-use controls — continues with periodic incremental tightening.
 
 ## Scenarios
 
 ### S1 — Steady tightening (most likely)
 
-- Continued incremental list updates and end-use controls; no regime rupture.
+- [inference] Continued incremental list updates and end-use controls; no regime rupture.
 - **Triggers:** new node-class additions; EUV-adjacent tooling restrictions.
 - **Implications:** compliance overhead would grow; long-tail Chinese demand for legacy nodes would persist.
 - **Indicators:** quarterly entity-list cadence; new license-required end-uses.
 
 ### S2 — Bifurcation
 
-- Two largely separate semiconductor stacks would emerge; multinational firms would choose a side per product line.
+- [inference] Two largely separate semiconductor stacks would emerge; multinational firms would choose a side per product line.
 - **Triggers:** export-control extraterritoriality dispute; major reciprocal Chinese measures on critical inputs.
 - **Implications:** customer-by-customer architecture decisions; loss of fungibility across regions.
 - **Indicators:** Chinese export controls on rare-earth or gallium-class inputs; allied alignment on enforcement.
@@ -50,7 +50,7 @@ The current direction of travel — narrowing access at the leading edge, friend
 
 ## Most decision-relevant takeaway
 
-The strongest posture appears to be architecting for **S1 with optionality for S2**, not optimizing for S4. Specifically: avoid product designs that depend on single-jurisdiction supplier substitution being legal in three years.
+[analyst-judgment] The strongest posture appears to be architecting for **S1 with optionality for S2**, not optimizing for S4. Specifically: avoid product designs that depend on single-jurisdiction supplier substitution being legal in three years.
 
 ## Watch-next indicators (cross-scenario)
 

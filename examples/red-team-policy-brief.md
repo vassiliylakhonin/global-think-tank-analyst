@@ -20,9 +20,9 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Strongest reasons it may be wrong
 
-1. **Diligence is partner-attested, not partner-tested.** Most "diligent" claims rely on supplier self-certification rather than independent or stress-tested verification. A single compromised distributor in a corridor can change the picture.
+1. **[inference] Diligence is partner-attested, not partner-tested.** Most "diligent" claims rely on supplier self-certification rather than independent or stress-tested verification. A single compromised distributor in a corridor can change the picture.
 2. **"Non-sensitive" SKUs migrate.** Dual-use list scope is a moving target. SKUs considered non-sensitive at design-in can be added to controlled lists during a product's commercial life.
-3. **Revenue share understates blast radius.** A small revenue share can produce a disproportionate reputational and regulatory blast: investigations consume executive bandwidth and trigger correspondent-bank caution across unrelated geographies.
+3. **[inference] Revenue share understates blast radius.** A small revenue share can produce a disproportionate reputational and regulatory blast: investigations consume executive bandwidth and trigger correspondent-bank caution across unrelated geographies.
 4. **Concentration risk hidden in payment rails.** Multiple "different" partners may share one or two correspondent banks. A single bank action can cascade.
 5. **Time-of-check is wrong.** Risk is being judged against today's designations, not against the rate of new designations relevant to the firm's corridors.
 
@@ -54,7 +54,7 @@ EVIDENCE ACCESS LIMITED: no live verification performed in this environment.
 
 ## Revised judgment
 
-The claim "manageable" is defensible **only with caveats** that the original framing omits. A more honest version:
+[analyst-judgment] The claim "manageable" is defensible **only with caveats** that the original framing omits. A more honest version:
 
 > "Sanctions exposure is currently *contained at the visible perimeter*, but is undermeasured in two places: (a) correspondent-bank concentration and (b) the rate of dual-use list change. Without those measurements, 'manageable' is a posture, not a finding."
 
@@ -64,6 +64,10 @@ The claim "manageable" is defensible **only with caveats** that the original fra
 - Correspondent-bank EDD requests.
 - New designations affecting the corridor.
 - Dual-use list updates touching SKU families.
+
+## Confidence
+
+**Confidence: Moderate.** The red-team logic is internally coherent, but the evidence mode is reasoning-only and no firm-specific controls, vendors, or payment data were tested.
 
 ## Limitations
 

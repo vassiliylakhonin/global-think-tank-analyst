@@ -254,8 +254,12 @@ Lightweight, honest review materials in [`evals/`](evals/):
 - [`failure-modes.md`](evals/failure-modes.md) — common failure patterns
 - [`rubric.md`](evals/rubric.md) — starter scoring rubric
 - [`adversarial/`](evals/adversarial/README.md) — stress cases: inputs designed to fail predictably (prompt-injection in retrieved sources, conflicting evidence, source mislabeling). The negative counterpart to the checklist.
+- [`agent-eval/`](evals/agent-eval/README.md) — reproducible 12-case
+  with/without-skill structural comparison harness
 
-These are *human review aids*, not a validated benchmark. For machine-readable validation, scoring, and audit, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
+These are review and structural-checking aids, not a validated quality
+benchmark. The paired harness reports deterministic method-contract findings;
+for claim/source validation and evidence audit, use [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md).
 
 ## Signal archive
 
@@ -336,19 +340,20 @@ Stated honestly so readers can calibrate. These are not claims of weakness, only
 
 This project is evolving from a static collection of prompts into a testable developer toolkit.
 
-**Phase 1: Distribution integrity (Current)**
+**Phase 1: Distribution integrity (Complete in source)**
 - Ship complete English and Russian skill resources inside the wheel.
 - Smoke-test the installed wheel rather than only the repository checkout.
 - Keep optional framework and MCP dependencies out of the base installation.
 - Publish to PyPI only after the source-installed pre-release passes its release gate.
 
 **Phase 2: Executable analysis contract (Current)**
-- Extend the initial versioned method checker without duplicating Agenda
-  Intelligence MD's evidence-packet linting.
+- Maintain the stable `gtta-method-contract@1.x` interface without duplicating
+  Agenda Intelligence MD's evidence-packet linting.
 - Make structured memo artifacts the shared interface for CLI, MCP, and optional
   agent orchestration.
-- Measure contract checks on labeled validation and holdout cases before making
-  any quality claim.
+- Execute the paired 12-case agent-eval with controlled model settings before
+  making any structural-delta claim; keep external usefulness claims blocked
+  until genuine practitioner evidence exists.
 
 **Maintenance automation**
 - **Automated syncing:** `codex/SKILL.md` and other format variations will be auto-generated from the root `SKILL.md`.

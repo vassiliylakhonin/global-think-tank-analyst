@@ -9,6 +9,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from gtta.discipline import check_contract  # noqa: E402
+
+
 EXAMPLES_DIR = ROOT / "examples"
 CANONICAL_EVIDENCE_MODES = {
     "live-source-backed",
@@ -71,6 +76,12 @@ def main() -> None:
             "illustrative" in lower and ("constructed" in lower or "representative" in lower)
         ):
             fail(f"{path.relative_to(ROOT)}: illustrative source packet must identify its constructed evidence")
+
+        report = check_contract(text)
+        errors = [finding for finding in report.findings if finding.severity.value == "error"]
+        if errors:
+            summary = ", ".join(finding.rule_id for finding in errors)
+            fail(f"{path.relative_to(ROOT)}: method-contract errors: {summary}")
 
     print("ok: examples validated")
 

@@ -40,6 +40,10 @@ def test_valid_mode_b_contract_passes_without_findings():
     assert report.findings == ()
 
 
+def test_ruleset_exposes_stable_v1_interface():
+    assert RULESET_VERSION == "gtta-method-contract@1.0.0"
+
+
 def test_missing_required_declarations_are_errors():
     report = check_contract("An unlabelled memo.", mode="A")
     assert report.passed is False

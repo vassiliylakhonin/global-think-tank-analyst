@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Promoted the deterministic checker interface to
+  `gtta-method-contract@1.0.0` with explicit compatibility criteria.
+- Added a 12-case paired baseline/skill agent-eval harness; it reports
+  structural contract findings only and makes no factual-quality claim.
+- Added method-contract enforcement to the canonical example gate.
+- Migrated four legacy examples that lacked any provenance marker to explicit
+  provenance, calibrated confidence, and declared memo structure.
+
 - Began the `1.5.0.dev0` distribution-integrity pass. The complete English and
   Russian analytical method now ships as package data and loads through a
   single fail-closed resource interface used by framework and MCP adapters.

@@ -16,3 +16,7 @@ For machine-readable validation, scoring, and evidence audit, see the companion 
 | [skill-improvement/](skill-improvement/README.md) | Validation-gated checks for proposed edits to runtime skill instructions |
 
 Treat the rubric as opinionated and adjustable. It is not a standard. The adversarial cases are the negative counterpart to the checklist: not "did the memo look good," but "did the skill refuse the things it should refuse."
+
+The paired harness in `agent-eval/` can prepare and deterministically score 12
+same-task baseline/skill samples. Its output is method-contract evidence only,
+not a factual or practitioner benchmark.

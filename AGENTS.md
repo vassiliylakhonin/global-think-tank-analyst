@@ -34,6 +34,8 @@ Do not duplicate Agenda Intelligence MD inside this repo. The primary compositio
 The local method-contract checker is narrower: it checks observable GTTA method
 shape only. Its ownership seam and explicit non-goals are documented in
 [`docs/contract-checker.md`](docs/contract-checker.md).
+Its v1 compatibility promise and automated release gate are documented in
+[`docs/contract-release-criteria.md`](docs/contract-release-criteria.md).
 
 ## Commercial role
 

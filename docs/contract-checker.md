@@ -25,7 +25,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@0.1.0`
+## Ruleset `gtta-method-contract@1.0.0`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -43,3 +43,6 @@ The rules intentionally do not require URLs to resolve, decide whether a cited
 source supports a claim, forbid citations on inferences, or treat high
 confidence under `reasoning-only` as an automatic error. Those judgments are
 not deterministic consequences of the method contract.
+
+The versioning and automated gate for the stable v1 interface are documented
+in [`contract-release-criteria.md`](contract-release-criteria.md).

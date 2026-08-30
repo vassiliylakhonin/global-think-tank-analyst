@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@0.1.0"
+RULESET_VERSION = "gtta-method-contract@1.0.0"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",

@@ -16,6 +16,7 @@ nav:
   - Analyst Skill: SKILL.md
   - Russian Skill (RU): SKILL_RU.md
   - Method Contract Checker: contract-checker.md
+  - Contract Release Criteria: contract-release-criteria.md
   - Portfolio & Architecture: PORTFOLIO.md
   - Contributing: CONTRIBUTING.md
   - Validation Plan: VALIDATION_PLAN.md
