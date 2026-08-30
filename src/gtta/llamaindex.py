@@ -1,10 +1,11 @@
 from enum import Enum
-from pathlib import Path
-from typing import Any, Optional
+from typing import Any, List, Optional
+
+from .skill import SkillNotAvailableError, compose_prompt, get_skill_prompt  # noqa: F401
 
 try:
     from llama_index.core.llms import ChatMessage, MessageRole
-except ImportError:
+except ImportError:  # pragma: no cover - exercised only without the extra installed
     class MessageRole(Enum):  # type: ignore
         SYSTEM = "system"
         USER = "user"
@@ -15,30 +16,24 @@ except ImportError:
             self.role = role
             self.content = content
 
-def get_skill_prompt(language: str = "en") -> str:
-    """Read the analytical skill instructions."""
-    root = Path(__file__).parent.parent.parent
-    filename = "SKILL_RU.md" if language.lower() in ("ru", "russian") else "SKILL.md"
-    path = root / filename
-    if not path.exists():
-        return "You are a strategic-risk analyst."
-    return path.read_text(encoding="utf-8")
 
-def get_system_message(language: str = "en", extra_instructions: Optional[str] = None) -> ChatMessage:
+def get_system_message(
+    language: str = "en", extra_instructions: Optional[str] = None
+) -> ChatMessage:
+    """Return the analytical method as a LlamaIndex system ChatMessage.
+
+    Raises:
+        SkillNotAvailableError: if the method is missing from the installed
+            package. See ``gtta.skill`` for why this does not fall back.
     """
-    Get the LlamaIndex ChatMessage (System) populated with the Global Think Tank Analyst prompt.
-    """
-    prompt = get_skill_prompt(language)
-    if extra_instructions:
-        prompt += f"\n\n## Additional Context/Instructions\n{extra_instructions}"
-    
     return ChatMessage(
         role=MessageRole.SYSTEM,
-        content=prompt
+        content=compose_prompt(language, extra_instructions),
     )
 
-def get_chat_template(language: str = "en", extra_instructions: Optional[str] = None) -> list[ChatMessage]:
-    """
-    Get a ready-to-use LlamaIndex message history with the system prompt initialized.
-    """
+
+def get_chat_template(
+    language: str = "en", extra_instructions: Optional[str] = None
+) -> List[ChatMessage]:
+    """Return a LlamaIndex message history seeded with the system prompt."""
     return [get_system_message(language, extra_instructions)]

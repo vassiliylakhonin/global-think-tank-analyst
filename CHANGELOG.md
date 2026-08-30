@@ -2,6 +2,46 @@
 
 ## Unreleased
 
+### Fixed — the analytical method was missing from the installed package
+
+- `SKILL.md` and `SKILL_RU.md` now ship inside the package as `gtta/skills/`.
+  Through 1.4.0 the wheel contained Python modules only: the method lived at the
+  repository root, the prompt builders resolved it with
+  `Path(__file__).parent.parent.parent`, and a missing file returned the string
+  `"You are a strategic-risk analyst."`. Every `pip install` produced an agent
+  running on a 33-character stub instead of the 25,000-character method, with no
+  error raised.
+- Loading the method now raises `SkillNotAvailableError` instead of falling back
+  to a placeholder. A prompt builder that degrades quietly is worse than one that
+  fails: the caller cannot tell the difference until the output is already wrong.
+- Added `tests/test_packaging.py`, which builds a real wheel, installs it into a
+  throwaway environment outside the repository, and asserts the method comes
+  back at full length. Tests that read the working tree cannot catch this class
+  of defect, which is why it survived.
+- `gtta.__version__` now reads the installed distribution metadata; the
+  hand-maintained literal had drifted to 1.4.0.
+- `gtta dark-factory` reports that it needs a repository checkout instead of
+  failing with a `FileNotFoundError` from inside `subprocess`; the worker script
+  is not shipped in the wheel.
+
+### Changed
+
+- Base install is now `pydantic`, `typer` and `rich` only. `langchain-core`,
+  `llama-index-core` and `mcp` moved to the `[langchain]`, `[llamaindex]` and
+  `[mcp]` extras — all three already degraded to local stand-in classes when
+  absent, so requiring them of every consumer bought nothing.
+- `mcp` is pinned `>=2.0,<3` and the server targets `MCPServer`. The previous
+  `mcp>=0.1.0` pin spanned two incompatible major versions. The vertical
+  specialist repos are pinned to the same major version, so an environment
+  holding the portfolio no longer breaks one of its halves.
+- `requires-python` raised to `>=3.10`, which the dependency set already required.
+- Added a `gtta-mcp` console script; the MCP server no longer needs to be run by
+  file path.
+- README no longer shows a PyPI badge or a `pip install` line for a distribution
+  that is not published, and states that Russian method coverage is partial
+  (`SKILL_RU.md` omits the numbered workflow, evidence discipline, memo modes and
+  the output template).
+
 - Corrected the PDF command so it reports parsing only instead of claiming a
   simulated FAISS ingestion, and removed remaining autonomous/fleet wording from
   the legacy review-queue worker and local batch UI.

@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/global-think-tank-analyst.svg)](https://pypi.org/project/global-think-tank-analyst/)
 
 **An experimental strategic-risk reasoning framework with memo scaffolding, MCP support, and an optional LangGraph draft-and-critique pipeline.**
 
@@ -31,10 +30,16 @@ docker-compose up --build
 - **API:** http://localhost:8000/docs
 
 ### Option 2: Python / pip
-Install the package via pip:
+The package is **not published on PyPI yet**. Install from a checkout:
 ```bash
-pip install "global-think-tank-analyst[ui,enterprise,agent]"
+git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
+cd global-think-tank-analyst
+pip install -e ".[ui,enterprise,agent]"
 ```
+
+The base install carries the analytical method and the CLI only. Framework
+adapters and the MCP server live behind extras: `[langchain]`, `[llamaindex]`,
+`[mcp]`.
 
 **Launch the CLI, UI or Server:**
 ```bash
@@ -58,9 +63,19 @@ from gtta.langchain import get_system_prompt
 prompt = get_system_prompt(language="ru", extra_instructions="Focus on logistics.")
 ```
 
+If the method is missing from the installed package, these raise
+`SkillNotAvailableError` rather than returning a placeholder prompt — a caller
+cannot tell a stub from the real method until the output is already wrong.
+
+> **Russian coverage is partial.** `SKILL_RU.md` is roughly a third of the
+> length of `SKILL.md` and omits the numbered workflow, the evidence-discipline
+> section, the memo modes and the default output template. Treat
+> `language="ru"` as a summary of the method, not a translation of it.
+
 **Model Context Protocol (MCP) Server:**
 ```bash
-mcp run src/gtta/mcp_server.py
+pip install -e ".[mcp]"
+gtta-mcp
 ```
 
 ## Try it in one prompt (Zero-Code)
@@ -140,7 +155,7 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | Codex / Cursor / Windsurf | Native context | Add `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt` to workspace context |
 | ChatGPT, Claude, Gemini | Zero-code paste | Paste `AGENTS.md` or attach `SKILL.md` directly |
 | LangChain & LlamaIndex | Native adapters | Use `gtta.langchain` and `gtta.llamaindex` prompt builders |
-| MCP Desktop (Claude, Cursor) | Built-in server | Run via `mcp run src/gtta/mcp_server.py` |
+| MCP Desktop (Claude, Cursor) | Built-in server | Run `gtta-mcp` (needs the `[mcp]` extra) |
 | CLI / Terminal | Built-in CLI | `gtta new`, `gtta ui`, `gtta server`, `gtta dark-factory` |
 | REST API (FastAPI) | Built-in server | Deploy `gtta server` or `docker-compose up` |
 | Local batch inbox (Streamlit UI) | Experimental dashboard | Bounded, non-durable in-process jobs |

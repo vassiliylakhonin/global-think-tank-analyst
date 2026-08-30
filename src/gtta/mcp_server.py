@@ -1,25 +1,22 @@
-import asyncio
-from pathlib import Path
-try:
-    from mcp.server.mcpserver import MCPServer
-except ImportError:
-    class MCPServer:  # type: ignore
-        def __init__(self, name: str):
-            self.name = name
-        def tool(self):
-            def decorator(fn):
-                return fn
-            return decorator
-        def run(self):
-            pass
+"""MCP server exposing the analytical method and a memo discipline check."""
 
-app = MCPServer("global-think-tank-analyst")
+from mcp.server.mcpserver import MCPServer
+
+from .skill import get_skill_prompt as _load_skill
+
+app = MCPServer("global-think-tank-analyst", version="1.5.0")
+
 
 @app.tool()
-async def get_skill_prompt() -> str:
-    """Returns the core SKILL.md instructions for the analyst."""
-    skill_path = Path(__file__).parent.parent.parent / "SKILL.md"
-    return skill_path.read_text(encoding="utf-8") if skill_path.exists() else "SKILL.md not found."
+async def get_skill_prompt(language: str = "en") -> str:
+    """Return the canonical analytical method.
+
+    Args:
+        language: "en" or "ru".
+    """
+    # Loaded from the installed package; raises rather than returning a stub,
+    # because an agent cannot tell a placeholder prompt from the real method.
+    return _load_skill(language)
 
 @app.tool()
 async def get_mode_template(mode: str) -> str:
@@ -52,5 +49,10 @@ async def validate_memo_evidence(draft: str) -> str:
     
     return "❌ Validation Failed. Please fix the following:\n" + "\n".join(errors)
 
+def main() -> None:
+    """Console-script entry point declared in pyproject.toml."""
+    app.run(transport="stdio")
+
+
 if __name__ == "__main__":
-    app.run()
+    main()

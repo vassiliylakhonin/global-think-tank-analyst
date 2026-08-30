@@ -70,7 +70,7 @@ def server(host: str = "127.0.0.1", port: int = 8000):
 
 @app.command()
 def ingest(file_path: str):
-    """Ingest a heavy PDF document into the Analyst's local vector store (requires 'enterprise' extra)."""
+    """Parse a PDF and report its page count (no index is written)."""
     try:
         from langchain_community.document_loaders import PyPDFLoader
     except ImportError:
@@ -79,21 +79,30 @@ def ingest(file_path: str):
         )
         raise typer.Exit(1)
 
-    console.print(f"[bold blue]Ingesting document:[/bold blue] {file_path}")
-    loader = PyPDFLoader(file_path)
-    pages = loader.load_and_split()
+    console.print(f"[bold blue]Parsing document:[/bold blue] {file_path}")
+    pages = PyPDFLoader(file_path).load_and_split()
     console.print(
         f"[bold green]Parsed {len(pages)} pages.[/bold green] "
-        "This command does not yet write a persistent vector index."
+        "This command does not write a persistent vector index."
     )
 
 
 @app.command()
 def dark_factory():
-    """Run the legacy experimental worker and queue its draft for review."""
+    """Run the legacy signal-draft worker (requires a repository checkout)."""
     from pathlib import Path
 
-    script = Path(__file__).parent.parent.parent / "scripts" / "dark_factory_worker.py"
+    script = Path(__file__).resolve().parents[2] / "scripts" / "dark_factory_worker.py"
+    if not script.exists():
+        # The worker is a repository script and is not shipped in the wheel.
+        # Saying so beats a FileNotFoundError from deep inside subprocess.
+        console.print(
+            "[bold red]Not available in an installed package.[/bold red] "
+            "`dark-factory` runs `scripts/dark_factory_worker.py`, which ships with the "
+            "repository rather than the wheel. Clone the repository and run it from there."
+        )
+        raise typer.Exit(1)
+
     console.print("[bold]Starting experimental signal-draft worker...[/bold]")
     subprocess.run([sys.executable, str(script)], check=True)
 
