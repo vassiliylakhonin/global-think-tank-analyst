@@ -177,6 +177,98 @@ def test_antigravity_import_does_not_overwrite_recorded_metadata_path(tmp_path):
     assert not (run_dir / "run-metadata.json").exists()
 
 
+def _write_outputs(
+    run_dir: Path,
+    output_path: Path,
+    values: dict[tuple[str, str], str],
+):
+    mapping = json.loads((run_dir / "private-mapping.json").read_text())
+    rows = [
+        {
+            "sample_id": sample["sample_id"],
+            "output": values[(sample["case_id"], sample["arm"])],
+        }
+        for sample in mapping["samples"]
+    ]
+    output_path.write_text(
+        "\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8"
+    )
+
+
+def test_freshness_gate_rejects_exact_and_cosmetic_reuse(tmp_path):
+    first = tmp_path / "first"
+    candidate = tmp_path / "candidate"
+    assert _run("prepare", str(first), "--seed", "1").returncode == 0
+    assert _run("prepare", str(candidate), "--seed", "2").returncode == 0
+    first_mapping = json.loads((first / "private-mapping.json").read_text())
+    keys = {(row["case_id"], row["arm"]) for row in first_mapping["samples"]}
+    original = {
+        key: "\n".join(f"Original line {index} for {key}." for index in range(12))
+        for key in keys
+    }
+    changed = {
+        key: "\n".join("z" * (80 + index) for index in range(12))
+        for key in keys
+    }
+    exact_key = ("ai-governance-cloud", "baseline")
+    near_key = ("cbam-enforcement", "skill")
+    changed[exact_key] = original[exact_key]
+    changed[near_key] = original[near_key].replace("Original line 0", "Reworded line 0")
+    _write_outputs(first, first / "outputs.jsonl", original)
+    _write_outputs(candidate, candidate / "outputs.jsonl", changed)
+
+    report_path = tmp_path / "freshness.json"
+    result = _run(
+        "verify-freshness",
+        str(candidate),
+        str(candidate / "outputs.jsonl"),
+        "--against",
+        str(first),
+        str(first / "outputs.jsonl"),
+        "--report",
+        str(report_path),
+    )
+    assert result.returncode == 2
+    report = json.loads(report_path.read_text())
+    assert report["passed"] is False
+    comparison = report["comparisons"][0]
+    assert comparison["exact_duplicates"] == [
+        {"case_id": exact_key[0], "arm": exact_key[1]}
+    ]
+    assert [
+        (row["case_id"], row["arm"]) for row in comparison["near_duplicates"]
+    ] == [near_key]
+
+
+def test_freshness_gate_accepts_materially_distinct_outputs(tmp_path):
+    first = tmp_path / "first"
+    candidate = tmp_path / "candidate"
+    assert _run("prepare", str(first), "--seed", "1").returncode == 0
+    assert _run("prepare", str(candidate), "--seed", "2").returncode == 0
+    mapping = json.loads((first / "private-mapping.json").read_text())
+    keys = {(row["case_id"], row["arm"]) for row in mapping["samples"]}
+    _write_outputs(
+        first,
+        first / "outputs.jsonl",
+        {key: f"Alpha evidence and scenario for {key}." for key in keys},
+    )
+    _write_outputs(
+        candidate,
+        candidate / "outputs.jsonl",
+        {key: f"Completely separate decision memo about {key}." for key in keys},
+    )
+    result = _run(
+        "verify-freshness",
+        str(candidate),
+        str(candidate / "outputs.jsonl"),
+        "--against",
+        str(first),
+        str(first / "outputs.jsonl"),
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout)["passed"] is True
+
+
 def test_published_antigravity_run_reproduces(tmp_path):
     metadata = json.loads((PUBLISHED_RUN / "run-metadata.json").read_text())
     requests_hash = hashlib.sha256(

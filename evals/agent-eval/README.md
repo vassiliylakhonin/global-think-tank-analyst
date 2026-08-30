@@ -60,6 +60,27 @@ python3 scripts/agent_eval.py import-antigravity \
 Import records hashes of the request and output files in `run-metadata.json`.
 It fails on missing, unknown, or empty responses.
 
+## Verify a replication is materially fresh
+
+Before presenting a repeated run as independent evidence, compare its outputs
+with every earlier run or discarded attempt that used the same cases:
+
+```bash
+python3 scripts/agent_eval.py verify-freshness \
+  /tmp/gtta-agent-eval \
+  /tmp/gtta-agent-eval/outputs.jsonl \
+  --against evals/agent-eval/runs/PRIOR_RUN \
+  evals/agent-eval/runs/PRIOR_RUN/outputs.jsonl \
+  --report /tmp/gtta-agent-eval/freshness-report.json
+```
+
+The gate rejects exact copies and likely cosmetic rewrites. A near-duplicate
+is flagged when normalized whole-text similarity is at least 0.90 or when at
+least 0.80 of non-empty lines are shared exactly. These disclosed heuristics
+can produce false positives or miss sophisticated reuse; passing them does not
+prove independent generation. Fresh isolated conversations and an auditable
+execution record remain mandatory procedural evidence.
+
 ## Score a completed run
 
 ```bash

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Added a replication freshness gate to the offline paired-eval harness. It
+  rejects exact output reuse and high-confidence cosmetic rewrites using
+  disclosed whole-text and shared-line thresholds; passing remains a heuristic
+  check, not proof of independent generation.
 - Refined GTTA010 and mode-marker matching in
   `gtta-method-contract@1.2.0`: layout metadata, direct questions, table
   headers, and identifier columns no longer create claim warnings; genuine

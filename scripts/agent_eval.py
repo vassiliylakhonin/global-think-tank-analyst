@@ -10,6 +10,7 @@ import random
 import sys
 from collections import Counter
 from datetime import datetime, timezone
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +32,8 @@ REQUIRED_CASE_FIELDS = {
     "prompt",
     "context",
 }
+DEFAULT_MAX_SEQUENCE_SIMILARITY = 0.90
+DEFAULT_MAX_SHARED_LINE_RATIO = 0.80
 
 
 class EvalInputError(ValueError):
@@ -437,6 +440,154 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
     }
 
 
+def _outputs_by_case_arm(
+    run_dir: Path, output_path: Path
+) -> dict[tuple[str, str], str]:
+    mapping_path = run_dir / "private-mapping.json"
+    if not mapping_path.is_file():
+        raise EvalInputError(f"run mapping does not exist: {mapping_path}")
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    samples = {row["sample_id"]: row for row in mapping["samples"]}
+    outputs: dict[str, str] = {}
+    for row in _read_jsonl(output_path):
+        if set(row) != {"sample_id", "output"}:
+            raise EvalInputError("each output row must contain sample_id and output")
+        sample_id = row["sample_id"]
+        if sample_id not in samples:
+            raise EvalInputError(f"unknown sample id: {sample_id}")
+        if sample_id in outputs:
+            raise EvalInputError(f"duplicate output for sample id: {sample_id}")
+        output = row["output"]
+        if not isinstance(output, str) or not output.strip():
+            raise EvalInputError(f"empty output for sample id: {sample_id}")
+        outputs[sample_id] = output
+    missing = samples.keys() - outputs.keys()
+    if missing:
+        raise EvalInputError(f"missing outputs for {len(missing)} sample(s)")
+    return {
+        (sample["case_id"], sample["arm"]): outputs[sample_id]
+        for sample_id, sample in samples.items()
+    }
+
+
+def _normalized_text(text: str) -> str:
+    return " ".join(text.casefold().split())
+
+
+def _normalized_nonempty_lines(text: str) -> list[str]:
+    return [
+        " ".join(line.casefold().split())
+        for line in text.splitlines()
+        if line.strip()
+    ]
+
+
+def _similarity(candidate: str, reference: str) -> tuple[float, float]:
+    sequence_similarity = SequenceMatcher(
+        None,
+        _normalized_text(candidate),
+        _normalized_text(reference),
+        autojunk=False,
+    ).ratio()
+    candidate_lines = _normalized_nonempty_lines(candidate)
+    reference_lines = _normalized_nonempty_lines(reference)
+    denominator = min(len(candidate_lines), len(reference_lines))
+    if denominator == 0:
+        shared_line_ratio = 0.0
+    else:
+        matcher = SequenceMatcher(
+            None, candidate_lines, reference_lines, autojunk=False
+        )
+        shared_line_ratio = sum(
+            block.size for block in matcher.get_matching_blocks()
+        ) / denominator
+    return sequence_similarity, shared_line_ratio
+
+
+def verify_freshness(
+    run_dir: Path,
+    output_path: Path,
+    references: list[tuple[Path, Path]],
+    *,
+    max_sequence_similarity: float = DEFAULT_MAX_SEQUENCE_SIMILARITY,
+    max_shared_line_ratio: float = DEFAULT_MAX_SHARED_LINE_RATIO,
+) -> dict[str, Any]:
+    """Detect exact reuse and high-confidence near-copying across paired runs."""
+    for label, value in (
+        ("max sequence similarity", max_sequence_similarity),
+        ("max shared-line ratio", max_shared_line_ratio),
+    ):
+        if not 0.0 <= value <= 1.0:
+            raise EvalInputError(f"{label} must be between 0 and 1")
+
+    current = _outputs_by_case_arm(run_dir, output_path)
+    comparisons: list[dict[str, Any]] = []
+    passed = True
+    for reference_run, reference_output in references:
+        reference = _outputs_by_case_arm(reference_run, reference_output)
+        if current.keys() != reference.keys():
+            missing = sorted(current.keys() - reference.keys())
+            extra = sorted(reference.keys() - current.keys())
+            raise EvalInputError(
+                "candidate and reference case/arm sets differ; "
+                f"missing={missing}, extra={extra}"
+            )
+
+        exact_duplicates: list[dict[str, Any]] = []
+        near_duplicates: list[dict[str, Any]] = []
+        for (case_id, arm), candidate in sorted(current.items()):
+            prior = reference[(case_id, arm)]
+            if candidate == prior:
+                exact_duplicates.append({"case_id": case_id, "arm": arm})
+                continue
+            sequence_similarity, shared_line_ratio = _similarity(candidate, prior)
+            if (
+                sequence_similarity >= max_sequence_similarity
+                or shared_line_ratio >= max_shared_line_ratio
+            ):
+                triggered_by = []
+                if sequence_similarity >= max_sequence_similarity:
+                    triggered_by.append("sequence_similarity")
+                if shared_line_ratio >= max_shared_line_ratio:
+                    triggered_by.append("shared_line_ratio")
+                near_duplicates.append(
+                    {
+                        "case_id": case_id,
+                        "arm": arm,
+                        "sequence_similarity": round(sequence_similarity, 6),
+                        "shared_line_ratio": round(shared_line_ratio, 6),
+                        "triggered_by": triggered_by,
+                    }
+                )
+        comparison_passed = not exact_duplicates and not near_duplicates
+        passed = passed and comparison_passed
+        comparisons.append(
+            {
+                "reference_run": str(reference_run),
+                "reference_outputs": str(reference_output),
+                "passed": comparison_passed,
+                "exact_duplicates": exact_duplicates,
+                "near_duplicates": near_duplicates,
+            }
+        )
+
+    return {
+        "passed": passed,
+        "sample_count": len(current),
+        "thresholds": {
+            "max_sequence_similarity": max_sequence_similarity,
+            "max_shared_line_ratio": max_shared_line_ratio,
+            "near_duplicate_triggers_on_either": True,
+        },
+        "comparisons": comparisons,
+        "limitations": [
+            "Similarity detection can identify likely reuse but cannot prove independent generation.",
+            "Fresh isolated contexts and an auditable execution record remain procedural requirements.",
+            "A threshold failure requires regeneration or explicit publication as a non-independent variant.",
+        ],
+    }
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -462,6 +613,32 @@ def _parser() -> argparse.ArgumentParser:
     score.add_argument("run_dir", type=Path)
     score.add_argument("outputs", type=Path)
     score.add_argument("--report", type=Path)
+
+    freshness = subparsers.add_parser(
+        "verify-freshness",
+        help="reject exact or high-confidence near-copy reuse across runs",
+    )
+    freshness.add_argument("run_dir", type=Path)
+    freshness.add_argument("outputs", type=Path)
+    freshness.add_argument(
+        "--against",
+        nargs=2,
+        action="append",
+        required=True,
+        metavar=("RUN_DIR", "OUTPUTS"),
+        help="reference run directory and its outputs.jsonl; repeat as needed",
+    )
+    freshness.add_argument(
+        "--max-sequence-similarity",
+        type=float,
+        default=DEFAULT_MAX_SEQUENCE_SIMILARITY,
+    )
+    freshness.add_argument(
+        "--max-shared-line-ratio",
+        type=float,
+        default=DEFAULT_MAX_SHARED_LINE_RATIO,
+    )
+    freshness.add_argument("--report", type=Path)
     return parser
 
 
@@ -491,6 +668,19 @@ def main(argv: list[str] | None = None) -> int:
                 f"to {args.output}"
             )
             return 0
+        if args.command == "verify-freshness":
+            report = verify_freshness(
+                args.run_dir,
+                args.outputs,
+                [(Path(run), Path(outputs)) for run, outputs in args.against],
+                max_sequence_similarity=args.max_sequence_similarity,
+                max_shared_line_ratio=args.max_shared_line_ratio,
+            )
+            serialized = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
+            if args.report:
+                args.report.write_text(serialized, encoding="utf-8")
+            print(serialized, end="")
+            return 0 if report["passed"] else 2
         report = score_run(args.run_dir, args.outputs)
         serialized = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
         if args.report:

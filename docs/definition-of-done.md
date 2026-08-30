@@ -19,6 +19,13 @@ Passing `gtta check-contract` or `gtta check-artifact` means only that the
 declared structure conforms. It is never evidence that claims are true or that
 the memo is safe to use without review.
 
+A repeated model run described as independent M3 evidence must also publish a
+freshness comparison against prior runs and discarded attempts on the same
+cases. Exact or high-confidence near-duplicate output reuse fails that gate.
+Passing the heuristic comparison does not by itself prove independent
+generation; isolated contexts and an auditable execution record remain
+required.
+
 ## Merge checklist for executable contract changes
 
 - The public interface is versioned and documented.
