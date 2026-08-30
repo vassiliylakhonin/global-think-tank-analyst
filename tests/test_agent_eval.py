@@ -186,10 +186,42 @@ def test_published_antigravity_run_reproduces(tmp_path):
         (PUBLISHED_RUN / "outputs.jsonl").read_bytes()
     ).hexdigest()
     mapping = json.loads((PUBLISHED_RUN / "private-mapping.json").read_text())
-    skill_hash = hashlib.sha256((ROOT / "SKILL.md").read_bytes()).hexdigest()
+    requests = [
+        json.loads(line)
+        for line in (PUBLISHED_RUN / "requests.jsonl").read_text().splitlines()
+    ]
+    embedded_skill_hashes = set()
+    for request in requests:
+        system = request["messages"][0]["content"]
+        if "<gtta-skill>" not in system:
+            continue
+        skill_text = system.split("<gtta-skill>\n", 1)[1].rsplit(
+            "\n</gtta-skill>", 1
+        )[0]
+        embedded_skill_hashes.add(hashlib.sha256(skill_text.encode()).hexdigest())
     assert requests_hash == metadata["requests_sha256"]
     assert outputs_hash == metadata["outputs_sha256"]
-    assert skill_hash == mapping["skill_sha256"]
+    assert embedded_skill_hashes == {mapping["skill_sha256"]}
+
+    original_report = json.loads((PUBLISHED_RUN / "report.json").read_text())
+    assert original_report["ruleset_version"] == "gtta-method-contract@1.1.0"
+    assert original_report["run_metadata"] == metadata
+    assert original_report["skill_sha256"] == mapping["skill_sha256"]
+    for arm in ("baseline", "skill"):
+        details = [row for row in original_report["samples"] if row["arm"] == arm]
+        aggregate = original_report["aggregates"][arm]
+        assert aggregate["samples"] == len(details)
+        assert aggregate["passed"] == sum(row["passed"] for row in details)
+        assert aggregate["error_findings"] == sum(
+            finding["severity"] == "error"
+            for row in details
+            for finding in row["findings"]
+        )
+        assert aggregate["warning_findings"] == sum(
+            finding["severity"] == "warning"
+            for row in details
+            for finding in row["findings"]
+        )
 
     recomputed_path = tmp_path / "report.json"
     result = _run(
@@ -201,5 +233,5 @@ def test_published_antigravity_run_reproduces(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(recomputed_path.read_text()) == json.loads(
-        (PUBLISHED_RUN / "report.json").read_text()
+        (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.0.json").read_text()
     )

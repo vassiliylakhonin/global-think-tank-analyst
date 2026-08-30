@@ -19,7 +19,9 @@ that accounting explicit:
 - derived claims can name the claims on which they depend;
 - narrative blocks, options, and indicators link back to ledger claims;
 - mode-specific sections and deeper-mode requirements are validated together;
-- rendering adds provenance tags and `[basis: ...]` links to Markdown.
+- rendering adds provenance tags and `[basis: ...]` links to Markdown;
+- structured Decision and Change condition fields render with explicit layout
+  labels so the Markdown checker does not confuse them with untagged claims.
 
 The artifact validator checks declarations and cross-references. It does not
 fetch sources, determine whether a source supports a claim, or establish

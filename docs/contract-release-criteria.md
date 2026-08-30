@@ -12,8 +12,8 @@ Within contract major version 1:
 - JSON report fields remain backward compatible;
 - a new warning rule may be added in a minor release;
 - a new error rule or changed error semantics requires a major release;
-- heuristic refinements that can create new findings require a documented
-  ruleset version change and regression cases.
+- heuristic refinements that change findings in either direction require a
+  documented ruleset version change and regression cases.
 
 ## Automated release gate
 

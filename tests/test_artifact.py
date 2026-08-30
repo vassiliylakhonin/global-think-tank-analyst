@@ -90,6 +90,8 @@ def test_rendered_memo_carries_provenance_and_basis_links():
     assert "[basis: c2]" in rendered
     assert "## Options" in rendered
     assert "## What would change the judgment" in rendered
+    assert "**Decision:** Choose whether" in rendered
+    assert "**Change condition:** Evidence that" in rendered
     assert check_contract(rendered, mode="B").findings == ()
 
 

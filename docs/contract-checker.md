@@ -27,7 +27,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@1.1.0`
+## Ruleset `gtta-method-contract@1.2.0`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -50,6 +50,13 @@ not deterministic consequences of the method contract.
 GTTA010 is intentionally a warning: Markdown claim boundaries are heuristic.
 Use `gtta check-artifact` when exact ledger coverage and cross-reference
 validation are required.
+
+Version 1.2.0 reduces layout noise without relaxing claim coverage. Recipient
+and sender metadata, direct questions, Markdown table headers, and identifier
+columns such as Option or Scenario are treated as layout. Claim-bearing cells
+remain checked independently and their warning identifies the table column.
+Mode-marker checks accept narrow equivalents such as `Scenario Planning` for
+`Scenarios` and `What to Watch` for `Indicators`.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Refined GTTA010 and mode-marker matching in
+  `gtta-method-contract@1.2.0`: layout metadata, direct questions, table
+  headers, and identifier columns no longer create claim warnings; genuine
+  untagged table cells now report their column. A frozen-output rescore reduces
+  skill-arm warnings from 72 to 25 while preserving the 12/12 vs. 0/12 pass
+  result and the immutable original `1.1.0` report. Canonical `MemoArtifact`
+  rendering now labels Decision and Change condition layout fields explicitly.
 - Published the first controlled paired structural run: 12 cases and 24 opaque
   samples generated in Antigravity with Gemini 3.7 Flash (High), then scored by
   `gtta-method-contract@1.1.0`. The skill arm passed 12/12 and the generic

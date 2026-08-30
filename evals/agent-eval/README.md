@@ -73,6 +73,11 @@ The report compares pass rates and rule-level findings. A same-family or
 author-run delta must remain labelled as self-scored structural evidence. It
 must not be described as external validation or overall model quality.
 
+Published generation outputs and their original report are immutable. When a
+checker heuristic changes, keep the original report and add a separately named
+rescore against the frozen outputs. A rescore evaluates checker behavior; it is
+not a new model run.
+
 ## Published runs
 
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High)`](runs/2026-08-30-antigravity-gemini-3.7-flash-high/):

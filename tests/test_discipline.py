@@ -41,7 +41,7 @@ def test_valid_mode_b_contract_passes_without_findings():
 
 
 def test_ruleset_exposes_stable_v1_interface():
-    assert RULESET_VERSION == "gtta-method-contract@1.1.0"
+    assert RULESET_VERSION == "gtta-method-contract@1.2.0"
 
 
 def test_missing_required_declarations_are_errors():
@@ -100,6 +100,46 @@ def test_likely_untagged_claim_is_a_warning_with_a_line():
 def test_metadata_headings_and_table_separators_are_not_claims():
     report = check_contract(VALID_MODE_B, mode="B")
     assert "GTTA010" not in finding_ids(report)
+
+
+def test_metadata_questions_and_table_layout_are_not_claims():
+    report = check_contract(
+        VALID_MODE_B
+        + "\n**To:** Board Risk Committee\n"
+        + "Should the Board approve a reversible pilot or retain the status quo?\n\n"
+        + "| Option | Benefit | Risk |\n"
+        + "|---|---|---|\n"
+        + "| **Option A** | [analyst-judgment] Preserves flexibility. | "
+        + "A delayed launch could surrender the most valuable customer segment. |\n",
+        mode="B",
+    )
+    warnings = [item for item in report.findings if item.rule_id == "GTTA010"]
+    assert len(warnings) == 1
+    assert warnings[0].message.endswith("Table column: 3.")
+
+
+def test_semantically_equivalent_mode_markers_are_accepted():
+    report = check_contract(
+        """# Scenario brief
+Evidence mode: reasoning-only
+
+## Baseline Outlook
+[inference] Current conditions persist.
+
+## Scenario Planning
+[analyst-judgment] An alternative path remains possible.
+
+## Decision Triggers
+[inference] A rule change would alter the path.
+
+## What to Watch
+[analyst-judgment] Review observable signals monthly.
+
+Confidence: Moderate.
+""",
+        mode="C",
+    )
+    assert "GTTA008" not in finding_ids(report)
 
 
 def test_report_is_machine_readable_and_states_its_limit():

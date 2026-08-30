@@ -35,8 +35,8 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 ## Immediate development order
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
-2. Replicate M3 across independent model families and reduce warning-level
-   contract misses without weakening the rules.
+2. Replicate M3 across independent model families and address the 25 actionable
+   GTTA010 findings isolated by the `1.2.0` frozen-output rescore.
 3. Complete PyPI Trusted Publishing after account access is restored.
 4. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

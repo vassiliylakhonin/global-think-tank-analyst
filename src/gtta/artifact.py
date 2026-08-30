@@ -466,7 +466,7 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
         "",
         "## Decision context",
         "",
-        artifact.decision,
+        f"**Decision:** {artifact.decision}",
     ]
 
     ordered_keys = list(MODE_SECTION_KEYS[artifact.mode])
@@ -519,7 +519,9 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
         lines.extend(f"- {item}" for item in artifact.key_unknowns)
     if artifact.change_conditions:
         lines.extend(["", "## What would change the judgment", ""])
-        lines.extend(f"- {item}" for item in artifact.change_conditions)
+        lines.extend(
+            f"- **Change condition:** {item}" for item in artifact.change_conditions
+        )
     if artifact.limitations:
         lines.extend(["", "## Limitations", ""])
         lines.extend(f"- {item}" for item in artifact.limitations)

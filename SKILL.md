@@ -150,6 +150,13 @@ Axis A — one per claim: `[primary]` `[secondary]` `[user-provided]` `[inferenc
 
 Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
 
+Layout-only text does not need a provenance tag: recipient/sender metadata,
+section headings, table headers, row identifiers such as "Option A", and direct
+questions are not claims. Analytical lead-ins are content, not layout: tag a
+sentence that recommends what decision-makers should monitor, require, or do.
+Inside tables, tag every claim-bearing cell separately; a tag in another cell
+does not cover the row.
+
 If live verification is unavailable, write exactly:
 
 **EVIDENCE ACCESS LIMITED: no live verification performed in this environment.**
@@ -271,6 +278,9 @@ The bottom line must reflect evidence limits rather than overwrite them.
 ## Memo modes
 
 Choose one primary mode unless the user explicitly requests a hybrid.
+Use the canonical output labels listed for that mode as visible section-heading
+language. Qualifiers and numbering may be added, but do not replace the marker
+with an unrelated synonym; this keeps the memo scannable and machine-checkable.
 
 ### Mode A — Quick Brief
 
@@ -520,6 +530,9 @@ Silently verify:
 - Did I keep the conclusion bounded by evidence?
 - Did I remove paragraphs that sound sophisticated but do not improve a decision?
 - Did I tag factual claims with provenance (at minimum Axis A: `[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`)?
+- Did I tag analytical lead-ins (for example, "management should monitor...")
+  while leaving layout-only metadata, headings, row identifiers, and direct
+  questions untagged?
 - For each table that includes claims (Risks, Options, Indicators, Actors, Decision Map, Scenarios): does every factual cell carry an Axis A tag matching the tag the same claim would carry in body prose? If any cell drops or mutates a tag under layout pressure, restore it. A bulk-attribution footnote ("all cells: [analyst-judgment]") is not a substitute for per-cell tags.
 - Did my decisive language match the provenance tag — no confident framing for `[analyst-judgment]` or `[inference]`?
 - Where sources disagreed, did I surface both positions instead of silently resolving the conflict?

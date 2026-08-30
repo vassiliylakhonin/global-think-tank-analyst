@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@1.1.0"
+RULESET_VERSION = "gtta-method-contract@1.2.0"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",
@@ -93,13 +93,45 @@ class ContractReport:
 
 
 _MODE_REQUIREMENTS = {
-    "A": ("bottom line", "main risks", "what to watch"),
-    "B": ("executive takeaway", "decision context", "actors", "options"),
-    "C": ("baseline", "scenarios", "triggers", "indicators"),
-    "D": ("target claim", "alternative explanations", "revised judgment"),
-    "E": ("executive takeaway", "options", "watchlist", "questions for owners"),
-    "F": ("coaching",),
-    "G": ("hypotheses", "evidence matrix", "sensitivity", "bounded judgment"),
+    "A": (
+        ("bottom line",),
+        ("main risks",),
+        ("what to watch", "indicators"),
+    ),
+    "B": (
+        ("executive takeaway",),
+        ("decision context",),
+        ("actors", "actor incentives"),
+        ("options",),
+    ),
+    "C": (
+        ("baseline", "baseline outlook"),
+        ("scenarios", "scenario planning", "scenario pathways"),
+        ("triggers", "decision triggers"),
+        ("indicators", "what to watch"),
+    ),
+    "D": (
+        ("target claim",),
+        ("alternative explanations",),
+        ("revised judgment",),
+    ),
+    "E": (
+        ("executive takeaway",),
+        ("options", "decision matrix"),
+        ("watchlist", "leading indicators"),
+        (
+            "questions for owners",
+            "questions for decision owners",
+            "questions for management & decision owners",
+        ),
+    ),
+    "F": (("coaching", "coaching questions"),),
+    "G": (
+        ("hypotheses",),
+        ("evidence matrix",),
+        ("sensitivity",),
+        ("bounded judgment",),
+    ),
 }
 
 
@@ -122,17 +154,20 @@ def _extract_evidence_mode(text: str) -> tuple[Optional[str], Optional[int]]:
 
 
 _NON_CLAIM_HEADINGS = {
-    "decision context",
     "confidence",
     "key unknowns",
-    "what would change the judgment",
-    "what would change this judgment",
     "limitations",
     "sources",
 }
 _METADATA_PREFIXES = (
+    "to:",
+    "from:",
+    "date:",
+    "subject:",
+    "prepared for:",
     "question:",
     "decision:",
+    "change condition:",
     "audience:",
     "time horizon:",
     "evidence mode:",
@@ -140,12 +175,32 @@ _METADATA_PREFIXES = (
     "retrieval date:",
     "confidence:",
 )
+_TABLE_LABEL_WORDS = {
+    "actor",
+    "actors",
+    "hypothesis",
+    "hypotheses",
+    "indicator",
+    "indicators",
+    "option",
+    "options",
+    "owner",
+    "owners",
+    "risk",
+    "risks",
+    "scenario",
+    "scenarios",
+    "stakeholder",
+    "stakeholders",
+}
+_TABLE_SEPARATOR = re.compile(r"\|?(?:\s*:?-+:?\s*\|)+\s*")
+_BOLD_SECTION_LABEL = re.compile(r"^(?:\d+\.\s*)?\*\*[^*]+:\*\*\s*$")
 
 
 def _looks_like_material_claim(fragment: str) -> bool:
     plain = re.sub(r"[`*_>#-]", " ", fragment).strip()
     lowered = plain.lower()
-    if not plain or lowered.startswith(_METADATA_PREFIXES):
+    if not plain or plain.endswith("?") or lowered.startswith(_METADATA_PREFIXES):
         return False
     if plain.startswith("[") and plain.endswith("]"):
         return False
@@ -153,17 +208,52 @@ def _looks_like_material_claim(fragment: str) -> bool:
     return len(plain) >= 35 and len(words) >= 5
 
 
+def _table_cells(line: str) -> list[str]:
+    return [cell.strip() for cell in line.strip().strip("|").split("|")]
+
+
+def _table_layout(lines: list[str]) -> tuple[set[int], dict[int, set[int]]]:
+    """Locate Markdown headers and identifier columns for each table row."""
+    header_lines: set[int] = set()
+    label_columns_by_row: dict[int, set[int]] = {}
+    index = 0
+    while index + 1 < len(lines):
+        if "|" not in lines[index] or not _TABLE_SEPARATOR.fullmatch(
+            lines[index + 1].strip()
+        ):
+            index += 1
+            continue
+
+        header_lines.update({index, index + 1})
+        label_columns: set[int] = set()
+        for column, cell in enumerate(_table_cells(lines[index])):
+            plain = re.sub(r"[`*_]", "", cell).strip().lower()
+            words = set(re.findall(r"[a-z]+", plain))
+            if column == 0 and words & _TABLE_LABEL_WORDS:
+                label_columns.add(column)
+
+        row = index + 2
+        while row < len(lines) and "|" in lines[row] and lines[row].strip():
+            label_columns_by_row[row] = label_columns
+            row += 1
+        index = row
+    return header_lines, label_columns_by_row
+
+
 def _find_untagged_claims(text: str) -> list[Finding]:
     """Flag likely claims; exact coverage is only possible in MemoArtifact JSON."""
     findings: list[Finding] = []
     in_fence = False
     current_heading = ""
-    for line_number, raw_line in enumerate(text.splitlines(), start=1):
+    lines = text.splitlines()
+    table_header_lines, table_label_columns = _table_layout(lines)
+    for line_index, raw_line in enumerate(lines):
+        line_number = line_index + 1
         stripped = raw_line.strip()
         if stripped.startswith("```") or stripped.startswith("~~~"):
             in_fence = not in_fence
             continue
-        if in_fence or not stripped:
+        if in_fence or not stripped or line_index in table_header_lines:
             continue
         heading = re.match(r"^#{1,6}\s+(.+?)\s*$", stripped)
         if heading:
@@ -171,15 +261,16 @@ def _find_untagged_claims(text: str) -> list[Finding]:
             continue
         if current_heading in _NON_CLAIM_HEADINGS:
             continue
-        if re.fullmatch(r"\|?(?:\s*:?-+:?\s*\|)+\s*", stripped):
+        if _TABLE_SEPARATOR.fullmatch(stripped):
+            continue
+        if _BOLD_SECTION_LABEL.fullmatch(stripped):
             continue
 
-        fragments = (
-            [cell.strip() for cell in stripped.strip("|").split("|")]
-            if "|" in stripped
-            else [stripped]
-        )
-        for fragment in fragments:
+        is_table_row = line_index in table_label_columns
+        fragments = _table_cells(stripped) if is_table_row else [stripped]
+        for column, fragment in enumerate(fragments):
+            if is_table_row and column in table_label_columns[line_index]:
+                continue
             lowered = fragment.lower()
             if any(tag in lowered for tag in AXIS_A_TAGS):
                 continue
@@ -190,7 +281,12 @@ def _find_untagged_claims(text: str) -> list[Finding]:
                     Finding(
                         "GTTA010",
                         Severity.WARNING,
-                        "Likely material claim lacks an inline Axis A provenance tag.",
+                        "Likely material claim lacks an inline Axis A provenance tag."
+                        + (
+                            f" Table column: {column + 1}."
+                            if is_table_row
+                            else ""
+                        ),
                         line_number,
                     )
                 )
@@ -283,13 +379,14 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
         )
 
     if normalized_mode is not None:
-        for phrase in _MODE_REQUIREMENTS[normalized_mode]:
-            if phrase not in lower_text:
+        for aliases in _MODE_REQUIREMENTS[normalized_mode]:
+            if not any(alias in lower_text for alias in aliases):
                 findings.append(
                     Finding(
                         "GTTA008",
                         Severity.WARNING,
-                        f"Mode {normalized_mode} output marker {phrase!r} was not found.",
+                        f"Mode {normalized_mode} output marker {aliases[0]!r} "
+                        "was not found.",
                     )
                 )
 
