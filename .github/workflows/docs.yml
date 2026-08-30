@@ -33,6 +33,7 @@ jobs:
           cp PORTFOLIO.md docs/PORTFOLIO.md
           cp CONTRIBUTING.md docs/CONTRIBUTING.md
           cp VALIDATION_PLAN.md docs/VALIDATION_PLAN.md
+          cp STATUS.md docs/STATUS.md
           cp CHANGELOG.md docs/CHANGELOG.md
           # Create index.md from README.md
           cp README.md docs/index.md

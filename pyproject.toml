@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "global-think-tank-analyst"
 version = "1.6.0.dev0"
-description = "Experimental strategic-risk reasoning framework with memo scaffolding, MCP, and an optional LangGraph pipeline."
+description = "Experimental strategic-risk reasoning framework for AI agents with versioned memo contracts, CLI, and MCP."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

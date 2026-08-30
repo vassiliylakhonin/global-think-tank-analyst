@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Rewrote the README around the stable reasoning and executable-contract
+  surfaces, moved optional agent/API/UI experiments out of the primary
+  positioning, and aligned package and GitHub discovery metadata.
 - Started `1.6.0.dev0` development with the versioned `gtta.memo@1.0`
   `MemoArtifact`: a strict per-claim provenance ledger, cross-reference and
   mode validation, canonical Markdown rendering, and shared Python, CLI, and
