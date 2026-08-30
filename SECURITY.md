@@ -8,7 +8,10 @@ Do not open public issues for undisclosed vulnerabilities.
 
 ## Scope
 
-This repository contains skill instructions and metadata, not a production software runtime. Still, supply-chain and integrity risks are treated seriously.
+This repository contains skill instructions, an installable Python developer
+toolkit, and experimental local runtime surfaces. The FastAPI, Streamlit,
+LangGraph, and batch-job paths are not a production deployment architecture.
+Supply-chain, prompt-integrity, and local-runtime risks are treated seriously.
 
 ## Skill safety posture
 

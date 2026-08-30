@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![PyPI](https://img.shields.io/pypi/v/global-think-tank-analyst.svg)](https://pypi.org/project/global-think-tank-analyst/)
 
 **An experimental strategic-risk reasoning framework with memo scaffolding, MCP support, and an optional LangGraph draft-and-critique pipeline.**
 
@@ -12,56 +11,67 @@ The repository includes a **Python package**, **MCP server**, experimental **Fas
 
 [Read the core analytical prompt (SKILL.md)](SKILL.md) · [See worked examples](#examples)
 
-> No live source retrieval natively. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
+> The core skill has no native source retrieval. The optional agent experiment performs public-web search without producing a verified evidence packet. Not legal, compliance, sanctions, financial, or investment advice. Human review is required before operational use.
 
 ## Quick Start & Installation
 
-### Option 1: Docker Compose (Recommended)
-The repository includes a ready-to-use Docker configuration that spins up both the FastAPI backend and the Streamlit UI.
+### Option 1: Use the skill directly (recommended)
+
+Attach [`SKILL.md`](SKILL.md) to a capable agent or add it to the agent's
+workspace instructions. This is the smallest and most mature consumption path.
+
+### Option 2: Install the developer toolkit from source
+
+The Python package is currently a pre-release installed from the repository; it
+has not been published to PyPI.
 
 ```bash
 git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
 cd global-think-tank-analyst
-
-export OPENAI_API_KEY="your-api-key"
-export GTTA_API_KEY="a-long-random-bearer-key"
-docker-compose up --build
-```
-- **UI:** http://localhost:8501
-- **API:** http://localhost:8000/docs
-
-### Option 2: Python / pip
-Install the package via pip:
-```bash
-pip install "global-think-tank-analyst[ui,enterprise,agent]"
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e ".[mcp]"
 ```
 
-**Launch the CLI, UI or Server:**
+**Use the CLI or MCP server:**
 ```bash
 # Scaffold a blank memo interactively
 gtta new --mode E --topic "EU CBAM Exposure for Kazakh Metals"
 
-# Launch the interactive web UI
+# Check deterministic method-contract requirements
+gtta check-contract memo.md --mode B
+
+# Run the MCP server over stdio
+gtta mcp
+```
+
+For the experimental LangGraph, local API, and UI surfaces:
+
+```bash
+python -m pip install -e ".[agent,enterprise,ui]"
 export OPENAI_API_KEY="your-api-key"
-gtta ui
 
 # Launch the experimental local REST API (protected routes require GTTA_API_KEY)
 export GTTA_API_KEY="a-long-random-bearer-key"
 gtta server
+
+# Launch the experimental Streamlit UI
+gtta ui
 ```
 
 **Developer Integrations (RAG / AI Agents):**
 Drop the analyst instructions directly into your agents. We support English and Russian.
+
+Install the adapter you use, for example
+`python -m pip install -e ".[langchain]"`, then:
 
 ```python
 from gtta.langchain import get_system_prompt
 prompt = get_system_prompt(language="ru", extra_instructions="Focus on logistics.")
 ```
 
-**Model Context Protocol (MCP) Server:**
-```bash
-mcp run src/gtta/mcp_server.py
-```
+The MCP adapter fails loudly when the optional SDK is absent; it never starts a
+no-op fallback server.
 
 ## Try it in one prompt (Zero-Code)
 
@@ -89,13 +99,14 @@ Give options, trade-offs, concrete watch-next indicators, confidence, and what w
 - **Seven memo modes:** Quick briefs (Mode A), standard memos (Mode B), scenario notes (Mode C), red-team challenges (Mode D), decision briefing packs (Mode E), analyst training (Mode F), and analysis of competing hypotheses (Mode G).
 - **Multi-Agent Debate (MoA):** Built-in LangGraph orchestration with dedicated Researcher, Drafter, Critic (Red-Team), and Editor nodes.
 - **Knowledge graph draft:** The optional pipeline asks a model for a Mermaid entity-relation diagram. Treat it as generated content requiring verification.
-- **Review queue worker:** The legacy `gtta dark-factory` command now produces one experimental draft in `signals/review-queue/`; it never marks or publishes the draft as reviewed.
+- **Packaged runtime resources:** English and Russian skill instructions ship inside the wheel and are loaded through one fail-closed resource interface.
+- **Versioned method preflight:** `gtta check-contract` reports stable rule IDs for deterministic method-shape violations; it does not claim factual or evidence validation.
 
 ## Scope & Disclaimers
 
 - **Discipline, not truth:** The framework enforces rigorous evidence boundaries and transparency, but does not replace domain due diligence.
 - **Not legal or investment advice:** Outputs are strategic-risk decision inputs, not compliance, legal, financial, or sanctions advice.
-- **Deterministic checking:** For downstream validation of claim references and quote accuracy, use companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md).
+- **Two distinct checks:** [`gtta check-contract`](docs/contract-checker.md) checks observable method conformance. For claim/source references, quote accuracy, and unmatched numbers, use companion project [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) and the [evidence-packet handoff](docs/evidence-packet-handoff.md).
 
 ## Portfolio: how this skill composes
 
@@ -140,8 +151,8 @@ For pre-validation planning, see [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md), the
 | Codex / Cursor / Windsurf | Native context | Add `AGENTS.md`, `SKILL.md`, `codex/SKILL.md`, `llms.txt` to workspace context |
 | ChatGPT, Claude, Gemini | Zero-code paste | Paste `AGENTS.md` or attach `SKILL.md` directly |
 | LangChain & LlamaIndex | Native adapters | Use `gtta.langchain` and `gtta.llamaindex` prompt builders |
-| MCP Desktop (Claude, Cursor) | Built-in server | Run via `mcp run src/gtta/mcp_server.py` |
-| CLI / Terminal | Built-in CLI | `gtta new`, `gtta ui`, `gtta server`, `gtta dark-factory` |
+| MCP Desktop (Claude, Cursor) | Built-in adapter | Install `.[mcp]`, then run `gtta mcp` |
+| CLI / Terminal | Built-in CLI | `gtta new`, `gtta check-contract`, `gtta mcp`, `gtta parse-pdf`, `gtta ui`, `gtta server` |
 | REST API (FastAPI) | Built-in server | Deploy `gtta server` or `docker-compose up` |
 | Local batch inbox (Streamlit UI) | Experimental dashboard | Bounded, non-durable in-process jobs |
 | Companion checker | Agenda Intelligence MD | Deterministic evidence-packet preflight & linting |
@@ -325,33 +336,41 @@ Stated honestly so readers can calibrate. These are not claims of weakness, only
 
 This project is evolving from a static collection of prompts into a testable developer toolkit.
 
-**Phase 1: Infrastructure & Packaging (Completed)**
-- Python package `gtta` and interactive CLI for scaffolding memos.
-- MCP (Model Context Protocol) server for seamless IDE/Agent integration.
-- Static documentation site generation via MkDocs.
-- Localized system prompts (`SKILL_RU.md`).
+**Phase 1: Distribution integrity (Current)**
+- Ship complete English and Russian skill resources inside the wheel.
+- Smoke-test the installed wheel rather than only the repository checkout.
+- Keep optional framework and MCP dependencies out of the base installation.
+- Publish to PyPI only after the source-installed pre-release passes its release gate.
 
-**Phase 2: Automation & DX (Current)**
+**Phase 2: Executable analysis contract (Current)**
+- Extend the initial versioned method checker without duplicating Agenda
+  Intelligence MD's evidence-packet linting.
+- Make structured memo artifacts the shared interface for CLI, MCP, and optional
+  agent orchestration.
+- Measure contract checks on labeled validation and holdout cases before making
+  any quality claim.
+
+**Maintenance automation**
 - **Automated syncing:** `codex/SKILL.md` and other format variations will be auto-generated from the root `SKILL.md`.
 - **Automated signal indexing:** Replacing manual updates to `feed.json` and `index.json` with build-time automation.
-- **CI/CD Evaluations:** Integration of `promptfoo` for LLM-as-a-judge tests on PRs, enforcing evidence discipline.
+- **Prompt evaluations:** `promptfoo` remains an advisory model check, not a factual or practitioner validation gate.
 
 
-**Phase 3: Experimental AI Integration (Current)**
+**Experimental AI integration (not the release target)**
 - **Framework Adapters:** Native `SystemMessage` classes for LangChain and LlamaIndex.
 - **Draft and critique graph:** `gtta.agent` includes Researcher, Drafter, Critic, and Editor nodes. The returned `validation_passed` field records whether the critic actually returned `PASS`.
 - **Algorithmic Prompting:** Included a `dspy-ai` pipeline (`scripts/optimize_prompt_dspy.py`) to systematically optimize the `SKILL.md` rules against evidence metrics.
 
-**Phase 4: Developer experiments (Current)**
+**Developer experiments**
 - **Knowledge graph drafting:** The model can produce Mermaid.js graphs embedded in memos; these are generated artifacts, not a verified GraphRAG store.
 - **Agentic Memory:** `gtta.agent` supports `MemorySaver` to preserve context across multiple memo generations (Stateful Sessions).
-- **Document parsing demo:** `gtta ingest` currently parses PDF pages and reports a simulated index; it does not persist a production retrieval store.
+- **Document parsing demo:** `gtta parse-pdf` reports PDF page count; it does not create a retrieval store.
 - **Local API:** `gtta server` exposes the pipeline for local integration tests. It binds to loopback by default and disables protected routes when `GTTA_API_KEY` is absent.
 
-**Phase 5: Reviewable batch experiments (Current)**
+**Reviewable batch experiments**
 - **In-process batch jobs:** FastAPI can queue a bounded batch after returning the request. This is not a durable or distributed task queue; a process restart can interrupt work.
 - **Batch inbox:** The Streamlit UI can submit jobs and read their status through the authenticated API.
-- **Signal draft worker:** `gtta dark-factory` is retained as a legacy command name. It generates a single review-required draft and does not publish it.
+- **Signal draft worker:** the repository-only `scripts/dark_factory_worker.py` remains an unsupported experiment and is not included in the installed CLI.
 
 If you'd like to influence the roadmap or contribute to the automation, open an issue.
 

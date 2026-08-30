@@ -6,6 +6,9 @@ Development and CI helper scripts. Not part of the published skill.
 |---|---|---|
 | `check.py` | Run every supported repository check through one command | Yes |
 | `validate_skill_package.py` | Guard skill discovery fields, the canonical symlink, and plugin manifests synchronized with each other and with the released version in `CHANGELOG.md` | Yes |
+| `validate_runtime_resources.py` | Guard packaged EN/RU skill resources against drift from the root canon | Yes |
+| `sync_runtime_resources.py` | Copy canonical skill files into the installable Python package | No (explicit build step) |
+| `test_wheel_install.py` | Unpack the built wheel into an isolated import path and verify resources, CLI, contract checker, and MCP tools | Yes |
 | `validate_signals.py` | 4-file consistency check across signals/ (index, feed, latest, individual signal) | Yes |
 | `test_signal_pipeline.py` | Unit tests: generator index output must satisfy `validate_signals.py` | Yes |
 | `validate_examples.py` | Evidence-mode and retrieval-date discipline for examples/ | Yes |
@@ -23,3 +26,12 @@ python3 scripts/check.py
 
 `validate_skill_package.py` checks repository-owned packaging invariants. It is
 not a complete implementation of the Agent Skills or Agent Plugins schemas.
+
+For package changes, run the installed-artifact gate as well:
+
+```bash
+python3 -m pip install -e ".[test,mcp]"
+python3 scripts/sync_runtime_resources.py
+python3 -m build --wheel
+python3 scripts/test_wheel_install.py
+```

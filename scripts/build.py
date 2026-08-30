@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILDERS = (
+    ("Sync packaged runtime resources", ["scripts/sync_runtime_resources.py"]),
     ("Auto-sync codex/SKILL.md", ["scripts/build_codex.py"]),
     ("Auto-generate Signal Indexes", ["scripts/build_signals.py"]),
 )

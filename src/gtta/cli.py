@@ -1,9 +1,16 @@
-import typer
+import json
 import os
 import subprocess
 import sys
+from pathlib import Path
+from typing import Optional
+
+import typer
 from rich.console import Console
 from rich.markdown import Markdown
+
+from .discipline import check_contract
+from .resources import get_mode_template
 
 app = typer.Typer(help="Global Think Tank Analyst CLI")
 console = Console()
@@ -15,18 +22,45 @@ def new(
     topic: str = typer.Option(..., help="Topic or question"),
 ):
     """Generate a draft memo structure."""
+    mode = mode.strip().upper()
+    if mode not in set("ABCDEFG"):
+        console.print("[bold red]Error:[/bold red] mode must be one of A-G.")
+        raise typer.Exit(2)
     console.print(
         f"[bold green]Generating a draft for Mode {mode} on topic:[/bold green] {topic}"
     )
-    draft = f"""# Draft Memo: {topic}\n\n**Question:** {topic}\n**Decision:** [what action depends on it]\n**Audience:** [founder / operator]\n**Time horizon:** [days / months / 1–3 years]\n**Evidence mode:** reasoning-only\n\n## Executive Takeaway\n[Your takeaway here]\n\n## Next Steps\nUse `gtta` to expand this draft."""
+    mode_contract = get_mode_template(mode)
+    draft = f"""# Draft Memo: {topic}\n\n**Question:** {topic}\n**Decision:** [what action depends on it]\n**Audience:** [founder / operator]\n**Time horizon:** [days / months / 1–3 years]\n**Evidence mode:** reasoning-only\n\n## Mode contract\n\n{mode_contract}\n\n## Draft\n\n[Complete the requested sections above. Human review required.]"""
     console.print(Markdown(draft))
+
+
+@app.command(name="check-contract")
+def check_contract_command(
+    file_path: str = typer.Argument(..., help="Markdown memo path, or '-' for stdin"),
+    mode: Optional[str] = typer.Option(None, help="Expected memo mode (A-G)"),
+    json_output: bool = typer.Option(False, "--json", help="Emit structured JSON"),
+):
+    """Check deterministic Policy Risk Memo Architect requirements."""
+    try:
+        text = sys.stdin.read() if file_path == "-" else Path(file_path).read_text(
+            encoding="utf-8"
+        )
+        report = check_contract(text, mode=mode)
+    except (OSError, ValueError) as exc:
+        console.print(f"[bold red]Error:[/bold red] {exc}")
+        raise typer.Exit(2)
+
+    if json_output:
+        console.print_json(json.dumps(report.to_dict(), ensure_ascii=False))
+    else:
+        console.print(report.render_text(), markup=False)
+    if not report.passed:
+        raise typer.Exit(1)
 
 
 @app.command()
 def ui(host: str = "127.0.0.1", port: int = 8501):
     """Launch the interactive web UI (requires 'streamlit' extra)."""
-    from pathlib import Path
-
     app_path = Path(__file__).parent / "app.py"
     console.print(f"[bold green]Starting Streamlit UI on {host}:{port}...[/bold green]")
     subprocess.run(
@@ -68,34 +102,38 @@ def server(host: str = "127.0.0.1", port: int = 8000):
     uvicorn.run(api_app, host=host, port=port)
 
 
-@app.command()
-def ingest(file_path: str):
-    """Ingest a heavy PDF document into the Analyst's local vector store (requires 'enterprise' extra)."""
+@app.command(name="parse-pdf")
+def parse_pdf(file_path: str):
+    """Parse a PDF and report its page count; no index is created."""
     try:
-        from langchain_community.document_loaders import PyPDFLoader
+        from pypdf import PdfReader
     except ImportError:
         console.print(
-            "[bold red]Error:[/bold red] PyPDF missing. Run: pip install global-think-tank-analyst[enterprise]"
+            "[bold red]Error:[/bold red] pypdf missing. Install "
+            "global-think-tank-analyst[enterprise]."
         )
         raise typer.Exit(1)
 
-    console.print(f"[bold blue]Ingesting document:[/bold blue] {file_path}")
-    loader = PyPDFLoader(file_path)
-    pages = loader.load_and_split()
+    console.print(f"[bold blue]Parsing document:[/bold blue] {file_path}")
+    reader = PdfReader(file_path)
     console.print(
-        f"[bold green]Parsed {len(pages)} pages.[/bold green] "
-        "This command does not yet write a persistent vector index."
+        f"[bold green]Parsed {len(reader.pages)} pages.[/bold green] "
+        "No vector index was created."
     )
 
 
-@app.command()
-def dark_factory():
-    """Run the legacy experimental worker and queue its draft for review."""
-    from pathlib import Path
-
-    script = Path(__file__).parent.parent.parent / "scripts" / "dark_factory_worker.py"
-    console.print("[bold]Starting experimental signal-draft worker...[/bold]")
-    subprocess.run([sys.executable, str(script)], check=True)
+@app.command(name="mcp")
+def mcp_server():
+    """Run the MCP server over stdio (requires the 'mcp' extra)."""
+    try:
+        from .mcp_server import app as server_app
+    except ImportError:
+        console.print(
+            "[bold red]Error:[/bold red] MCP support is not installed. Install "
+            "global-think-tank-analyst[mcp]."
+        )
+        raise typer.Exit(1)
+    server_app.run(transport="stdio")
 
 
 if __name__ == "__main__":

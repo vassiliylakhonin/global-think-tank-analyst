@@ -1,44 +1,77 @@
 import pytest
-from gtta.langchain import get_system_prompt
-from gtta.llamaindex import get_system_message
+from gtta.resources import get_mode_template, get_skill_prompt
+
+
+def test_packaged_skill_resources_are_complete():
+    assert len(get_skill_prompt("en")) > 20_000
+    assert len(get_skill_prompt("ru")) > 5_000
+    mode_g = get_mode_template("G")
+    assert "### Mode G" in mode_g
+    assert "## Default memo output" not in mode_g
+
+
+def test_skill_resource_language_is_explicit():
+    with pytest.raises(ValueError, match="Unsupported language"):
+        get_skill_prompt("de")
 
 
 def test_langchain_prompt():
+    pytest.importorskip("langchain_core")
+    from gtta.langchain import get_system_prompt
+
     prompt = get_system_prompt(language="en")
     assert prompt is not None
     assert "Evidence mode" in prompt.content
 
 
 def test_langchain_ru_prompt():
+    pytest.importorskip("langchain_core")
+    from gtta.langchain import get_system_prompt
+
     prompt = get_system_prompt(language="ru")
     assert prompt is not None
     assert len(prompt.content) > 1000
 
 
 def test_llamaindex_prompt():
+    pytest.importorskip("llama_index")
+    from gtta.llamaindex import get_system_message
+
     msg = get_system_message(language="en")
     assert msg.role.value == "system"
     assert "Evidence mode" in msg.content
 
 
 def test_extra_instructions():
+    pytest.importorskip("langchain_core")
+    from gtta.langchain import get_system_prompt
+
     prompt = get_system_prompt(extra_instructions="Focus on logistics.")
     assert "Focus on logistics." in prompt.content
 
 
-def test_mcp_validation_tool():
+def test_mcp_contract_preflight_tool():
     import asyncio
-    from gtta.mcp_server import validate_memo_evidence
+    pytest.importorskip("mcp")
+    from gtta.mcp_server import app, check_memo_contract
 
     # Missing tags
-    result_fail = asyncio.run(validate_memo_evidence("Just some text."))
-    assert "❌ Validation Failed" in result_fail
-    assert "Missing 'Evidence mode:' declaration." in result_fail
+    result_fail = asyncio.run(check_memo_contract("Just some text."))
+    assert result_fail["passed"] is False
+    assert "GTTA002" in {item["rule_id"] for item in result_fail["findings"]}
 
     # Valid text
-    valid_text = "Evidence mode: reasoning-only\n## Quick assessment\n[primary] Some fact.\n[inference] Some thought."
-    result_pass = asyncio.run(validate_memo_evidence(valid_text))
-    assert "✅ Validation passed" in result_pass
+    valid_text = "Evidence mode: reasoning-only\n[analyst-judgment] Some thought.\nModerate confidence."
+    result_pass = asyncio.run(check_memo_contract(valid_text))
+    assert result_pass["passed"] is True
+    assert "No factuality" in result_pass["limitations"]
+
+    tools = asyncio.run(app.list_tools())
+    assert {tool.name for tool in tools} == {
+        "check_memo_contract",
+        "get_mode_template",
+        "get_skill_prompt",
+    }
 
 
 def test_unit_economics_calculation():

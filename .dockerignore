@@ -1,0 +1,11 @@
+.git
+.github
+.venv
+.venv-*
+build
+dist
+site
+*.egg-info
+__pycache__
+*.pyc
+fleet_inbox.db

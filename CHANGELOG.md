@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+- Began the `1.5.0.dev0` distribution-integrity pass. The complete English and
+  Russian analytical method now ships as package data and loads through a
+  single fail-closed resource interface used by framework and MCP adapters.
+- Added a built-wheel installation smoke test and a repository check that keeps
+  packaged runtime resources synchronized with the canonical root skill files.
+- Moved MCP to its supported 2.x interface, made it an optional extra, removed
+  the silent no-op fallback, and added a `gtta mcp` stdio launcher.
+- Raised the Python package floor to 3.10 to match MCP 2.x and moved LangChain,
+  LlamaIndex, and MCP dependencies out of the base installation.
+- Removed the unavailable PyPI installation path from README. The developer
+  toolkit is documented as a source-installed pre-release until it is actually
+  published.
+- Replaced the misleading `gtta ingest` interface with `gtta parse-pdf`, which
+  reports parsing only, and removed the repository-only dark-factory worker
+  from the installed CLI.
+- Added Docker build-context exclusions for local environments and aligned the
+  security scope with the repository's experimental runtime surfaces.
+- Added the initial `gtta-method-contract@0.1.0` deterministic preflight with
+  stable rule IDs, severity, JSON/text reports, CLI exit semantics, and an MCP
+  tool. Its documented scope is method conformance only; Agenda Intelligence MD
+  continues to own evidence-packet checks.
+
 - Corrected the PDF command so it reports parsing only instead of claiming a
   simulated FAISS ingestion, and removed remaining autonomous/fleet wording from
   the legacy review-queue worker and local batch UI.

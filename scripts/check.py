@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CHECKS = (
     ("skill package", ("scripts/validate_skill_package.py",)),
+    ("runtime skill resources", ("scripts/validate_runtime_resources.py",)),
     ("repository JSON", ("scripts/validate_json.py",)),
     # ("signal archive", ("scripts/validate_signals.py",)), # Deprecated: now auto-generated
     ("signal pipeline tests", ("scripts/test_signal_pipeline.py",)),

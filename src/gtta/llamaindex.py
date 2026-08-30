@@ -1,28 +1,14 @@
-from enum import Enum
-from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 try:
     from llama_index.core.llms import ChatMessage, MessageRole
-except ImportError:
-    class MessageRole(Enum):  # type: ignore
-        SYSTEM = "system"
-        USER = "user"
-        ASSISTANT = "assistant"
+except ImportError as exc:  # pragma: no cover - exercised by installation users
+    raise ImportError(
+        "LlamaIndex support is optional. Install "
+        "global-think-tank-analyst[llamaindex]."
+    ) from exc
 
-    class ChatMessage:  # type: ignore
-        def __init__(self, role: Any, content: str):
-            self.role = role
-            self.content = content
-
-def get_skill_prompt(language: str = "en") -> str:
-    """Read the analytical skill instructions."""
-    root = Path(__file__).parent.parent.parent
-    filename = "SKILL_RU.md" if language.lower() in ("ru", "russian") else "SKILL.md"
-    path = root / filename
-    if not path.exists():
-        return "You are a strategic-risk analyst."
-    return path.read_text(encoding="utf-8")
+from .resources import get_skill_prompt
 
 def get_system_message(language: str = "en", extra_instructions: Optional[str] = None) -> ChatMessage:
     """

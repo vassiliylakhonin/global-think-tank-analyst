@@ -2,6 +2,10 @@
 
 How a memo produced with this skill must handle claims: how each factual claim is tagged, how decisiveness must track evidence, when to answer versus stop, and how every input claim is accounted for.
 
+The machine-executable subset of this contract is documented in
+[`contract-checker.md`](contract-checker.md). Passing that preflight establishes
+only observable method shape, not factuality or claim/source support.
+
 `AGENTS.md` states these rules in summary and points here for the detail. This file is the authority on the specifics; the summary never overrides it. Runtime execution behavior is in [`SKILL.md`](../SKILL.md).
 
 ## Per-claim provenance tags

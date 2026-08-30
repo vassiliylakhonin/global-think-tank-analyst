@@ -1,24 +1,17 @@
-"""Global Think Tank Analyst Python Package."""
-__version__ = "1.4.0"
+"""Global Think Tank Analyst Python package."""
 
-# Expose key components if their dependencies are met
-try:
-    from .langchain import get_system_prompt
-except ImportError:
-    pass
+from .discipline import ContractReport, Finding, Severity, check_contract
+from .resources import SkillResourceError, get_mode_template, get_skill_prompt
 
-try:
-    from .llamaindex import get_system_message, get_chat_template
-except ImportError:
-    pass
 
-try:
-    from .agent import AnalystAgent
-except ImportError:
-    pass
+__version__ = "1.5.0.dev0"
 
-try:
-    from .economics import calculate_unit_economics, calculate_cost
-    from .knowledge import lookup_regional_knowledge
-except ImportError:
-    pass
+__all__ = (
+    "SkillResourceError",
+    "ContractReport",
+    "Finding",
+    "Severity",
+    "check_contract",
+    "get_mode_template",
+    "get_skill_prompt",
+)

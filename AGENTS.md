@@ -31,6 +31,10 @@ Agenda Intelligence MD:
 
 Do not duplicate Agenda Intelligence MD inside this repo. The primary composition seam is the claim/source packet documented in [`docs/evidence-packet-handoff.md`](docs/evidence-packet-handoff.md).
 
+The local method-contract checker is narrower: it checks observable GTTA method
+shape only. Its ownership seam and explicit non-goals are documented in
+[`docs/contract-checker.md`](docs/contract-checker.md).
+
 ## Commercial role
 
 This repo is a reasoning-method dependency and developer toolkit, not a buyer-facing product. It improves decision framing, uncertainty handling, actor incentives, scenarios, and watch-next indicators; externally checkable memo claims can then be handed to Agenda Intelligence MD as an evidence packet before human review.

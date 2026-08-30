@@ -10,7 +10,7 @@ If you've just landed in this repo and want to understand it before editing, do 
 
 **1. Read these three files, in order:**
 
-1. [`README.md`](README.md) — what this is (horizontal strategic-risk reasoning skill), the four-repo stack, and what the skill is *not* (it is not an agent framework, runtime, MCP server, or eval platform).
+1. [`README.md`](README.md) — what this is (a horizontal strategic-risk reasoning skill with a small developer toolkit), the four-repo stack, and which runtime surfaces are explicitly experimental.
 2. [`AGENTS.md`](AGENTS.md) — canonical project rules: identity, honesty rules, evidence rules, retrieved-content trust, naming hierarchy. It points to [`docs/analysis-contract.md`](docs/analysis-contract.md) (provenance tags, calibration, response modes), [`docs/repo-conventions.md`](docs/repo-conventions.md) (README, examples, eval docs, signals), and [`docs/maturity-framework.md`](docs/maturity-framework.md).
 3. [`VALIDATION_PLAN.md`](VALIDATION_PLAN.md) — the maturity framework for this repo: practitioner feedback on a small number of reviewable case packets, recorded under [`reviews/`](reviews/). This is deliberately *different* from the vertical-specialist Bar 1 / Bar 2 framework — see [`docs/maturity-framework.md`](docs/maturity-framework.md).
 
@@ -22,7 +22,9 @@ cd global-think-tank-analyst
 python3 scripts/check.py
 ```
 
-Requirements: Python 3.8+. No additional packages — all validators use the standard library. CI runs the same command and stops on the first failed check.
+Requirements: Python 3.8+ for the dependency-free repository validators. The
+installable Python package requires Python 3.10+. CI runs the same repository
+checks and then smoke-tests a built wheel.
 
 **3. Read one concrete artifact end-to-end:**
 
@@ -46,7 +48,8 @@ Requirements: Python 3.8+. No additional packages — all validators use the sta
 
 ## Local environment
 
-Requirements: Python 3.8+. No additional packages needed — all validators use the standard library.
+Requirements: Python 3.8+ for these dependency-free validators. Package and
+runtime development requires Python 3.10+.
 
 Run validators from the repo root:
 
@@ -61,8 +64,11 @@ The runner stops on the first failure. See [`scripts/README.md`](scripts/README.
 1. Create a branch from `main`.
 2. Edit the relevant files: `SKILL.md`, `codex/SKILL.md`, `AGENTS.md`, `llms.txt`, examples, evals, signals.
 3. Run local validators (see above).
-4. Keep changes scoped and explain the decision value in the PR.
-5. Open a PR with before/after where positioning or behavior changed.
+4. For package changes, build and smoke-test the installed artifact:
+   `python -m pip install -e ".[test,mcp]"`, then
+   `python -m build --wheel && python scripts/test_wheel_install.py`.
+5. Keep changes scoped and explain the decision value in the PR.
+6. Open a PR with before/after where positioning or behavior changed.
 
 ## Where things live
 
@@ -104,5 +110,6 @@ The manual process of updating JSON files has been deprecated in favor of automa
 - [ ] Examples state evidence mode and do not fabricate citations
 - [ ] No exaggerated language ("revolutionary", "production-grade", "guarantees correctness", "fully autonomous")
 - [ ] `python3 scripts/check.py` passes locally
+- [ ] Package changes pass `python -m build --wheel && python scripts/test_wheel_install.py` in an environment with `.[test,mcp]`
 - [ ] If an example was added or renamed, update the master table in `examples/README.md` (the root README table will be synced automatically).
 - [ ] Note: Manual syncing of `codex/SKILL.md` is no longer required; it will be generated automatically by the build pipeline.
