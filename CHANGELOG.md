@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Published a freshness-gated cross-model Antigravity run with Claude Opus 4.6
+  (Thinking), seed `20260901`. The skill arm repeated the 12/12 contract pass
+  result versus 0/12 for the generic baseline, but produced 181 capped
+  warnings versus 360. Exact artifacts, metadata correction, hashes,
+  deterministic score, two-run freshness comparison, regression test, and
+  warning triage are committed. The result strengthens structural M3 evidence
+  while leaving external usefulness at U0.
 - Refined `gtta-method-contract@1.2.1` to accept `Evidence Evaluation Matrix`
   as the Mode G evidence-matrix marker. A frozen-output rescore removes one
   GTTA008 false positive from the seed-20260831 replication while retaining 12

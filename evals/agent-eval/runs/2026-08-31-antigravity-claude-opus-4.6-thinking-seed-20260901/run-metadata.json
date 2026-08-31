@@ -1,0 +1,11 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.11.0",
+  "model": "Claude Opus 4.6 (Thinking)",
+  "generation_settings": {},
+  "notes": "Cross-model run using Anthropic Claude via Antigravity built-in model selection. No external API key used. App version corrected from the entered 2.0 to the 2.11.0 version verified from the installed macOS application bundle after generation.",
+  "imported_at": "2026-08-31T09:06:39.902408+00:00",
+  "sample_count": 24,
+  "requests_sha256": "ba4e27edd4c586a73acf27fd6dae663d93027ecdf42a955c87f985190a96050f",
+  "outputs_sha256": "5f5c22f59548e2105b3833e72b6f30222c48c2fcadb381be8ad9884665dd6a52"
+}

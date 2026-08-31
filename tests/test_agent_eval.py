@@ -21,6 +21,13 @@ REPLICATION_RUN = (
     / "runs"
     / "2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831"
 )
+CROSS_MODEL_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -410,3 +417,81 @@ def test_published_antigravity_replication_reproduces(tmp_path):
     )
     assert json.loads(recomputed_freshness.read_text()) == published_freshness
     assert published_freshness["passed"] is True
+
+
+def test_published_cross_model_run_reproduces(tmp_path):
+    metadata = json.loads((CROSS_MODEL_RUN / "run-metadata.json").read_text())
+    mapping = json.loads((CROSS_MODEL_RUN / "private-mapping.json").read_text())
+    report = json.loads((CROSS_MODEL_RUN / "report.json").read_text())
+    requests = [
+        json.loads(line)
+        for line in (CROSS_MODEL_RUN / "requests.jsonl").read_text().splitlines()
+    ]
+    embedded_skill_hashes = set()
+    for request in requests:
+        system = request["messages"][0]["content"]
+        if "<gtta-skill>" not in system:
+            continue
+        skill_text = system.split("<gtta-skill>\n", 1)[1].rsplit(
+            "\n</gtta-skill>", 1
+        )[0]
+        embedded_skill_hashes.add(hashlib.sha256(skill_text.encode()).hexdigest())
+
+    assert hashlib.sha256(
+        (CROSS_MODEL_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (CROSS_MODEL_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert metadata["runner"] == "Antigravity"
+    assert metadata["app_version"] == "2.11.0"
+    assert metadata["model"] == "Claude Opus 4.6 (Thinking)"
+    assert metadata["generation_settings"] == {}
+    assert metadata["sample_count"] == 24
+    assert mapping["seed"] == report["seed"] == 20260901
+    assert embedded_skill_hashes == {mapping["skill_sha256"]}
+    assert report["skill_sha256"] == mapping["skill_sha256"]
+    assert report["ruleset_version"] == "gtta-method-contract@1.2.1"
+    assert report["aggregates"]["baseline"]["passed"] == 0
+    assert report["aggregates"]["skill"]["passed"] == 12
+    assert report["aggregates"]["skill"]["warning_findings"] == 181
+
+    recomputed_score = tmp_path / "cross-model-score.json"
+    score = _run(
+        "score",
+        str(CROSS_MODEL_RUN),
+        str(CROSS_MODEL_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed_score),
+    )
+    assert score.returncode == 0, score.stderr
+    assert json.loads(recomputed_score.read_text()) == report
+
+    recomputed_freshness = tmp_path / "cross-model-freshness.json"
+    cross_model_relative = CROSS_MODEL_RUN.relative_to(ROOT)
+    published_relative = PUBLISHED_RUN.relative_to(ROOT)
+    replication_relative = REPLICATION_RUN.relative_to(ROOT)
+    freshness = _run(
+        "verify-freshness",
+        str(cross_model_relative),
+        str(cross_model_relative / "outputs.jsonl"),
+        "--against",
+        str(published_relative),
+        str(published_relative / "outputs.jsonl"),
+        "--against",
+        str(replication_relative),
+        str(replication_relative / "outputs.jsonl"),
+        "--report",
+        str(recomputed_freshness),
+    )
+    assert freshness.returncode == 0, freshness.stderr
+    published_freshness = json.loads(
+        (CROSS_MODEL_RUN / "freshness-report.json").read_text()
+    )
+    assert json.loads(recomputed_freshness.read_text()) == published_freshness
+    assert published_freshness["passed"] is True
+    assert all(
+        not comparison["exact_duplicates"]
+        and not comparison["near_duplicates"]
+        for comparison in published_freshness["comparisons"]
+    )

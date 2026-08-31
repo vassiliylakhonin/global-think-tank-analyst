@@ -9,7 +9,7 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
 | Release readiness | R2 | GitHub pre-release `v1.5.0rc1`; source, distribution, and installed-wheel gates; Trusted Publishing workflow on `main` | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
-| Method evidence | M3 | Two disclosed 12-case Antigravity runs with Gemini 3.7 Flash (High): the [seed 20260830 run](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/) and freshness-gated [seed 20260831 replication](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/), both finding 12/12 contract passes with the skill vs. 0/12 for the baseline; exact inputs, outputs, hashes, settings, reports, and limitations published | Broaden evaluation across independent model families and task domains; practitioner validation remains tracked under U |
+| Method evidence | M3 | Three disclosed 12-case Antigravity runs: two with Gemini 3.7 Flash (High) and one freshness-gated [Claude Opus 4.6 cross-model run](evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/). All report 12/12 contract passes with the skill vs. 0/12 for the baseline. The Claude skill arm also reports 181 capped warnings, exposing weaker per-claim provenance transfer. Exact inputs, outputs, hashes, recorded settings, reports, triage, and limitations are published. | Repeat across the second model family after method/checker changes and broaden task domains; practitioner validation remains tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
@@ -26,18 +26,23 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 - GTTA is an experimental, testable strategic-risk reasoning framework.
 - Its package, CLI, MCP adapter, method checker, and structured memo artifact
   have automated conformance tests.
-- The repository has executed and published two controlled 12-case paired
-  evaluations under Antigravity with Gemini 3.7 Flash (High). Their
-  deterministic scorer found 12/12 contract passes with the skill and 0/12 for
-  the baseline in both runs. This is same-model structural evidence, not a
-  factual-quality, independent-model, or usefulness result.
+- The repository has executed and published three controlled 12-case paired
+  evaluations under Antigravity: two with Gemini 3.7 Flash (High) and one with
+  Claude Opus 4.6 (Thinking). Their deterministic scorer found 12/12 contract
+  passes with the skill and 0/12 for the baseline in every run. The Claude run
+  repeats the pass delta across a second model family but also reports 181
+  capped skill warnings. This is author-operated structural evidence, not a
+  factual-quality, decision-quality, or usefulness result.
 - External practitioner usefulness and production reliability are unvalidated.
 
 ## Immediate development order
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
-2. Replicate M3 across independent model families and address the 12 actionable
-   provenance warnings retained by the `1.2.1` frozen-output rescore.
-3. Complete PyPI Trusted Publishing after account access is restored.
-4. Accept practitioner review if access becomes available; do not manufacture a
+2. Preserve the Claude `1.2.1` run as-is, then version narrow fixes for the two
+   confirmed checker false-positive classes without suppressing valid
+   provenance or Mode C trigger findings.
+3. Improve cross-model provenance portability and repeat the Claude-family run
+   on fresh outputs before broadening task domains.
+4. Complete PyPI Trusted Publishing after account access is restored.
+5. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

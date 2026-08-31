@@ -123,7 +123,7 @@ GTTA separates checks that answer different questions:
 
 | Layer | Interface | What it can establish | What it cannot establish |
 |---|---|---|---|
-| Markdown method preflight | [`gtta-method-contract@1.1`](docs/contract-checker.md) | Required declarations, mode shape, confidence, likely untagged claims, generic advice | Claim boundaries, factuality, source support |
+| Markdown method preflight | [`gtta-method-contract@1.x`](docs/contract-checker.md) | Required declarations, mode shape, confidence, likely untagged claims, generic advice | Claim boundaries, factuality, source support |
 | Structured memo | [`gtta.memo@1.0`](docs/memo-artifact.md) | Claim IDs, provenance, source references, dependency links, mode invariants, canonical rendering | Whether a named source is trustworthy or supports the claim |
 | Evidence packet | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Claim/source packet completeness, declared quotes, lexical support, unmatched numbers | Factual truth or professional approval |
 | Operational decision | Human review | Contextual judgment, current-source verification, accountability | Guaranteed correctness |
@@ -237,15 +237,18 @@ The repository contains:
   [`seed 20260830 run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
   and a freshness-gated
   [`seed 20260831 replication`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/),
-  each with exact requests, outputs, settings, hashes, mapping, and a
-  deterministic report.
+  plus a freshness-gated cross-model
+  [`Claude Opus 4.6 run`](evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/);
+  each publishes exact requests, outputs, recorded settings, hashes, mapping,
+  and a deterministic report.
 
-Both completed runs found a 12/12 contract pass rate with the skill and 0/12
-for the generic baseline. The replication is same-model evidence, not an
-independent model-family result. These runs support only a bounded structural-
-discipline claim: the scorer does not assess factuality, source support,
-decision quality, or practitioner usefulness. Practitioner review remains
-`U0`.
+All three completed runs found a 12/12 contract pass rate with the skill and
+0/12 for the generic baseline. The Claude run extends the result to a second
+model family, while its 181 capped skill warnings expose materially weaker
+per-claim provenance compliance than the Gemini runs. These author-operated
+runs support only a bounded structural-discipline claim: the scorer does not
+assess factuality, source support, decision quality, or practitioner
+usefulness. Practitioner review remains `U0`.
 
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
@@ -312,11 +315,13 @@ by running its example prompt through the skill.
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and improve their
    regression coverage.
-2. Replicate the paired structural evaluation across independent model families
-   and address the 12 actionable provenance warnings retained by the `1.2.1`
-   frozen-output rescore.
-3. Complete PyPI Trusted Publishing after account access is restored.
-4. Record real practitioner feedback if access becomes available; do not use
+2. Preserve the cross-model `1.2.1` result, remove its two confirmed checker
+   false-positive classes in a separately versioned ruleset, and tighten the
+   runtime method where Claude omitted per-claim provenance and Mode C triggers.
+3. Repeat the cross-model run after those changes and broaden task domains;
+   keep warning caps and model/settings differences explicit.
+4. Complete PyPI Trusted Publishing after account access is restored.
+5. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.
 
 ## Contributing

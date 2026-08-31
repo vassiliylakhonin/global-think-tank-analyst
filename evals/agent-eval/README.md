@@ -101,6 +101,12 @@ not a new model run.
 
 ## Published runs
 
+- [`2026-08-31 — Antigravity / Claude Opus 4.6 (Thinking), seed 20260901`](runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/):
+  cross-model-family execution with a passed freshness gate against both
+  Gemini runs. The skill arm passed 12/12 versus 0/12 for the baseline, but
+  produced 181 capped warnings versus 360. The warning triage records both
+  checker noise and substantial per-claim provenance omissions. This extends
+  structural M3 evidence; it is not factual or practitioner validation.
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High), seed 20260831`](runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/):
   post-change same-model replication with a passed near-duplicate gate. The
   original report records 12/12 with 13 warnings for the skill arm and 0/12
