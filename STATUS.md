@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-08-30. Maturity definitions are in
+Updated 2026-08-31. Maturity definitions are in
 [`docs/maturity-framework.md`](docs/maturity-framework.md); gates for specific
 claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
@@ -36,8 +36,8 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 ## Immediate development order
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
-2. Replicate M3 across independent model families and triage the 13 warnings in
-   the freshness-gated same-model replication.
+2. Replicate M3 across independent model families and address the 12 actionable
+   provenance warnings retained by the `1.2.1` frozen-output rescore.
 3. Complete PyPI Trusted Publishing after account access is restored.
 4. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

@@ -48,6 +48,21 @@ the deterministic GTTA method contract. The baseline was not instructed in
 GTTA-specific syntax. This is not a factual, decision-quality, overall-model,
 practitioner-usefulness, or production-reliability benchmark.
 
+## Frozen-output ruleset 1.2.1 rescore
+
+The original `gtta-method-contract@1.2.0` report above is immutable. Rescoring
+the same outputs with `gtta-method-contract@1.2.1` removes the missed Mode G
+alias from both arms; no model output was edited.
+
+| Arm | Passed | Pass rate | Errors | Warnings |
+|---|---:|---:|---:|---:|
+| Generic baseline | 0 / 12 | 0% | 36 | 253 |
+| GTTA skill | 12 / 12 | 100% | 0 | 12 |
+
+The 12 remaining skill findings are GTTA010 warnings: ten untagged analytical
+recommendation lead-ins and two untagged red-team premise cells. They are
+treated as actionable provenance omissions, not checker noise.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares the final outputs with the first
@@ -68,6 +83,10 @@ reported isolated-context procedure remains part of the evidence boundary.
 - [`outputs.jsonl`](outputs.jsonl) — exact final model outputs;
 - [`run-metadata.json`](run-metadata.json) — generation settings and hashes;
 - [`report.json`](report.json) — aggregate and per-sample deterministic result;
+- [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
+  — current-ruleset rescore of the frozen outputs;
+- [`warning-triage-gtta-method-contract-1.2.1.md`](warning-triage-gtta-method-contract-1.2.1.md)
+  — disposition of all 12 remaining skill warnings;
 - [`freshness-report.json`](freshness-report.json) — reproducible comparison
   with the first published run.
 
@@ -86,3 +105,6 @@ python3 scripts/agent_eval.py verify-freshness \
   evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high \
   evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/outputs.jsonl
 ```
+
+The score command uses the current installed ruleset and should match
+`rescore-gtta-method-contract-1.2.1.json`, not the immutable original report.

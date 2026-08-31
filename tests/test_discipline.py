@@ -41,7 +41,7 @@ def test_valid_mode_b_contract_passes_without_findings():
 
 
 def test_ruleset_exposes_stable_v1_interface():
-    assert RULESET_VERSION == "gtta-method-contract@1.2.0"
+    assert RULESET_VERSION == "gtta-method-contract@1.2.1"
 
 
 def test_missing_required_declarations_are_errors():
@@ -138,6 +138,30 @@ Evidence mode: reasoning-only
 Confidence: Moderate.
 """,
         mode="C",
+    )
+    assert "GTTA008" not in finding_ids(report)
+
+
+def test_mode_g_evidence_evaluation_matrix_marker_is_accepted():
+    report = check_contract(
+        """# Competing hypotheses
+Evidence mode: illustrative source packet
+
+## Hypotheses formulation
+[analyst-judgment] Multiple explanations remain viable.
+
+## Evidence Evaluation Matrix
+[user-provided] The packet contains ambiguous observations.
+
+## Sensitivity analysis
+[inference] Physical forensics would change the ranking.
+
+## Bounded judgment
+[analyst-judgment] Attribution remains premature.
+
+Confidence: Moderate.
+""",
+        mode="G",
     )
     assert "GTTA008" not in finding_ids(report)
 

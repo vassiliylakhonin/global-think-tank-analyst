@@ -57,6 +57,13 @@ identifier-column, or direct-question findings. The remaining GTTA010 findings
 are actionable untagged analytical lead-ins or claim-bearing table cells. This
 rescore measures checker precision, not a new improvement in model output.
 
+### Ruleset 1.2.1 rescore
+
+The same frozen outputs were rescored again after adding the narrow Mode G
+`Evidence Evaluation Matrix` alias. Skill findings remain unchanged at 25;
+baseline warnings decline from 249 to 248 because one equivalent Mode G marker
+is no longer missed. Pass rates and errors are unchanged.
+
 ## Published artifacts
 
 - [`requests.jsonl`](requests.jsonl) — exact shuffled inputs;
@@ -65,6 +72,8 @@ rescore measures checker precision, not a new improvement in model output.
 - [`run-metadata.json`](run-metadata.json) — generation settings and hashes;
 - [`report.json`](report.json) — aggregate and per-sample deterministic results.
 - [`rescore-gtta-method-contract-1.2.0.json`](rescore-gtta-method-contract-1.2.0.json)
+  — ruleset-1.2.0 rescore of the unchanged outputs;
+- [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
   — current-ruleset rescore of the unchanged outputs.
 
 To reproduce the score from the repository root:
@@ -75,6 +84,6 @@ python3 scripts/agent_eval.py score \
   evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/outputs.jsonl
 ```
 
-That command uses the current installed ruleset and should match the separately
-named rescore. Reproducing the immutable original report requires the source at
-git commit `bfb0877`.
+That command uses the current installed ruleset and should match the latest
+separately named rescore. Reproducing the immutable original report requires
+the source at git commit `bfb0877`.

@@ -153,9 +153,12 @@ Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
 Layout-only text does not need a provenance tag: recipient/sender metadata,
 section headings, table headers, row identifiers such as "Option A", and direct
 questions are not claims. Analytical lead-ins are content, not layout: tag a
-sentence that recommends what decision-makers should monitor, require, or do.
-Inside tables, tag every claim-bearing cell separately; a tag in another cell
-does not cover the row.
+sentence that recommends what decision-makers should monitor, require, or do,
+even when it ends with a colon before a list. A quoted or summarized premise in
+a red-team table is claim-bearing unless it is only a neutral identifier: tag
+it `[user-provided]` when the input supplied it or `[analyst-judgment]` when you
+formulated it. Inside tables, tag every claim-bearing cell separately; a tag in
+another cell does not cover the row.
 
 If live verification is unavailable, write exactly:
 
@@ -531,8 +534,10 @@ Silently verify:
 - Did I remove paragraphs that sound sophisticated but do not improve a decision?
 - Did I tag factual claims with provenance (at minimum Axis A: `[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`)?
 - Did I tag analytical lead-ins (for example, "management should monitor...")
-  while leaving layout-only metadata, headings, row identifiers, and direct
-  questions untagged?
+  including lead-ins ending in a colon, while leaving layout-only metadata,
+  headings, neutral row identifiers, and direct questions untagged?
+- In red-team tables, did I tag quoted or summarized premises according to
+  whether they came from the input or from my own decomposition?
 - For each table that includes claims (Risks, Options, Indicators, Actors, Decision Map, Scenarios): does every factual cell carry an Axis A tag matching the tag the same claim would carry in body prose? If any cell drops or mutates a tag under layout pressure, restore it. A bulk-attribution footnote ("all cells: [analyst-judgment]") is not a substitute for per-cell tags.
 - Did my decisive language match the provenance tag — no confident framing for `[analyst-judgment]` or `[inference]`?
 - Where sources disagreed, did I surface both positions instead of silently resolving the conflict?

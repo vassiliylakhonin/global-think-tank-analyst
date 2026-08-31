@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@1.2.0"
+RULESET_VERSION = "gtta-method-contract@1.2.1"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",
@@ -128,7 +128,7 @@ _MODE_REQUIREMENTS = {
     "F": (("coaching", "coaching questions"),),
     "G": (
         ("hypotheses",),
-        ("evidence matrix",),
+        ("evidence matrix", "evidence evaluation matrix"),
         ("sensitivity",),
         ("bounded judgment",),
     ),

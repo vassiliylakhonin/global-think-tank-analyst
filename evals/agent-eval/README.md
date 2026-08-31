@@ -103,9 +103,10 @@ not a new model run.
 
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High), seed 20260831`](runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/):
   post-change same-model replication with a passed near-duplicate gate. The
-  skill arm passed 12/12 with 13 warnings; the baseline passed 0/12 with 254
-  warnings. This is replication of structural conformance, not independent
-  model-family or practitioner validation.
+  original report records 12/12 with 13 warnings for the skill arm and 0/12
+  with 254 warnings for the baseline; the current `1.2.1` frozen-output rescore
+  reports 12 and 253 warnings respectively. This is replication of structural
+  conformance, not independent model-family or practitioner validation.
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High)`](runs/2026-08-30-antigravity-gemini-3.7-flash-high/):
   12/12 contract passes with the skill vs. 0/12 for the generic baseline. Exact
   requests, outputs, metadata, private mapping, report, hashes, and limitations

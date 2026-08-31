@@ -338,7 +338,7 @@ def test_published_antigravity_run_reproduces(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(recomputed_path.read_text()) == json.loads(
-        (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.0.json").read_text()
+        (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.1.json").read_text()
     )
 
 
@@ -384,7 +384,12 @@ def test_published_antigravity_replication_reproduces(tmp_path):
         str(recomputed_score),
     )
     assert score.returncode == 0, score.stderr
-    assert json.loads(recomputed_score.read_text()) == report
+    current_rescore = json.loads(
+        (REPLICATION_RUN / "rescore-gtta-method-contract-1.2.1.json").read_text()
+    )
+    assert json.loads(recomputed_score.read_text()) == current_rescore
+    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.1"
+    assert current_rescore["aggregates"]["skill"]["warning_findings"] == 12
 
     recomputed_freshness = tmp_path / "replication-freshness.json"
     replication_relative = REPLICATION_RUN.relative_to(ROOT)

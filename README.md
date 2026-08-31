@@ -313,7 +313,7 @@ by running its example prompt through the skill.
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and improve their
    regression coverage.
 2. Replicate the paired structural evaluation across independent model families
-   and address the 25 actionable GTTA010 findings isolated by the `1.2.0`
+   and address the 12 actionable provenance warnings retained by the `1.2.1`
    frozen-output rescore.
 3. Complete PyPI Trusted Publishing after account access is restored.
 4. Record real practitioner feedback if access becomes available; do not use

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Refined `gtta-method-contract@1.2.1` to accept `Evidence Evaluation Matrix`
+  as the Mode G evidence-matrix marker. A frozen-output rescore removes one
+  GTTA008 false positive from the seed-20260831 replication while retaining 12
+  actionable provenance warnings. The runtime method now explicitly covers
+  colon-ended recommendation lead-ins and red-team premise cells.
 - Published a freshness-gated same-model Antigravity replication at seed
   `20260831`. The updated skill arm again passed 12/12 contract checks versus
   0/12 for the generic baseline, with 13 versus 254 warnings. Exact inputs,

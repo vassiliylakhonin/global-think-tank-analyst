@@ -27,7 +27,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@1.2.0`
+## Ruleset `gtta-method-contract@1.2.1`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -57,6 +57,10 @@ columns such as Option or Scenario are treated as layout. Claim-bearing cells
 remain checked independently and their warning identifies the table column.
 Mode-marker checks accept narrow equivalents such as `Scenario Planning` for
 `Scenarios` and `What to Watch` for `Indicators`.
+
+Version 1.2.1 recognizes `Evidence Evaluation Matrix` as a narrow Mode G
+equivalent of `Evidence Matrix`. Rule IDs, severities, and claim-warning
+coverage are unchanged.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).
