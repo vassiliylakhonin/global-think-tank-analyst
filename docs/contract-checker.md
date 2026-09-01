@@ -27,7 +27,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@1.2.1`
+## Ruleset `gtta-method-contract@1.2.2`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -61,6 +61,13 @@ Mode-marker checks accept narrow equivalents such as `Scenario Planning` for
 Version 1.2.1 recognizes `Evidence Evaluation Matrix` as a narrow Mode G
 equivalent of `Evidence Matrix`. Rule IDs, severities, and claim-warning
 coverage are unchanged.
+
+Version 1.2.2 makes two narrow precision refinements. The exact mandatory
+`EVIDENCE ACCESS LIMITED` scope disclosure is no longer treated as an
+analytical claim by GTTA010. GTTA009 ignores a generic-advice phrase only when
+that occurrence is quoted and the same line explicitly rejects or replaces
+it; quoted advice used as an actual recommendation and later unquoted uses
+remain warnings. Rule IDs and severities are unchanged.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).

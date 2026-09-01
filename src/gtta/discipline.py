@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@1.2.1"
+RULESET_VERSION = "gtta-method-contract@1.2.2"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",
@@ -24,6 +24,9 @@ AXIS_A_TAGS = (
     "[user-provided]",
     "[inference]",
     "[analyst-judgment]",
+)
+_LIMITED_EVIDENCE_DISCLOSURE = (
+    "evidence access limited: no live verification performed in this environment."
 )
 
 
@@ -137,6 +140,47 @@ _MODE_REQUIREMENTS = {
 
 def _line_number(text: str, position: int) -> int:
     return text.count("\n", 0, position) + 1
+
+
+def _is_quoted_rejection(line: str, phrase_position: int) -> bool:
+    """Recognize a quoted generic-advice phrase that the line rejects."""
+    quote_pairs = (("\"", "\""), ("'", "'"), ("`", "`"), ("“", "”"))
+    is_quoted = False
+    for opening, closing in quote_pairs:
+        opening_position = line.rfind(opening, 0, phrase_position + 1)
+        if opening_position == -1:
+            continue
+        closing_position = line.find(closing, phrase_position)
+        if closing_position != -1:
+            is_quoted = True
+            break
+    if not is_quoted:
+        return False
+    return bool(
+        re.search(
+            r"\b(?:avoid|reject|replace)\b|"
+            r"\b(?:do not use|don't use|instead of|rather than)\b",
+            line,
+        )
+    )
+
+
+def _generic_advice_position(text: str, phrase: str) -> Optional[int]:
+    """Return the first use of generic advice that is not a quoted rejection."""
+    lowered = text.lower()
+    search_from = 0
+    while True:
+        position = lowered.find(phrase, search_from)
+        if position == -1:
+            return None
+        line_start = lowered.rfind("\n", 0, position) + 1
+        line_end = lowered.find("\n", position)
+        if line_end == -1:
+            line_end = len(lowered)
+        line = lowered[line_start:line_end]
+        if not _is_quoted_rejection(line, position - line_start):
+            return position
+        search_from = position + len(phrase)
 
 
 def _extract_evidence_mode(text: str) -> tuple[Optional[str], Optional[int]]:
@@ -254,6 +298,9 @@ def _find_untagged_claims(text: str) -> list[Finding]:
             in_fence = not in_fence
             continue
         if in_fence or not stripped or line_index in table_header_lines:
+            continue
+        plain_disclosure = stripped.lstrip("> ").replace("**", "").strip().lower()
+        if plain_disclosure == _LIMITED_EVIDENCE_DISCLOSURE:
             continue
         heading = re.match(r"^#{1,6}\s+(.+?)\s*$", stripped)
         if heading:
@@ -391,8 +438,8 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
                 )
 
     for phrase in ("monitor the situation", "remain agile", "stay flexible"):
-        position = lower_text.find(phrase)
-        if position != -1:
+        position = _generic_advice_position(text, phrase)
+        if position is not None:
             findings.append(
                 Finding(
                     "GTTA009",

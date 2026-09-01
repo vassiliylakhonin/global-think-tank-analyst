@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Refined `gtta-method-contract@1.2.2` to exempt the exact mandatory
+  evidence-access disclosure from claim warnings and to distinguish a quoted,
+  explicitly rejected generic-advice phrase from an actual recommendation.
+  Frozen-output rescores remain separate from original reports: the Claude
+  skill count moves from 181 capped warnings to 170, while passes and errors
+  are unchanged. Runtime instructions now state that descriptive labels such
+  as `[assumption]` cannot replace a canonical Axis A tag and require a visible
+  Mode C trigger section.
 - Published a freshness-gated cross-model Antigravity run with Claude Opus 4.6
   (Thinking), seed `20260901`. The skill arm repeated the 12/12 contract pass
   result versus 0/12 for the generic baseline, but produced 181 capped

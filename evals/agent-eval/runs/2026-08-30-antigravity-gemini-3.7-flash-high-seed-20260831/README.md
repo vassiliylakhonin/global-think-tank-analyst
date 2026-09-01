@@ -63,6 +63,12 @@ The 12 remaining skill findings are GTTA010 warnings: ten untagged analytical
 recommendation lead-ins and two untagged red-team premise cells. They are
 treated as actionable provenance omissions, not checker noise.
 
+## Frozen-output ruleset 1.2.2 rescore
+
+The two narrow 1.2.2 precision refinements do not affect this run. The current
+rescore remains 12 skill warnings and 253 baseline warnings, with unchanged
+passes and errors.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares the final outputs with the first
@@ -84,6 +90,8 @@ reported isolated-context procedure remains part of the evidence boundary.
 - [`run-metadata.json`](run-metadata.json) — generation settings and hashes;
 - [`report.json`](report.json) — aggregate and per-sample deterministic result;
 - [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
+  — ruleset-1.2.1 rescore of the frozen outputs;
+- [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
   — current-ruleset rescore of the frozen outputs;
 - [`warning-triage-gtta-method-contract-1.2.1.md`](warning-triage-gtta-method-contract-1.2.1.md)
   — disposition of all 12 remaining skill warnings;
@@ -107,4 +115,4 @@ python3 scripts/agent_eval.py verify-freshness \
 ```
 
 The score command uses the current installed ruleset and should match
-`rescore-gtta-method-contract-1.2.1.json`, not the immutable original report.
+`rescore-gtta-method-contract-1.2.2.json`, not the immutable original report.

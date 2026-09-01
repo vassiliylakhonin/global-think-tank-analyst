@@ -64,6 +64,13 @@ The same frozen outputs were rescored again after adding the narrow Mode G
 baseline warnings decline from 249 to 248 because one equivalent Mode G marker
 is no longer missed. Pass rates and errors are unchanged.
 
+### Ruleset 1.2.2 rescore
+
+The two narrow precision refinements in 1.2.2 leave this run's stored counts
+unchanged from 1.2.1: 25 skill warnings and 248 baseline warnings. Warning caps
+and other detected claims can keep an aggregate unchanged even when one
+specific false-positive class is removed.
+
 ## Published artifacts
 
 - [`requests.jsonl`](requests.jsonl) — exact shuffled inputs;
@@ -74,6 +81,8 @@ is no longer missed. Pass rates and errors are unchanged.
 - [`rescore-gtta-method-contract-1.2.0.json`](rescore-gtta-method-contract-1.2.0.json)
   — ruleset-1.2.0 rescore of the unchanged outputs;
 - [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
+  — ruleset-1.2.1 rescore of the unchanged outputs;
+- [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
   — current-ruleset rescore of the unchanged outputs.
 
 To reproduce the score from the repository root:

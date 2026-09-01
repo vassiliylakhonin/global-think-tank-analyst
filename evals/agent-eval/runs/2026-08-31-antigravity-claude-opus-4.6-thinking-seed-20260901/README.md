@@ -57,6 +57,23 @@ model quality, or practitioner usefulness. It remains author-operated
 structural evidence. It strengthens M3 but does not change external-usefulness
 status U0.
 
+## Frozen-output ruleset 1.2.2 rescore
+
+The original `gtta-method-contract@1.2.1` report remains immutable. Rescoring
+the same outputs with 1.2.2 removes the quoted-rejection GTTA009 finding and
+exempts the exact mandatory evidence-access disclosure from GTTA010.
+
+| Arm | Passed | Pass rate | Errors | Warnings |
+|---|---:|---:|---:|---:|
+| Generic baseline | 0 / 12 | 0% | 30 | 360 |
+| GTTA skill | 12 / 12 | 100% | 0 | 170 |
+
+The stored count falls by 11 rather than 13. Two skill samples were already at
+the 25-finding GTTA010 cap; removing their disclosure findings exposed the next
+previously truncated warnings. The current 170 still consists of two valid
+GTTA008 missing-trigger findings and 168 capped GTTA010 findings. This is a
+checker-precision rescore, not a new model improvement.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares this run with both published
@@ -77,6 +94,8 @@ remain procedural evidence, not a mathematical guarantee.
 - [`run-metadata.json`](run-metadata.json) — runner, model, hashes, and the
   disclosed application-version correction;
 - [`report.json`](report.json) — aggregate and per-sample deterministic result;
+- [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
+  — current-ruleset rescore of the frozen outputs;
 - [`warning-triage-gtta-method-contract-1.2.1.md`](warning-triage-gtta-method-contract-1.2.1.md)
   — bounded human disposition of the skill warnings;
 - [`freshness-report.json`](freshness-report.json) — reproducible comparisons

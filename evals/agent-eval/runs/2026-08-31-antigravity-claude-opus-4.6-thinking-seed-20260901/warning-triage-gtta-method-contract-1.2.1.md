@@ -43,9 +43,9 @@ The heuristic can still over-flag layout prose or under-detect claims. Exact
 claim accounting requires `MemoArtifact`; this triage should not be read as a
 claim that all 166 remaining findings were individually adjudicated.
 
-## Confirmed checker-follow-up candidates
+## Ruleset follow-up
 
-Two narrow changes are justified for a future ruleset, after preserving this
+Ruleset 1.2.2 implements the two narrow changes below while preserving this
 original report:
 
 1. Exempt the exact required limited-evidence disclosure from GTTA010.
@@ -53,4 +53,7 @@ original report:
    the same sentence explicitly supplies observable if-then logic.
 
 Neither change should suppress the valid Mode C trigger findings or relax
-per-cell provenance coverage.
+per-cell provenance coverage. The frozen-output 1.2.2 rescore reports 170 skill
+warnings rather than 181. The count falls by 11, not 13, because removing a
+disclosure finding from each of two samples already at the 25-warning cap
+exposes the next previously truncated GTTA010 finding.

@@ -104,16 +104,19 @@ not a new model run.
 - [`2026-08-31 — Antigravity / Claude Opus 4.6 (Thinking), seed 20260901`](runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/):
   cross-model-family execution with a passed freshness gate against both
   Gemini runs. The skill arm passed 12/12 versus 0/12 for the baseline, but
-  produced 181 capped warnings versus 360. The warning triage records both
-  checker noise and substantial per-claim provenance omissions. This extends
-  structural M3 evidence; it is not factual or practitioner validation.
+  produced 181 capped warnings versus 360. The current `1.2.2` frozen-output
+  rescore reports 170 versus 360 after two narrow precision fixes. The warning
+  triage still records substantial per-claim provenance omissions. This
+  extends structural M3 evidence; it is not factual or practitioner
+  validation.
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High), seed 20260831`](runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/):
   post-change same-model replication with a passed near-duplicate gate. The
   original report records 12/12 with 13 warnings for the skill arm and 0/12
-  with 254 warnings for the baseline; the current `1.2.1` frozen-output rescore
+  with 254 warnings for the baseline; the current `1.2.2` frozen-output rescore
   reports 12 and 253 warnings respectively. This is replication of structural
   conformance, not independent model-family or practitioner validation.
 - [`2026-08-30 — Antigravity / Gemini 3.7 Flash (High)`](runs/2026-08-30-antigravity-gemini-3.7-flash-high/):
   12/12 contract passes with the skill vs. 0/12 for the generic baseline. Exact
   requests, outputs, metadata, private mapping, report, hashes, and limitations
-  are committed for audit and deterministic rescoring.
+  are committed for audit and deterministic rescoring; the current `1.2.2`
+  rescore reports 25 skill and 248 baseline warnings.

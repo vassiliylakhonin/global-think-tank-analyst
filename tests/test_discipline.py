@@ -41,7 +41,7 @@ def test_valid_mode_b_contract_passes_without_findings():
 
 
 def test_ruleset_exposes_stable_v1_interface():
-    assert RULESET_VERSION == "gtta-method-contract@1.2.1"
+    assert RULESET_VERSION == "gtta-method-contract@1.2.2"
 
 
 def test_missing_required_declarations_are_errors():
@@ -84,6 +84,37 @@ def test_generic_advice_is_a_warning_with_a_line():
     assert report.passed is True
 
 
+def test_quoted_rejection_of_generic_advice_is_not_a_warning():
+    report = check_contract(
+        VALID_MODE_B
+        + "\n[analyst-judgment] Replace \"monitor the situation\" with "
+        + "observable if-then decision logic.\n",
+        mode="B",
+    )
+    assert "GTTA009" not in finding_ids(report)
+
+
+def test_quoted_generic_advice_without_rejection_remains_a_warning():
+    report = check_contract(
+        VALID_MODE_B
+        + '\n[analyst-judgment] The team should "monitor the situation" weekly.\n',
+        mode="B",
+    )
+    assert "GTTA009" in finding_ids(report)
+
+
+def test_later_generic_advice_is_found_after_a_quoted_rejection():
+    report = check_contract(
+        VALID_MODE_B
+        + "\n[analyst-judgment] Avoid \"monitor the situation\" as empty advice.\n"
+        + "The team should monitor the situation.\n",
+        mode="B",
+    )
+    findings = [item for item in report.findings if item.rule_id == "GTTA009"]
+    assert len(findings) == 1
+    assert findings[0].line == len(VALID_MODE_B.splitlines()) + 3
+
+
 def test_likely_untagged_claim_is_a_warning_with_a_line():
     report = check_contract(
         VALID_MODE_B
@@ -95,6 +126,25 @@ def test_likely_untagged_claim_is_a_warning_with_a_line():
     assert finding.severity is Severity.WARNING
     assert finding.line is not None
     assert report.passed is True
+
+
+def test_exact_limited_evidence_disclosure_is_not_a_claim_warning():
+    report = check_contract(
+        VALID_MODE_B
+        + "\n**EVIDENCE ACCESS LIMITED: no live verification performed in this "
+        + "environment.**\n",
+        mode="B",
+    )
+    assert "GTTA010" not in finding_ids(report)
+
+
+def test_modified_limited_evidence_sentence_remains_claim_checked():
+    report = check_contract(
+        VALID_MODE_B
+        + "\nEvidence access is limited and the regulator has not been checked live.\n",
+        mode="B",
+    )
+    assert "GTTA010" in finding_ids(report)
 
 
 def test_metadata_headings_and_table_separators_are_not_claims():

@@ -244,11 +244,13 @@ The repository contains:
 
 All three completed runs found a 12/12 contract pass rate with the skill and
 0/12 for the generic baseline. The Claude run extends the result to a second
-model family, while its 181 capped skill warnings expose materially weaker
-per-claim provenance compliance than the Gemini runs. These author-operated
-runs support only a bounded structural-discipline claim: the scorer does not
-assess factuality, source support, decision quality, or practitioner
-usefulness. Practitioner review remains `U0`.
+model family, while its original 181 capped skill warnings expose materially
+weaker per-claim provenance compliance than the Gemini runs. A narrow
+`gtta-method-contract@1.2.2` precision rescore reduces that stored count to
+170 without changing outputs, passes, or the underlying portability finding.
+These author-operated runs support only a bounded structural-discipline claim:
+the scorer does not assess factuality, source support, decision quality, or
+practitioner usefulness. Practitioner review remains `U0`.
 
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
@@ -315,10 +317,10 @@ by running its example prompt through the skill.
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and improve their
    regression coverage.
-2. Preserve the cross-model `1.2.1` result, remove its two confirmed checker
-   false-positive classes in a separately versioned ruleset, and tighten the
-   runtime method where Claude omitted per-claim provenance and Mode C triggers.
-3. Repeat the cross-model run after those changes and broaden task domains;
+2. Tighten the runtime method where Claude omitted canonical per-claim
+   provenance and Mode C triggers; preserve the original `1.2.1` report and
+   the separate `1.2.2` precision rescore.
+3. Repeat the cross-model run after the runtime changes and broaden task domains;
    keep warning caps and model/settings differences explicit.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Record real practitioner feedback if access becomes available; do not use

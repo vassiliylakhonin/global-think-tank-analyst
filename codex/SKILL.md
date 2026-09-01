@@ -249,7 +249,22 @@ Silence about known doubt is as misleading as a confident assertion.
 
 Axis A — one per claim: `[primary]` `[secondary]` `[user-provided]` `[inference]` `[analyst-judgment]`
 
+Only those five labels satisfy Axis A. Content labels such as `[assumption]`,
+`[unknown]`, or `[scenario]` may describe a claim but never replace its Axis A
+provenance. If both are useful, pair them, for example
+`[analyst-judgment] [assumption]`.
+
 Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
+
+Layout-only text does not need a provenance tag: recipient/sender metadata,
+section headings, table headers, row identifiers such as "Option A", and direct
+questions are not claims. Analytical lead-ins are content, not layout: tag a
+sentence that recommends what decision-makers should monitor, require, or do,
+even when it ends with a colon before a list. A quoted or summarized premise in
+a red-team table is claim-bearing unless it is only a neutral identifier: tag
+it `[user-provided]` when the input supplied it or `[analyst-judgment]` when you
+formulated it. Inside tables, tag every claim-bearing cell separately; a tag in
+another cell does not cover the row.
 
 If live verification is unavailable, write exactly:
 
@@ -372,6 +387,9 @@ The bottom line must reflect evidence limits rather than overwrite them.
 ## Memo modes
 
 Choose one primary mode unless the user explicitly requests a hybrid.
+Use the canonical output labels listed for that mode as visible section-heading
+language. Qualifiers and numbering may be added, but do not replace the marker
+with an unrelated synonym; this keeps the memo scannable and machine-checkable.
 
 ### Mode A — Quick Brief
 
@@ -410,6 +428,9 @@ Output:
 - Implications
 - Indicators
 - Most decision-relevant takeaway
+
+Use a visible `Triggers` or `Decision Triggers` heading. Trigger-like details
+inside scenario prose do not replace this required decision-facing section.
 
 ### Mode D — Red-Team Challenge
 
@@ -622,7 +643,13 @@ Silently verify:
 - Did I provide feasible, conditional options?
 - Did I keep the conclusion bounded by evidence?
 - Did I remove paragraphs that sound sophisticated but do not improve a decision?
-- Did I tag factual claims with provenance (at minimum Axis A: `[primary]` / `[secondary]` / `[inference]` / `[analyst-judgment]`)?
+- Did I tag factual claims with one of the five canonical Axis A labels, rather
+  than substituting content labels such as `[assumption]` or `[unknown]`?
+- Did I tag analytical lead-ins (for example, "management should monitor...")
+  including lead-ins ending in a colon, while leaving layout-only metadata,
+  headings, neutral row identifiers, and direct questions untagged?
+- In red-team tables, did I tag quoted or summarized premises according to
+  whether they came from the input or from my own decomposition?
 - For each table that includes claims (Risks, Options, Indicators, Actors, Decision Map, Scenarios): does every factual cell carry an Axis A tag matching the tag the same claim would carry in body prose? If any cell drops or mutates a tag under layout pressure, restore it. A bulk-attribution footnote ("all cells: [analyst-judgment]") is not a substitute for per-cell tags.
 - Did my decisive language match the provenance tag — no confident framing for `[analyst-judgment]` or `[inference]`?
 - Where sources disagreed, did I surface both positions instead of silently resolving the conflict?
