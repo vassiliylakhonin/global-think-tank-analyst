@@ -101,6 +101,12 @@ not a new model run.
 
 ## Published runs
 
+- [`2026-09-01 — Antigravity / Claude Opus 4.6 (Thinking), seed 20260902`](runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902/):
+  fresh post-runtime-change replication with a passed freshness gate against
+  all three earlier runs. The skill arm passed 12/12 versus 0/12 for the
+  baseline and stored 111 capped warnings versus 359. Three skill samples hit
+  the warning cap, so the reduction from the prior Claude rescore's 170 is
+  directional rather than a precise quality estimate.
 - [`2026-08-31 — Antigravity / Claude Opus 4.6 (Thinking), seed 20260901`](runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/):
   cross-model-family execution with a passed freshness gate against both
   Gemini runs. The skill arm passed 12/12 versus 0/12 for the baseline, but

@@ -1,0 +1,177 @@
+{
+  "benchmark_version": "gtta-agent-eval@1.1.0",
+  "seed": 20260902,
+  "case_count": 12,
+  "sample_count": 24,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "samples": [
+    {
+      "sample_id": "be4845c067152dcc",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "baseline",
+      "mode": "A",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "684cd070611951b0",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "skill",
+      "mode": "A",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "5fab6fe073a8a00f",
+      "case_id": "critical-minerals-rumor",
+      "arm": "baseline",
+      "mode": "A",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "b7ed855b82ecccd4",
+      "case_id": "critical-minerals-rumor",
+      "arm": "skill",
+      "mode": "A",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "efa13aa3bd6d260e",
+      "case_id": "conflicting-policy-dates",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "191c645c24b35ab4",
+      "case_id": "conflicting-policy-dates",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "fa3f2493fb131c85",
+      "case_id": "trade-framework-exporter",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "a9a7e12a9eb130bf",
+      "case_id": "trade-framework-exporter",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "c0175dce46c96a44",
+      "case_id": "central-bank-opinion",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "fcc09842e15cf27d",
+      "case_id": "central-bank-opinion",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "7d17c324bfada243",
+      "case_id": "ai-governance-cloud",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "f1fc94223cab4746",
+      "case_id": "ai-governance-cloud",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "11774564859f5e5a",
+      "case_id": "cbam-enforcement",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "5710fbdde4fd4ee2",
+      "case_id": "cbam-enforcement",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "c57f09b67201cc4a",
+      "case_id": "hormuz-energy-shock",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "beeed0e9b247c8fe",
+      "case_id": "hormuz-energy-shock",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "0e7d68cc8ae09b20",
+      "case_id": "export-controls-permanence",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "09e8fb9360fa4594",
+      "case_id": "export-controls-permanence",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "reasoning-only"
+    },
+    {
+      "sample_id": "8175efa283e8b60e",
+      "case_id": "partner-risk-manageable",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "b74b0637196e4f39",
+      "case_id": "partner-risk-manageable",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "e2e396433a1f3e00",
+      "case_id": "board-options-source-conflict",
+      "arm": "baseline",
+      "mode": "E",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "a23ae8dbac83586c",
+      "case_id": "board-options-source-conflict",
+      "arm": "skill",
+      "mode": "E",
+      "evidence_mode": "user-provided sources"
+    },
+    {
+      "sample_id": "8943d5537cf969d5",
+      "case_id": "infrastructure-attribution",
+      "arm": "baseline",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet"
+    },
+    {
+      "sample_id": "35e9a18b283d9b04",
+      "case_id": "infrastructure-attribution",
+      "arm": "skill",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet"
+    }
+  ]
+}

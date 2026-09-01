@@ -1,0 +1,11 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.11.0",
+  "model": "Claude Opus 4.6 (Thinking)",
+  "generation_settings": {},
+  "notes": "Fresh post-change replication using the Antigravity built-in model selection; no external API key. The execution conditions were carried from the prefilled template and the operator reported no deviation. No additional generation settings were recorded.",
+  "imported_at": "2026-09-01T09:12:02.970190+00:00",
+  "sample_count": 24,
+  "requests_sha256": "8fac5bb130cf32e2741de652566397268ea095c5c70ada12e7db3232e9890ed8",
+  "outputs_sha256": "fad6a6d60988dbab7bc24e06d37ec86edfa7e40d672fcfbaeef52a65233f00d1"
+}

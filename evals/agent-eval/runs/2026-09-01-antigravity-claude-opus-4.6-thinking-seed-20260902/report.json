@@ -1,0 +1,3165 @@
+{
+  "benchmark_version": "gtta-agent-eval@1.1.0",
+  "ruleset_version": "gtta-method-contract@1.2.2",
+  "scope": "deterministic-method-contract-only",
+  "seed": 20260902,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "run_metadata": {
+    "runner": "Antigravity",
+    "app_version": "2.11.0",
+    "model": "Claude Opus 4.6 (Thinking)",
+    "generation_settings": {},
+    "notes": "Fresh post-change replication using the Antigravity built-in model selection; no external API key. The execution conditions were carried from the prefilled template and the operator reported no deviation. No additional generation settings were recorded.",
+    "imported_at": "2026-09-01T09:12:02.970190+00:00",
+    "sample_count": 24,
+    "requests_sha256": "8fac5bb130cf32e2741de652566397268ea095c5c70ada12e7db3232e9890ed8",
+    "outputs_sha256": "fad6a6d60988dbab7bc24e06d37ec86edfa7e40d672fcfbaeef52a65233f00d1"
+  },
+  "aggregates": {
+    "baseline": {
+      "samples": 12,
+      "passed": 0,
+      "error_findings": 32,
+      "warning_findings": 359,
+      "rule_counts": {
+        "GTTA002": 10,
+        "GTTA004": 12,
+        "GTTA005": 12,
+        "GTTA006": 10,
+        "GTTA007": 5,
+        "GTTA008": 33,
+        "GTTA010": 299,
+        "GTTAE001": 10
+      },
+      "pass_rate": 0.0
+    },
+    "skill": {
+      "samples": 12,
+      "passed": 12,
+      "error_findings": 0,
+      "warning_findings": 111,
+      "rule_counts": {
+        "GTTA008": 1,
+        "GTTA010": 110
+      },
+      "pass_rate": 1.0
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "7d17c324bfada243",
+      "case_id": "ai-governance-cloud",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'indicators' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 3
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 6
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "sample_id": "f1fc94223cab4746",
+      "case_id": "ai-governance-cloud",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 29
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 69
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 70
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 71
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 93
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 94
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 95
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 117
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 118
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 119
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 133
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 137
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 137
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 137
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 138
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "sample_id": "e2e396433a1f3e00",
+      "case_id": "board-options-source-conflict",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA007",
+          "severity": "warning",
+          "message": "Deeper memo lacks an explicit 'what would change the judgment' section."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode E output marker 'executive takeaway' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode E output marker 'watchlist' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 3
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 6
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 11
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 22
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 22
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 50
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 61
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'user-provided sources', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "a23ae8dbac83586c",
+      "case_id": "board-options-source-conflict",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "sample_id": "11774564859f5e5a",
+      "case_id": "cbam-enforcement",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'baseline' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'triggers' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'indicators' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 11
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 14
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 15
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 16
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 31
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 32
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 50
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 54
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 55
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 56
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 67
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 68
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'reasoning-only', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "5710fbdde4fd4ee2",
+      "case_id": "cbam-enforcement",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 10
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 21
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 22
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 65
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 67
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 68
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 91
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 92
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 93
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 94
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 117
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 118
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 119
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 120
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 139
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 140
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 140
+        }
+      ]
+    },
+    {
+      "sample_id": "c0175dce46c96a44",
+      "case_id": "central-bank-opinion",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA007",
+          "severity": "warning",
+          "message": "Deeper memo lacks an explicit 'what would change the judgment' section."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'executive takeaway' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'decision context' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'actors' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'options' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 19
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 21
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 21
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 31
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 32
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 37
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 49
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 54
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 56
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 60
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 62
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'user-provided sources', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "fcc09842e15cf27d",
+      "case_id": "central-bank-opinion",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 10
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 108
+        }
+      ]
+    },
+    {
+      "sample_id": "efa13aa3bd6d260e",
+      "case_id": "conflicting-policy-dates",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA007",
+          "severity": "warning",
+          "message": "Deeper memo lacks an explicit 'what would change the judgment' section."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'executive takeaway' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'decision context' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'actors' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'options' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 7
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 31
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 32
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 50
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 56
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 64
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 68
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 70
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 72
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 74
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'user-provided sources', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "191c645c24b35ab4",
+      "case_id": "conflicting-policy-dates",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "sample_id": "5fab6fe073a8a00f",
+      "case_id": "critical-minerals-rumor",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode A output marker 'bottom line' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode A output marker 'main risks' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 6
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 14
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 15
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 21
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 29
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 55
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 61
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'reasoning-only', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "b7ed855b82ecccd4",
+      "case_id": "critical-minerals-rumor",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "sample_id": "0e7d68cc8ae09b20",
+      "case_id": "export-controls-permanence",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'target claim' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'alternative explanations' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'revised judgment' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 3
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 11
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 15
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 16
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 32
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 37
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 49
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 54
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 55
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 61
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 67
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 69
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 70
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 71
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'reasoning-only', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "09e8fb9360fa4594",
+      "case_id": "export-controls-permanence",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 15
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 62
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 75
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 121
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 123
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 124
+        }
+      ]
+    },
+    {
+      "sample_id": "c57f09b67201cc4a",
+      "case_id": "hormuz-energy-shock",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'scenarios' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'triggers' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'indicators' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 16
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 22
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 36
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 37
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 49
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 65
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 67
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 68
+        }
+      ]
+    },
+    {
+      "sample_id": "beeed0e9b247c8fe",
+      "case_id": "hormuz-energy-shock",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode C output marker 'indicators' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 74
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 96
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 98
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "sample_id": "8943d5537cf969d5",
+      "case_id": "infrastructure-attribution",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA007",
+          "severity": "warning",
+          "message": "Deeper memo lacks an explicit 'what would change the judgment' section."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode G output marker 'evidence matrix' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode G output marker 'sensitivity' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode G output marker 'bounded judgment' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 3
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 11
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 19
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 29
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 43
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 1.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'illustrative source packet', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "35e9a18b283d9b04",
+      "case_id": "infrastructure-attribution",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 18
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 19
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 19
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "sample_id": "8175efa283e8b60e",
+      "case_id": "partner-risk-manageable",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'target claim' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'alternative explanations' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode D output marker 'revised judgment' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 6
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 14
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 15
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 26
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 37
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 42
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 53
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 57
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 61
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'user-provided sources', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "b74b0637196e4f39",
+      "case_id": "partner-risk-manageable",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 28
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 29
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 31
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 37
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 54
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 59
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 60
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 60
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 83
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 84
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 85
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 86
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 87
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 93
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 94
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 95
+        }
+      ]
+    },
+    {
+      "sample_id": "be4845c067152dcc",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA006",
+          "severity": "warning",
+          "message": "No explicit Low, Moderate, or High confidence statement was found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode A output marker 'main risks' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode A output marker 'what to watch' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 6
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 21
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 22
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 23
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 24
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 4.",
+          "line": 25
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 32
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 34
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 35
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 38
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 39
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 40
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 41
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 49
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 50
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 51
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 52
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 62
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'reasoning-only', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "684cd070611951b0",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "skill",
+      "passed": true,
+      "findings": []
+    },
+    {
+      "sample_id": "fa3f2493fb131c85",
+      "case_id": "trade-framework-exporter",
+      "arm": "baseline",
+      "passed": false,
+      "findings": [
+        {
+          "rule_id": "GTTA002",
+          "severity": "error",
+          "message": "Declare one canonical evidence mode."
+        },
+        {
+          "rule_id": "GTTA004",
+          "severity": "error",
+          "message": "No Axis A provenance tag was found."
+        },
+        {
+          "rule_id": "GTTA005",
+          "severity": "warning",
+          "message": "No explicit inference or analyst-judgment tag was found."
+        },
+        {
+          "rule_id": "GTTA007",
+          "severity": "warning",
+          "message": "Deeper memo lacks an explicit 'what would change the judgment' section."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'executive takeaway' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'decision context' was not found."
+        },
+        {
+          "rule_id": "GTTA008",
+          "severity": "warning",
+          "message": "Mode B output marker 'options' was not found."
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 5
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 12
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 13
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 16
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 17
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 20
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 27
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 30
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 33
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 36
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 44
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 45
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 46
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 47
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 2.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag. Table column: 3.",
+          "line": 48
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 56
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 58
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 60
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 64
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 66
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 68
+        },
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 74
+        },
+        {
+          "rule_id": "GTTAE001",
+          "severity": "error",
+          "message": "Declared evidence mode does not match the benchmark case: expected 'user-provided sources', got None."
+        }
+      ]
+    },
+    {
+      "sample_id": "a9a7e12a9eb130bf",
+      "case_id": "trade-framework-exporter",
+      "arm": "skill",
+      "passed": true,
+      "findings": [
+        {
+          "rule_id": "GTTA010",
+          "severity": "warning",
+          "message": "Likely material claim lacks an inline Axis A provenance tag.",
+          "line": 54
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "This report does not score factuality, source support, or decision quality.",
+    "A same-model or author-run comparison is a structural sanity check, not external validation.",
+    "External practitioner validation remains a separate unmet evidence layer."
+  ]
+}

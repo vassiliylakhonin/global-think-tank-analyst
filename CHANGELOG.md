@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Published a fresh Claude Opus 4.6 Antigravity replication at seed `20260902`
+  after tightening the runtime instructions. The skill arm again passed 12/12
+  versus 0/12 for the baseline and stored 111 warnings versus 359. Freshness
+  passed against all three earlier runs. Three skill samples reached the
+  GTTA010 cap, so the reduction from the prior same-ruleset count of 170 is
+  disclosed as directional rather than causal or complete.
 - Refined `gtta-method-contract@1.2.2` to exempt the exact mandatory
   evidence-access disclosure from claim warnings and to distinguish a quoted,
   explicitly rejected generic-advice phrase from an actual recommendation.

@@ -233,23 +233,27 @@ The repository contains:
 - a predeclared 12-case same-task, with/without-skill structural harness under
   [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
   export/import path and no model API client;
-- two published same-model Antigravity runs: the
+- four published Antigravity runs: two Gemini executions, the
   [`seed 20260830 run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
   and a freshness-gated
   [`seed 20260831 replication`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/),
-  plus a freshness-gated cross-model
-  [`Claude Opus 4.6 run`](evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/);
+  and two Claude executions, the freshness-gated
+  [`seed 20260901 cross-model run`](evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/)
+  and fresh post-change
+  [`seed 20260902 replication`](evals/agent-eval/runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902/);
   each publishes exact requests, outputs, recorded settings, hashes, mapping,
   and a deterministic report.
 
-All three completed runs found a 12/12 contract pass rate with the skill and
+All four completed runs found a 12/12 contract pass rate with the skill and
 0/12 for the generic baseline. The Claude run extends the result to a second
 model family, while its original 181 capped skill warnings expose materially
 weaker per-claim provenance compliance than the Gemini runs. A narrow
 `gtta-method-contract@1.2.2` precision rescore reduces that stored count to
-170 without changing outputs, passes, or the underlying portability finding.
-These author-operated runs support only a bounded structural-discipline claim:
-the scorer does not assess factuality, source support, decision quality, or
+170 without changing outputs. The fresh post-change Claude replication stores
+111 skill warnings, but three samples hit the warning cap, so this is
+directional evidence rather than a precise causal improvement estimate. These
+author-operated runs support only a bounded structural-discipline claim: the
+scorer does not assess factuality, source support, decision quality, or
 practitioner usefulness. Practitioner review remains `U0`.
 
 Read [`STATUS.md`](STATUS.md) for current evidence,
@@ -315,13 +319,12 @@ by running its example prompt through the skill.
 
 ## Roadmap
 
-1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and improve their
-   regression coverage.
-2. Tighten the runtime method where Claude omitted canonical per-claim
-   provenance and Mode C triggers; preserve the original `1.2.1` report and
-   the separate `1.2.2` precision rescore.
-3. Repeat the cross-model run after the runtime changes and broaden task domains;
-   keep warning caps and model/settings differences explicit.
+1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable; make warning-cap
+   truncation explicit in machine-readable reports.
+2. Add a structured `MemoArtifact` evaluation path so exact claim/provenance
+   coverage complements capped Markdown heuristics.
+3. Version and broaden the paired suite across new task domains while retaining
+   the current 12-case set as a frozen regression benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.
