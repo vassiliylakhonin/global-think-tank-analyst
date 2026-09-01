@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Added explicit finding-cap telemetry in `gtta-method-contract@1.2.3` and the
+  paired-eval report. JSON now identifies truncated rules and per-arm truncated
+  samples. Frozen-output rescores show no truncation in either Gemini run, but
+  12 baseline / 2 skill samples in the first Claude run and 11 baseline / 3
+  skill samples in the fresh replication; their raw warning totals are lower
+  bounds.
 - Published a fresh Claude Opus 4.6 Antigravity replication at seed `20260902`
   after tightening the runtime instructions. The skill arm again passed 12/12
   versus 0/12 for the baseline and stored 111 warnings versus 359. Freshness

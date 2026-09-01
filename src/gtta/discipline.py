@@ -11,7 +11,7 @@ from enum import Enum
 from typing import Optional
 
 
-RULESET_VERSION = "gtta-method-contract@1.2.2"
+RULESET_VERSION = "gtta-method-contract@1.2.3"
 SUPPORTED_EVIDENCE_MODES = (
     "live-source-backed",
     "user-provided sources",
@@ -25,6 +25,7 @@ AXIS_A_TAGS = (
     "[inference]",
     "[analyst-judgment]",
 )
+FINDING_LIMITS = {"GTTA010": 25}
 _LIMITED_EVIDENCE_DISCLOSURE = (
     "evidence access limited: no live verification performed in this environment."
 )
@@ -59,6 +60,7 @@ class ContractReport:
     mode: Optional[str]
     evidence_mode: Optional[str]
     findings: tuple[Finding, ...]
+    truncated_rule_ids: tuple[str, ...] = ()
 
     @property
     def passed(self) -> bool:
@@ -72,6 +74,9 @@ class ContractReport:
             "mode": self.mode,
             "evidence_mode": self.evidence_mode,
             "findings": [item.to_dict() for item in self.findings],
+            "findings_truncated": bool(self.truncated_rule_ids),
+            "truncated_rule_ids": list(self.truncated_rule_ids),
+            "finding_limits": dict(FINDING_LIMITS),
             "limitations": (
                 "No factuality, URL availability, or claim/source support "
                 "verification was performed."
@@ -89,6 +94,12 @@ class ContractReport:
                 f"- {item.severity.value.upper()} {item.rule_id}{location}: "
                 f"{item.message}"
             )
+        if self.truncated_rule_ids:
+            limits = ", ".join(
+                f"{rule_id}={FINDING_LIMITS[rule_id]}"
+                for rule_id in self.truncated_rule_ids
+            )
+            lines.append(f"- WARNING: findings truncated at configured limits: {limits}.")
         lines.append(
             "Limit: no factuality or claim/source support verification was performed."
         )
@@ -284,7 +295,7 @@ def _table_layout(lines: list[str]) -> tuple[set[int], dict[int, set[int]]]:
     return header_lines, label_columns_by_row
 
 
-def _find_untagged_claims(text: str) -> list[Finding]:
+def _find_untagged_claims(text: str) -> tuple[list[Finding], bool]:
     """Flag likely claims; exact coverage is only possible in MemoArtifact JSON."""
     findings: list[Finding] = []
     in_fence = False
@@ -324,22 +335,19 @@ def _find_untagged_claims(text: str) -> list[Finding]:
             if "[basis:" in lowered:
                 continue
             if _looks_like_material_claim(fragment):
-                findings.append(
-                    Finding(
-                        "GTTA010",
-                        Severity.WARNING,
-                        "Likely material claim lacks an inline Axis A provenance tag."
-                        + (
-                            f" Table column: {column + 1}."
-                            if is_table_row
-                            else ""
-                        ),
-                        line_number,
-                    )
+                finding = Finding(
+                    "GTTA010",
+                    Severity.WARNING,
+                    "Likely material claim lacks an inline Axis A provenance tag."
+                    + (
+                        f" Table column: {column + 1}." if is_table_row else ""
+                    ),
+                    line_number,
                 )
-                if len(findings) == 25:
-                    return findings
-    return findings
+                if len(findings) == FINDING_LIMITS["GTTA010"]:
+                    return findings, True
+                findings.append(finding)
+    return findings, False
 
 
 def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
@@ -449,12 +457,17 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
                 )
             )
 
+    truncated_rule_ids: list[str] = []
     if normalized_mode != "F":
-        findings.extend(_find_untagged_claims(text))
+        claim_findings, claims_truncated = _find_untagged_claims(text)
+        findings.extend(claim_findings)
+        if claims_truncated:
+            truncated_rule_ids.append("GTTA010")
 
     return ContractReport(
         ruleset_version=RULESET_VERSION,
         mode=normalized_mode,
         evidence_mode=evidence_mode,
         findings=tuple(findings),
+        truncated_rule_ids=tuple(truncated_rule_ids),
     )

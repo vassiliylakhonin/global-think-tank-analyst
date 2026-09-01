@@ -71,6 +71,12 @@ unchanged from 1.2.1: 25 skill warnings and 248 baseline warnings. Warning caps
 and other detected claims can keep an aggregate unchanged even when one
 specific false-positive class is removed.
 
+### Ruleset 1.2.3 rescore
+
+Ruleset 1.2.3 adds explicit truncation telemetry without changing stored
+findings. Neither arm is truncated in this run. Counts remain 25 skill and 248
+baseline warnings.
+
 ## Published artifacts
 
 - [`requests.jsonl`](requests.jsonl) — exact shuffled inputs;
@@ -83,7 +89,9 @@ specific false-positive class is removed.
 - [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
   — ruleset-1.2.1 rescore of the unchanged outputs;
 - [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
-  — current-ruleset rescore of the unchanged outputs.
+  — ruleset-1.2.2 rescore of the unchanged outputs;
+- [`rescore-gtta-method-contract-1.2.3.json`](rescore-gtta-method-contract-1.2.3.json)
+  — current-ruleset rescore with explicit truncation telemetry.
 
 To reproduce the score from the repository root:
 

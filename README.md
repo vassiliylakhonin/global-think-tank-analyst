@@ -319,8 +319,8 @@ by running its example prompt through the skill.
 
 ## Roadmap
 
-1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable; make warning-cap
-   truncation explicit in machine-readable reports.
+1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable, including the
+   machine-readable warning-truncation telemetry added in ruleset 1.2.3.
 2. Add a structured `MemoArtifact` evaluation path so exact claim/provenance
    coverage complements capped Markdown heuristics.
 3. Version and broaden the paired suite across new task domains while retaining

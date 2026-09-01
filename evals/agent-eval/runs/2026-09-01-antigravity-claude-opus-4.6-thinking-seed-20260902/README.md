@@ -51,6 +51,13 @@ This benchmark does not score factuality, source adequacy, decision quality,
 overall model quality, or practitioner usefulness. Maturity remains
 `R2 / M3 / U0`.
 
+## Frozen-output ruleset 1.2.3 rescore
+
+The original `gtta-method-contract@1.2.2` report remains immutable. Ruleset
+1.2.3 stores the same findings and adds explicit cap telemetry: 11 baseline
+samples and 3 skill samples are truncated for GTTA010. The 359 and 111 warning
+counts are therefore lower bounds for those arms, not complete totals.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares this run with both Gemini runs
@@ -73,6 +80,8 @@ reuse risk but cannot prove independent generation.
 - [`run-metadata.json`](run-metadata.json) — declared execution record and
   hashes;
 - [`report.json`](report.json) — deterministic aggregate and per-sample score;
+- [`rescore-gtta-method-contract-1.2.3.json`](rescore-gtta-method-contract-1.2.3.json)
+  — current-ruleset rescore with explicit truncation telemetry;
 - [`warning-triage.md`](warning-triage.md) — bounded disposition of skill
   warnings;
 - [`freshness-report.json`](freshness-report.json) — reproducible comparisons

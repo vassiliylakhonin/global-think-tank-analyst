@@ -41,7 +41,7 @@ def test_valid_mode_b_contract_passes_without_findings():
 
 
 def test_ruleset_exposes_stable_v1_interface():
-    assert RULESET_VERSION == "gtta-method-contract@1.2.2"
+    assert RULESET_VERSION == "gtta-method-contract@1.2.3"
 
 
 def test_missing_required_declarations_are_errors():
@@ -147,6 +147,32 @@ def test_modified_limited_evidence_sentence_remains_claim_checked():
     assert "GTTA010" in finding_ids(report)
 
 
+def test_exact_finding_limit_is_not_reported_as_truncated():
+    claims = "\n".join(
+        f"The regulator is likely to delay implementation in scenario {index}."
+        for index in range(25)
+    )
+    report = check_contract(VALID_MODE_B + "\n" + claims, mode="B")
+    assert sum(item.rule_id == "GTTA010" for item in report.findings) == 25
+    assert report.truncated_rule_ids == ()
+    assert report.to_dict()["findings_truncated"] is False
+
+
+def test_findings_beyond_limit_are_explicitly_reported_as_truncated():
+    claims = "\n".join(
+        f"The regulator is likely to delay implementation in scenario {index}."
+        for index in range(26)
+    )
+    report = check_contract(VALID_MODE_B + "\n" + claims, mode="B")
+    payload = report.to_dict()
+    assert sum(item.rule_id == "GTTA010" for item in report.findings) == 25
+    assert report.truncated_rule_ids == ("GTTA010",)
+    assert payload["findings_truncated"] is True
+    assert payload["truncated_rule_ids"] == ["GTTA010"]
+    assert payload["finding_limits"] == {"GTTA010": 25}
+    assert "findings truncated" in report.render_text()
+
+
 def test_metadata_headings_and_table_separators_are_not_claims():
     report = check_contract(VALID_MODE_B, mode="B")
     assert "GTTA010" not in finding_ids(report)
@@ -220,6 +246,9 @@ def test_report_is_machine_readable_and_states_its_limit():
     payload = check_contract(VALID_MODE_B, mode="B").to_dict()
     assert payload["scope"] == "method-contract-only"
     assert payload["passed"] is True
+    assert payload["findings_truncated"] is False
+    assert payload["truncated_rule_ids"] == []
+    assert payload["finding_limits"] == {"GTTA010": 25}
     assert "No factuality" in payload["limitations"]
     json.dumps(payload)
 

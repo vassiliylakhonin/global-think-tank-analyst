@@ -96,6 +96,12 @@ def test_prepare_and_score_structural_comparison(tmp_path):
                 "[analyst-judgment] A bounded judgment.\n"
                 "Confidence: Moderate."
             )
+            if sample["case_id"] == "ai-governance-cloud":
+                output += "\n" + "\n".join(
+                    "The regulator is likely to delay implementation in "
+                    f"scenario {index}."
+                    for index in range(26)
+                )
         else:
             output = f"Evidence mode: {evidence_mode}.\nConfidence: Moderate."
         outputs.append({"sample_id": sample["sample_id"], "output": output})
@@ -148,6 +154,17 @@ def test_prepare_and_score_structural_comparison(tmp_path):
     assert report["skill_sha256"] == mapping["skill_sha256"]
     assert report["run_metadata"]["runner"] == "Antigravity"
     assert report["run_metadata"]["sample_count"] == 24
+    assert report["findings_truncated"] is True
+    assert report["finding_limits"] == {"GTTA010": 25}
+    assert report["aggregates"]["skill"]["truncated_samples"] == 1
+    assert report["aggregates"]["skill"]["truncated_rule_counts"] == {
+        "GTTA010": 1
+    }
+    truncated_sample = next(
+        row for row in report["samples"] if row["findings_truncated"]
+    )
+    assert truncated_sample["case_id"] == "ai-governance-cloud"
+    assert truncated_sample["truncated_rule_ids"] == ["GTTA010"]
 
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):
@@ -352,7 +369,7 @@ def test_published_antigravity_run_reproduces(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(recomputed_path.read_text()) == json.loads(
-        (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.2.json").read_text()
+        (PUBLISHED_RUN / "rescore-gtta-method-contract-1.2.3.json").read_text()
     )
 
 
@@ -399,11 +416,12 @@ def test_published_antigravity_replication_reproduces(tmp_path):
     )
     assert score.returncode == 0, score.stderr
     current_rescore = json.loads(
-        (REPLICATION_RUN / "rescore-gtta-method-contract-1.2.2.json").read_text()
+        (REPLICATION_RUN / "rescore-gtta-method-contract-1.2.3.json").read_text()
     )
     assert json.loads(recomputed_score.read_text()) == current_rescore
-    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.2"
+    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.3"
     assert current_rescore["aggregates"]["skill"]["warning_findings"] == 12
+    assert current_rescore["findings_truncated"] is False
 
     recomputed_freshness = tmp_path / "replication-freshness.json"
     replication_relative = REPLICATION_RUN.relative_to(ROOT)
@@ -473,16 +491,19 @@ def test_published_cross_model_run_reproduces(tmp_path):
     )
     assert score.returncode == 0, score.stderr
     current_rescore = json.loads(
-        (CROSS_MODEL_RUN / "rescore-gtta-method-contract-1.2.2.json").read_text()
+        (CROSS_MODEL_RUN / "rescore-gtta-method-contract-1.2.3.json").read_text()
     )
     assert json.loads(recomputed_score.read_text()) == current_rescore
-    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.2"
+    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.3"
     assert current_rescore["aggregates"]["baseline"]["warning_findings"] == 360
     assert current_rescore["aggregates"]["skill"]["warning_findings"] == 170
     assert current_rescore["aggregates"]["skill"]["rule_counts"] == {
         "GTTA008": 2,
         "GTTA010": 168,
     }
+    assert current_rescore["findings_truncated"] is True
+    assert current_rescore["aggregates"]["baseline"]["truncated_samples"] == 12
+    assert current_rescore["aggregates"]["skill"]["truncated_samples"] == 2
 
     recomputed_freshness = tmp_path / "cross-model-freshness.json"
     cross_model_relative = CROSS_MODEL_RUN.relative_to(ROOT)
@@ -571,7 +592,20 @@ def test_published_claude_replication_reproduces(tmp_path):
         str(recomputed_score),
     )
     assert score.returncode == 0, score.stderr
-    assert json.loads(recomputed_score.read_text()) == report
+    current_rescore = json.loads(
+        (
+            CLAUDE_REPLICATION_RUN
+            / "rescore-gtta-method-contract-1.2.3.json"
+        ).read_text()
+    )
+    assert json.loads(recomputed_score.read_text()) == current_rescore
+    assert current_rescore["ruleset_version"] == "gtta-method-contract@1.2.3"
+    assert current_rescore["aggregates"]["skill"]["warning_findings"] == 111
+    assert current_rescore["aggregates"]["baseline"]["truncated_samples"] == 11
+    assert current_rescore["aggregates"]["skill"]["truncated_samples"] == 3
+    assert current_rescore["aggregates"]["skill"]["truncated_rule_counts"] == {
+        "GTTA010": 3
+    }
 
     recomputed_freshness = tmp_path / "claude-replication-freshness.json"
     candidate_relative = CLAUDE_REPLICATION_RUN.relative_to(ROOT)

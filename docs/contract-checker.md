@@ -27,7 +27,7 @@ The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic
 understands analytical quality.
 
-## Ruleset `gtta-method-contract@1.2.2`
+## Ruleset `gtta-method-contract@1.2.3`
 
 | Rule | Severity | Checks |
 |---|---|---|
@@ -68,6 +68,14 @@ analytical claim by GTTA010. GTTA009 ignores a generic-advice phrase only when
 that occurrence is quoted and the same line explicitly rejects or replaces
 it; quoted advice used as an actual recommendation and later unquoted uses
 remain warnings. Rule IDs and severities are unchanged.
+
+Version 1.2.3 does not change which findings are stored. It makes configured
+finding limits explicit. Contract JSON includes `findings_truncated`,
+`truncated_rule_ids`, and `finding_limits`; text output states when truncation
+occurred. The paired-eval report exposes the same flag globally, adds
+`truncated_samples` and `truncated_rule_counts` to each arm, and records the
+flag on every sample. GTTA010 remains limited to 25 stored findings per sample.
+Counts for a truncated sample are lower bounds, not exact totals.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).

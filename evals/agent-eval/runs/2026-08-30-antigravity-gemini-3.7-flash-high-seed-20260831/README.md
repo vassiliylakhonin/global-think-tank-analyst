@@ -69,6 +69,11 @@ The two narrow 1.2.2 precision refinements do not affect this run. The current
 rescore remains 12 skill warnings and 253 baseline warnings, with unchanged
 passes and errors.
 
+## Frozen-output ruleset 1.2.3 rescore
+
+Ruleset 1.2.3 adds truncation telemetry without changing findings. Neither arm
+is truncated; counts remain 12 skill and 253 baseline warnings.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares the final outputs with the first
@@ -92,7 +97,9 @@ reported isolated-context procedure remains part of the evidence boundary.
 - [`rescore-gtta-method-contract-1.2.1.json`](rescore-gtta-method-contract-1.2.1.json)
   — ruleset-1.2.1 rescore of the frozen outputs;
 - [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
-  — current-ruleset rescore of the frozen outputs;
+  — ruleset-1.2.2 rescore of the frozen outputs;
+- [`rescore-gtta-method-contract-1.2.3.json`](rescore-gtta-method-contract-1.2.3.json)
+  — current-ruleset rescore with explicit truncation telemetry;
 - [`warning-triage-gtta-method-contract-1.2.1.md`](warning-triage-gtta-method-contract-1.2.1.md)
   — disposition of all 12 remaining skill warnings;
 - [`freshness-report.json`](freshness-report.json) — reproducible comparison
@@ -115,4 +122,4 @@ python3 scripts/agent_eval.py verify-freshness \
 ```
 
 The score command uses the current installed ruleset and should match
-`rescore-gtta-method-contract-1.2.2.json`, not the immutable original report.
+`rescore-gtta-method-contract-1.2.3.json`, not the immutable original report.

@@ -74,6 +74,13 @@ previously truncated warnings. The current 170 still consists of two valid
 GTTA008 missing-trigger findings and 168 capped GTTA010 findings. This is a
 checker-precision rescore, not a new model improvement.
 
+## Frozen-output ruleset 1.2.3 rescore
+
+Findings and counts remain unchanged from 1.2.2. The new telemetry makes the
+cap boundary explicit: all 12 baseline samples and 2 skill samples have
+`findings_truncated: true` for GTTA010. Their stored warning totals are lower
+bounds.
+
 ## Freshness check
 
 The committed `freshness-report.json` compares this run with both published
@@ -95,7 +102,9 @@ remain procedural evidence, not a mathematical guarantee.
   disclosed application-version correction;
 - [`report.json`](report.json) — aggregate and per-sample deterministic result;
 - [`rescore-gtta-method-contract-1.2.2.json`](rescore-gtta-method-contract-1.2.2.json)
-  — current-ruleset rescore of the frozen outputs;
+  — ruleset-1.2.2 rescore of the frozen outputs;
+- [`rescore-gtta-method-contract-1.2.3.json`](rescore-gtta-method-contract-1.2.3.json)
+  — current-ruleset rescore with explicit truncation telemetry;
 - [`warning-triage-gtta-method-contract-1.2.1.md`](warning-triage-gtta-method-contract-1.2.1.md)
   — bounded human disposition of the skill warnings;
 - [`freshness-report.json`](freshness-report.json) — reproducible comparisons

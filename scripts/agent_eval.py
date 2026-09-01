@@ -18,7 +18,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gtta.discipline import SUPPORTED_EVIDENCE_MODES, check_contract  # noqa: E402
+from gtta.discipline import (  # noqa: E402
+    FINDING_LIMITS,
+    SUPPORTED_EVIDENCE_MODES,
+    check_contract,
+)
 
 
 BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
@@ -373,6 +377,8 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
             "error_findings": 0,
             "warning_findings": 0,
             "rule_counts": Counter(),
+            "truncated_samples": 0,
+            "truncated_rule_counts": Counter(),
         }
 
     for sample_id, sample in samples.items():
@@ -399,18 +405,30 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
                 "arm": sample["arm"],
                 "passed": sample_passed,
                 "findings": findings,
+                "findings_truncated": bool(report.truncated_rule_ids),
+                "truncated_rule_ids": list(report.truncated_rule_ids),
             }
         )
         aggregate = aggregates[sample["arm"]]
         aggregate["samples"] += 1
         aggregate["passed"] += int(sample_passed)
+        aggregate["truncated_samples"] += int(bool(report.truncated_rule_ids))
+        for rule_id in report.truncated_rule_ids:
+            aggregate["truncated_rule_counts"][rule_id] += 1
         for finding in findings:
             aggregate[f"{finding['severity']}_findings"] += 1
             aggregate["rule_counts"][finding["rule_id"]] += 1
 
     for aggregate in aggregates.values():
         aggregate["rule_counts"] = dict(sorted(aggregate["rule_counts"].items()))
+        aggregate["truncated_rule_counts"] = dict(
+            sorted(aggregate["truncated_rule_counts"].items())
+        )
         aggregate["pass_rate"] = aggregate["passed"] / aggregate["samples"]
+
+    findings_truncated = any(
+        aggregate["truncated_samples"] for aggregate in aggregates.values()
+    )
 
     metadata_path = run_dir / "run-metadata.json"
     run_metadata = (
@@ -427,10 +445,17 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
         limitations.append(
             "Run metadata was not recorded; do not use this report for an M3 claim."
         )
+    if findings_truncated:
+        limitations.append(
+            "One or more samples reached a configured finding limit; stored "
+            "finding counts are lower bounds for those samples."
+        )
     return {
         "benchmark_version": mapping["benchmark_version"],
         "ruleset_version": check_contract("", mode=None).ruleset_version,
         "scope": "deterministic-method-contract-only",
+        "findings_truncated": findings_truncated,
+        "finding_limits": dict(FINDING_LIMITS),
         "seed": mapping["seed"],
         "skill_sha256": mapping["skill_sha256"],
         "run_metadata": run_metadata,
