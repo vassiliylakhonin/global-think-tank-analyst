@@ -18,6 +18,12 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from gtta.artifact import (  # noqa: E402
+    ARTIFACT_SCHEMA_VERSION,
+    MemoArtifact,
+    check_memo_artifact,
+    get_memo_artifact_schema,
+)
 from gtta.discipline import (  # noqa: E402
     FINDING_LIMITS,
     SUPPORTED_EVIDENCE_MODES,
@@ -26,6 +32,7 @@ from gtta.discipline import (  # noqa: E402
 
 
 BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
+ARTIFACT_EVAL_VERSION = "gtta-artifact-eval@1.0.0"
 DEFAULT_CASES = ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl"
 BASELINE_INSTRUCTIONS = """You are a strategic-risk analyst. Answer the user directly, distinguish uncertainty from known information, and give decision-useful analysis. Do not claim to have checked sources that you did not access."""
 REQUIRED_CASE_FIELDS = {
@@ -38,6 +45,14 @@ REQUIRED_CASE_FIELDS = {
 }
 DEFAULT_MAX_SEQUENCE_SIMILARITY = 0.90
 DEFAULT_MAX_SHARED_LINE_RATIO = 0.80
+ARTIFACT_METRIC_NAMES = (
+    "claims",
+    "source_backed_claims",
+    "claims_with_basis",
+    "verify_claims",
+    "options",
+    "indicators",
+)
 
 
 class EvalInputError(ValueError):
@@ -100,6 +115,11 @@ def _sample_id(seed: int, case_id: str, arm: str) -> str:
     return hashlib.sha256(material).hexdigest()[:16]
 
 
+def _artifact_sample_id(seed: int, case_id: str, arm: str) -> str:
+    material = f"{ARTIFACT_EVAL_VERSION}|{seed}|{case_id}|{arm}".encode()
+    return hashlib.sha256(material).hexdigest()[:16]
+
+
 def _user_message(case: dict[str, Any]) -> str:
     return (
         f"Decision task: {case['prompt']}\n\n"
@@ -107,6 +127,40 @@ def _user_message(case: dict[str, Any]) -> str:
         f"Requested output: Mode {case['mode']} memo.\n"
         f"Evidence mode: {case['evidence_mode']}."
     )
+
+
+def _artifact_user_message(case: dict[str, Any]) -> str:
+    return (
+        f"Decision task: {case['prompt']}\n\n"
+        f"Context: {case['context']}\n\n"
+        f"Required artifact mode: {case['mode']}.\n"
+        f"Required evidence_mode: {case['evidence_mode']}.\n"
+        "Return the completed MemoArtifact JSON object only."
+    )
+
+
+def _artifact_schema_text() -> str:
+    return json.dumps(
+        get_memo_artifact_schema(), ensure_ascii=False, sort_keys=True
+    )
+
+
+def _artifact_output_contract(schema: str) -> str:
+    return f"""Return exactly one JSON object conforming to the MemoArtifact interface below. Do not wrap it in Markdown fences and do not add commentary.
+
+Interface invariants not fully expressible in JSON Schema:
+- use schema_version {ARTIFACT_SCHEMA_VERSION!r};
+- use the requested mode and evidence_mode exactly;
+- every source-backed claim names at least one source_ref, but a source_ref is only an identifier and must not imply access you did not have;
+- fact claims use primary, secondary, or user-provided provenance rather than inference or analyst-judgment;
+- reasoning-only artifacts must not claim primary, secondary, or user-provided provenance;
+- live-source-backed artifacts contain at least one primary or secondary claim, and user-provided sources artifacts contain at least one user-provided claim;
+- every claim and every basis reference uses a declared claim_id; no claim may cite itself or form a dependency cycle;
+- every ledger claim must be used by the bottom line, a section, an option, or an indicator;
+- satisfy the required sections and option/indicator/change-condition rules encoded by the interface.
+
+JSON Schema:
+{schema}"""
 
 
 def _sha256_file(path: Path) -> str:
@@ -118,7 +172,12 @@ def _sha256_file(path: Path) -> str:
 
 
 def _write_antigravity_bundle(
-    output_dir: Path, requests: list[dict[str, Any]]
+    output_dir: Path,
+    requests: list[dict[str, Any]],
+    *,
+    response_extension: str = ".md",
+    response_description: str = "the model's final response",
+    score_command: str = "score",
 ) -> None:
     """Write provider-neutral Markdown tasks for manual Antigravity execution."""
     task_dir = output_dir / "antigravity-tasks"
@@ -135,8 +194,8 @@ def _write_antigravity_bundle(
 
 Run this sample in a fresh Antigravity conversation. Keep the same model and
 generation settings for every sample. Do not add instructions beyond the two
-messages below. Save only the model's final response as
-`../antigravity-responses/{sample_id}.md`.
+messages below. Save only {response_description} as
+`../antigravity-responses/{sample_id}{response_extension}`.
 
 ## System message
 
@@ -169,14 +228,14 @@ messages below. Save only the model's final response as
         encoding="utf-8",
     )
     (task_dir / "README.md").write_text(
-        """# Antigravity run instructions
+        f"""# Antigravity run instructions
 
 1. Fill `../run-metadata.template.json` before generation.
 2. Use one fresh conversation per numbered task.
 3. Use exactly the same model and generation settings for all tasks.
-4. Save only each final response to the filename stated in its task.
+4. Save only each final response as the `{response_extension}` filename stated in its task.
 5. Do not inspect `../private-mapping.json` until all responses are saved.
-6. Run `agent_eval.py import-antigravity`, then `agent_eval.py score`.
+6. Run `agent_eval.py import-antigravity`, then `agent_eval.py {score_command}`.
 
 The harness performs no API or network calls.
 """,
@@ -254,13 +313,100 @@ def prepare_run(case_path: Path, output_dir: Path, seed: int) -> dict[str, Any]:
     return mapping
 
 
+def prepare_artifact_run(
+    case_path: Path, output_dir: Path, seed: int
+) -> dict[str, Any]:
+    """Create opaque paired requests for strict MemoArtifact JSON outputs."""
+    cases = load_cases(case_path)
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    skill_hash = hashlib.sha256(skill_text.encode()).hexdigest()
+    schema_text = _artifact_schema_text()
+    output_contract = _artifact_output_contract(schema_text)
+    schema_hash = hashlib.sha256(schema_text.encode()).hexdigest()
+
+    try:
+        output_dir.mkdir(parents=True, exist_ok=False)
+    except FileExistsError as exc:
+        raise EvalInputError(f"output directory already exists: {output_dir}") from exc
+
+    requests: list[dict[str, Any]] = []
+    samples: list[dict[str, Any]] = []
+    for case in cases:
+        for arm in ("baseline", "skill"):
+            sample_id = _artifact_sample_id(seed, case["id"], arm)
+            system = BASELINE_INSTRUCTIONS
+            if arm == "skill":
+                system += (
+                    "\n\nApply the following Global Think Tank Analyst runtime "
+                    f"method exactly:\n\n<gtta-skill>\n{skill_text}\n</gtta-skill>"
+                )
+            system += f"\n\n<output-contract>\n{output_contract}\n</output-contract>"
+            requests.append(
+                {
+                    "sample_id": sample_id,
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": _artifact_user_message(case)},
+                    ],
+                }
+            )
+            samples.append(
+                {
+                    "sample_id": sample_id,
+                    "case_id": case["id"],
+                    "arm": arm,
+                    "mode": case["mode"],
+                    "evidence_mode": case["evidence_mode"],
+                }
+            )
+
+    random.Random(seed).shuffle(requests)
+    (output_dir / "requests.jsonl").write_text(
+        "\n".join(json.dumps(row, ensure_ascii=False) for row in requests) + "\n",
+        encoding="utf-8",
+    )
+    mapping = {
+        "benchmark_version": BENCHMARK_VERSION,
+        "evaluation_version": ARTIFACT_EVAL_VERSION,
+        "evaluation_type": "memo-artifact-structure",
+        "artifact_schema_version": ARTIFACT_SCHEMA_VERSION,
+        "artifact_schema_sha256": schema_hash,
+        "response_extension": ".json",
+        "seed": seed,
+        "case_count": len(cases),
+        "sample_count": len(samples),
+        "skill_sha256": skill_hash,
+        "samples": samples,
+    }
+    (output_dir / "private-mapping.json").write_text(
+        json.dumps(mapping, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    (output_dir / "outputs.template.jsonl").write_text(
+        "\n".join(
+            json.dumps({"sample_id": row["sample_id"], "output": ""})
+            for row in requests
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    _write_antigravity_bundle(
+        output_dir,
+        requests,
+        response_extension=".json",
+        response_description="the model's raw MemoArtifact JSON object",
+        score_command="score-artifact",
+    )
+    return mapping
+
+
 def import_antigravity_responses(
     run_dir: Path,
     response_dir: Path,
     metadata_path: Path,
     output_path: Path,
 ) -> dict[str, Any]:
-    """Import one Markdown response per opaque sample without model API calls."""
+    """Import one response per opaque sample without model API calls."""
     mapping_path = run_dir / "private-mapping.json"
     requests_path = run_dir / "requests.jsonl"
     recorded_metadata_path = run_dir / "run-metadata.json"
@@ -284,9 +430,14 @@ def import_antigravity_responses(
     if set(request_ids) != expected_ids:
         raise EvalInputError("request IDs do not match the private mapping")
 
+    response_extension = mapping.get("response_extension", ".md")
+    if response_extension not in {".md", ".json"}:
+        raise EvalInputError(
+            f"unsupported response extension in run mapping: {response_extension}"
+        )
     response_files = {
         path.stem: path
-        for path in response_dir.glob("*.md")
+        for path in response_dir.glob(f"*{response_extension}")
         if not path.name.startswith(".")
     }
     missing = expected_ids - response_files.keys()
@@ -458,6 +609,183 @@ def score_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
         "finding_limits": dict(FINDING_LIMITS),
         "seed": mapping["seed"],
         "skill_sha256": mapping["skill_sha256"],
+        "run_metadata": run_metadata,
+        "aggregates": aggregates,
+        "samples": sorted(detail, key=lambda row: (row["case_id"], row["arm"])),
+        "limitations": limitations,
+    }
+
+
+def _artifact_metrics(artifact: MemoArtifact) -> dict[str, int]:
+    source_backed = {"primary", "secondary", "user-provided"}
+    return {
+        "claims": len(artifact.claims),
+        "source_backed_claims": sum(
+            claim.provenance.value in source_backed for claim in artifact.claims
+        ),
+        "claims_with_basis": sum(
+            bool(claim.basis_claim_ids) for claim in artifact.claims
+        ),
+        "verify_claims": sum(claim.verify for claim in artifact.claims),
+        "options": len(artifact.options),
+        "indicators": len(artifact.indicators),
+    }
+
+
+def score_artifact_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
+    """Score exact MemoArtifact structure without inferring content quality."""
+    mapping_path = run_dir / "private-mapping.json"
+    if not mapping_path.is_file():
+        raise EvalInputError(f"run mapping does not exist: {mapping_path}")
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    if mapping.get("evaluation_type") != "memo-artifact-structure":
+        raise EvalInputError(
+            "run mapping is not a memo-artifact-structure evaluation"
+        )
+    samples = {row["sample_id"]: row for row in mapping["samples"]}
+
+    outputs: dict[str, str] = {}
+    for row in _read_jsonl(output_path):
+        if set(row) != {"sample_id", "output"}:
+            raise EvalInputError("each output row must contain sample_id and output")
+        sample_id = row["sample_id"]
+        if sample_id not in samples:
+            raise EvalInputError(f"unknown sample id: {sample_id}")
+        if sample_id in outputs:
+            raise EvalInputError(f"duplicate output for sample id: {sample_id}")
+        output = row["output"]
+        if not isinstance(output, str) or not output.strip():
+            raise EvalInputError(f"empty output for sample id: {sample_id}")
+        outputs[sample_id] = output
+    missing = samples.keys() - outputs.keys()
+    if missing:
+        raise EvalInputError(f"missing outputs for {len(missing)} sample(s)")
+
+    detail: list[dict[str, Any]] = []
+    aggregates: dict[str, dict[str, Any]] = {}
+    for arm in ("baseline", "skill"):
+        aggregates[arm] = {
+            "samples": 0,
+            "passed": 0,
+            "valid_artifacts": 0,
+            "json_parse_failures": 0,
+            "interface_failures": 0,
+            "expectation_failures": 0,
+            "finding_counts": Counter(),
+            "artifact_totals": {name: 0 for name in ARTIFACT_METRIC_NAMES},
+        }
+
+    for sample_id, sample in samples.items():
+        validation = check_memo_artifact(outputs[sample_id])
+        findings = [finding.to_dict() for finding in validation.findings]
+        artifact = validation.artifact
+        mode_matches: bool | None = None
+        evidence_mode_matches: bool | None = None
+        if artifact is not None:
+            mode_matches = artifact.mode.value == sample["mode"]
+            evidence_mode_matches = (
+                artifact.evidence_mode.value == sample["evidence_mode"]
+            )
+            if not mode_matches:
+                findings.append(
+                    {
+                        "code": "ARTIFACTE001",
+                        "path": "$.mode",
+                        "message": (
+                            f"Expected mode {sample['mode']!r}, got "
+                            f"{artifact.mode.value!r}."
+                        ),
+                    }
+                )
+            if not evidence_mode_matches:
+                findings.append(
+                    {
+                        "code": "ARTIFACTE002",
+                        "path": "$.evidence_mode",
+                        "message": (
+                            "Expected evidence mode "
+                            f"{sample['evidence_mode']!r}, got "
+                            f"{artifact.evidence_mode.value!r}."
+                        ),
+                    }
+                )
+        metrics = _artifact_metrics(artifact) if artifact is not None else None
+        sample_passed = bool(
+            validation.passed and mode_matches and evidence_mode_matches
+        )
+        detail.append(
+            {
+                "sample_id": sample_id,
+                "case_id": sample["case_id"],
+                "arm": sample["arm"],
+                "passed": sample_passed,
+                "schema_valid": validation.passed,
+                "expected_mode_matches": mode_matches,
+                "expected_evidence_mode_matches": evidence_mode_matches,
+                "findings": findings,
+                "artifact_metrics": metrics,
+            }
+        )
+
+        aggregate = aggregates[sample["arm"]]
+        aggregate["samples"] += 1
+        aggregate["passed"] += int(sample_passed)
+        aggregate["valid_artifacts"] += int(validation.passed)
+        codes = {finding["code"] for finding in findings}
+        aggregate["json_parse_failures"] += int("ARTIFACT001" in codes)
+        aggregate["interface_failures"] += int(
+            not validation.passed and "ARTIFACT001" not in codes
+        )
+        aggregate["expectation_failures"] += int(
+            "ARTIFACTE001" in codes or "ARTIFACTE002" in codes
+        )
+        for finding in findings:
+            aggregate["finding_counts"][finding["code"]] += 1
+        if metrics is not None:
+            for name, value in metrics.items():
+                aggregate["artifact_totals"][name] += value
+
+    for aggregate in aggregates.values():
+        aggregate["finding_counts"] = dict(
+            sorted(aggregate["finding_counts"].items())
+        )
+        aggregate["pass_rate"] = aggregate["passed"] / aggregate["samples"]
+
+    current_schema_hash = hashlib.sha256(_artifact_schema_text().encode()).hexdigest()
+    prompt_schema_hash = mapping["artifact_schema_sha256"]
+    schema_matches_prompt = current_schema_hash == prompt_schema_hash
+    metadata_path = run_dir / "run-metadata.json"
+    run_metadata = (
+        json.loads(metadata_path.read_text(encoding="utf-8"))
+        if metadata_path.is_file()
+        else None
+    )
+    limitations = [
+        "This report scores JSON parsing, declared MemoArtifact invariants, and expected mode/evidence-mode matching only.",
+        "It does not score factuality, source support, analytical quality, decision quality, or usefulness.",
+        "Artifact counts are descriptive and must not be interpreted as quality scores.",
+        "A same-model or author-run comparison is structural evidence, not external validation.",
+        "External practitioner validation remains a separate unmet evidence layer.",
+    ]
+    if run_metadata is None:
+        limitations.append(
+            "Run metadata was not recorded; do not use this report for an M3 claim."
+        )
+    if not schema_matches_prompt:
+        limitations.append(
+            "The scorer schema hash differs from the schema embedded in the "
+            "prompts; publish this only as an explicit rescore."
+        )
+    return {
+        "evaluation_version": mapping["evaluation_version"],
+        "benchmark_version": mapping["benchmark_version"],
+        "artifact_schema_version": mapping["artifact_schema_version"],
+        "scope": "memo-artifact-structure-only",
+        "seed": mapping["seed"],
+        "skill_sha256": mapping["skill_sha256"],
+        "prompt_artifact_schema_sha256": prompt_schema_hash,
+        "scorer_artifact_schema_sha256": current_schema_hash,
+        "schema_matches_prompt": schema_matches_prompt,
         "run_metadata": run_metadata,
         "aggregates": aggregates,
         "samples": sorted(detail, key=lambda row: (row["case_id"], row["arm"])),
@@ -648,9 +976,16 @@ def _parser() -> argparse.ArgumentParser:
     prepare.add_argument("--cases", type=Path, default=DEFAULT_CASES)
     prepare.add_argument("--seed", type=int, default=20260830)
 
+    prepare_artifact = subparsers.add_parser(
+        "prepare-artifact", help="prepare paired MemoArtifact JSON requests"
+    )
+    prepare_artifact.add_argument("output_dir", type=Path)
+    prepare_artifact.add_argument("--cases", type=Path, default=DEFAULT_CASES)
+    prepare_artifact.add_argument("--seed", type=int, default=20260903)
+
     import_antigravity = subparsers.add_parser(
         "import-antigravity",
-        help="import manually generated Antigravity Markdown responses",
+        help="import manually generated Antigravity responses",
     )
     import_antigravity.add_argument("run_dir", type=Path)
     import_antigravity.add_argument("responses", type=Path)
@@ -661,6 +996,13 @@ def _parser() -> argparse.ArgumentParser:
     score.add_argument("run_dir", type=Path)
     score.add_argument("outputs", type=Path)
     score.add_argument("--report", type=Path)
+
+    score_artifact = subparsers.add_parser(
+        "score-artifact", help="score a completed MemoArtifact paired run"
+    )
+    score_artifact.add_argument("run_dir", type=Path)
+    score_artifact.add_argument("outputs", type=Path)
+    score_artifact.add_argument("--report", type=Path)
 
     freshness = subparsers.add_parser(
         "verify-freshness",
@@ -704,6 +1046,13 @@ def main(argv: list[str] | None = None) -> int:
                 f"{mapping['case_count']} cases in {args.output_dir}"
             )
             return 0
+        if args.command == "prepare-artifact":
+            mapping = prepare_artifact_run(args.cases, args.output_dir, args.seed)
+            print(
+                f"OK: prepared {mapping['sample_count']} structured samples from "
+                f"{mapping['case_count']} cases in {args.output_dir}"
+            )
+            return 0
         if args.command == "import-antigravity":
             metadata = import_antigravity_responses(
                 args.run_dir,
@@ -729,7 +1078,11 @@ def main(argv: list[str] | None = None) -> int:
                 args.report.write_text(serialized, encoding="utf-8")
             print(serialized, end="")
             return 0 if report["passed"] else 2
-        report = score_run(args.run_dir, args.outputs)
+        report = (
+            score_artifact_run(args.run_dir, args.outputs)
+            if args.command == "score-artifact"
+            else score_run(args.run_dir, args.outputs)
+        )
         serialized = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
         if args.report:
             args.report.write_text(serialized, encoding="utf-8")

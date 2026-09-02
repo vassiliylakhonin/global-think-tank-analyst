@@ -47,6 +47,89 @@ def _run(*args: str) -> subprocess.CompletedProcess[str]:
     )
 
 
+MODE_SECTIONS = {
+    "A": ("main_risks", "what_to_watch"),
+    "B": ("actors",),
+    "C": ("baseline", "scenarios", "triggers"),
+    "D": ("target_claim", "alternative_explanations", "revised_judgment"),
+    "E": ("questions_for_owners",),
+    "F": ("coaching",),
+    "G": ("hypotheses", "evidence_matrix", "sensitivity", "bounded_judgment"),
+}
+
+
+def _valid_artifact(sample: dict[str, str], *, mode: str | None = None) -> str:
+    artifact_mode = mode or sample["mode"]
+    evidence_mode = sample["evidence_mode"]
+    claim = {
+        "claim_id": "c1",
+        "text": "A bounded premise supports the structured assessment.",
+        "kind": "assumption",
+        "provenance": "inference",
+        "confidence": "Moderate",
+    }
+    if evidence_mode == "user-provided sources":
+        claim.update(
+            {
+                "kind": "fact",
+                "provenance": "user-provided",
+                "source_refs": ["user-packet-item-1"],
+            }
+        )
+    payload = {
+        "schema_version": "gtta.memo@1.0",
+        "artifact_id": f"artifact-{sample['sample_id']}",
+        "title": "Structured evaluation artifact",
+        "question": "What decision posture is justified?",
+        "decision": "Choose a bounded and reversible posture.",
+        "audience": "Decision owner",
+        "time_horizon": "Six months",
+        "mode": artifact_mode,
+        "evidence_mode": evidence_mode,
+        "bottom_line": {
+            "text": "Use a bounded posture while testing the premise.",
+            "claim_ids": ["c1"],
+        },
+        "claims": [claim],
+        "sections": {
+            key: {"text": f"Structured {key} assessment.", "claim_ids": ["c1"]}
+            for key in MODE_SECTIONS[artifact_mode]
+        },
+        "options": [],
+        "indicators": [],
+        "confidence": "Moderate",
+        "key_unknowns": ["Whether the bounded premise remains valid."],
+        "change_conditions": [],
+        "limitations": ["Synthetic test artifact; no model or source retrieval."],
+    }
+    if artifact_mode in {"B", "E"}:
+        payload["options"] = [
+            {
+                "option_id": "o1",
+                "title": "Use a bounded posture",
+                "benefit": "Preserves reversibility.",
+                "downside": "May delay commitment.",
+                "conditions": "Use while the premise remains uncertain.",
+                "basis_claim_ids": ["c1"],
+            }
+        ]
+    if artifact_mode in {"C", "E"}:
+        payload["indicators"] = [
+            {
+                "indicator_id": "i1",
+                "indicator": "New evidence about the premise",
+                "trigger": "The premise is contradicted",
+                "posture_change": "Reassess the bounded posture",
+                "basis_claim_ids": ["c1"],
+            }
+        ]
+    if artifact_mode in {"B", "E", "G"}:
+        payload["change_conditions"] = [
+            "Reliable evidence contradicts the premise."
+        ]
+    return json.dumps(payload)
+
+
 def test_benchmark_cases_validate():
     result = _run("validate")
     assert result.returncode == 0, result.stderr
@@ -165,6 +248,127 @@ def test_prepare_and_score_structural_comparison(tmp_path):
     )
     assert truncated_sample["case_id"] == "ai-governance-cloud"
     assert truncated_sample["truncated_rule_ids"] == ["GTTA010"]
+
+
+def test_prepare_import_and_score_memo_artifact_comparison(tmp_path):
+    run_dir = tmp_path / "artifact-run"
+    prepared = _run("prepare-artifact", str(run_dir), "--seed", "17")
+    assert prepared.returncode == 0, prepared.stderr
+
+    mapping = json.loads((run_dir / "private-mapping.json").read_text())
+    requests = [
+        json.loads(line)
+        for line in (run_dir / "requests.jsonl").read_text().splitlines()
+    ]
+    assert mapping["evaluation_version"] == "gtta-artifact-eval@1.0.0"
+    assert mapping["artifact_schema_version"] == "gtta.memo@1.0"
+    assert mapping["response_extension"] == ".json"
+    assert len(requests) == mapping["sample_count"] == 24
+    assert all("arm" not in request for request in requests)
+    assert all(
+        "<output-contract>" in request["messages"][0]["content"]
+        for request in requests
+    )
+    output_contracts = {
+        request["messages"][0]["content"].rsplit(
+            "<output-contract>\n", 1
+        )[1].rsplit("\n</output-contract>", 1)[0]
+        for request in requests
+    }
+    assert len(output_contracts) == 1
+    assert sum(
+        "<gtta-skill>" in request["messages"][0]["content"]
+        for request in requests
+    ) == 12
+    assert "score-artifact" in (
+        run_dir / "antigravity-tasks" / "README.md"
+    ).read_text()
+
+    response_dir = run_dir / "antigravity-responses"
+    for sample in mapping["samples"]:
+        output = (
+            _valid_artifact(sample)
+            if sample["arm"] == "skill"
+            else "not valid JSON"
+        )
+        (response_dir / f"{sample['sample_id']}.json").write_text(
+            output, encoding="utf-8"
+        )
+    metadata_path = run_dir / "metadata.json"
+    metadata_path.write_text(
+        json.dumps(
+            {
+                "runner": "Antigravity",
+                "app_version": "test",
+                "model": "synthetic-test-model",
+                "generation_settings": {},
+                "notes": "Synthetic outputs; no model was called.",
+            }
+        ),
+        encoding="utf-8",
+    )
+    outputs_path = run_dir / "outputs.jsonl"
+    imported = _run(
+        "import-antigravity",
+        str(run_dir),
+        str(response_dir),
+        "--metadata",
+        str(metadata_path),
+        "--output",
+        str(outputs_path),
+    )
+    assert imported.returncode == 0, imported.stderr
+
+    report_path = run_dir / "report.json"
+    scored = _run(
+        "score-artifact",
+        str(run_dir),
+        str(outputs_path),
+        "--report",
+        str(report_path),
+    )
+    assert scored.returncode == 0, scored.stderr
+    report = json.loads(report_path.read_text())
+    assert report["scope"] == "memo-artifact-structure-only"
+    assert report["schema_matches_prompt"] is True
+    assert report["aggregates"]["skill"]["passed"] == 12
+    assert report["aggregates"]["skill"]["valid_artifacts"] == 12
+    assert report["aggregates"]["baseline"]["passed"] == 0
+    assert report["aggregates"]["baseline"]["json_parse_failures"] == 12
+    assert report["aggregates"]["skill"]["artifact_totals"]["claims"] == 12
+
+
+def test_artifact_score_rejects_valid_wrong_mode(tmp_path):
+    run_dir = tmp_path / "artifact-run"
+    assert _run("prepare-artifact", str(run_dir), "--seed", "18").returncode == 0
+    mapping = json.loads((run_dir / "private-mapping.json").read_text())
+    wrong_sample = next(
+        sample
+        for sample in mapping["samples"]
+        if sample["mode"] != "A" and sample["arm"] == "skill"
+    )
+    rows = []
+    for sample in mapping["samples"]:
+        override = "A" if sample["sample_id"] == wrong_sample["sample_id"] else None
+        output = _valid_artifact(sample, mode=override)
+        rows.append({"sample_id": sample["sample_id"], "output": output})
+    outputs_path = run_dir / "outputs.jsonl"
+    outputs_path.write_text(
+        "\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8"
+    )
+
+    result = _run("score-artifact", str(run_dir), str(outputs_path))
+    assert result.returncode == 0, result.stderr
+    report = json.loads(result.stdout)
+    detail = next(
+        row
+        for row in report["samples"]
+        if row["sample_id"] == wrong_sample["sample_id"]
+    )
+    assert detail["schema_valid"] is True
+    assert detail["expected_mode_matches"] is False
+    assert detail["passed"] is False
+    assert detail["findings"][0]["code"] == "ARTIFACTE001"
 
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):

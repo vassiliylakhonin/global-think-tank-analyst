@@ -28,6 +28,13 @@ near-duplicate output reuse fails that gate. Passing the heuristic comparison
 does not by itself prove independent generation; isolated contexts and an
 auditable execution record remain required.
 
+A structured-artifact comparison must give both arms the identical
+`MemoArtifact` schema and output-contract instructions. A publishable report
+records the schema version and hashes used by both the prompt and scorer,
+rejects wrong Mode or evidence-mode declarations even when the JSON is
+otherwise valid, and labels claim/option/indicator totals as descriptive rather
+than quality measures.
+
 ## Merge checklist for executable contract changes
 
 - The public interface is versioned and documented.

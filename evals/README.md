@@ -18,5 +18,6 @@ For machine-readable validation, scoring, and evidence audit, see the companion 
 Treat the rubric as opinionated and adjustable. It is not a standard. The adversarial cases are the negative counterpart to the checklist: not "did the memo look good," but "did the skill refuse the things it should refuse."
 
 The paired harness in `agent-eval/` can prepare and deterministically score 12
-same-task baseline/skill samples. Its output is method-contract evidence only,
-not a factual or practitioner benchmark.
+same-task baseline/skill cases as Markdown memos or strict `MemoArtifact` JSON.
+Its output is structural evidence only, not a factual or practitioner
+benchmark.

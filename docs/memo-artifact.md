@@ -97,6 +97,12 @@ For Python integrations, use `MemoArtifact`, `check_memo_artifact()`,
 `get_memo_artifact_schema()`, and `render_memo_artifact()` from `gtta`. MCP
 exposes the same schema, validation, and rendering operations.
 
+The offline paired [structured artifact eval](../evals/agent-eval/artifact-eval.md)
+uses this same validator. It gives both arms the same schema and interface
+invariants, then reports parsing, validation, expected Mode, and expected
+evidence-mode conformance. Its descriptive artifact counts are not analytical
+quality scores.
+
 ## Compatibility
 
 Within `gtta.memo@1.x`, existing required fields and enum meanings remain

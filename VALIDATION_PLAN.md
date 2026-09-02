@@ -112,11 +112,13 @@ Updated 2026-08-30.
   delta of +2 to +4. The input-claim-accounting case uses one same-vendor blind
   judge and reports a delta of 0. These are structural checks, not factual,
   practitioner, or production validation.
-- **Paired structural harness:** 12 memo tasks across Modes A-G are declared in
+- **Paired structural harness:** 12 memo tasks across Modes A-E and G are declared in
   [`evals/agent-eval/benchmark-cases.jsonl`](evals/agent-eval/benchmark-cases.jsonl).
-  `scripts/agent_eval.py` prepares same-model baseline/skill requests and scores
-  only deterministic method-contract findings. No completed run or quality
-  delta is claimed yet.
+  `scripts/agent_eval.py` prepares same-model baseline/skill requests and can
+  score either deterministic Markdown method-contract findings or strict
+  `MemoArtifact` structure. Four Markdown runs are published with their exact
+  artifacts and limitations; the structured path is implemented but has no
+  completed model run yet. Neither path measures factual or decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

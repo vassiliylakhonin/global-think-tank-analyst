@@ -10,8 +10,18 @@ claim is true, supported by a source, or useful to a real decision-maker.
 
 ## Suite
 
-`benchmark-cases.jsonl` contains 12 memo tasks across Modes A-G and all four
-canonical evidence modes. Case validation enforces a suite size of 10-20 tasks.
+`benchmark-cases.jsonl` contains 12 memo tasks across Modes A-E and G and three
+canonical evidence modes: reasoning-only, user-provided sources, and an
+illustrative source packet. It contains no Mode F coaching task and no
+live-source-backed task. Case validation enforces a suite size of 10-20 tasks;
+those coverage gaps belong in a future versioned suite, not a rewrite of this
+frozen benchmark.
+
+The same frozen cases can now be run through the strict
+[`MemoArtifact` path](artifact-eval.md). Both arms receive the same schema and
+output contract; only the skill arm receives the runtime method. This avoids a
+trivial format-knowledge advantage while measuring exact declared claim-ledger
+conformance separately from Markdown heuristics.
 
 ## Prepare a run
 
@@ -98,6 +108,11 @@ Published generation outputs and their original report are immutable. When a
 checker heuristic changes, keep the original report and add a separately named
 rescore against the frozen outputs. A rescore evaluates checker behavior; it is
 not a new model run.
+
+For structured JSON output, use `prepare-artifact`, the same
+`import-antigravity` command, and `score-artifact`. Its pass condition is valid
+`gtta.memo@1.0` structure plus exact expected Mode and evidence-mode matching.
+See the [structured protocol](artifact-eval.md) for commands and limitations.
 
 ## Published runs
 
