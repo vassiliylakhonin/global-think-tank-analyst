@@ -35,6 +35,13 @@ CLAUDE_REPLICATION_RUN = (
     / "runs"
     / "2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902"
 )
+ARTIFACT_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -260,7 +267,7 @@ def test_prepare_import_and_score_memo_artifact_comparison(tmp_path):
         json.loads(line)
         for line in (run_dir / "requests.jsonl").read_text().splitlines()
     ]
-    assert mapping["evaluation_version"] == "gtta-artifact-eval@1.0.0"
+    assert mapping["evaluation_version"] == "gtta-artifact-eval@1.1.0"
     assert mapping["artifact_schema_version"] == "gtta.memo@1.0"
     assert mapping["response_extension"] == ".json"
     assert len(requests) == mapping["sample_count"] == 24
@@ -338,6 +345,36 @@ def test_prepare_import_and_score_memo_artifact_comparison(tmp_path):
     assert report["aggregates"]["skill"]["artifact_totals"]["claims"] == 12
 
 
+def test_artifact_output_contract_names_machine_keys_and_claim_axes(tmp_path):
+    run_dir = tmp_path / "artifact-contract"
+    assert _run("prepare-artifact", str(run_dir), "--seed", "19").returncode == 0
+    request = json.loads((run_dir / "requests.jsonl").read_text().splitlines()[0])
+    contract = request["messages"][0]["content"].rsplit(
+        "<output-contract>\n", 1
+    )[1].rsplit("\n</output-contract>", 1)[0]
+
+    assert "Section keys are exact, case-sensitive machine identifiers" in contract
+    assert "Mode A: main_risks, what_to_watch" in contract
+    assert "Mode B: actors" in contract
+    assert "Mode C: baseline, scenarios, triggers" in contract
+    assert (
+        "Mode D: target_claim, alternative_explanations, revised_judgment"
+        in contract
+    )
+    assert "Mode E: questions_for_owners" in contract
+    assert "Mode F: coaching" in contract
+    assert (
+        "Mode G: hypotheses, evidence_matrix, sensitivity, bounded_judgment"
+        in contract
+    )
+    assert "claim.kind is one of: fact, assessment, assumption, scenario, unknown" in contract
+    assert (
+        "claim.provenance is one of: primary, secondary, user-provided, "
+        "inference, analyst-judgment" in contract
+    )
+    assert "inference is a provenance value, never a claim.kind value" in contract
+
+
 def test_artifact_score_rejects_valid_wrong_mode(tmp_path):
     run_dir = tmp_path / "artifact-run"
     assert _run("prepare-artifact", str(run_dir), "--seed", "18").returncode == 0
@@ -369,6 +406,35 @@ def test_artifact_score_rejects_valid_wrong_mode(tmp_path):
     assert detail["expected_mode_matches"] is False
     assert detail["passed"] is False
     assert detail["findings"][0]["code"] == "ARTIFACTE001"
+
+
+def test_published_artifact_run_reproduces(tmp_path):
+    metadata = json.loads((ARTIFACT_RUN / "run-metadata.json").read_text())
+    mapping = json.loads((ARTIFACT_RUN / "private-mapping.json").read_text())
+    original = json.loads((ARTIFACT_RUN / "report.json").read_text())
+
+    assert hashlib.sha256(
+        (ARTIFACT_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (ARTIFACT_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert mapping["evaluation_version"] == "gtta-artifact-eval@1.0.0"
+    assert mapping["artifact_schema_version"] == "gtta.memo@1.0"
+    assert original["schema_matches_prompt"] is True
+    assert original["aggregates"]["baseline"]["passed"] == 10
+    assert original["aggregates"]["skill"]["passed"] == 1
+
+    recomputed = tmp_path / "artifact-report.json"
+    result = _run(
+        "score-artifact",
+        str(ARTIFACT_RUN),
+        str(ARTIFACT_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed),
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(recomputed.read_text()) == original
 
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):

@@ -32,7 +32,7 @@ from gtta.discipline import (  # noqa: E402
 
 
 BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
-ARTIFACT_EVAL_VERSION = "gtta-artifact-eval@1.0.0"
+ARTIFACT_EVAL_VERSION = "gtta-artifact-eval@1.1.0"
 DEFAULT_CASES = ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl"
 BASELINE_INSTRUCTIONS = """You are a strategic-risk analyst. Answer the user directly, distinguish uncertainty from known information, and give decision-useful analysis. Do not claim to have checked sources that you did not access."""
 REQUIRED_CASE_FIELDS = {
@@ -157,7 +157,18 @@ Interface invariants not fully expressible in JSON Schema:
 - live-source-backed artifacts contain at least one primary or secondary claim, and user-provided sources artifacts contain at least one user-provided claim;
 - every claim and every basis reference uses a declared claim_id; no claim may cite itself or form a dependency cycle;
 - every ledger claim must be used by the bottom line, a section, an option, or an indicator;
-- satisfy the required sections and option/indicator/change-condition rules encoded by the interface.
+- Section keys are exact, case-sensitive machine identifiers, not human-readable headings. Use every required key for the selected mode, spelling it exactly as follows:
+  Mode A: main_risks, what_to_watch
+  Mode B: actors
+  Mode C: baseline, scenarios, triggers
+  Mode D: target_claim, alternative_explanations, revised_judgment
+  Mode E: questions_for_owners
+  Mode F: coaching
+  Mode G: hypotheses, evidence_matrix, sensitivity, bounded_judgment
+- claim.kind is one of: fact, assessment, assumption, scenario, unknown;
+- claim.provenance is one of: primary, secondary, user-provided, inference, analyst-judgment;
+- inference is a provenance value, never a claim.kind value;
+- satisfy the option, indicator, and change-condition rules encoded by the interface.
 
 JSON Schema:
 {schema}"""
@@ -981,7 +992,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     prepare_artifact.add_argument("output_dir", type=Path)
     prepare_artifact.add_argument("--cases", type=Path, default=DEFAULT_CASES)
-    prepare_artifact.add_argument("--seed", type=int, default=20260903)
+    prepare_artifact.add_argument("--seed", type=int, default=20260904)
 
     import_antigravity = subparsers.add_parser(
         "import-antigravity",

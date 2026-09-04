@@ -117,8 +117,10 @@ Updated 2026-08-30.
   `scripts/agent_eval.py` prepares same-model baseline/skill requests and can
   score either deterministic Markdown method-contract findings or strict
   `MemoArtifact` structure. Four Markdown runs are published with their exact
-  artifacts and limitations; the structured path is implemented but has no
-  completed model run yet. Neither path measures factual or decision quality.
+  artifacts and limitations. The first structured run is also published: its
+  baseline passed 10/12 and skill arm 1/12 because protocol 1.0.0 omitted exact
+  machine-key guidance. Protocol 1.1.0 corrects that adapter but has not yet
+  been executed. Neither path measures factual or decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

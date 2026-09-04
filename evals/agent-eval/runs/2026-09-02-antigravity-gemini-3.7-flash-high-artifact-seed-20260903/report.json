@@ -1,0 +1,494 @@
+{
+  "evaluation_version": "gtta-artifact-eval@1.0.0",
+  "benchmark_version": "gtta-agent-eval@1.1.0",
+  "artifact_schema_version": "gtta.memo@1.0",
+  "scope": "memo-artifact-structure-only",
+  "seed": 20260903,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "prompt_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "scorer_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "schema_matches_prompt": true,
+  "run_metadata": {
+    "runner": "Antigravity",
+    "app_version": "2.11.0",
+    "model": "Gemini 3.7 Flash (High)",
+    "generation_settings": {
+      "thinking": "high"
+    },
+    "notes": "Evaluation run in Antigravity with Gemini 3.7 Flash (High) on 24 paired MemoArtifact tasks in isolated fresh contexts.",
+    "imported_at": "2026-09-02T03:44:24.305298+00:00",
+    "sample_count": 24,
+    "requests_sha256": "74d220d43c4a00ad31dd6891503be1cb12e726e2550ea90221c168e53dce179f",
+    "outputs_sha256": "02bde6070972b17a59202a3a86cd5d64cbebf83ddf8fd70130e825cb2e8303c4"
+  },
+  "aggregates": {
+    "baseline": {
+      "samples": 12,
+      "passed": 10,
+      "valid_artifacts": 10,
+      "json_parse_failures": 0,
+      "interface_failures": 2,
+      "expectation_failures": 0,
+      "finding_counts": {
+        "ARTIFACT003": 2
+      },
+      "artifact_totals": {
+        "claims": 74,
+        "source_backed_claims": 11,
+        "claims_with_basis": 43,
+        "verify_claims": 7,
+        "options": 15,
+        "indicators": 14
+      },
+      "pass_rate": 0.8333333333333334
+    },
+    "skill": {
+      "samples": 12,
+      "passed": 1,
+      "valid_artifacts": 1,
+      "json_parse_failures": 0,
+      "interface_failures": 11,
+      "expectation_failures": 0,
+      "finding_counts": {
+        "ARTIFACT003": 11
+      },
+      "artifact_totals": {
+        "claims": 8,
+        "source_backed_claims": 3,
+        "claims_with_basis": 5,
+        "verify_claims": 2,
+        "options": 3,
+        "indicators": 2
+      },
+      "pass_rate": 0.08333333333333333
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "3a197fb4796289b1",
+      "case_id": "ai-governance-cloud",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 15,
+        "source_backed_claims": 0,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 4
+      }
+    },
+    {
+      "sample_id": "5f0e4fe4ad065eac",
+      "case_id": "ai-governance-cloud",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: baseline, scenarios, triggers"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "f9c842519a41ecae",
+      "case_id": "board-options-source-conflict",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 3,
+        "claims_with_basis": 5,
+        "verify_claims": 3,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "52bc4e98b38ced24",
+      "case_id": "board-options-source-conflict",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 3,
+        "claims_with_basis": 5,
+        "verify_claims": 2,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "d71808c1dead3efe",
+      "case_id": "cbam-enforcement",
+      "arm": "baseline",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: baseline, scenarios, triggers"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "1cd8b74db11589e5",
+      "case_id": "cbam-enforcement",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: baseline, scenarios, triggers"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "0bd50218f2a158f6",
+      "case_id": "central-bank-opinion",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 5,
+        "source_backed_claims": 1,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "be835c7332a90843",
+      "case_id": "central-bank-opinion",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: actors"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "8ea52448d882f614",
+      "case_id": "conflicting-policy-dates",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 2,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 1
+      }
+    },
+    {
+      "sample_id": "fd60e5defa13f563",
+      "case_id": "conflicting-policy-dates",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: actors"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "b6bd61a9af4ea72e",
+      "case_id": "critical-minerals-rumor",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 5,
+        "source_backed_claims": 0,
+        "claims_with_basis": 3,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "3ec08e5fb3f82a77",
+      "case_id": "critical-minerals-rumor",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: main_risks, what_to_watch"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "3a275ed05e4a829c",
+      "case_id": "export-controls-permanence",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 0,
+        "claims_with_basis": 2,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "ed74ed16c376128d",
+      "case_id": "export-controls-permanence",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: alternative_explanations, revised_judgment, target_claim"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "9b5c5aeb2adb8351",
+      "case_id": "hormuz-energy-shock",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 0,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "8c7725f3072a51d3",
+      "case_id": "hormuz-energy-shock",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$['claims'][6]['kind']",
+          "message": "Input should be 'fact', 'assessment', 'assumption', 'scenario' or 'unknown'"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "c5413901342befb4",
+      "case_id": "infrastructure-attribution",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 12,
+        "source_backed_claims": 4,
+        "claims_with_basis": 8,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "48c53780699d7104",
+      "case_id": "infrastructure-attribution",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: bounded_judgment, evidence_matrix, hypotheses, sensitivity"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "ac007a1a519794e8",
+      "case_id": "partner-risk-manageable",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 5,
+        "source_backed_claims": 1,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "74c8868aa10990f2",
+      "case_id": "partner-risk-manageable",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: alternative_explanations, revised_judgment, target_claim"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "d0997911a2b20255",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 0,
+        "claims_with_basis": 1,
+        "verify_claims": 4,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "39bbea3f00629c49",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: main_risks, what_to_watch"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "d93d90c8279270bc",
+      "case_id": "trade-framework-exporter",
+      "arm": "baseline",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: actors"
+        }
+      ],
+      "artifact_metrics": null
+    },
+    {
+      "sample_id": "2a1f77f1a8976dd4",
+      "case_id": "trade-framework-exporter",
+      "arm": "skill",
+      "passed": false,
+      "schema_valid": false,
+      "expected_mode_matches": null,
+      "expected_evidence_mode_matches": null,
+      "findings": [
+        {
+          "code": "ARTIFACT003",
+          "path": "$",
+          "message": "Value error, missing mode sections: actors"
+        }
+      ],
+      "artifact_metrics": null
+    }
+  ],
+  "limitations": [
+    "This report scores JSON parsing, declared MemoArtifact invariants, and expected mode/evidence-mode matching only.",
+    "It does not score factuality, source support, analytical quality, decision quality, or usefulness.",
+    "Artifact counts are descriptive and must not be interpreted as quality scores.",
+    "A same-model or author-run comparison is structural evidence, not external validation.",
+    "External practitioner validation remains a separate unmet evidence layer."
+  ]
+}

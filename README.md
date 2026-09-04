@@ -321,9 +321,9 @@ by running its example prompt through the skill.
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable, including the
    machine-readable warning-truncation telemetry added in ruleset 1.2.3.
-2. Execute and publish the first structured `MemoArtifact` paired run; the
-   offline path now measures exact claim-ledger conformance without Markdown
-   warning caps.
+2. Execute and publish a fresh structured `MemoArtifact` replication using the
+   corrected `gtta-artifact-eval@1.1.0` output contract. The first `1.0.0` run
+   is retained as a negative result rather than silently discarded.
 3. Version and broaden the paired suite across new task domains while retaining
    the current 12-case set as a frozen regression benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.

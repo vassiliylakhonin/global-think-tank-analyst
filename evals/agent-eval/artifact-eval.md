@@ -37,7 +37,7 @@ not quality scores.
 ```bash
 python3 scripts/agent_eval.py prepare-artifact \
   /tmp/gtta-artifact-eval \
-  --seed 20260903
+  --seed 20260904
 
 # Fill run-metadata.template.json and execute every opaque task in a fresh
 # Antigravity conversation, saving raw .json responses as instructed.
@@ -65,3 +65,13 @@ that a claim is true, that a source supports it, that the analysis is good, or
 that a decision-maker finds it useful. A model can produce a formally valid
 but shallow artifact. Human review and downstream evidence-packet checking
 remain separate seams.
+
+## Protocol history
+
+- `gtta-artifact-eval@1.0.0` introduced the path but did not enumerate exact
+  Mode-specific dictionary keys or explicitly distinguish `ClaimKind` from
+  provenance in its non-schema instructions. The first run exposed both gaps.
+- `gtta-artifact-eval@1.1.0` gives both arms the exact case-sensitive key map
+  for Modes A-G and lists the two claim axes separately. This changes prompts
+  and sample IDs, not `gtta.memo@1.0` or the scorer. Its effect requires a fresh
+  run.

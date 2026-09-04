@@ -1,0 +1,13 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.11.0",
+  "model": "Gemini 3.7 Flash (High)",
+  "generation_settings": {
+    "thinking": "high"
+  },
+  "notes": "Evaluation run in Antigravity with Gemini 3.7 Flash (High) on 24 paired MemoArtifact tasks in isolated fresh contexts.",
+  "imported_at": "2026-09-02T03:44:24.305298+00:00",
+  "sample_count": 24,
+  "requests_sha256": "74d220d43c4a00ad31dd6891503be1cb12e726e2550ea90221c168e53dce179f",
+  "outputs_sha256": "02bde6070972b17a59202a3a86cd5d64cbebf83ddf8fd70130e825cb2e8303c4"
+}

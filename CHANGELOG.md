@@ -2,12 +2,18 @@
 
 ## Unreleased
 
-- Added `gtta-artifact-eval@1.0.0`, an offline paired `MemoArtifact` path over
-  the frozen 12-case suite. Both arms receive the same JSON Schema and output
-  invariants; only the skill arm receives GTTA. The scorer requires valid
-  `gtta.memo@1.0`, exact expected Mode and evidence mode, records prompt/scorer
-  schema hashes, and labels artifact counts as descriptive rather than quality
-  measures. No model result is claimed until a run is executed and published.
+- Published the first `gtta-artifact-eval@1.0.0` run without suppressing its
+  negative result: baseline passed 10/12 strict artifacts and the skill arm
+  1/12. Ten skill failures used human-facing headings instead of exact section
+  keys and one confused `inference` provenance with `ClaimKind`. Version 1.1.0
+  now gives both arms the exact Mode-to-key map and separates the two claim
+  axes. The schema and frozen outputs remain unchanged; a fresh replication is
+  required before claiming that the correction works.
+- Added the offline paired `MemoArtifact` path over the frozen 12-case suite.
+  Both arms receive the same JSON Schema and output invariants; only the skill
+  arm receives GTTA. The scorer requires valid `gtta.memo@1.0`, exact expected
+  Mode and evidence mode, records prompt/scorer schema hashes, and labels
+  artifact counts as descriptive rather than quality measures.
 - Added explicit finding-cap telemetry in `gtta-method-contract@1.2.3` and the
   paired-eval report. JSON now identifies truncated rules and per-arm truncated
   samples. Frozen-output rescores show no truncation in either Gemini run, but

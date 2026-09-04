@@ -114,7 +114,16 @@ For structured JSON output, use `prepare-artifact`, the same
 `gtta.memo@1.0` structure plus exact expected Mode and evidence-mode matching.
 See the [structured protocol](artifact-eval.md) for commands and limitations.
 
-## Published runs
+## Published structured runs
+
+- [`2026-09-02 — Antigravity / Gemini 3.7 Flash (High), artifact seed 20260903`](runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/):
+  the first strict `MemoArtifact` run. Baseline passed 10/12 and skill 1/12.
+  The published failure triage traces 10 skill failures to unmapped
+  human-readable section headings and one to a `ClaimKind`/provenance
+  collision. Protocol 1.1.0 corrects the shared output instructions; no
+  post-change result is claimed yet.
+
+## Published Markdown runs
 
 - [`2026-09-01 — Antigravity / Claude Opus 4.6 (Thinking), seed 20260902`](runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902/):
   fresh post-runtime-change replication with a passed freshness gate against
