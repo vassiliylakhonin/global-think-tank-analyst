@@ -42,6 +42,13 @@ ARTIFACT_RUN = (
     / "runs"
     / "2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903"
 )
+ARTIFACT_REPLICATION_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -435,6 +442,49 @@ def test_published_artifact_run_reproduces(tmp_path):
     )
     assert result.returncode == 0, result.stderr
     assert json.loads(recomputed.read_text()) == original
+
+
+def test_published_artifact_replication_reproduces(tmp_path):
+    metadata = json.loads(
+        (ARTIFACT_REPLICATION_RUN / "run-metadata.json").read_text()
+    )
+    mapping = json.loads(
+        (ARTIFACT_REPLICATION_RUN / "private-mapping.json").read_text()
+    )
+    original = json.loads(
+        (ARTIFACT_REPLICATION_RUN / "report.json").read_text()
+    )
+
+    assert hashlib.sha256(
+        (ARTIFACT_REPLICATION_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (ARTIFACT_REPLICATION_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert mapping["evaluation_version"] == "gtta-artifact-eval@1.1.0"
+    assert original["schema_matches_prompt"] is True
+    assert original["aggregates"]["baseline"]["passed"] == 12
+    assert original["aggregates"]["skill"]["passed"] == 12
+    assert original["aggregates"]["baseline"]["finding_counts"] == {}
+    assert original["aggregates"]["skill"]["finding_counts"] == {}
+
+    recomputed = tmp_path / "artifact-replication-report.json"
+    result = _run(
+        "score-artifact",
+        str(ARTIFACT_REPLICATION_RUN),
+        str(ARTIFACT_REPLICATION_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed),
+    )
+    assert result.returncode == 0, result.stderr
+    assert json.loads(recomputed.read_text()) == original
+
+    freshness = json.loads(
+        (ARTIFACT_REPLICATION_RUN / "freshness-report.json").read_text()
+    )
+    assert freshness["passed"] is True
+    assert freshness["comparisons"][0]["exact_duplicates"] == []
+    assert freshness["comparisons"][0]["near_duplicates"] == []
 
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):

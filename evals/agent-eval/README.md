@@ -116,6 +116,10 @@ See the [structured protocol](artifact-eval.md) for commands and limitations.
 
 ## Published structured runs
 
+- [`2026-09-04 — Antigravity / Gemini 3.7 Flash (High), artifact protocol 1.1.0`](runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/):
+  fresh post-correction run with 12/12 passes and no findings in both arms.
+  Freshness passed against 1.0.0. This confirms the narrow adapter repair but
+  provides no positive skill delta because schema conformance reached a ceiling.
 - [`2026-09-02 — Antigravity / Gemini 3.7 Flash (High), artifact seed 20260903`](runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/):
   the first strict `MemoArtifact` run. Baseline passed 10/12 and skill 1/12.
   The published failure triage traces 10 skill failures to unmapped

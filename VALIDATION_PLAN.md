@@ -119,8 +119,10 @@ Updated 2026-08-30.
   `MemoArtifact` structure. Four Markdown runs are published with their exact
   artifacts and limitations. The first structured run is also published: its
   baseline passed 10/12 and skill arm 1/12 because protocol 1.0.0 omitted exact
-  machine-key guidance. Protocol 1.1.0 corrects that adapter but has not yet
-  been executed. Neither path measures factual or decision quality.
+  machine-key guidance. The fresh protocol 1.1.0 replication passes 12/12 in
+  both arms. That confirms the narrow adapter correction but exposes a ceiling;
+  it does not show a positive method delta. Neither path measures factual or
+  decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

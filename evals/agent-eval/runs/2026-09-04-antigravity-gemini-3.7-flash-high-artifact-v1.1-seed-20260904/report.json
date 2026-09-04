@@ -1,0 +1,503 @@
+{
+  "evaluation_version": "gtta-artifact-eval@1.1.0",
+  "benchmark_version": "gtta-agent-eval@1.1.0",
+  "artifact_schema_version": "gtta.memo@1.0",
+  "scope": "memo-artifact-structure-only",
+  "seed": 20260904,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "prompt_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "scorer_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "schema_matches_prompt": true,
+  "run_metadata": {
+    "runner": "Antigravity",
+    "app_version": "2.11.0",
+    "model": "Gemini 3.7 Flash (High)",
+    "generation_settings": {
+      "thinking": "high"
+    },
+    "notes": "Evaluation run in Antigravity with Gemini 3.7 Flash (High) on 24 paired MemoArtifact tasks in isolated fresh contexts.",
+    "imported_at": "2026-09-04T06:52:22.312751+00:00",
+    "sample_count": 24,
+    "requests_sha256": "61b34191605329f1ff1817e4f4b0cbd36f4af3ce9574f79ac2f216dc49cc4516",
+    "outputs_sha256": "5f16690de2fca086660e9c720664a6fbaf8b389d2bc62bd98f4385685e3f0dd4"
+  },
+  "aggregates": {
+    "baseline": {
+      "samples": 12,
+      "passed": 12,
+      "valid_artifacts": 12,
+      "json_parse_failures": 0,
+      "interface_failures": 0,
+      "expectation_failures": 0,
+      "finding_counts": {},
+      "artifact_totals": {
+        "claims": 107,
+        "source_backed_claims": 15,
+        "claims_with_basis": 59,
+        "verify_claims": 0,
+        "options": 26,
+        "indicators": 24
+      },
+      "pass_rate": 1.0
+    },
+    "skill": {
+      "samples": 12,
+      "passed": 12,
+      "valid_artifacts": 12,
+      "json_parse_failures": 0,
+      "interface_failures": 0,
+      "expectation_failures": 0,
+      "finding_counts": {},
+      "artifact_totals": {
+        "claims": 107,
+        "source_backed_claims": 15,
+        "claims_with_basis": 61,
+        "verify_claims": 4,
+        "options": 26,
+        "indicators": 27
+      },
+      "pass_rate": 1.0
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "1415019af6850ce6",
+      "case_id": "ai-governance-cloud",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 12,
+        "source_backed_claims": 0,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "f1e66396e1108cc0",
+      "case_id": "ai-governance-cloud",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 12,
+        "source_backed_claims": 0,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "4f829abc5d90ada8",
+      "case_id": "board-options-source-conflict",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 7,
+        "source_backed_claims": 3,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "cb5ba4ca9e2d7ad6",
+      "case_id": "board-options-source-conflict",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 3,
+        "claims_with_basis": 3,
+        "verify_claims": 1,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "3eb3541fe77ff50f",
+      "case_id": "cbam-enforcement",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 18,
+        "source_backed_claims": 0,
+        "claims_with_basis": 15,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "e3ed090dbe7f4bbf",
+      "case_id": "cbam-enforcement",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 0,
+        "claims_with_basis": 9,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "c1f413faeb94e943",
+      "case_id": "central-bank-opinion",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 2,
+        "claims_with_basis": 3,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "db8cc8de2db8d3f0",
+      "case_id": "central-bank-opinion",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 2,
+        "claims_with_basis": 4,
+        "verify_claims": 1,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "60892e4b6654757d",
+      "case_id": "conflicting-policy-dates",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 2,
+        "claims_with_basis": 3,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "5f005c134b3d5697",
+      "case_id": "conflicting-policy-dates",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 2,
+        "claims_with_basis": 7,
+        "verify_claims": 1,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "a1f6b653927501ee",
+      "case_id": "critical-minerals-rumor",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 0,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "484b350bf6fa76ac",
+      "case_id": "critical-minerals-rumor",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 0,
+        "claims_with_basis": 2,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "9e2a6afc7f6bc6e4",
+      "case_id": "export-controls-permanence",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 0,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "c081759e942980f5",
+      "case_id": "export-controls-permanence",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "4ed53bbe136d7d25",
+      "case_id": "hormuz-energy-shock",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 0,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "8578b7a5f490503b",
+      "case_id": "hormuz-energy-shock",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 8,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "90b14748d22533c4",
+      "case_id": "infrastructure-attribution",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 4,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "f02504856b1b2dbf",
+      "case_id": "infrastructure-attribution",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 4,
+        "claims_with_basis": 6,
+        "verify_claims": 0,
+        "options": 0,
+        "indicators": 0
+      }
+    },
+    {
+      "sample_id": "a91411363b0ff450",
+      "case_id": "partner-risk-manageable",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 7,
+        "source_backed_claims": 2,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "a83b5187aa1168da",
+      "case_id": "partner-risk-manageable",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 3,
+        "claims_with_basis": 3,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "f3ff6330ae734d15",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 5,
+        "source_backed_claims": 0,
+        "claims_with_basis": 1,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "72d390a5e686fdfd",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 7,
+        "source_backed_claims": 0,
+        "claims_with_basis": 3,
+        "verify_claims": 1,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "0305fddd3236d5e9",
+      "case_id": "trade-framework-exporter",
+      "arm": "baseline",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 2,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "79866de4eab8adb9",
+      "case_id": "trade-framework-exporter",
+      "arm": "skill",
+      "passed": true,
+      "schema_valid": true,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [],
+      "artifact_metrics": {
+        "claims": 6,
+        "source_backed_claims": 1,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 2
+      }
+    }
+  ],
+  "limitations": [
+    "This report scores JSON parsing, declared MemoArtifact invariants, and expected mode/evidence-mode matching only.",
+    "It does not score factuality, source support, analytical quality, decision quality, or usefulness.",
+    "Artifact counts are descriptive and must not be interpreted as quality scores.",
+    "A same-model or author-run comparison is structural evidence, not external validation.",
+    "External practitioner validation remains a separate unmet evidence layer."
+  ]
+}

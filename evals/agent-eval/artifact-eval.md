@@ -73,5 +73,6 @@ remain separate seams.
   provenance in its non-schema instructions. The first run exposed both gaps.
 - `gtta-artifact-eval@1.1.0` gives both arms the exact case-sensitive key map
   for Modes A-G and lists the two claim axes separately. This changes prompts
-  and sample IDs, not `gtta.memo@1.0` or the scorer. Its effect requires a fresh
-  run.
+  and sample IDs, not `gtta.memo@1.0` or the scorer. Its fresh Gemini run passed
+  12/12 in both arms, confirming the adapter correction while showing that the
+  current schema-conformance pass rate has a ceiling.

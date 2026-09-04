@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Published the fresh `gtta-artifact-eval@1.1.0` Gemini replication. Both arms
+  passed 12/12 strict artifacts with no findings, and freshness passed against
+  the negative 1.0.0 run. The result confirms the narrow section-key/claim-axis
+  adapter correction in this run but shows a schema-conformance ceiling: it is
+  not a positive skill delta or an analytical-quality result.
 - Published the first `gtta-artifact-eval@1.0.0` run without suppressing its
   negative result: baseline passed 10/12 strict artifacts and the skill arm
   1/12. Ten skill failures used human-facing headings instead of exact section

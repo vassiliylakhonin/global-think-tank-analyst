@@ -9,7 +9,7 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
 | Release readiness | R2 | GitHub pre-release `v1.5.0rc1`; source, distribution, and installed-wheel gates; Trusted Publishing workflow on `main` | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
-| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. The first strict [MemoArtifact run](evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/) reverses direction: baseline 10/12 vs. skill 1/12. Its published triage identifies an incomplete structured-output adapter, corrected in eval protocol 1.1.0 but not yet re-run. Exact artifacts and limitations are retained. | Run a fresh 1.1.0 structured replication, then broaden task domains; practitioner validation remains tracked under U |
+| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. The first strict [MemoArtifact run](evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/) found baseline 10/12 vs. skill 1/12 and exposed an incomplete adapter. The fresh [protocol 1.1.0 replication](evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/) passes 12/12 in both arms, confirming the narrow correction but revealing a schema-conformance ceiling. Exact artifacts, freshness, and limitations are retained. | Add discriminating structured cases and broader domains; practitioner validation remains tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
@@ -38,7 +38,8 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
   only 1/12 skill samples. This is evidence of a `1.0.0` output-contract defect,
   not evidence of analytical inferiority: GTTA's human-facing headings were
   not mapped to exact machine keys. Protocol 1.1.0 corrects the adapter, but no
-  result for that correction is claimed before a fresh run.
+  fresh protocol 1.1.0 replication passes 12/12 in both arms. This confirms
+  the adapter correction for one run but does not establish a skill advantage.
 - External practitioner usefulness and production reliability are unvalidated.
 
 ## Immediate development order
@@ -46,8 +47,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
-3. Execute and publish a fresh `gtta-artifact-eval@1.1.0` replication, then
-   version a broader task suite without rewriting the frozen 12-case benchmark.
+3. Design a versioned structured suite with discriminating, labeled invariants
+   beyond schema conformance, then broaden task domains without rewriting the
+   frozen 12-case benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.
