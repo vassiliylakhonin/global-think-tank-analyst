@@ -49,6 +49,13 @@ ARTIFACT_REPLICATION_RUN = (
     / "runs"
     / "2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904"
 )
+ARTIFACT_BEHAVIOR_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -365,6 +372,14 @@ def test_prepare_and_score_memo_artifact_declared_behavior(tmp_path):
         for line in (run_dir / "requests.jsonl").read_text().splitlines()
     ]
     assert mapping["evaluation_version"] == "gtta-artifact-behavior-eval@1.0.0"
+    assert mapping["expectations_sha256"] == hashlib.sha256(
+        (
+            ROOT
+            / "evals"
+            / "agent-eval"
+            / "artifact-behavior-expectations.json"
+        ).read_bytes()
+    ).hexdigest()
     assert mapping["evaluation_type"] == "memo-artifact-declared-behavior"
     assert len(mapping["expectations_sha256"]) == 64
     assert all("expectations" in sample for sample in mapping["samples"])
@@ -543,6 +558,57 @@ def test_published_artifact_replication_reproduces(tmp_path):
     assert freshness["passed"] is True
     assert freshness["comparisons"][0]["exact_duplicates"] == []
     assert freshness["comparisons"][0]["near_duplicates"] == []
+
+
+def test_published_artifact_behavior_run_reproduces(tmp_path):
+    metadata = json.loads(
+        (ARTIFACT_BEHAVIOR_RUN / "run-metadata.json").read_text()
+    )
+    mapping = json.loads(
+        (ARTIFACT_BEHAVIOR_RUN / "private-mapping.json").read_text()
+    )
+    original = json.loads((ARTIFACT_BEHAVIOR_RUN / "report.json").read_text())
+
+    assert hashlib.sha256(
+        (ARTIFACT_BEHAVIOR_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (ARTIFACT_BEHAVIOR_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert mapping["evaluation_version"] == "gtta-artifact-behavior-eval@1.0.0"
+    assert mapping["expectations_sha256"] == hashlib.sha256(
+        (
+            ROOT
+            / "evals"
+            / "agent-eval"
+            / "artifact-behavior-expectations.json"
+        ).read_bytes()
+    ).hexdigest()
+    assert original["schema_matches_prompt"] is True
+    assert original["aggregates"]["baseline"]["structurally_passed"] == 12
+    assert original["aggregates"]["skill"]["structurally_passed"] == 12
+    assert original["aggregates"]["baseline"]["behaviorally_passed"] == 3
+    assert original["aggregates"]["skill"]["behaviorally_passed"] == 8
+
+    recomputed = tmp_path / "artifact-behavior-report.json"
+    result = _run(
+        "score-artifact-behavior",
+        str(ARTIFACT_BEHAVIOR_RUN),
+        str(ARTIFACT_BEHAVIOR_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed),
+    )
+    assert result.returncode == 0, result.stderr
+    assert recomputed.read_bytes() == (
+        ARTIFACT_BEHAVIOR_RUN / "report.json"
+    ).read_bytes()
+
+    freshness = json.loads(
+        (ARTIFACT_BEHAVIOR_RUN / "freshness-report.json").read_text()
+    )
+    assert freshness["passed"] is True
+    assert all(not row["exact_duplicates"] for row in freshness["comparisons"])
+    assert all(not row["near_duplicates"] for row in freshness["comparisons"])
 
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):

@@ -123,9 +123,11 @@ Updated 2026-09-04.
   both arms. That confirms the narrow adapter correction but exposes a ceiling;
   it does not show a positive method delta. The preregistered
   `gtta-artifact-behavior-eval@1.0.0` path now adds case-specific declared
-  behavior expectations and reports them separately from structural passes;
-  it has not yet been executed. None of these paths measures factual or
-  decision quality.
+  behavior expectations and reports them separately from structural passes.
+  Its first fresh Gemini run passes 8/12 skill samples versus 3/12 baseline
+  after 12/12 structural passes in both arms. The observed difference applies
+  only to frozen declarations in one run. None of these paths measures factual
+  or decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "sample_count": 24,
+  "thresholds": {
+    "max_sequence_similarity": 0.9,
+    "max_shared_line_ratio": 0.8,
+    "near_duplicate_triggers_on_either": true
+  },
+  "comparisons": [
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.511594,
+          "case_id": "quick-sanctions-corridor-triage",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.480519,
+          "case_id": "quick-sanctions-corridor-triage",
+          "arm": "baseline"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.572962,
+          "case_id": "board-options-source-conflict",
+          "arm": "skill"
+        },
+        "shared_line_ratio": {
+          "value": 0.570588,
+          "case_id": "board-options-source-conflict",
+          "arm": "skill"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Similarity detection can identify likely reuse but cannot prove independent generation.",
+    "Fresh isolated contexts and an auditable execution record remain procedural requirements.",
+    "A threshold failure requires regeneration or explicit publication as a non-independent variant."
+  ]
+}

@@ -120,6 +120,12 @@ than semantic or practitioner evaluation.
 
 ## Published structured runs
 
+- [`2026-09-04 — Antigravity / Gemini 3.7 Flash (High), declared-behavior protocol 1.0.0`](runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/):
+  both arms passed 12/12 structural checks. The skill arm passed 8/12 frozen
+  declared-behavior expectations versus 3/12 for baseline. Freshness passed
+  against both earlier structured runs. The observed `+41.7` point difference
+  is a one-run method-contract result, not a semantic-quality or usefulness
+  score.
 - [`2026-09-04 — Antigravity / Gemini 3.7 Flash (High), artifact protocol 1.1.0`](runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/):
   fresh post-correction run with 12/12 passes and no findings in both arms.
   Freshness passed against 1.0.0. This confirms the narrow adapter repair but
@@ -128,8 +134,8 @@ than semantic or practitioner evaluation.
   the first strict `MemoArtifact` run. Baseline passed 10/12 and skill 1/12.
   The published failure triage traces 10 skill failures to unmapped
   human-readable section headings and one to a `ClaimKind`/provenance
-  collision. Protocol 1.1.0 corrects the shared output instructions; no
-  post-change result is claimed yet.
+  collision. Protocol 1.1.0 corrects the shared output instructions; the fresh
+  post-change run above confirms that narrow correction.
 
 ## Published Markdown runs
 

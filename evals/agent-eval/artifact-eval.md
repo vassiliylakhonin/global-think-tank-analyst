@@ -116,4 +116,5 @@ remain separate seams.
 - `gtta-artifact-behavior-eval@1.0.0` preserves the shared schema contract but
   adds frozen case-level expectations over declared analytical structure. It
   reports structure and behavior independently and makes no semantic-quality
-  claim.
+  claim. Its first fresh Gemini run passed 8/12 skill samples versus 3/12
+  baseline after both arms passed 12/12 structural checks.

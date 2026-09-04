@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Published the first `gtta-artifact-behavior-eval@1.0.0` run. Both arms
+  passed 12/12 structural checks; the skill arm passed 8/12 frozen declared-
+  behavior expectations versus 3/12 for baseline, an observed `+41.7` point
+  difference in this run. Freshness passed against both earlier structured
+  Gemini runs. The result measures declared method-contract adoption only, not
+  truth, reasoning quality, source support, causality, or usefulness.
 - Added `gtta-artifact-behavior-eval@1.0.0`, a preregistered structured suite
   that scores case-specific declared claim kinds, provenance, reasoning links,
   options, indicators, verification flags, unknowns, and change conditions

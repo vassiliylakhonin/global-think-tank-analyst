@@ -9,7 +9,7 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
 | Release readiness | R2 | GitHub pre-release `v1.5.0rc1`; source, distribution, and installed-wheel gates; Trusted Publishing workflow on `main` | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
-| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. The first strict [MemoArtifact run](evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/) found baseline 10/12 vs. skill 1/12 and exposed an incomplete adapter. The fresh [protocol 1.1.0 replication](evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/) passes 12/12 in both arms, confirming the narrow correction but revealing a schema-conformance ceiling. Exact artifacts, freshness, and limitations are retained. | Add discriminating structured cases and broader domains; practitioner validation remains tracked under U |
+| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. The strict MemoArtifact sequence exposed an incomplete adapter, confirmed its correction, and then moved beyond the schema ceiling. The first [declared-behavior run](evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/) records 12/12 structural passes in both arms and 8/12 skill vs. 3/12 baseline behavioral passes. Exact artifacts, freshness, and limitations are retained. | Replicate the behavior result with another model family and add broader-domain holdouts; practitioner validation remains tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
@@ -40,6 +40,11 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
   not mapped to exact machine keys. A fresh protocol 1.1.0 replication passes
   12/12 in both arms. This confirms the adapter correction for one run but does
   not establish a skill advantage.
+- The first preregistered declared-behavior run passed 8/12 skill samples versus
+  3/12 baseline samples after both arms passed 12/12 structural checks. The
+  observed `+41.7` percentage-point difference applies only to frozen counts
+  over declared artifact fields in one Gemini run; it is not a factual,
+  analytical-quality, causal, or usefulness result.
 - External practitioner usefulness and production reliability are unvalidated.
 
 ## Immediate development order
@@ -47,9 +52,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
-3. Run the preregistered `gtta-artifact-behavior-eval@1.0.0` suite, then use
-   its disclosed failures to design a broader-domain holdout without rewriting
-   the frozen 12-case benchmark.
+3. Replicate `gtta-artifact-behavior-eval@1.0.0` with a second model family,
+   then use disclosed failures to design a broader-domain holdout without
+   rewriting the frozen 12-case benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

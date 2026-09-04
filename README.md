@@ -259,6 +259,14 @@ author-operated runs support only a bounded structural-discipline claim: the
 scorer does not assess factuality, source support, decision quality, or
 practitioner usefulness. Practitioner review remains `U0`.
 
+The first preregistered
+[structured declared-behavior run](evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/)
+moved beyond the schema-only ceiling: both arms passed 12/12 structural checks,
+while the skill arm passed 8/12 frozen behavior expectations versus 3/12 for
+baseline. The observed `+41.7` point difference applies only to model-declared
+artifact fields in one Gemini execution. It is not a factuality,
+reasoning-quality, causal, or practitioner-usefulness score.
+
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
 release/method/usefulness axes, and
@@ -324,11 +332,11 @@ by running its example prompt through the skill.
 
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable, including the
    machine-readable warning-truncation telemetry added in ruleset 1.2.3.
-2. Add discriminating, labeled structured cases beyond schema conformance. The
-   corrected `1.1.0` replication passes 12/12 in both arms, so the current
-   suite validates the adapter but cannot measure a positive skill delta.
-3. Version and broaden the paired suite across new task domains while retaining
-   the current 12-case set as a frozen regression benchmark.
+2. Replicate the declared-behavior result with another model family; the first
+   Gemini run observed 8/12 skill versus 3/12 baseline passes after both arms
+   passed all structural checks.
+3. Version and broaden the paired suite across new task-domain holdouts while
+   retaining the current 12-case set as a frozen regression benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.
