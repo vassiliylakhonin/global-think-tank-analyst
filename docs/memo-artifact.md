@@ -101,7 +101,9 @@ The offline paired [structured artifact eval](../evals/agent-eval/artifact-eval.
 uses this same validator. It gives both arms the same schema and interface
 invariants, then reports parsing, validation, expected Mode, and expected
 evidence-mode conformance. Its descriptive artifact counts are not analytical
-quality scores.
+quality scores. The separate declared-behavior protocol adds preregistered
+case-level count expectations after validation, while still making no claim
+about semantic correctness or usefulness.
 
 ## Compatibility
 

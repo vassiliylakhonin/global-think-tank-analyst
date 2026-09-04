@@ -113,6 +113,10 @@ For structured JSON output, use `prepare-artifact`, the same
 `import-antigravity` command, and `score-artifact`. Its pass condition is valid
 `gtta.memo@1.0` structure plus exact expected Mode and evidence-mode matching.
 See the [structured protocol](artifact-eval.md) for commands and limitations.
+The versioned `prepare-artifact-behavior` / `score-artifact-behavior` path adds
+preregistered case-specific declaration minima after structural validation. It
+is intended to break the schema ceiling while remaining explicitly narrower
+than semantic or practitioner evaluation.
 
 ## Published structured runs
 

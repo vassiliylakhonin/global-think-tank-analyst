@@ -352,6 +352,64 @@ def test_prepare_import_and_score_memo_artifact_comparison(tmp_path):
     assert report["aggregates"]["skill"]["artifact_totals"]["claims"] == 12
 
 
+def test_prepare_and_score_memo_artifact_declared_behavior(tmp_path):
+    run_dir = tmp_path / "artifact-behavior-run"
+    prepared = _run(
+        "prepare-artifact-behavior", str(run_dir), "--seed", "23"
+    )
+    assert prepared.returncode == 0, prepared.stderr
+
+    mapping = json.loads((run_dir / "private-mapping.json").read_text())
+    requests = [
+        json.loads(line)
+        for line in (run_dir / "requests.jsonl").read_text().splitlines()
+    ]
+    assert mapping["evaluation_version"] == "gtta-artifact-behavior-eval@1.0.0"
+    assert mapping["evaluation_type"] == "memo-artifact-declared-behavior"
+    assert len(mapping["expectations_sha256"]) == 64
+    assert all("expectations" in sample for sample in mapping["samples"])
+    assert all("min_claim_kinds" not in json.dumps(request) for request in requests)
+    assert "score-artifact-behavior" in (
+        run_dir / "antigravity-tasks" / "README.md"
+    ).read_text()
+
+    outputs_path = run_dir / "outputs.jsonl"
+    outputs_path.write_text(
+        "\n".join(
+            json.dumps(
+                {
+                    "sample_id": sample["sample_id"],
+                    "output": _valid_artifact(sample),
+                }
+            )
+            for sample in mapping["samples"]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    report_path = run_dir / "report.json"
+    scored = _run(
+        "score-artifact-behavior",
+        str(run_dir),
+        str(outputs_path),
+        "--report",
+        str(report_path),
+    )
+    assert scored.returncode == 0, scored.stderr
+    report = json.loads(report_path.read_text())
+    assert report["scope"] == "memo-artifact-declared-behavior"
+    assert report["schema_matches_prompt"] is True
+    for arm in ("baseline", "skill"):
+        aggregate = report["aggregates"][arm]
+        assert aggregate["structurally_passed"] == 12
+        assert aggregate["behaviorally_passed"] == 0
+        assert aggregate["passed"] == 0
+        assert aggregate["expectation_failures"] == 12
+        assert aggregate["finding_counts"]["ARTIFACTB001"] > 0
+    assert all(sample["structurally_passed"] for sample in report["samples"])
+    assert all(sample["behaviorally_passed"] is False for sample in report["samples"])
+
+
 def test_artifact_output_contract_names_machine_keys_and_claim_axes(tmp_path):
     run_dir = tmp_path / "artifact-contract"
     assert _run("prepare-artifact", str(run_dir), "--seed", "19").returncode == 0

@@ -33,7 +33,11 @@ from gtta.discipline import (  # noqa: E402
 
 BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
 ARTIFACT_EVAL_VERSION = "gtta-artifact-eval@1.1.0"
+ARTIFACT_BEHAVIOR_EVAL_VERSION = "gtta-artifact-behavior-eval@1.0.0"
 DEFAULT_CASES = ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl"
+DEFAULT_ARTIFACT_EXPECTATIONS = (
+    ROOT / "evals" / "agent-eval" / "artifact-behavior-expectations.json"
+)
 BASELINE_INSTRUCTIONS = """You are a strategic-risk analyst. Answer the user directly, distinguish uncertainty from known information, and give decision-useful analysis. Do not claim to have checked sources that you did not access."""
 REQUIRED_CASE_FIELDS = {
     "id",
@@ -53,6 +57,25 @@ ARTIFACT_METRIC_NAMES = (
     "options",
     "indicators",
 )
+ARTIFACT_EXPECTATION_FIELDS = {
+    "min_claim_kinds",
+    "min_provenances",
+    "min_derived_claims",
+    "min_bottom_line_derived_claims",
+    "min_options",
+    "min_indicators",
+    "min_verify_claims",
+    "min_key_unknowns",
+    "min_change_conditions",
+}
+CLAIM_KINDS = {"fact", "assessment", "assumption", "scenario", "unknown"}
+PROVENANCES = {
+    "primary",
+    "secondary",
+    "user-provided",
+    "inference",
+    "analyst-judgment",
+}
 
 
 class EvalInputError(ValueError):
@@ -110,6 +133,53 @@ def load_cases(path: Path) -> list[dict[str, Any]]:
     return cases
 
 
+def load_artifact_expectations(
+    path: Path, case_ids: set[str]
+) -> dict[str, dict[str, Any]]:
+    """Load preregistered, deterministic declared-behavior expectations."""
+    if not path.is_file():
+        raise EvalInputError(f"artifact expectation file does not exist: {path}")
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if set(document) != {"version", "cases"}:
+        raise EvalInputError("artifact expectation document fields mismatch")
+    if document["version"] != ARTIFACT_BEHAVIOR_EVAL_VERSION:
+        raise EvalInputError(
+            "artifact expectation version must be "
+            f"{ARTIFACT_BEHAVIOR_EVAL_VERSION!r}"
+        )
+    expectations = document["cases"]
+    if not isinstance(expectations, dict) or set(expectations) != case_ids:
+        raise EvalInputError("artifact expectation case IDs do not match benchmark")
+
+    for case_id, expectation in expectations.items():
+        if (
+            not isinstance(expectation, dict)
+            or set(expectation) != ARTIFACT_EXPECTATION_FIELDS
+        ):
+            raise EvalInputError(f"{case_id}: artifact expectation fields mismatch")
+        for field, allowed in (
+            ("min_claim_kinds", CLAIM_KINDS),
+            ("min_provenances", PROVENANCES),
+        ):
+            counts = expectation[field]
+            if not isinstance(counts, dict) or not set(counts) <= allowed:
+                raise EvalInputError(f"{case_id}: invalid {field}")
+            if any(type(value) is not int or value < 0 for value in counts.values()):
+                raise EvalInputError(
+                    f"{case_id}: {field} counts must be non-negative integers"
+                )
+        for field in ARTIFACT_EXPECTATION_FIELDS - {
+            "min_claim_kinds",
+            "min_provenances",
+        }:
+            value = expectation[field]
+            if type(value) is not int or value < 0:
+                raise EvalInputError(
+                    f"{case_id}: {field} must be a non-negative integer"
+                )
+    return expectations
+
+
 def _sample_id(seed: int, case_id: str, arm: str) -> str:
     material = f"{BENCHMARK_VERSION}|{seed}|{case_id}|{arm}".encode()
     return hashlib.sha256(material).hexdigest()[:16]
@@ -117,6 +187,13 @@ def _sample_id(seed: int, case_id: str, arm: str) -> str:
 
 def _artifact_sample_id(seed: int, case_id: str, arm: str) -> str:
     material = f"{ARTIFACT_EVAL_VERSION}|{seed}|{case_id}|{arm}".encode()
+    return hashlib.sha256(material).hexdigest()[:16]
+
+
+def _artifact_behavior_sample_id(seed: int, case_id: str, arm: str) -> str:
+    material = (
+        f"{ARTIFACT_BEHAVIOR_EVAL_VERSION}|{seed}|{case_id}|{arm}".encode()
+    )
     return hashlib.sha256(material).hexdigest()[:16]
 
 
@@ -245,7 +322,8 @@ messages below. Save only {response_description} as
 2. Use one fresh conversation per numbered task.
 3. Use exactly the same model and generation settings for all tasks.
 4. Save only each final response as the `{response_extension}` filename stated in its task.
-5. Do not inspect `../private-mapping.json` until all responses are saved.
+5. Do not inspect `../private-mapping.json`, scorer code, or benchmark
+   expectation files until all responses are saved.
 6. Run `agent_eval.py import-antigravity`, then `agent_eval.py {score_command}`.
 
 The harness performs no API or network calls.
@@ -407,6 +485,100 @@ def prepare_artifact_run(
         response_extension=".json",
         response_description="the model's raw MemoArtifact JSON object",
         score_command="score-artifact",
+    )
+    return mapping
+
+
+def prepare_artifact_behavior_run(
+    case_path: Path,
+    expectation_path: Path,
+    output_dir: Path,
+    seed: int,
+) -> dict[str, Any]:
+    """Create opaque paired requests with preregistered behavior expectations."""
+    cases = load_cases(case_path)
+    expectations = load_artifact_expectations(
+        expectation_path, {case["id"] for case in cases}
+    )
+    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    skill_hash = hashlib.sha256(skill_text.encode()).hexdigest()
+    schema_text = _artifact_schema_text()
+    output_contract = _artifact_output_contract(schema_text)
+
+    try:
+        output_dir.mkdir(parents=True, exist_ok=False)
+    except FileExistsError as exc:
+        raise EvalInputError(f"output directory already exists: {output_dir}") from exc
+
+    requests: list[dict[str, Any]] = []
+    samples: list[dict[str, Any]] = []
+    for case in cases:
+        for arm in ("baseline", "skill"):
+            sample_id = _artifact_behavior_sample_id(seed, case["id"], arm)
+            system = BASELINE_INSTRUCTIONS
+            if arm == "skill":
+                system += (
+                    "\n\nApply the following Global Think Tank Analyst runtime "
+                    f"method exactly:\n\n<gtta-skill>\n{skill_text}\n</gtta-skill>"
+                )
+            system += f"\n\n<output-contract>\n{output_contract}\n</output-contract>"
+            requests.append(
+                {
+                    "sample_id": sample_id,
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": _artifact_user_message(case)},
+                    ],
+                }
+            )
+            samples.append(
+                {
+                    "sample_id": sample_id,
+                    "case_id": case["id"],
+                    "arm": arm,
+                    "mode": case["mode"],
+                    "evidence_mode": case["evidence_mode"],
+                    "expectations": expectations[case["id"]],
+                }
+            )
+
+    random.Random(seed).shuffle(requests)
+    (output_dir / "requests.jsonl").write_text(
+        "\n".join(json.dumps(row, ensure_ascii=False) for row in requests) + "\n",
+        encoding="utf-8",
+    )
+    mapping = {
+        "benchmark_version": BENCHMARK_VERSION,
+        "evaluation_version": ARTIFACT_BEHAVIOR_EVAL_VERSION,
+        "evaluation_type": "memo-artifact-declared-behavior",
+        "artifact_schema_version": ARTIFACT_SCHEMA_VERSION,
+        "artifact_schema_sha256": hashlib.sha256(schema_text.encode()).hexdigest(),
+        "expectations_sha256": _sha256_file(expectation_path),
+        "response_extension": ".json",
+        "seed": seed,
+        "case_count": len(cases),
+        "sample_count": len(samples),
+        "skill_sha256": skill_hash,
+        "samples": samples,
+    }
+    (output_dir / "private-mapping.json").write_text(
+        json.dumps(mapping, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    (output_dir / "outputs.template.jsonl").write_text(
+        "\n".join(
+            json.dumps({"sample_id": row["sample_id"], "output": ""})
+            for row in requests
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    _write_antigravity_bundle(
+        output_dir,
+        requests,
+        response_extension=".json",
+        response_description="the model's raw MemoArtifact JSON object",
+        score_command="score-artifact-behavior",
     )
     return mapping
 
@@ -640,6 +812,285 @@ def _artifact_metrics(artifact: MemoArtifact) -> dict[str, int]:
         "verify_claims": sum(claim.verify for claim in artifact.claims),
         "options": len(artifact.options),
         "indicators": len(artifact.indicators),
+    }
+
+
+def _artifact_behavior_findings(
+    artifact: MemoArtifact, expectations: dict[str, Any]
+) -> list[dict[str, str]]:
+    """Check preregistered counts over declarations, not semantic quality."""
+    findings: list[dict[str, str]] = []
+
+    def require_minimum(
+        code: str, path: str, label: str, actual: int, expected: int
+    ) -> None:
+        if actual < expected:
+            findings.append(
+                {
+                    "code": code,
+                    "path": path,
+                    "message": f"Expected at least {expected} {label}; found {actual}.",
+                }
+            )
+
+    kind_counts = Counter(claim.kind.value for claim in artifact.claims)
+    for kind, expected in sorted(expectations["min_claim_kinds"].items()):
+        require_minimum(
+            "ARTIFACTB001",
+            "$.claims",
+            f"{kind!r} claim(s)",
+            kind_counts[kind],
+            expected,
+        )
+
+    provenance_counts = Counter(claim.provenance.value for claim in artifact.claims)
+    for provenance, expected in sorted(expectations["min_provenances"].items()):
+        require_minimum(
+            "ARTIFACTB002",
+            "$.claims",
+            f"{provenance!r} provenance declaration(s)",
+            provenance_counts[provenance],
+            expected,
+        )
+
+    claims_by_id = {claim.claim_id: claim for claim in artifact.claims}
+    derived_claims = sum(bool(claim.basis_claim_ids) for claim in artifact.claims)
+    bottom_line_derived = sum(
+        bool(claims_by_id[claim_id].basis_claim_ids)
+        for claim_id in artifact.bottom_line.claim_ids
+    )
+    scalar_expectations = (
+        (
+            "ARTIFACTB003",
+            "$.claims",
+            "derived claim(s) with basis_claim_ids",
+            derived_claims,
+            "min_derived_claims",
+        ),
+        (
+            "ARTIFACTB004",
+            "$.bottom_line.claim_ids",
+            "bottom-line claim(s) with declared basis",
+            bottom_line_derived,
+            "min_bottom_line_derived_claims",
+        ),
+        (
+            "ARTIFACTB005",
+            "$.options",
+            "decision option(s)",
+            len(artifact.options),
+            "min_options",
+        ),
+        (
+            "ARTIFACTB006",
+            "$.indicators",
+            "watch indicator(s)",
+            len(artifact.indicators),
+            "min_indicators",
+        ),
+        (
+            "ARTIFACTB007",
+            "$.claims",
+            "claim(s) flagged for verification",
+            sum(claim.verify for claim in artifact.claims),
+            "min_verify_claims",
+        ),
+        (
+            "ARTIFACTB008",
+            "$.key_unknowns",
+            "key unknown(s)",
+            len(artifact.key_unknowns),
+            "min_key_unknowns",
+        ),
+        (
+            "ARTIFACTB009",
+            "$.change_conditions",
+            "change condition(s)",
+            len(artifact.change_conditions),
+            "min_change_conditions",
+        ),
+    )
+    for code, path, label, actual, field in scalar_expectations:
+        require_minimum(code, path, label, actual, expectations[field])
+    return findings
+
+
+def score_artifact_behavior_run(run_dir: Path, output_path: Path) -> dict[str, Any]:
+    """Score structure plus preregistered declared-behavior expectations."""
+    mapping_path = run_dir / "private-mapping.json"
+    if not mapping_path.is_file():
+        raise EvalInputError(f"run mapping does not exist: {mapping_path}")
+    mapping = json.loads(mapping_path.read_text(encoding="utf-8"))
+    if mapping.get("evaluation_type") != "memo-artifact-declared-behavior":
+        raise EvalInputError(
+            "run mapping is not a memo-artifact-declared-behavior evaluation"
+        )
+    samples = {row["sample_id"]: row for row in mapping["samples"]}
+
+    outputs: dict[str, str] = {}
+    for row in _read_jsonl(output_path):
+        if set(row) != {"sample_id", "output"}:
+            raise EvalInputError("each output row must contain sample_id and output")
+        sample_id = row["sample_id"]
+        if sample_id not in samples:
+            raise EvalInputError(f"unknown sample id: {sample_id}")
+        if sample_id in outputs:
+            raise EvalInputError(f"duplicate output for sample id: {sample_id}")
+        output = row["output"]
+        if not isinstance(output, str) or not output.strip():
+            raise EvalInputError(f"empty output for sample id: {sample_id}")
+        outputs[sample_id] = output
+    missing = samples.keys() - outputs.keys()
+    if missing:
+        raise EvalInputError(f"missing outputs for {len(missing)} sample(s)")
+
+    detail: list[dict[str, Any]] = []
+    aggregates: dict[str, dict[str, Any]] = {}
+    for arm in ("baseline", "skill"):
+        aggregates[arm] = {
+            "samples": 0,
+            "structurally_passed": 0,
+            "behaviorally_passed": 0,
+            "passed": 0,
+            "json_parse_failures": 0,
+            "interface_failures": 0,
+            "expectation_failures": 0,
+            "finding_counts": Counter(),
+            "artifact_totals": {name: 0 for name in ARTIFACT_METRIC_NAMES},
+        }
+
+    for sample_id, sample in samples.items():
+        validation = check_memo_artifact(outputs[sample_id])
+        findings = [finding.to_dict() for finding in validation.findings]
+        artifact = validation.artifact
+        mode_matches: bool | None = None
+        evidence_mode_matches: bool | None = None
+        behavior_passed: bool | None = None
+        if artifact is not None:
+            mode_matches = artifact.mode.value == sample["mode"]
+            evidence_mode_matches = (
+                artifact.evidence_mode.value == sample["evidence_mode"]
+            )
+            if not mode_matches:
+                findings.append(
+                    {
+                        "code": "ARTIFACTE001",
+                        "path": "$.mode",
+                        "message": (
+                            f"Expected mode {sample['mode']!r}, got "
+                            f"{artifact.mode.value!r}."
+                        ),
+                    }
+                )
+            if not evidence_mode_matches:
+                findings.append(
+                    {
+                        "code": "ARTIFACTE002",
+                        "path": "$.evidence_mode",
+                        "message": (
+                            f"Expected evidence mode {sample['evidence_mode']!r}, "
+                            f"got {artifact.evidence_mode.value!r}."
+                        ),
+                    }
+                )
+
+        structure_passed = bool(
+            validation.passed and mode_matches and evidence_mode_matches
+        )
+        if structure_passed and artifact is not None:
+            behavior_findings = _artifact_behavior_findings(
+                artifact, sample["expectations"]
+            )
+            findings.extend(behavior_findings)
+            behavior_passed = not behavior_findings
+        sample_passed = structure_passed and behavior_passed is True
+        metrics = _artifact_metrics(artifact) if artifact is not None else None
+        detail.append(
+            {
+                "sample_id": sample_id,
+                "case_id": sample["case_id"],
+                "arm": sample["arm"],
+                "passed": sample_passed,
+                "structurally_passed": structure_passed,
+                "behaviorally_passed": behavior_passed,
+                "expected_mode_matches": mode_matches,
+                "expected_evidence_mode_matches": evidence_mode_matches,
+                "findings": findings,
+                "artifact_metrics": metrics,
+            }
+        )
+
+        aggregate = aggregates[sample["arm"]]
+        aggregate["samples"] += 1
+        aggregate["structurally_passed"] += int(structure_passed)
+        aggregate["behaviorally_passed"] += int(behavior_passed is True)
+        aggregate["passed"] += int(sample_passed)
+        codes = {finding["code"] for finding in findings}
+        aggregate["json_parse_failures"] += int("ARTIFACT001" in codes)
+        aggregate["interface_failures"] += int(
+            not validation.passed and "ARTIFACT001" not in codes
+        )
+        aggregate["expectation_failures"] += int(behavior_passed is False)
+        for finding in findings:
+            aggregate["finding_counts"][finding["code"]] += 1
+        if metrics is not None:
+            for name, value in metrics.items():
+                aggregate["artifact_totals"][name] += value
+
+    for aggregate in aggregates.values():
+        aggregate["finding_counts"] = dict(sorted(aggregate["finding_counts"].items()))
+        samples_count = aggregate["samples"]
+        aggregate["structural_pass_rate"] = (
+            aggregate["structurally_passed"] / samples_count
+        )
+        aggregate["behavioral_pass_rate"] = (
+            aggregate["behaviorally_passed"] / samples_count
+        )
+        aggregate["pass_rate"] = aggregate["passed"] / samples_count
+
+    current_schema_hash = hashlib.sha256(_artifact_schema_text().encode()).hexdigest()
+    metadata_path = run_dir / "run-metadata.json"
+    run_metadata = (
+        json.loads(metadata_path.read_text(encoding="utf-8"))
+        if metadata_path.is_file()
+        else None
+    )
+    limitations = [
+        "This report checks structure and preregistered counts over "
+        "model-declared fields only.",
+        "It does not judge whether claims are true, distinct, relevant, "
+        "well-reasoned, source-supported, or useful.",
+        "Passing declared-behavior expectations is method-contract adoption, "
+        "not analytical quality.",
+        "A same-model or author-run comparison is not external validation.",
+        "External practitioner validation remains a separate unmet evidence layer.",
+    ]
+    if run_metadata is None:
+        limitations.append(
+            "Run metadata was not recorded; do not use this report for an M3 claim."
+        )
+    if current_schema_hash != mapping["artifact_schema_sha256"]:
+        limitations.append(
+            "The scorer schema hash differs from the schema embedded in the "
+            "prompts; publish this only as an explicit rescore."
+        )
+    return {
+        "evaluation_version": mapping["evaluation_version"],
+        "benchmark_version": mapping["benchmark_version"],
+        "artifact_schema_version": mapping["artifact_schema_version"],
+        "scope": "memo-artifact-declared-behavior",
+        "seed": mapping["seed"],
+        "skill_sha256": mapping["skill_sha256"],
+        "expectations_sha256": mapping["expectations_sha256"],
+        "prompt_artifact_schema_sha256": mapping["artifact_schema_sha256"],
+        "scorer_artifact_schema_sha256": current_schema_hash,
+        "schema_matches_prompt": (
+            current_schema_hash == mapping["artifact_schema_sha256"]
+        ),
+        "run_metadata": run_metadata,
+        "aggregates": aggregates,
+        "samples": sorted(detail, key=lambda row: (row["case_id"], row["arm"])),
+        "limitations": limitations,
     }
 
 
@@ -994,6 +1445,17 @@ def _parser() -> argparse.ArgumentParser:
     prepare_artifact.add_argument("--cases", type=Path, default=DEFAULT_CASES)
     prepare_artifact.add_argument("--seed", type=int, default=20260904)
 
+    prepare_artifact_behavior = subparsers.add_parser(
+        "prepare-artifact-behavior",
+        help="prepare paired MemoArtifact declared-behavior requests",
+    )
+    prepare_artifact_behavior.add_argument("output_dir", type=Path)
+    prepare_artifact_behavior.add_argument("--cases", type=Path, default=DEFAULT_CASES)
+    prepare_artifact_behavior.add_argument(
+        "--expectations", type=Path, default=DEFAULT_ARTIFACT_EXPECTATIONS
+    )
+    prepare_artifact_behavior.add_argument("--seed", type=int, default=20260905)
+
     import_antigravity = subparsers.add_parser(
         "import-antigravity",
         help="import manually generated Antigravity responses",
@@ -1014,6 +1476,14 @@ def _parser() -> argparse.ArgumentParser:
     score_artifact.add_argument("run_dir", type=Path)
     score_artifact.add_argument("outputs", type=Path)
     score_artifact.add_argument("--report", type=Path)
+
+    score_artifact_behavior = subparsers.add_parser(
+        "score-artifact-behavior",
+        help="score structure plus preregistered MemoArtifact declarations",
+    )
+    score_artifact_behavior.add_argument("run_dir", type=Path)
+    score_artifact_behavior.add_argument("outputs", type=Path)
+    score_artifact_behavior.add_argument("--report", type=Path)
 
     freshness = subparsers.add_parser(
         "verify-freshness",
@@ -1048,6 +1518,11 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "validate":
             cases = load_cases(args.cases)
+            if args.cases == DEFAULT_CASES:
+                load_artifact_expectations(
+                    DEFAULT_ARTIFACT_EXPECTATIONS,
+                    {case["id"] for case in cases},
+                )
             print(f"OK: {len(cases)} benchmark cases")
             return 0
         if args.command == "prepare":
@@ -1062,6 +1537,18 @@ def main(argv: list[str] | None = None) -> int:
             print(
                 f"OK: prepared {mapping['sample_count']} structured samples from "
                 f"{mapping['case_count']} cases in {args.output_dir}"
+            )
+            return 0
+        if args.command == "prepare-artifact-behavior":
+            mapping = prepare_artifact_behavior_run(
+                args.cases,
+                args.expectations,
+                args.output_dir,
+                args.seed,
+            )
+            print(
+                f"OK: prepared {mapping['sample_count']} structured behavior "
+                f"samples from {mapping['case_count']} cases in {args.output_dir}"
             )
             return 0
         if args.command == "import-antigravity":
@@ -1089,11 +1576,12 @@ def main(argv: list[str] | None = None) -> int:
                 args.report.write_text(serialized, encoding="utf-8")
             print(serialized, end="")
             return 0 if report["passed"] else 2
-        report = (
-            score_artifact_run(args.run_dir, args.outputs)
-            if args.command == "score-artifact"
-            else score_run(args.run_dir, args.outputs)
-        )
+        if args.command == "score-artifact":
+            report = score_artifact_run(args.run_dir, args.outputs)
+        elif args.command == "score-artifact-behavior":
+            report = score_artifact_behavior_run(args.run_dir, args.outputs)
+        else:
+            report = score_run(args.run_dir, args.outputs)
         serialized = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
         if args.report:
             args.report.write_text(serialized, encoding="utf-8")

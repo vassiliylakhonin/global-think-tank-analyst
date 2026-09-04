@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Added `gtta-artifact-behavior-eval@1.0.0`, a preregistered structured suite
+  that scores case-specific declared claim kinds, provenance, reasoning links,
+  options, indicators, verification flags, unknowns, and change conditions
+  only after schema validation. Structural, behavioral, and combined pass
+  rates remain separate; the protocol explicitly does not score semantic or
+  practitioner quality.
 - Published the fresh `gtta-artifact-eval@1.1.0` Gemini replication. Both arms
   passed 12/12 strict artifacts with no findings, and freshness passed against
   the negative 1.0.0 run. The result confirms the narrow section-key/claim-axis

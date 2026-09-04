@@ -95,7 +95,7 @@ details.
 
 ## Current Status
 
-Updated 2026-08-30.
+Updated 2026-09-04.
 
 - **External practitioner review:** none recorded. The [`reviews/`](reviews/)
   directory contains only `TEMPLATE.md` and `README.md`. No reviewer record
@@ -121,7 +121,10 @@ Updated 2026-08-30.
   baseline passed 10/12 and skill arm 1/12 because protocol 1.0.0 omitted exact
   machine-key guidance. The fresh protocol 1.1.0 replication passes 12/12 in
   both arms. That confirms the narrow adapter correction but exposes a ceiling;
-  it does not show a positive method delta. Neither path measures factual or
+  it does not show a positive method delta. The preregistered
+  `gtta-artifact-behavior-eval@1.0.0` path now adds case-specific declared
+  behavior expectations and reports them separately from structural passes;
+  it has not yet been executed. None of these paths measures factual or
   decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared

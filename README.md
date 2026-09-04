@@ -233,6 +233,9 @@ The repository contains:
 - a predeclared 12-case same-task, with/without-skill structural harness under
   [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
   export/import path and no model API client;
+- a versioned declared-behavior extension that keeps structural and behavioral
+  pass rates separate and uses frozen case-specific expectations to move beyond
+  schema-only conformance;
 - four published Antigravity runs: two Gemini executions, the
   [`seed 20260830 run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
   and a freshness-gated

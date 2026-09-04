@@ -37,9 +37,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 - The first strict structured-artifact run passed 10/12 baseline samples and
   only 1/12 skill samples. This is evidence of a `1.0.0` output-contract defect,
   not evidence of analytical inferiority: GTTA's human-facing headings were
-  not mapped to exact machine keys. Protocol 1.1.0 corrects the adapter, but no
-  fresh protocol 1.1.0 replication passes 12/12 in both arms. This confirms
-  the adapter correction for one run but does not establish a skill advantage.
+  not mapped to exact machine keys. A fresh protocol 1.1.0 replication passes
+  12/12 in both arms. This confirms the adapter correction for one run but does
+  not establish a skill advantage.
 - External practitioner usefulness and production reliability are unvalidated.
 
 ## Immediate development order
@@ -47,9 +47,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
-3. Design a versioned structured suite with discriminating, labeled invariants
-   beyond schema conformance, then broaden task domains without rewriting the
-   frozen 12-case benchmark.
+3. Run the preregistered `gtta-artifact-behavior-eval@1.0.0` suite, then use
+   its disclosed failures to design a broader-domain holdout without rewriting
+   the frozen 12-case benchmark.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.
