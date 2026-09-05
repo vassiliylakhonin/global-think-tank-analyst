@@ -29,7 +29,7 @@ different repository, workflow filename, or environment.
    workflow for an existing tag:
 
    ```bash
-   gh workflow run publish-pypi.yml -f tag=v1.6.0rc1
+   gh workflow run publish-pypi.yml -f tag=v1.6.0rc2
    ```
 
 5. Verify the workflow attestation and the release through the PyPI JSON API
@@ -41,3 +41,7 @@ prerelease stops after the verified build; publishing that prerelease to PyPI
 requires an explicit manual dispatch. Stable GitHub releases publish
 automatically. Published PyPI files and versions are immutable; never rebuild
 an already published version.
+
+The build job installs the narrow `langchain` adapter extra because the full
+offline test suite imports `gtta.agent`. It does not install model credentials
+or invoke an inference API.

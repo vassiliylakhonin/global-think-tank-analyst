@@ -113,9 +113,10 @@ gtta render-artifact memo.json > memo.md
 gtta mcp
 ```
 
-The latest GitHub candidate is `v1.6.0rc1`. PyPI publication remains blocked
-until Trusted Publishing is configured; the GitHub prerelease still runs the
-complete distribution-integrity gate.
+The package version on `main` is `1.6.0rc2`. PyPI publication remains blocked
+until Trusted Publishing is configured. The `v1.6.0rc1` prerelease exposed a
+missing optional test dependency in its release workflow; `rc2` corrects that
+gate without invoking a paid API.
 
 ## Executable analysis contracts
 

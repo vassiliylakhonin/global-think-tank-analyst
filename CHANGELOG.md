@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 1.6.0rc2 - 2026-09-05
+
+- Corrected the release workflow's test environment to install the optional
+  LangChain adapter required by the full test suite. The `v1.6.0rc1` GitHub
+  prerelease exposed the mismatch before distributions were built; no package
+  was published to PyPI and no paid API is called by the corrected gate.
+
 ## 1.6.0rc1 - 2026-09-05
 
 - Published the first preregistered `gtta-agent-eval-holdout@1.0.0` run using
