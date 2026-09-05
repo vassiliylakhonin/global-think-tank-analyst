@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "sample_count": 24,
+  "thresholds": {
+    "max_sequence_similarity": 0.9,
+    "max_shared_line_ratio": 0.8,
+    "near_duplicate_triggers_on_either": true
+  },
+  "comparisons": [
+    {
+      "reference_run": "evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high",
+      "reference_outputs": "evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.166458,
+          "case_id": "partner-risk-manageable",
+          "arm": "skill"
+        },
+        "shared_line_ratio": {
+          "value": 0.0,
+          "case_id": "trade-framework-exporter",
+          "arm": "skill"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831",
+      "reference_outputs": "evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.167312,
+          "case_id": "export-controls-permanence",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.0,
+          "case_id": "trade-framework-exporter",
+          "arm": "skill"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901",
+      "reference_outputs": "evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.188401,
+          "case_id": "central-bank-opinion",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.0,
+          "case_id": "trade-framework-exporter",
+          "arm": "skill"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.231994,
+          "case_id": "critical-minerals-rumor",
+          "arm": "skill"
+        },
+        "shared_line_ratio": {
+          "value": 0.0,
+          "case_id": "trade-framework-exporter",
+          "arm": "skill"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-02-antigravity-gemini-3.7-flash-high-artifact-seed-20260903/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.449882,
+          "case_id": "board-options-source-conflict",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.394737,
+          "case_id": "board-options-source-conflict",
+          "arm": "baseline"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-v1.1-seed-20260904/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.352977,
+          "case_id": "conflicting-policy-dates",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.349112,
+          "case_id": "critical-minerals-rumor",
+          "arm": "baseline"
+        }
+      }
+    },
+    {
+      "reference_run": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905",
+      "reference_outputs": "evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/outputs.jsonl",
+      "passed": true,
+      "exact_duplicates": [],
+      "near_duplicates": [],
+      "max_observed": {
+        "sequence_similarity": {
+          "value": 0.408148,
+          "case_id": "central-bank-opinion",
+          "arm": "baseline"
+        },
+        "shared_line_ratio": {
+          "value": 0.363636,
+          "case_id": "central-bank-opinion",
+          "arm": "skill"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Similarity detection can identify likely reuse but cannot prove independent generation.",
+    "Fresh isolated contexts and an auditable execution record remain procedural requirements.",
+    "A threshold failure requires regeneration or explicit publication as a non-independent variant."
+  ]
+}

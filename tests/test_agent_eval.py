@@ -56,6 +56,13 @@ ARTIFACT_BEHAVIOR_RUN = (
     / "runs"
     / "2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905"
 )
+CLAUDE_ARTIFACT_BEHAVIOR_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-09-05-claude-code-opus-4.6-thinking-artifact-behavior-seed-20260906"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -607,6 +614,54 @@ def test_published_artifact_behavior_run_reproduces(tmp_path):
         (ARTIFACT_BEHAVIOR_RUN / "freshness-report.json").read_text()
     )
     assert freshness["passed"] is True
+    assert all(not row["exact_duplicates"] for row in freshness["comparisons"])
+    assert all(not row["near_duplicates"] for row in freshness["comparisons"])
+
+
+def test_published_claude_artifact_behavior_run_reproduces(tmp_path):
+    metadata = json.loads(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "run-metadata.json").read_text()
+    )
+    mapping = json.loads(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "private-mapping.json").read_text()
+    )
+    original = json.loads(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "report.json").read_text()
+    )
+
+    assert metadata["runner"] == "Claude Code"
+    assert metadata["app_version"] == "2.1.246"
+    assert hashlib.sha256(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "requests.jsonl").read_bytes()
+    ).hexdigest() == metadata["requests_sha256"]
+    assert hashlib.sha256(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "outputs.jsonl").read_bytes()
+    ).hexdigest() == metadata["outputs_sha256"]
+    assert mapping["evaluation_version"] == "gtta-artifact-behavior-eval@1.0.0"
+    assert original["schema_matches_prompt"] is True
+    assert original["aggregates"]["baseline"]["structurally_passed"] == 12
+    assert original["aggregates"]["skill"]["structurally_passed"] == 11
+    assert original["aggregates"]["baseline"]["behaviorally_passed"] == 0
+    assert original["aggregates"]["skill"]["behaviorally_passed"] == 3
+
+    recomputed = tmp_path / "claude-artifact-behavior-report.json"
+    result = _run(
+        "score-artifact-behavior",
+        str(CLAUDE_ARTIFACT_BEHAVIOR_RUN),
+        str(CLAUDE_ARTIFACT_BEHAVIOR_RUN / "outputs.jsonl"),
+        "--report",
+        str(recomputed),
+    )
+    assert result.returncode == 0, result.stderr
+    assert recomputed.read_bytes() == (
+        CLAUDE_ARTIFACT_BEHAVIOR_RUN / "report.json"
+    ).read_bytes()
+
+    freshness = json.loads(
+        (CLAUDE_ARTIFACT_BEHAVIOR_RUN / "freshness-report.json").read_text()
+    )
+    assert freshness["passed"] is True
+    assert len(freshness["comparisons"]) == 7
     assert all(not row["exact_duplicates"] for row in freshness["comparisons"])
     assert all(not row["near_duplicates"] for row in freshness["comparisons"])
 

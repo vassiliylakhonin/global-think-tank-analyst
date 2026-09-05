@@ -126,8 +126,11 @@ Updated 2026-09-04.
   behavior expectations and reports them separately from structural passes.
   Its first fresh Gemini run passes 8/12 skill samples versus 3/12 baseline
   after 12/12 structural passes in both arms. The observed difference applies
-  only to frozen declarations in one run. None of these paths measures factual
-  or decision quality.
+  only to frozen declarations. A Claude Code / Opus 4.6 replication repeats
+  the direction at 3/12 versus 0/12, with structural passes of 11/12 versus
+  12/12. The lower absolute result and model-family variation are retained
+  rather than tuned away. None of these paths measures factual or decision
+  quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

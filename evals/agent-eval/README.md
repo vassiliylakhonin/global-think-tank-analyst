@@ -120,6 +120,11 @@ than semantic or practitioner evaluation.
 
 ## Published structured runs
 
+- [`2026-09-05 — Claude Code / Claude Opus 4.6, declared-behavior replication`](runs/2026-09-05-claude-code-opus-4.6-thinking-artifact-behavior-seed-20260906/):
+  the skill arm passed 3/12 frozen behavior expectations versus 0/12 baseline;
+  structural passes were 11/12 versus 12/12. This repeats the positive
+  direction across a second model family but not the Gemini magnitude. The low
+  absolute adoption and one source-reference failure remain visible.
 - [`2026-09-04 — Antigravity / Gemini 3.7 Flash (High), declared-behavior protocol 1.0.0`](runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/):
   both arms passed 12/12 structural checks. The skill arm passed 8/12 frozen
   declared-behavior expectations versus 3/12 for baseline. Freshness passed

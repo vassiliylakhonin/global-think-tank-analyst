@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Published the first cross-model-family declared-behavior replication using
+  Claude Code 2.1.246 and Claude Opus 4.6. Structural passes were 11/12 skill
+  versus 12/12 baseline; declared-behavior passes were 3/12 versus 0/12. This
+  repeats the positive direction but not Gemini's magnitude and shows weak
+  absolute adoption plus one source-reference invariant failure. Freshness
+  passed against all seven prior runs; no semantic-quality claim is made.
 - Published the first `gtta-artifact-behavior-eval@1.0.0` run. Both arms
   passed 12/12 structural checks; the skill arm passed 8/12 frozen declared-
   behavior expectations versus 3/12 for baseline, an observed `+41.7` point

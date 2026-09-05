@@ -1,0 +1,623 @@
+{
+  "benchmark_version": "gtta-agent-eval@1.1.0",
+  "evaluation_version": "gtta-artifact-behavior-eval@1.0.0",
+  "evaluation_type": "memo-artifact-declared-behavior",
+  "artifact_schema_version": "gtta.memo@1.0",
+  "artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "expectations_sha256": "d9dfe0571be3ebfc7d2582da11a55f4a5f456cdd4c53a8203cbaf3140dbe91ad",
+  "response_extension": ".json",
+  "seed": 20260906,
+  "case_count": 12,
+  "sample_count": 24,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "samples": [
+    {
+      "sample_id": "2e1bb44a326b93b5",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "baseline",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "4469de3fa604afb7",
+      "case_id": "quick-sanctions-corridor-triage",
+      "arm": "skill",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "a55a7806535697f7",
+      "case_id": "critical-minerals-rumor",
+      "arm": "baseline",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "8d380ef2cfcb2875",
+      "case_id": "critical-minerals-rumor",
+      "arm": "skill",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "45a30cdd8a285217",
+      "case_id": "conflicting-policy-dates",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 1
+        },
+        "min_derived_claims": 1,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "f4c2fcd82ed09506",
+      "case_id": "conflicting-policy-dates",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 1
+        },
+        "min_derived_claims": 1,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "cce593d468f78cb7",
+      "case_id": "trade-framework-exporter",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "72f0e2558af9ac5d",
+      "case_id": "trade-framework-exporter",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "e64305df6c1cb05e",
+      "case_id": "central-bank-opinion",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "77ba764b6407d458",
+      "case_id": "central-bank-opinion",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "46d36b3f65c1bffb",
+      "case_id": "ai-governance-cloud",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "dda4593cbe43eef5",
+      "case_id": "ai-governance-cloud",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "09b0b64b7775526a",
+      "case_id": "cbam-enforcement",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "aed1c6b8ed35a388",
+      "case_id": "cbam-enforcement",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "ca1abc8cf5d65991",
+      "case_id": "hormuz-energy-shock",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "ba9a2b1e0370430f",
+      "case_id": "hormuz-energy-shock",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "303087e9590c1a54",
+      "case_id": "export-controls-permanence",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 3,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 3
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "5b6c32317a5d18c6",
+      "case_id": "export-controls-permanence",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 3,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 3
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 0,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "95dae5a07ae4e0ec",
+      "case_id": "partner-risk-manageable",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 3,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "8e683374f28ac3ad",
+      "case_id": "partner-risk-manageable",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 1,
+          "assessment": 3,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "f2ccb0646c87522b",
+      "case_id": "board-options-source-conflict",
+      "arm": "baseline",
+      "mode": "E",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 3,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "fc2b2191f23aaeb8",
+      "case_id": "board-options-source-conflict",
+      "arm": "skill",
+      "mode": "E",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 3,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "b82f67e647714ae1",
+      "case_id": "infrastructure-attribution",
+      "arm": "baseline",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 3,
+          "assessment": 2,
+          "scenario": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 3,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "d24ea0cb47e22ed5",
+      "case_id": "infrastructure-attribution",
+      "arm": "skill",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 3,
+          "assessment": 2,
+          "scenario": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 3,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    }
+  ]
+}

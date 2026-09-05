@@ -117,4 +117,6 @@ remain separate seams.
   adds frozen case-level expectations over declared analytical structure. It
   reports structure and behavior independently and makes no semantic-quality
   claim. Its first fresh Gemini run passed 8/12 skill samples versus 3/12
-  baseline after both arms passed 12/12 structural checks.
+  baseline after both arms passed 12/12 structural checks. A Claude Code /
+  Opus 4.6 replication passed 3/12 versus 0/12 on declared behavior and 11/12
+  versus 12/12 structurally, repeating direction but not magnitude.

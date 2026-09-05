@@ -1,0 +1,15 @@
+{
+  "runner": "Claude Code",
+  "app_version": "2.1.246",
+  "model": "claude-opus-4-6",
+  "generation_settings": {
+    "extended_thinking": true,
+    "isolation": "fresh-subagent-per-sample",
+    "temperature": "default"
+  },
+  "notes": "24 samples generated via independent Claude Opus 4.6 subagents in Claude Code desktop. Each subagent read only its own prompt file. No manual corrections applied. 5 samples required retry due to rate-limit (429) on first attempt.",
+  "imported_at": "2026-09-05T10:28:54.050562+00:00",
+  "sample_count": 24,
+  "requests_sha256": "cc296b8066b6b6c840c8ee3c4856a22659a7e78c38241f0fadaef04739b84304",
+  "outputs_sha256": "e933a033ba0a1f414159fb389fedbb3d787216879bfb5f51ded3b316522e4c46"
+}
