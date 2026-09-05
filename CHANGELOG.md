@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.6.0rc1 - 2026-09-05
+
 - Published the first preregistered `gtta-agent-eval-holdout@1.0.0` run using
   Antigravity 2.12.2 and Gemini 3.8 Flash (High). Both arms passed 10/10 strict
   structural checks and 0/10 complete declared-behavior expectations. Missing

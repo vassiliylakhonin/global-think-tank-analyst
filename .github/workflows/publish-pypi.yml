@@ -8,7 +8,7 @@ on:
       tag:
         description: "Existing release tag to build and publish"
         required: true
-        default: "v1.5.0rc1"
+        default: "v1.6.0rc1"
         type: string
 
 permissions:
@@ -67,6 +67,7 @@ jobs:
 
   publish:
     name: Publish distributions to PyPI
+    if: ${{ github.event_name == 'workflow_dispatch' || !github.event.release.prerelease }}
     needs: build
     runs-on: ubuntu-latest
     environment:

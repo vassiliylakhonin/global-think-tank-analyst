@@ -114,8 +114,9 @@ gtta mcp
 ```
 
 The latest GitHub candidate is
-[`v1.5.0rc1`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.5.0rc1).
-Development on `main` is `1.6.0.dev0`.
+[`v1.6.0rc1`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0rc1).
+PyPI publication remains blocked until Trusted Publishing is configured; the
+GitHub prerelease still runs the complete distribution-integrity gate.
 
 ## Executable analysis contracts
 
