@@ -1,0 +1,1428 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Strategic-risk analysis skill for AI agents producing decision-ready memos">
+      
+      
+        <meta name="author" content="Vassiliy Lakhonin">
+      
+      
+      
+        <link rel="prev" href="../STATUS/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CHANGELOG - Global Think Tank Analyst</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Global Think Tank Analyst" class="md-header__button md-logo" aria-label="Global Think Tank Analyst" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Global Think Tank Analyst
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CHANGELOG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SKILL/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Analyst Skill
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../SKILL_RU/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Russian Skill (RU)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contract-checker/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Method Contract Checker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../memo-artifact/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  MemoArtifact
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contract-release-criteria/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contract Release Criteria
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../definition-of-done/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Definition of Done
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../maturity-framework/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Maturity Framework
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../publishing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Publishing Python Releases
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../PORTFOLIO/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Portfolio & Architecture
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CONTRIBUTING/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../VALIDATION_PLAN/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Validation Plan
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../STATUS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Project Status
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CHANGELOG
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Global Think Tank Analyst" class="md-nav__button md-logo" aria-label="Global Think Tank Analyst" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Global Think Tank Analyst
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/vassiliylakhonin/global-think-tank-analyst" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Analyst Skill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILL_RU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Russian Skill (RU)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contract-checker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Method Contract Checker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memo-artifact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MemoArtifact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contract-release-criteria/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contract Release Criteria
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../definition-of-done/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Definition of Done
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maturity-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maturity Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../publishing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Publishing Python Releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PORTFOLIO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio & Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VALIDATION_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validation Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STATUS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CHANGELOG
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CHANGELOG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unreleased
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#160rc2-2026-09-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.0rc2 - 2026-09-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#160rc1-2026-09-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6.0rc1 - 2026-09-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#140-2026-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.0 - 2026-08-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#130-2026-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.0 - 2026-05-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#120-2026-05-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.0 - 2026-05-08
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#110-2026-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.0 - 2026-05-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101-2026-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.0.1 - 2026-04-17
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#100-2026-04-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.0.0 - 2026-04-17
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="changelog">Changelog</h1>
+<h2 id="unreleased">Unreleased</h2>
+<ul>
+<li>
+<p>Expanded <code>SKILL_RU.md</code> from a disclosed 9/45-section subset to a full
+  45/45-section Russian rendering of the canonical method, including Modes D,
+  F, and G, the complete workflow, stop conditions, evidence-packet handoff,
+  default output template, and self-check. Canonical English heading markers
+  remain visible beside Russian labels for deterministic checker compatibility;
+  structural parity and essential runtime markers now have a release check.</p>
+</li>
+<li>
+<p>Made <code>gtta.agent</code> importable without the optional LangChain/LangGraph stack.
+  Agent dependencies now load only when <code>AnalystAgent</code> is constructed, with a
+  focused installation error at that seam. The release gate again tests the
+  minimal <code>test,mcp</code> environment, backed by a subprocess regression test that
+  explicitly blocks the optional imports.</p>
+</li>
+</ul>
+<h2 id="160rc2-2026-09-05">1.6.0rc2 - 2026-09-05</h2>
+<ul>
+<li>Corrected the release workflow's test environment to install the optional
+  LangChain adapter required by the full test suite. The <code>v1.6.0rc1</code> GitHub
+  prerelease exposed the mismatch before distributions were built; no package
+  was published to PyPI and no paid API is called by the corrected gate.</li>
+</ul>
+<h2 id="160rc1-2026-09-05">1.6.0rc1 - 2026-09-05</h2>
+<ul>
+<li>Published the first preregistered <code>gtta-agent-eval-holdout@1.0.0</code> run using
+  Antigravity 2.12.2 and Gemini 3.8 Flash (High). Both arms passed 10/10 strict
+  structural checks and 0/10 complete declared-behavior expectations. Missing
+  verification flags dominated. The null result does not reproduce the
+  original suite's positive combined-pass difference; immutable artifacts,
+  commitment verification, and execution caveats are retained.</li>
+<li>
+<p>Preregistered <code>gtta-agent-eval-holdout@1.0.0</code>, a 10-case / 20-sample
+  broader-domain structured declared-behavior suite that adds Mode F coverage.
+  The public commitment binds the exact private cases, expectations, requests,
+  skill, schema, and seed before generation. <code>prepare-artifact-behavior</code> now
+  accepts a suite version and emits the commitment without exposing scorer
+  expectations to model requests.</p>
+</li>
+<li>
+<p>Published the first cross-model-family declared-behavior replication using
+  Claude Code 2.1.246 and Claude Opus 4.6. Structural passes were 11/12 skill
+  versus 12/12 baseline; declared-behavior passes were 3/12 versus 0/12. This
+  repeats the positive direction but not Gemini's magnitude and shows weak
+  absolute adoption plus one source-reference invariant failure. Freshness
+  passed against all seven prior runs; no semantic-quality claim is made.</p>
+</li>
+<li>Published the first <code>gtta-artifact-behavior-eval@1.0.0</code> run. Both arms
+  passed 12/12 structural checks; the skill arm passed 8/12 frozen declared-
+  behavior expectations versus 3/12 for baseline, an observed <code>+41.7</code> point
+  difference in this run. Freshness passed against both earlier structured
+  Gemini runs. The result measures declared method-contract adoption only, not
+  truth, reasoning quality, source support, causality, or usefulness.</li>
+<li>Added <code>gtta-artifact-behavior-eval@1.0.0</code>, a preregistered structured suite
+  that scores case-specific declared claim kinds, provenance, reasoning links,
+  options, indicators, verification flags, unknowns, and change conditions
+  only after schema validation. Structural, behavioral, and combined pass
+  rates remain separate; the protocol explicitly does not score semantic or
+  practitioner quality.</li>
+<li>Published the fresh <code>gtta-artifact-eval@1.1.0</code> Gemini replication. Both arms
+  passed 12/12 strict artifacts with no findings, and freshness passed against
+  the negative 1.0.0 run. The result confirms the narrow section-key/claim-axis
+  adapter correction in this run but shows a schema-conformance ceiling: it is
+  not a positive skill delta or an analytical-quality result.</li>
+<li>Published the first <code>gtta-artifact-eval@1.0.0</code> run without suppressing its
+  negative result: baseline passed 10/12 strict artifacts and the skill arm
+  1/12. Ten skill failures used human-facing headings instead of exact section
+  keys and one confused <code>inference</code> provenance with <code>ClaimKind</code>. Version 1.1.0
+  now gives both arms the exact Mode-to-key map and separates the two claim
+  axes. The schema and frozen outputs remain unchanged; a fresh replication is
+  required before claiming that the correction works.</li>
+<li>Added the offline paired <code>MemoArtifact</code> path over the frozen 12-case suite.
+  Both arms receive the same JSON Schema and output invariants; only the skill
+  arm receives GTTA. The scorer requires valid <code>gtta.memo@1.0</code>, exact expected
+  Mode and evidence mode, records prompt/scorer schema hashes, and labels
+  artifact counts as descriptive rather than quality measures.</li>
+<li>Added explicit finding-cap telemetry in <code>gtta-method-contract@1.2.3</code> and the
+  paired-eval report. JSON now identifies truncated rules and per-arm truncated
+  samples. Frozen-output rescores show no truncation in either Gemini run, but
+  12 baseline / 2 skill samples in the first Claude run and 11 baseline / 3
+  skill samples in the fresh replication; their raw warning totals are lower
+  bounds.</li>
+<li>Published a fresh Claude Opus 4.6 Antigravity replication at seed <code>20260902</code>
+  after tightening the runtime instructions. The skill arm again passed 12/12
+  versus 0/12 for the baseline and stored 111 warnings versus 359. Freshness
+  passed against all three earlier runs. Three skill samples reached the
+  GTTA010 cap, so the reduction from the prior same-ruleset count of 170 is
+  disclosed as directional rather than causal or complete.</li>
+<li>Refined <code>gtta-method-contract@1.2.2</code> to exempt the exact mandatory
+  evidence-access disclosure from claim warnings and to distinguish a quoted,
+  explicitly rejected generic-advice phrase from an actual recommendation.
+  Frozen-output rescores remain separate from original reports: the Claude
+  skill count moves from 181 capped warnings to 170, while passes and errors
+  are unchanged. Runtime instructions now state that descriptive labels such
+  as <code>[assumption]</code> cannot replace a canonical Axis A tag and require a visible
+  Mode C trigger section.</li>
+<li>Published a freshness-gated cross-model Antigravity run with Claude Opus 4.6
+  (Thinking), seed <code>20260901</code>. The skill arm repeated the 12/12 contract pass
+  result versus 0/12 for the generic baseline, but produced 181 capped
+  warnings versus 360. Exact artifacts, metadata correction, hashes,
+  deterministic score, two-run freshness comparison, regression test, and
+  warning triage are committed. The result strengthens structural M3 evidence
+  while leaving external usefulness at U0.</li>
+<li>Refined <code>gtta-method-contract@1.2.1</code> to accept <code>Evidence Evaluation Matrix</code>
+  as the Mode G evidence-matrix marker. A frozen-output rescore removes one
+  GTTA008 false positive from the seed-20260831 replication while retaining 12
+  actionable provenance warnings. The runtime method now explicitly covers
+  colon-ended recommendation lead-ins and red-team premise cells.</li>
+<li>Published a freshness-gated same-model Antigravity replication at seed
+  <code>20260831</code>. The updated skill arm again passed 12/12 contract checks versus
+  0/12 for the generic baseline, with 13 versus 254 warnings. Exact inputs,
+  outputs, metadata, hashes, score, freshness report, and limitations are
+  committed; the result remains structural M3 evidence and does not change U0.</li>
+<li>Added a replication freshness gate to the offline paired-eval harness. It
+  rejects exact output reuse and high-confidence cosmetic rewrites using
+  disclosed whole-text and shared-line thresholds; passing remains a heuristic
+  check, not proof of independent generation.</li>
+<li>Refined GTTA010 and mode-marker matching in
+  <code>gtta-method-contract@1.2.0</code>: layout metadata, direct questions, table
+  headers, and identifier columns no longer create claim warnings; genuine
+  untagged table cells now report their column. A frozen-output rescore reduces
+  skill-arm warnings from 72 to 25 while preserving the 12/12 vs. 0/12 pass
+  result and the immutable original <code>1.1.0</code> report. Canonical <code>MemoArtifact</code>
+  rendering now labels Decision and Change condition layout fields explicitly.</li>
+<li>Published the first controlled paired structural run: 12 cases and 24 opaque
+  samples generated in Antigravity with Gemini 3.7 Flash (High), then scored by
+  <code>gtta-method-contract@1.1.0</code>. The skill arm passed 12/12 and the generic
+  baseline 0/12; exact inputs, outputs, settings, hashes, report, and strict
+  limitations are committed. Method evidence is now M3; external usefulness
+  remains U0.</li>
+<li>Added a zero-paid-API Antigravity eval path: <code>prepare</code> emits opaque Markdown
+  tasks, <code>import-antigravity</code> validates saved responses and records run hashes,
+  model/app metadata, settings, skill hash, and seed before deterministic
+  scoring. The harness never calls a model API.</li>
+<li>Rewrote the README around the stable reasoning and executable-contract
+  surfaces, moved optional agent/API/UI experiments out of the primary
+  positioning, and aligned package and GitHub discovery metadata.</li>
+<li>Started <code>1.6.0.dev0</code> development with the versioned <code>gtta.memo@1.0</code>
+  <code>MemoArtifact</code>: a strict per-claim provenance ledger, cross-reference and
+  mode validation, canonical Markdown rendering, and shared Python, CLI, and
+  MCP interfaces.</li>
+<li>Added GTTA010 to <code>gtta-method-contract@1.1.0</code> as a warning for likely
+  untagged Markdown prose and table-cell claims. Exact claim accounting remains
+  the structured artifact's responsibility.</li>
+<li>Replaced the ambiguous single maturity bar with independent release (<code>R</code>),
+  method-evidence (<code>M</code>), and external-usefulness (<code>U</code>) axes. Current evidence is
+  recorded as R2 / M3 / U0; unavailable practitioner access no longer blocks an
+  honest software release, but still blocks usefulness claims.</li>
+<li>Promoted the deterministic checker interface to
+  <code>gtta-method-contract@1.0.0</code> with explicit compatibility criteria.</li>
+<li>Added a 12-case paired baseline/skill agent-eval harness; it reports
+  structural contract findings only and makes no factual-quality claim.</li>
+<li>Added method-contract enforcement to the canonical example gate.</li>
+<li>Migrated four legacy examples that lacked any provenance marker to explicit
+  provenance, calibrated confidence, and declared memo structure.</li>
+<li>
+<p>Added a two-job PyPI Trusted Publishing workflow that builds and verifies
+  distributions without elevated permissions before a separate OIDC publish.</p>
+</li>
+<li>
+<p>Prepared the <code>1.5.0rc1</code> distribution-integrity candidate. The complete
+  English and Russian analytical method now ships as package data and loads through a
+  single fail-closed resource interface used by framework and MCP adapters.</p>
+</li>
+<li>Added a built-wheel installation smoke test and a repository check that keeps
+  packaged runtime resources synchronized with the canonical root skill files.</li>
+<li>Moved MCP to its supported 2.x interface, made it an optional extra, removed
+  the silent no-op fallback, and added a <code>gtta mcp</code> stdio launcher.</li>
+<li>Raised the Python package floor to 3.10 to match MCP 2.x and moved LangChain,
+  LlamaIndex, and MCP dependencies out of the base installation.</li>
+<li>Removed the unavailable PyPI installation path from README. The developer
+  toolkit is documented as a source-installed pre-release until it is actually
+  published.</li>
+<li>Replaced the misleading <code>gtta ingest</code> interface with <code>gtta parse-pdf</code>, which
+  reports parsing only, and removed the repository-only dark-factory worker
+  from the installed CLI.</li>
+<li>Added Docker build-context exclusions for local environments and aligned the
+  security scope with the repository's experimental runtime surfaces.</li>
+<li>
+<p>Added the initial <code>gtta-method-contract@0.1.0</code> deterministic preflight with
+  stable rule IDs, severity, JSON/text reports, CLI exit semantics, and an MCP
+  tool. Its documented scope is method conformance only; Agenda Intelligence MD
+  continues to own evidence-packet checks.</p>
+</li>
+<li>
+<p>Corrected the PDF command so it reports parsing only instead of claiming a
+  simulated FAISS ingestion, and removed remaining autonomous/fleet wording from
+  the legacy review-queue worker and local batch UI.</p>
+</li>
+<li>
+<p>API and UI bind to loopback by default; protected API routes now fail closed
+  when <code>GTTA_API_KEY</code> is missing, and external CLI binds require a key.</p>
+</li>
+<li>Replaced shell-based CLI launchers with argument-safe subprocess calls.</li>
+<li>Memo results now expose the critic's actual <code>validation_passed</code> state and
+  retain the critique when the iteration cap is reached.</li>
+<li>Reframed the legacy signal worker as a review-queue draft generator; it no
+  longer claims automatic guardrail approval or publication.</li>
+<li>Replaced invented revenue and gross-margin figures with explicitly labelled
+  heuristic cost estimates.</li>
+<li>Renamed the small static regional registry as illustrative context and added
+  primary-source starting points and freshness warnings.</li>
+<li>
+<p>Removed unsupported model choices and documented the API/batch surfaces as
+  local, in-process experiments rather than production infrastructure.</p>
+</li>
+<li>
+<p><strong>fix(docs,evals,signals): restore the honest-scope layer removed in 592867a.</strong> That commit stripped the
+  <code>Disclaimer</code> section from the README and from every published signal, removed the <code>Limitations</code> and
+  "what this skill has not been tested on" sections, took the limitation-note requirement out of
+  <code>templates/memo-blank.md</code>, and cut the honest-scope observations from three agent-eval cases,
+  <code>evals/failure-modes.md</code>, a self-run, and two worked examples. The method itself never changed: it still
+  reports evidence mode, still separates fact from assumption, and still routes to human review. The
+  <code>[2.0.0] Autonomous Compliance Edition</code> CHANGELOG block, which announced definitive legal, compliance,
+  and sanctions determinations, is removed with it — the skill does not do that, and AGENTS.md forbids
+  claiming it.</p>
+</li>
+</ul>
+<h2 id="140-2026-08-25">1.4.0 - 2026-08-25</h2>
+<ul>
+<li>Removed the weekly <code>cron</code> from <code>.github/workflows/policy-risk-signal.yml</code>. The signal archive is maintained by hand: every signal in it was written and merged by a person, and the schedule never produced one. Of its 17 runs, four failed in May and the following thirteen reported success while doing nothing, because the branch that handles a missing <code>OPENAI_API_KEY</code> exited zero. A dead channel sat behind thirteen consecutive green checks. The workflow remains available as a manual <code>workflow_dispatch</code> draft.</li>
+<li>A dispatch without <code>OPENAI_API_KEY</code> now fails with an error instead of reporting success, and its pull-request body points at the manual route through <code>signals/TEMPLATE.md</code>.</li>
+<li><code>signals/README.md</code> now states that the archive is maintained by hand on no fixed cadence, so a reader does not infer a schedule from the dated files.</li>
+<li>
+<p><code>scripts/validate_signals.py</code> now checks <code>signals/README.md</code> against the <code>ARCHIVE_HEADER</code> and <code>ARCHIVE_FOOTER</code> constants that rewrite it. The pair had already drifted once, silently reverting a documented convention on every run; the guard replaces remembering to edit both.</p>
+</li>
+<li>
+<p>Reconciled the plugin manifests with the release history. <code>plugin.json</code> and <code>.claude-plugin/plugin.json</code> were added during the 1.3.0 development cycle and both declared <code>1.0.0</code>, three releases behind <code>CHANGELOG.md</code>. Both now declare the released repository version.</p>
+</li>
+<li>
+<p><code>scripts/validate_skill_package.py</code> now checks each manifest against the newest dated release heading in <code>CHANGELOG.md</code>, not only against the other manifest. Agreeing with each other was what let the pair sit at <code>1.0.0</code> unnoticed. <code>## Unreleased</code> is skipped: the manifests describe what is published, so ordinary merges do not force a bump.</p>
+</li>
+<li>
+<p>Added <code>scripts/test_signal_pipeline.py</code> and wired it into <code>scripts/check.py</code>: the generator's index, feed, and latest-signal output is now run through <code>scripts/validate_signals.py</code> on a throwaway tree, so a title or filename regression fails locally instead of surfacing in an automated draft pull request. Both fixed defects reproduce as failing tests against the previous behaviour.</p>
+</li>
+<li><code>scripts/check_markdown_links.py</code> no longer inspects link syntax inside fenced code blocks, where a link is an illustration rather than a repository target. No currently tracked link is affected; the change removes a false-failure trap for future documentation.</li>
+<li>
+<p><code>scripts/validate_examples.py</code> now walks <code>examples/</code> recursively instead of its top level only, and accepts the <code>**Evidence mode**:</code> form alongside <code>**Evidence mode:**</code>.</p>
+</li>
+<li>
+<p>Fixed <code>scripts/generate_policy_risk_signal.py</code> recording an index title that <code>scripts/validate_signals.py</code> then rejects. The title was normalized through <code>strip_text()</code> and truncated, and when the <code>&lt;!-- title: ... --&gt;</code> marker was absent it reconstructed a sentence from the <code>## Signal</code> paragraph. The validator requires the recorded title to appear verbatim in the signal markdown, so both paths could open a pull request that fails CI. The marker is now required, and the verbatim invariant is checked at generation time.</p>
+</li>
+<li>Fixed the same script silently overwriting an existing signal when a run landed on a date that already had one. It always wrote <code>signals/YYYY/YYYY-MM-DD.md</code>, although the archive documents <code>YYYY-MM-DD-&lt;topic&gt;.md</code> for shared dates; it now derives a topic slug from the title.</li>
+<li>Fixed the archive footer written by the generator, which dropped the documented same-day filename convention from <code>signals/README.md</code> on every automated run.</li>
+<li>Added generation-time checks for the <code>Date: YYYY-MM-DD</code> header line and the <code>--date</code> argument format, both of which <code>scripts/validate_signals.py</code> only enforces after the file is written.</li>
+<li>Fixed unhandled network errors in the OpenAI request path, which raised a traceback instead of a message.</li>
+<li>Removed the unused <code>README_PATH</code> constant and corrected the weekly workflow, which diffed <code>README.md</code> and asked reviewers to check a README signal index that the generator never writes.</li>
+<li>Fixed <code>scripts/validate_codex_sync.py</code> silently ignoring a single path argument: <code>len(sys.argv) &gt; 2</code> guarded the read of <code>sys.argv[1]</code>.</li>
+<li><code>scripts/validate_signals.py</code> now fails with a message instead of a traceback when <code>signals/latest.md</code> is missing or the JSON payloads hold unexpected types.</li>
+<li>Synced <code>signals/TEMPLATE.md</code> with the archive. It lacked the <code>&lt;!-- title: ... --&gt;</code> marker that every archived signal carries and that the indexes are built from, used a <code>## Event</code> heading no recent signal uses, and documented only the single-signal-per-day filename.</li>
+<li>Corrected the README claim that every live-source-backed example was retrieved on 2026-05-08; the Middle Corridor example states 2026-05-15.</li>
+<li>
+<p>Relaxed the <code>agenda-intelligence-md</code> install pin in the integration doc from <code>==1.3.0</code> to <code>&gt;=1.3.0</code> and normalized the repository URL casing. The repository's synthetic packet lints clean under 1.6.0.</p>
+</li>
+<li>
+<p>Fixed the packaged skill identifier so <code>SKILL.md</code> uses the lowercase, hyphenated <code>global-think-tank-analyst</code> name exposed by its discovery directory.</p>
+</li>
+<li>Added <code>scripts/check.py</code> as the single local/CI check interface and a narrowly scoped package validator for discovery fields, the canonical skill symlink, and synchronized plugin manifests.</li>
+<li>
+<p>Synchronized public documentation with Mode G (Competing Hypotheses) and distinguished development-time repository checks from memo/output validation.</p>
+</li>
+<li>
+<p>Fixed two dead links to the author's site. <code>deal-risk-gate.html</code> and <code>for-analysts.html</code> have returned 404 since the site was restructured; the README also claimed two interactive browser demos that are no longer published. The demo sentence now points at <code>examples/</code>, and the contact section links the live case-study page.</p>
+</li>
+<li>
+<p>Extended <code>scripts/check_markdown_links.py</code> to fail on 404/410 for links to the author's own site, which previously went unchecked because every <code>http(s)://</code> target was skipped. Network errors and other statuses are reported without failing, so an offline run stays deterministic; <code>SKIP_SITE_LINK_CHECK=1</code> skips the network step.</p>
+</li>
+<li>
+<p>Conformed the repo to the Agent Plugins 1.0.0 layout: added a root <code>plugin.json</code> with the <code>$schema</code> identifier from <a href="https://agent-plugins.org">https://agent-plugins.org</a>. <code>.claude-plugin/plugin.json</code> is unchanged and still serves the Claude Code install path; the specification ignores that directory. <code>skills/global-think-tank-analyst/SKILL.md</code> already matched the spec's discovery rule. The manifest validates against the published Draft 2020-12 schema.</p>
+</li>
+<li>
+<p>Added the Agenda Intelligence v1.3 evidence-packet handoff as the primary composition seam, with a runnable synthetic packet, dependency-free CI validator, and ADR 0001. Reclassified older memo-schema, scoring, <code>analyze</code>, and MCP recipes as compatibility workflows.</p>
+</li>
+<li>
+<p>Packaged the repo as an installable Claude Code plugin: added <code>.claude-plugin/plugin.json</code> and <code>skills/global-think-tank-analyst/SKILL.md</code> (a symlink to the canonical root <code>SKILL.md</code>; packaging only, not a runtime overlay). Installable via <code>/plugin marketplace add vassiliylakhonin/agenda-intelligence-md</code>, then <code>/plugin install global-think-tank-analyst@agenda-intelligence</code>. Verified locally with <code>claude plugin install</code> from an isolated config (1 skill discovered via the symlink).</p>
+</li>
+<li>
+<p>Clarified the commercial role: this repo remains the horizontal reasoning-method dependency behind Agenda Intelligence MD, not a buyer-facing product surface. Added README/AGENTS guidance to route product positioning and evidence-readiness commercialization through Agenda Intelligence MD.</p>
+</li>
+<li>Added <code>scripts/validate_codex_sync.py</code> and wired it into CI: fails the build when the shared analytical contract in <code>codex/SKILL.md</code> drifts from the canonical root <code>SKILL.md</code>. Intentional codex-only / divergent sections are allowlisted in the script. Enforces the manual sync discipline declared in codex/SKILL.md's Contract provenance section.</li>
+<li>Resynced <code>codex/SKILL.md</code> shared analytical contract with the canonical root <code>SKILL.md</code>: restored the <code>Stop and request — explicit triggers</code> subsection, restored two dropped self-check items (provenance-language match, conflict-surfacing), and reverted three paraphrased contract paragraphs (retrieved-content trust, conflict handling, linguistic faithfulness) to the canonical root wording. Intentional codex-only sections (Contract provenance, Codex Platform Setup, JSON Output Mode, Pipeline Integration, the Mode F agentic-loop note, and Installation) are unchanged.</li>
+<li>Spawned three signals from existing live-source-backed memos: Hormuz oil-price corridor, EU AI Act simplification redeployment, China critical-minerals procurement window. Hardened the signal-generation script to support <code>YYYY-MM-DD-&lt;topic&gt;.md</code> filenames so multiple signals can share a date.</li>
+<li>Added two more <code>live-source-backed</code> worked examples: ECB rate-hold (2026-04-30, ECB primary publications) and EU CBAM enforcement-phase exposure (2026 definitive phase, DG TAXUD).</li>
+<li>Converted the README example list to a domain × evidence-mode matrix for navigation.</li>
+<li>Added ECB and BIS feeds to <code>.github/policy-risk-signal/sources.json</code> to broaden monetary-policy and financial-stability coverage in the auto-signal pipeline.</li>
+</ul>
+<h2 id="130-2026-05-09">1.3.0 - 2026-05-09</h2>
+<ul>
+<li>Added <code>docs/integrations/agenda-intelligence-md.md</code> — concrete CLI / MCP recipes for composing this skill with Agenda Intelligence MD (markdown score, JSON brief validate+score, evidence-pack audit, MCP loop).</li>
+<li>Added <code>docs/integrations/agenda-intelligence-md-live-demo.md</code> — end-to-end run with <strong>real CLI output</strong> (95/100 brief-only → 83/100 with an honest evidence pack), captured against the published Agenda Intelligence MD package on 2026-05-08.</li>
+<li>Added a <code>live-source-backed</code> worked example: <code>examples/live-source-backed-memo.md</code> (memo on the May 1, 2026 OFAC "Operation Economic Fury" Iran shadow-banking action), paired with a real JSON brief projection and evidence pack under <code>examples/agenda-projections/</code>.</li>
+<li>Added three illustrative memos: export-controls exposure, critical-minerals supply-risk, EU energy-transition policy.</li>
+<li>Added a new signal (<code>signals/2026/2026-05-08.md</code>) explaining why an honest evidence pack lowers the score.</li>
+<li>Expanded <code>evals/failure-modes.md</code> with five new patterns specific to the GTTA + Agenda Intelligence MD composition (score gaming via stripped unsupported claims, JSON projection content loss, mode mismatch on raw markdown scoring, <code>live_source_backed</code> claim without an evidence pack, stale <code>retrieved_at</code>).</li>
+<li>Added three additional <code>live-source-backed</code> worked examples (real sources retrieved 2026-05-08): Hormuz disruption / energy prices, EU AI Act simplification (Omnibus VII), and the China critical-minerals export-control suspension.</li>
+<li>Trimmed the README Roadmap to reflect what was delivered.</li>
+</ul>
+<h2 id="120-2026-05-08">1.2.0 - 2026-05-08</h2>
+<ul>
+<li>Repositioned README, AGENTS.md, llms.txt, SKILL.md, and codex/SKILL.md to frame the project as a <strong>strategic-risk analysis skill for AI agents</strong>, distinct from the companion infrastructure project Agenda Intelligence MD.</li>
+<li>Replaced AGENTS.md with the canonical project-rules spec: project identity, honesty rules, evidence rules, recommended README structure, naming hierarchy, and definition of done.</li>
+<li>Renamed "Output modes" to "Memo modes" and reordered the README to recommended structure (quick usage → memo modes → before/after → examples → evals → signal archive → limitations → roadmap).</li>
+<li>Added <code>examples/</code> with four illustrative memos (sanctions exposure, regulatory impact, scenario brief, red-team), all explicitly labeled <code>reasoning-only / illustrative</code>.</li>
+<li>Added <code>evals/</code> with a human review checklist, failure-modes catalogue, and starter scoring rubric.</li>
+<li>Added <code>signals/TEMPLATE.md</code> and reframed the signal archive as public examples of the skill style, not official intelligence.</li>
+<li>Added explicit Limitations and Roadmap sections.</li>
+<li>Added an integration status table that separates implemented from compatible from not-implemented.</li>
+<li>Tightened naming hierarchy: Product = Global Think Tank Analyst; Method = Policy Risk Memo Architect; Companion = Agenda Intelligence MD.</li>
+<li>Backfilled evidence-mode and confidence headers on the existing 2026-04-28 signal.</li>
+</ul>
+<h2 id="110-2026-05-06">1.1.0 - 2026-05-06</h2>
+<ul>
+<li>Repositioned the project from an OpenClaw/Codex-centered skill to a universal AI-agent playbook.</li>
+<li>Added <code>AGENTS.md</code> with runtime-neutral instructions for ChatGPT, Claude, Gemini, Perplexity, Cursor, Codex, OpenClaw, MCP agents, RAG systems, and internal copilots.</li>
+<li>Added Decision Briefing Pack mode for team-facing decisions, owners, watchlists, triggers, and review cadence.</li>
+<li>Expanded README, <code>llms.txt</code>, and skill guidance with stronger user-facing integration paths and clearer evidence discipline.</li>
+</ul>
+<h2 id="101-2026-04-17">1.0.1 - 2026-04-17</h2>
+<ul>
+<li>Reduced package to minimal skill content for ClawHub release hygiene.</li>
+<li>Kept core <code>SKILL.md</code> aligned with Policy Risk Memo Architect framing.</li>
+</ul>
+<h2 id="100-2026-04-17">1.0.0 - 2026-04-17</h2>
+<ul>
+<li>Major rewrite and repositioning to <strong>Policy Risk Memo Architect</strong>.</li>
+<li>Added stronger evidence-discipline guardrails.</li>
+<li>Added clearer output modes and decision-oriented default template.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
