@@ -113,10 +113,11 @@ gtta render-artifact memo.json > memo.md
 gtta mcp
 ```
 
-The package version on `main` is `1.6.0rc2`. PyPI publication remains blocked
-until Trusted Publishing is configured. The `v1.6.0rc1` prerelease exposed a
-missing optional test dependency in its release workflow; `rc2` corrects that
-gate without invoking a paid API.
+The latest GitHub candidate is
+[`v1.6.0rc2`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0rc2).
+PyPI publication remains blocked until Trusted Publishing is configured. The
+`v1.6.0rc1` prerelease exposed a missing optional test dependency; `rc2`
+corrected the release gate without invoking a paid API.
 
 ## Executable analysis contracts
 
