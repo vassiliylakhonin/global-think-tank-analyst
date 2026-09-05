@@ -10,12 +10,7 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 
 from . import __version__
-
-try:
-    from .agent import AnalystAgent
-except ImportError:
-    AnalystAgent = None
-
+from .agent import AnalystAgent
 from .db import init_db, add_job, update_job, get_inbox
 
 logger = logging.getLogger(__name__)
@@ -69,17 +64,13 @@ _agent_instance = None
 def get_agent():
     global _agent_instance
     if _agent_instance is None:
-        if AnalystAgent is None:
+        try:
+            _agent_instance = AnalystAgent()
+        except (ImportError, ValueError) as exc:
             raise HTTPException(
                 status_code=500,
-                detail="Agent dependencies missing. Run pip install global-think-tank-analyst[agent,enterprise]",
-            )
-        if not os.getenv("OPENAI_API_KEY"):
-            raise HTTPException(
-                status_code=500,
-                detail="OPENAI_API_KEY environment variable is required.",
-            )
-        _agent_instance = AnalystAgent()
+                detail=str(exc),
+            ) from exc
     return _agent_instance
 
 

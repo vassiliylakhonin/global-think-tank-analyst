@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Made `gtta.agent` importable without the optional LangChain/LangGraph stack.
+  Agent dependencies now load only when `AnalystAgent` is constructed, with a
+  focused installation error at that seam. The release gate again tests the
+  minimal `test,mcp` environment, backed by a subprocess regression test that
+  explicitly blocks the optional imports.
+
 ## 1.6.0rc2 - 2026-09-05
 
 - Corrected the release workflow's test environment to install the optional

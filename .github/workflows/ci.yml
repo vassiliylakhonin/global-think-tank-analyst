@@ -6,6 +6,23 @@ on:
     branches: [ main ]
 
 jobs:
+  minimal-core-import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install core package only
+        run: pip install -e .
+
+      - name: Import optional agent module without its dependencies
+        run: python -c "from gtta.agent import AnalystAgent; assert AnalystAgent.__name__ == 'AnalystAgent'"
+
   validate-skill:
     runs-on: ubuntu-latest
     steps:

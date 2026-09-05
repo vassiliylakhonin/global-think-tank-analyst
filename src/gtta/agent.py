@@ -2,7 +2,6 @@
 
 import os
 from typing import TypedDict, Dict, Any, Optional
-from .langchain import get_system_prompt
 from .economics import calculate_unit_economics
 from .knowledge import lookup_regional_knowledge
 
@@ -30,17 +29,19 @@ class AnalystAgent:
         self.frontier_model = frontier_model
         self.fast_model = fast_model
         self.language = language
-        self.system_prompt = get_system_prompt(language=self.language).content
 
         try:
+            from .langchain import get_system_prompt
             from langchain_openai import ChatOpenAI
             from langgraph.graph import StateGraph, END
             from langgraph.checkpoint.memory import MemorySaver
             from langchain_community.tools import DuckDuckGoSearchResults
-        except ImportError:
+        except ImportError as exc:
             raise ImportError(
                 "Agent dependencies missing. Run: pip install global-think-tank-analyst[agent]"
-            )
+            ) from exc
+
+        self.system_prompt = get_system_prompt(language=self.language).content
 
         if not os.getenv("OPENAI_API_KEY"):
             raise ValueError("OPENAI_API_KEY environment variable is required.")

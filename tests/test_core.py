@@ -1,3 +1,6 @@
+import subprocess
+import sys
+
 import pytest
 from gtta.resources import get_mode_template, get_skill_prompt
 
@@ -124,6 +127,38 @@ def test_agent_module_has_no_code_execution_tool():
     assert "langchain_experimental" not in source
 
 
+def test_agent_module_imports_without_optional_dependencies():
+    """Importing the module must not require the experimental agent stack."""
+    script = """
+import builtins
+import sys
+
+real_import = builtins.__import__
+
+def block_agent_dependencies(name, *args, **kwargs):
+    if name.startswith(("langchain", "langgraph")):
+        raise ModuleNotFoundError(f"blocked optional dependency: {name}")
+    return real_import(name, *args, **kwargs)
+
+builtins.__import__ = block_agent_dependencies
+from gtta.agent import AnalystAgent
+assert "gtta.langchain" not in sys.modules
+
+try:
+    AnalystAgent()
+except ImportError as exc:
+    assert "global-think-tank-analyst[agent]" in str(exc)
+else:
+    raise AssertionError("AnalystAgent unexpectedly loaded without its optional dependencies")
+"""
+    subprocess.run(
+        [sys.executable, "-c", script],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+
 def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
     # gtta.server lives behind the `enterprise` extra; skip where it is absent
     # rather than failing the base test job.
@@ -150,6 +185,29 @@ def test_memo_route_is_gated_when_an_api_key_is_set(monkeypatch):
 
     ok = HTTPAuthorizationCredentials(scheme="Bearer", credentials="correct-key")
     assert require_api_key(ok) is None
+
+
+def test_server_reports_missing_agent_dependencies(monkeypatch):
+    pytest.importorskip("fastapi")
+    from fastapi import HTTPException
+
+    import gtta.server as server
+
+    class MissingAgentDependencies:
+        def __init__(self):
+            raise ImportError(
+                "Agent dependencies missing. Run: pip install "
+                "global-think-tank-analyst[agent]"
+            )
+
+    monkeypatch.setattr(server, "AnalystAgent", MissingAgentDependencies)
+    monkeypatch.setattr(server, "_agent_instance", None)
+
+    with pytest.raises(HTTPException) as missing:
+        server.get_agent()
+
+    assert missing.value.status_code == 500
+    assert "global-think-tank-analyst[agent]" in missing.value.detail
 
 
 def test_cli_does_not_use_shell_execution():

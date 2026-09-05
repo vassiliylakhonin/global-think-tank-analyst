@@ -8,14 +8,14 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
-| Release readiness | R2 | `v1.6.0rc2` source, distribution metadata, installed-wheel, and GitHub prerelease gates; Trusted Publishing workflow on `main` | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
+| Release readiness | R2 | `v1.6.0rc2` source, distribution metadata, installed-wheel, and GitHub prerelease gates; `1.6.0rc3` source candidate on `main`; Trusted Publishing workflow | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
 | Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. Declared-behavior runs on the original suite record 8/12 vs. 3/12 on Gemini and 3/12 vs. 0/12 on Claude. The preregistered broader-domain holdout passed structure 10/10 in both arms but declared behavior 0/10 in both; the null result and execution caveats are retained. | M3 is the highest defined method level; stronger quality/usefulness claims require different evidence and remain tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
 
 - Latest published GitHub candidate: [`v1.6.0rc2`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0rc2).
-- Package version on `main`: `1.6.0rc2`.
+- Package version on `main`: `1.6.0rc3` (not yet tagged or published).
 - `v1.6.0rc1` is superseded: its release build failed before packaging because
   the workflow omitted the optional LangChain test dependency. `rc2` passed
   the corrected distribution-integrity gate; its PyPI job was intentionally

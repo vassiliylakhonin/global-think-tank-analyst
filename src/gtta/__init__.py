@@ -22,7 +22,7 @@ from .discipline import ContractReport, Finding, Severity, check_contract
 from .resources import SkillResourceError, get_mode_template, get_skill_prompt
 
 
-__version__ = "1.6.0rc2"
+__version__ = "1.6.0rc3"
 
 __all__ = (
     "SkillResourceError",
