@@ -34,6 +34,7 @@ from gtta.discipline import (  # noqa: E402
 BENCHMARK_VERSION = "gtta-agent-eval@1.1.0"
 ARTIFACT_EVAL_VERSION = "gtta-artifact-eval@1.1.0"
 ARTIFACT_BEHAVIOR_EVAL_VERSION = "gtta-artifact-behavior-eval@1.0.0"
+SUITE_COMMITMENT_VERSION = "gtta-eval-suite-commitment@1.0.0"
 DEFAULT_CASES = ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl"
 DEFAULT_ARTIFACT_EXPECTATIONS = (
     ROOT / "evals" / "agent-eval" / "artifact-behavior-expectations.json"
@@ -190,10 +191,16 @@ def _artifact_sample_id(seed: int, case_id: str, arm: str) -> str:
     return hashlib.sha256(material).hexdigest()[:16]
 
 
-def _artifact_behavior_sample_id(seed: int, case_id: str, arm: str) -> str:
-    material = (
-        f"{ARTIFACT_BEHAVIOR_EVAL_VERSION}|{seed}|{case_id}|{arm}".encode()
-    )
+def _artifact_behavior_sample_id(
+    seed: int,
+    case_id: str,
+    arm: str,
+    benchmark_version: str = BENCHMARK_VERSION,
+) -> str:
+    protocol = ARTIFACT_BEHAVIOR_EVAL_VERSION
+    if benchmark_version != BENCHMARK_VERSION:
+        protocol = f"{protocol}|{benchmark_version}"
+    material = f"{protocol}|{seed}|{case_id}|{arm}".encode()
     return hashlib.sha256(material).hexdigest()[:16]
 
 
@@ -494,8 +501,11 @@ def prepare_artifact_behavior_run(
     expectation_path: Path,
     output_dir: Path,
     seed: int,
+    benchmark_version: str = BENCHMARK_VERSION,
 ) -> dict[str, Any]:
     """Create opaque paired requests with preregistered behavior expectations."""
+    if not benchmark_version.strip():
+        raise EvalInputError("suite version must be non-empty")
     cases = load_cases(case_path)
     expectations = load_artifact_expectations(
         expectation_path, {case["id"] for case in cases}
@@ -514,7 +524,9 @@ def prepare_artifact_behavior_run(
     samples: list[dict[str, Any]] = []
     for case in cases:
         for arm in ("baseline", "skill"):
-            sample_id = _artifact_behavior_sample_id(seed, case["id"], arm)
+            sample_id = _artifact_behavior_sample_id(
+                seed, case["id"], arm, benchmark_version
+            )
             system = BASELINE_INSTRUCTIONS
             if arm == "skill":
                 system += (
@@ -543,12 +555,13 @@ def prepare_artifact_behavior_run(
             )
 
     random.Random(seed).shuffle(requests)
-    (output_dir / "requests.jsonl").write_text(
+    requests_path = output_dir / "requests.jsonl"
+    requests_path.write_text(
         "\n".join(json.dumps(row, ensure_ascii=False) for row in requests) + "\n",
         encoding="utf-8",
     )
     mapping = {
-        "benchmark_version": BENCHMARK_VERSION,
+        "benchmark_version": benchmark_version,
         "evaluation_version": ARTIFACT_BEHAVIOR_EVAL_VERSION,
         "evaluation_type": "memo-artifact-declared-behavior",
         "artifact_schema_version": ARTIFACT_SCHEMA_VERSION,
@@ -579,6 +592,23 @@ def prepare_artifact_behavior_run(
         response_extension=".json",
         response_description="the model's raw MemoArtifact JSON object",
         score_command="score-artifact-behavior",
+    )
+    commitment = {
+        "commitment_version": SUITE_COMMITMENT_VERSION,
+        "benchmark_version": benchmark_version,
+        "evaluation_version": ARTIFACT_BEHAVIOR_EVAL_VERSION,
+        "seed": seed,
+        "case_count": len(cases),
+        "sample_count": len(samples),
+        "cases_sha256": _sha256_file(case_path),
+        "expectations_sha256": _sha256_file(expectation_path),
+        "requests_sha256": _sha256_file(requests_path),
+        "skill_sha256": skill_hash,
+        "artifact_schema_sha256": mapping["artifact_schema_sha256"],
+    }
+    (output_dir / "suite-commitment.json").write_text(
+        json.dumps(commitment, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
     )
     return mapping
 
@@ -1454,6 +1484,11 @@ def _parser() -> argparse.ArgumentParser:
     prepare_artifact_behavior.add_argument(
         "--expectations", type=Path, default=DEFAULT_ARTIFACT_EXPECTATIONS
     )
+    prepare_artifact_behavior.add_argument(
+        "--suite-version",
+        default=BENCHMARK_VERSION,
+        help="version identifier for the case suite stored in the run mapping",
+    )
     prepare_artifact_behavior.add_argument("--seed", type=int, default=20260905)
 
     import_antigravity = subparsers.add_parser(
@@ -1545,6 +1580,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.expectations,
                 args.output_dir,
                 args.seed,
+                args.suite_version,
             )
             print(
                 f"OK: prepared {mapping['sample_count']} structured behavior "

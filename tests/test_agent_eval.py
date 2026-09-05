@@ -379,6 +379,12 @@ def test_prepare_and_score_memo_artifact_declared_behavior(tmp_path):
         for line in (run_dir / "requests.jsonl").read_text().splitlines()
     ]
     assert mapping["evaluation_version"] == "gtta-artifact-behavior-eval@1.0.0"
+    assert next(
+        sample["sample_id"]
+        for sample in mapping["samples"]
+        if sample["case_id"] == "quick-sanctions-corridor-triage"
+        and sample["arm"] == "baseline"
+    ) == "66b575714d15cd20"
     assert mapping["expectations_sha256"] == hashlib.sha256(
         (
             ROOT
@@ -389,6 +395,24 @@ def test_prepare_and_score_memo_artifact_declared_behavior(tmp_path):
     ).hexdigest()
     assert mapping["evaluation_type"] == "memo-artifact-declared-behavior"
     assert len(mapping["expectations_sha256"]) == 64
+    commitment = json.loads((run_dir / "suite-commitment.json").read_text())
+    assert commitment == {
+        "commitment_version": "gtta-eval-suite-commitment@1.0.0",
+        "benchmark_version": "gtta-agent-eval@1.1.0",
+        "evaluation_version": "gtta-artifact-behavior-eval@1.0.0",
+        "seed": 23,
+        "case_count": 12,
+        "sample_count": 24,
+        "cases_sha256": hashlib.sha256(
+            (ROOT / "evals" / "agent-eval" / "benchmark-cases.jsonl").read_bytes()
+        ).hexdigest(),
+        "expectations_sha256": mapping["expectations_sha256"],
+        "requests_sha256": hashlib.sha256(
+            (run_dir / "requests.jsonl").read_bytes()
+        ).hexdigest(),
+        "skill_sha256": mapping["skill_sha256"],
+        "artifact_schema_sha256": mapping["artifact_schema_sha256"],
+    }
     assert all("expectations" in sample for sample in mapping["samples"])
     assert all("min_claim_kinds" not in json.dumps(request) for request in requests)
     assert "score-artifact-behavior" in (
@@ -430,6 +454,28 @@ def test_prepare_and_score_memo_artifact_declared_behavior(tmp_path):
         assert aggregate["finding_counts"]["ARTIFACTB001"] > 0
     assert all(sample["structurally_passed"] for sample in report["samples"])
     assert all(sample["behaviorally_passed"] is False for sample in report["samples"])
+
+
+def test_prepare_artifact_behavior_accepts_versioned_holdout_suite(tmp_path):
+    run_dir = tmp_path / "holdout-run"
+    prepared = _run(
+        "prepare-artifact-behavior",
+        str(run_dir),
+        "--seed",
+        "29",
+        "--suite-version",
+        "gtta-agent-eval-holdout@1.0.0",
+    )
+    assert prepared.returncode == 0, prepared.stderr
+
+    mapping = json.loads((run_dir / "private-mapping.json").read_text())
+    commitment = json.loads((run_dir / "suite-commitment.json").read_text())
+    assert mapping["benchmark_version"] == "gtta-agent-eval-holdout@1.0.0"
+    assert commitment["benchmark_version"] == mapping["benchmark_version"]
+    assert commitment["requests_sha256"] == hashlib.sha256(
+        (run_dir / "requests.jsonl").read_bytes()
+    ).hexdigest()
+    assert len({sample["sample_id"] for sample in mapping["samples"]}) == 24
 
 
 def test_artifact_output_contract_names_machine_keys_and_claim_axes(tmp_path):

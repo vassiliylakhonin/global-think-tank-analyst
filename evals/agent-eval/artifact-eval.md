@@ -53,6 +53,13 @@ show that claims are distinct, relevant, true, well reasoned, source-supported,
 or useful. The suite is designed to avoid the 100%/100% schema ceiling, not to
 turn a deterministic checker into a quality judge.
 
+`prepare-artifact-behavior` also accepts `--suite-version`. It stores that
+version in the private mapping, incorporates it into opaque sample IDs, and
+writes `suite-commitment.json`. The commitment binds the exact cases,
+expectations, requests, skill, schema, and seed without disclosing the hidden
+expectations. This permits a new holdout to be preregistered in Git before its
+first outputs are generated while keeping one preparation/scoring interface.
+
 ## Run without a paid API
 
 ```bash
@@ -94,6 +101,12 @@ python3 scripts/agent_eval.py score-artifact-behavior \
 The harness makes no model or network calls. A publishable run must retain the
 requests, private mapping, raw outputs, run metadata, report, and hashes. A
 replication on the same cases must also pass the disclosed freshness gate.
+
+For a versioned holdout, provide private `--cases` and `--expectations` paths
+plus a unique `--suite-version`, then commit only the generated
+`suite-commitment.json` before model execution. Publish the frozen case and
+expectation inputs with the completed run so the commitment becomes
+independently checkable.
 
 ## Interpretation limits
 

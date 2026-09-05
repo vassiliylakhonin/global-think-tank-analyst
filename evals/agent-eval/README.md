@@ -17,6 +17,12 @@ live-source-backed task. Case validation enforces a suite size of 10-20 tasks;
 those coverage gaps belong in a future versioned suite, not a rewrite of this
 frozen benchmark.
 
+New suites are preregistered under [`commitments/`](commitments/). The first
+holdout commitment covers 10 broader-domain cases, including the previously
+absent Mode F. Its cases and hidden expectations are intentionally withheld
+until the first 20 paired outputs have been saved; the committed hashes bind
+their exact pre-run contents.
+
 The same frozen cases can now be run through the strict
 [`MemoArtifact` path](artifact-eval.md). Both arms receive the same schema and
 output contract; only the skill arm receives the runtime method. This avoids a

@@ -56,9 +56,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
-3. Stop repeated execution on the disclosed 12 cases; use the cross-model
-   failure pattern to design a versioned broader-domain holdout without
-   rewriting the frozen benchmark.
+3. Execute the preregistered 10-case `gtta-agent-eval-holdout@1.0.0` once,
+   without opening its private mapping or hidden expectations. Then publish
+   the frozen inputs and 20 paired outputs together; do not tune against them.
 4. Complete PyPI Trusted Publishing after account access is restored.
 5. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

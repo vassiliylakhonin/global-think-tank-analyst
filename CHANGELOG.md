@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Preregistered `gtta-agent-eval-holdout@1.0.0`, a 10-case / 20-sample
+  broader-domain structured declared-behavior suite that adds Mode F coverage.
+  The public commitment binds the exact private cases, expectations, requests,
+  skill, schema, and seed before generation. `prepare-artifact-behavior` now
+  accepts a suite version and emits the commitment without exposing scorer
+  expectations to model requests.
+
 - Published the first cross-model-family declared-behavior replication using
   Claude Code 2.1.246 and Claude Opus 4.6. Structural passes were 11/12 skill
   versus 12/12 baseline; declared-behavior passes were 3/12 versus 0/12. This
