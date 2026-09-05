@@ -1,0 +1,13 @@
+{
+  "commitment_version": "gtta-eval-suite-commitment@1.0.0",
+  "benchmark_version": "gtta-agent-eval-holdout@1.0.0",
+  "evaluation_version": "gtta-artifact-behavior-eval@1.0.0",
+  "seed": 20260907,
+  "case_count": 10,
+  "sample_count": 20,
+  "cases_sha256": "a16d6d26760cea61b38b0f59f130e8372c5435d603161745f162ba5bf6a39647",
+  "expectations_sha256": "3f87904a74c31345c103656a110eae1f3087ce94bc01fefc304de3f6f6bac54d",
+  "requests_sha256": "dfb653285eb9c0d30e3b98853128fffb440aa59610abe3c0939f6d90d21ad478",
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848"
+}

@@ -14,9 +14,9 @@ This is an audit mechanism, not proof that generation was independent or that
 the benchmark measures analytical quality. Git history establishes when this
 repository recorded the commitment; execution isolation remains procedural.
 
-## Active commitment
+## Fulfilled commitment
 
 - [`2026-09-05-artifact-behavior-holdout-v1.json`](2026-09-05-artifact-behavior-holdout-v1.json)
   binds `gtta-agent-eval-holdout@1.0.0`: 10 new cases / 20 paired samples,
-  seed `20260907`. The source cases and expectations remain withheld until the
-  first completed run is published.
+  seed `20260907`. The frozen inputs and first completed run are now published
+  [together](../runs/2026-09-05-antigravity-gemini-3.8-flash-high-artifact-behavior-holdout-v1-seed-20260907/).

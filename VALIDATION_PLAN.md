@@ -129,8 +129,11 @@ Updated 2026-09-04.
   only to frozen declarations. A Claude Code / Opus 4.6 replication repeats
   the direction at 3/12 versus 0/12, with structural passes of 11/12 versus
   12/12. The lower absolute result and model-family variation are retained
-  rather than tuned away. None of these paths measures factual or decision
-  quality.
+  rather than tuned away. A preregistered 10-case broader-domain holdout then
+  passed structural checks 10/10 in both arms but complete declared-behavior
+  expectations 0/10 in both. Missing verification flags dominated. This null
+  transfer result is frozen and limits generalization from the original suite.
+  None of these paths measures factual or decision quality.
 - **Skill change-control cases:**
   [`evals/skill-improvement/`](evals/skill-improvement/) contains 10 declared
   cases: 6 `val`, 2 `train`, and 2 `test`. The six validation cases were

@@ -133,3 +133,8 @@ remain separate seams.
   baseline after both arms passed 12/12 structural checks. A Claude Code /
   Opus 4.6 replication passed 3/12 versus 0/12 on declared behavior and 11/12
   versus 12/12 structurally, repeating direction but not magnitude.
+- The preregistered `gtta-agent-eval-holdout@1.0.0` broadened domains and added
+  Mode F without changing the scorer. Gemini 3.8 passed all 10 structural
+  samples in both arms, but neither arm passed any complete declared-behavior
+  expectation. `verify: true` omissions dominated. This null result is frozen;
+  it must not be tuned away or presented as evidence of analytical quality.

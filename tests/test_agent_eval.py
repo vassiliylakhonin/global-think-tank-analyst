@@ -63,6 +63,13 @@ CLAUDE_ARTIFACT_BEHAVIOR_RUN = (
     / "runs"
     / "2026-09-05-claude-code-opus-4.6-thinking-artifact-behavior-seed-20260906"
 )
+ARTIFACT_BEHAVIOR_HOLDOUT_RUN = (
+    ROOT
+    / "evals"
+    / "agent-eval"
+    / "runs"
+    / "2026-09-05-antigravity-gemini-3.8-flash-high-artifact-behavior-holdout-v1-seed-20260907"
+)
 
 
 def _run(*args: str) -> subprocess.CompletedProcess[str]:
@@ -711,6 +718,60 @@ def test_published_claude_artifact_behavior_run_reproduces(tmp_path):
     assert all(not row["exact_duplicates"] for row in freshness["comparisons"])
     assert all(not row["near_duplicates"] for row in freshness["comparisons"])
 
+
+def test_published_artifact_behavior_holdout_reproduces(tmp_path):
+    run = ARTIFACT_BEHAVIOR_HOLDOUT_RUN
+    metadata = json.loads((run / "run-metadata.json").read_text())
+    mapping = json.loads((run / "private-mapping.json").read_text())
+    commitment = json.loads((run / "suite-commitment.json").read_text())
+    original = json.loads((run / "report.json").read_text())
+
+    assert metadata["runner"] == "Antigravity"
+    assert metadata["app_version"] == "2.12.2"
+    assert metadata["model"] == "Gemini 3.8 Flash (High)"
+    assert mapping["benchmark_version"] == "gtta-agent-eval-holdout@1.0.0"
+    assert mapping["case_count"] == 10
+    assert mapping["sample_count"] == 20
+    assert commitment == json.loads(
+        (
+            ROOT
+            / "evals"
+            / "agent-eval"
+            / "commitments"
+            / "2026-09-05-artifact-behavior-holdout-v1.json"
+        ).read_text()
+    )
+    assert hashlib.sha256((run / "requests.jsonl").read_bytes()).hexdigest() == (
+        metadata["requests_sha256"]
+    )
+    assert metadata["requests_sha256"] == commitment["requests_sha256"]
+    assert hashlib.sha256((run / "outputs.jsonl").read_bytes()).hexdigest() == (
+        metadata["outputs_sha256"]
+    )
+    assert hashlib.sha256((run / "holdout-cases.jsonl").read_bytes()).hexdigest() == (
+        commitment["cases_sha256"]
+    )
+    assert hashlib.sha256(
+        (run / "holdout-expectations.json").read_bytes()
+    ).hexdigest() == commitment["expectations_sha256"]
+    assert mapping["expectations_sha256"] == commitment["expectations_sha256"]
+    assert mapping["artifact_schema_sha256"] == commitment["artifact_schema_sha256"]
+    assert original["schema_matches_prompt"] is True
+    for arm in ("baseline", "skill"):
+        assert original["aggregates"][arm]["structurally_passed"] == 10
+        assert original["aggregates"][arm]["behaviorally_passed"] == 0
+        assert original["aggregates"][arm]["passed"] == 0
+
+    recomputed = tmp_path / "artifact-behavior-holdout-report.json"
+    result = _run(
+        "score-artifact-behavior",
+        str(run),
+        str(run / "outputs.jsonl"),
+        "--report",
+        str(recomputed),
+    )
+    assert result.returncode == 0, result.stderr
+    assert recomputed.read_bytes() == (run / "report.json").read_bytes()
 
 def test_antigravity_import_rejects_incomplete_response_set(tmp_path):
     run_dir = tmp_path / "run"

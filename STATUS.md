@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-09-04. Maturity definitions are in
+Updated 2026-09-05. Maturity definitions are in
 [`docs/maturity-framework.md`](docs/maturity-framework.md); gates for specific
 claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
@@ -9,7 +9,7 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
 | Release readiness | R2 | GitHub pre-release `v1.5.0rc1`; source, distribution, and installed-wheel gates; Trusted Publishing workflow on `main` | Restore PyPI account access, register the pending publisher, publish through the protected workflow, and verify installation from PyPI |
-| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. The strict MemoArtifact sequence exposed an incomplete adapter, confirmed its correction, and moved beyond the schema ceiling. Declared-behavior runs record 8/12 skill vs. 3/12 baseline on Gemini and 3/12 vs. 0/12 on Claude Opus 4.6; the Claude run also has one skill structural failure. Exact artifacts, freshness, and limitations are retained. | Freeze the repeated suite and add broader-domain holdouts; practitioner validation remains tracked under U |
+| Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. Declared-behavior runs on the original suite record 8/12 vs. 3/12 on Gemini and 3/12 vs. 0/12 on Claude. The preregistered broader-domain holdout passed structure 10/10 in both arms but declared behavior 0/10 in both; the null result and execution caveats are retained. | M3 is the highest defined method level; stronger quality/usefulness claims require different evidence and remain tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
@@ -49,6 +49,11 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
   baseline on declared behavior, while structural passes were 11/12 versus
   12/12. It repeats the direction across a second model family but not the
   magnitude, and the low absolute pass rate prevents a strong adoption claim.
+- The preregistered 10-case broader-domain holdout passed strict structure in
+  both arms but passed zero complete declared-behavior expectations in either
+  arm. Missing `verify: true` declarations dominated. This does not reproduce
+  the original suite's positive combined-pass difference and limits any claim
+  of reliable cross-domain contract transfer.
 - External practitioner usefulness and production reliability are unvalidated.
 
 ## Immediate development order
@@ -56,9 +61,9 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
-3. Execute the preregistered 10-case `gtta-agent-eval-holdout@1.0.0` once,
-   without opening its private mapping or hidden expectations. Then publish
-   the frozen inputs and 20 paired outputs together; do not tune against them.
-4. Complete PyPI Trusted Publishing after account access is restored.
-5. Accept practitioner review if access becomes available; do not manufacture a
+3. Freeze the completed holdout and its null result; do not tune the skill or
+   thresholds against these 10 cases.
+4. Stabilize the `1.6` source, package, documentation, and release notes.
+5. Complete PyPI Trusted Publishing after account access is restored.
+6. Accept practitioner review if access becomes available; do not manufacture a
    substitute metric while the project remains U0.

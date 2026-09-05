@@ -19,9 +19,8 @@ frozen benchmark.
 
 New suites are preregistered under [`commitments/`](commitments/). The first
 holdout commitment covers 10 broader-domain cases, including the previously
-absent Mode F. Its cases and hidden expectations are intentionally withheld
-until the first 20 paired outputs have been saved; the committed hashes bind
-their exact pre-run contents.
+absent Mode F. The committed hashes bind its exact pre-run contents; the cases,
+expectations, and first completed outputs are now published together.
 
 The same frozen cases can now be run through the strict
 [`MemoArtifact` path](artifact-eval.md). Both arms receive the same schema and
@@ -126,6 +125,12 @@ than semantic or practitioner evaluation.
 
 ## Published structured runs
 
+- [`2026-09-05 — Antigravity / Gemini 3.8 Flash (High), preregistered holdout`](runs/2026-09-05-antigravity-gemini-3.8-flash-high-artifact-behavior-holdout-v1-seed-20260907/):
+  both arms passed 10/10 structural checks and 0/10 complete declared-behavior
+  expectations. Missing `verify: true` declarations dominated (10 baseline,
+  8 skill failures). This null holdout does not reproduce the earlier positive
+  combined-pass difference; execution qualifications are published alongside
+  the immutable outputs.
 - [`2026-09-05 — Claude Code / Claude Opus 4.6, declared-behavior replication`](runs/2026-09-05-claude-code-opus-4.6-thinking-artifact-behavior-seed-20260906/):
   the skill arm passed 3/12 frozen behavior expectations versus 0/12 baseline;
   structural passes were 11/12 versus 12/12. This repeats the positive

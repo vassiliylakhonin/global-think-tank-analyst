@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Published the first preregistered `gtta-agent-eval-holdout@1.0.0` run using
+  Antigravity 2.12.2 and Gemini 3.8 Flash (High). Both arms passed 10/10 strict
+  structural checks and 0/10 complete declared-behavior expectations. Missing
+  verification flags dominated. The null result does not reproduce the
+  original suite's positive combined-pass difference; immutable artifacts,
+  commitment verification, and execution caveats are retained.
 - Preregistered `gtta-agent-eval-holdout@1.0.0`, a 10-case / 20-sample
   broader-domain structured declared-behavior suite that adds Mode F coverage.
   The public commitment binds the exact private cases, expectations, requests,

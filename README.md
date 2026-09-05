@@ -275,6 +275,14 @@ cross-model-family structural evidence, but the low absolute pass rate and one
 skill invariant failure argue against further headline-score optimization on
 the same cases.
 
+The preregistered
+[Gemini 3.8 broader-domain holdout](evals/agent-eval/runs/2026-09-05-antigravity-gemini-3.8-flash-high-artifact-behavior-holdout-v1-seed-20260907/)
+then passed strict structure 10/10 in both arms but passed zero complete
+declared-behavior expectations in either arm. Missing `verify: true`
+declarations dominated. This null result does not reproduce the original
+suite's positive combined-pass difference and is published with its execution
+qualifications rather than tuned away.
+
 Read [`STATUS.md`](STATUS.md) for current evidence,
 [`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
 release/method/usefulness axes, and
@@ -342,10 +350,11 @@ by running its example prompt through the skill.
    machine-readable warning-truncation telemetry added in ruleset 1.2.3.
 2. Freeze the completed Gemini and Claude declared-behavior results; do not
    tune the method or rubric against repeated runs on the same cases.
-3. Version and broaden the paired suite across new task-domain holdouts while
-   retaining the current 12-case set as a regression benchmark.
-4. Complete PyPI Trusted Publishing after account access is restored.
-5. Record real practitioner feedback if access becomes available; do not use
+3. Freeze the completed broader-domain holdout and its null result; do not tune
+   the method or thresholds against those cases.
+4. Stabilize the `1.6` source, package, documentation, and release notes.
+5. Complete PyPI Trusted Publishing after account access is restored.
+6. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.
 
 ## Contributing

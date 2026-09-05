@@ -1,0 +1,605 @@
+{
+  "evaluation_version": "gtta-artifact-behavior-eval@1.0.0",
+  "benchmark_version": "gtta-agent-eval-holdout@1.0.0",
+  "artifact_schema_version": "gtta.memo@1.0",
+  "scope": "memo-artifact-declared-behavior",
+  "seed": 20260907,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "expectations_sha256": "3f87904a74c31345c103656a110eae1f3087ce94bc01fefc304de3f6f6bac54d",
+  "prompt_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "scorer_artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "schema_matches_prompt": true,
+  "run_metadata": {
+    "runner": "Antigravity",
+    "app_version": "2.12.2",
+    "model": "Gemini 3.8 Flash (High)",
+    "generation_settings": {
+      "thinking": "high"
+    },
+    "notes": "First preregistered 20-sample paired holdout run; skills were injected via workspace agent definitions (gtta_skill); retry count: 0; one fresh isolated subagent context per sample.",
+    "imported_at": "2026-09-05T11:24:37.895650+00:00",
+    "sample_count": 20,
+    "requests_sha256": "dfb653285eb9c0d30e3b98853128fffb440aa59610abe3c0939f6d90d21ad478",
+    "outputs_sha256": "c4b22f1c2b94fe313e04e999118f99a14f3ee18658b47e44a1a3ed384dfaa888"
+  },
+  "aggregates": {
+    "baseline": {
+      "samples": 10,
+      "structurally_passed": 10,
+      "behaviorally_passed": 0,
+      "passed": 0,
+      "json_parse_failures": 0,
+      "interface_failures": 0,
+      "expectation_failures": 10,
+      "finding_counts": {
+        "ARTIFACTB001": 2,
+        "ARTIFACTB007": 10
+      },
+      "artifact_totals": {
+        "claims": 109,
+        "source_backed_claims": 16,
+        "claims_with_basis": 77,
+        "verify_claims": 0,
+        "options": 30,
+        "indicators": 28
+      },
+      "structural_pass_rate": 1.0,
+      "behavioral_pass_rate": 0.0,
+      "pass_rate": 0.0
+    },
+    "skill": {
+      "samples": 10,
+      "structurally_passed": 10,
+      "behaviorally_passed": 0,
+      "passed": 0,
+      "json_parse_failures": 0,
+      "interface_failures": 0,
+      "expectation_failures": 10,
+      "finding_counts": {
+        "ARTIFACTB001": 3,
+        "ARTIFACTB002": 1,
+        "ARTIFACTB007": 8
+      },
+      "artifact_totals": {
+        "claims": 113,
+        "source_backed_claims": 17,
+        "claims_with_basis": 74,
+        "verify_claims": 4,
+        "options": 28,
+        "indicators": 29
+      },
+      "structural_pass_rate": 1.0,
+      "behavioral_pass_rate": 0.0,
+      "pass_rate": 0.0
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "aeeae23a8583a82d",
+      "case_id": "coach-rumor-analysis",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "5de74f2782f574e7",
+      "case_id": "coach-rumor-analysis",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB001",
+          "path": "$.claims",
+          "message": "Expected at least 1 'assumption' claim(s); found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 7,
+        "source_backed_claims": 0,
+        "claims_with_basis": 2,
+        "verify_claims": 1,
+        "options": 2,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "99faec64d5b87fa3",
+      "case_id": "coalition-digital-policy",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "28310b1d13343ab3",
+      "case_id": "coalition-digital-policy",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 0,
+        "claims_with_basis": 9,
+        "verify_claims": 0,
+        "options": 2,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "a1cc9ea8bed9d241",
+      "case_id": "drought-hydropower-scenarios",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB001",
+          "path": "$.claims",
+          "message": "Expected at least 1 'unknown' claim(s); found 0."
+        },
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 12,
+        "source_backed_claims": 0,
+        "claims_with_basis": 11,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "3a10c362ab8322a0",
+      "case_id": "drought-hydropower-scenarios",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 16,
+        "source_backed_claims": 0,
+        "claims_with_basis": 10,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "245ebc6fea006ec5",
+      "case_id": "fertilizer-port-disruption",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "0a30bc981b1a97aa",
+      "case_id": "fertilizer-port-disruption",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 8,
+        "source_backed_claims": 0,
+        "claims_with_basis": 6,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "6abd2a66a782d587",
+      "case_id": "food-contamination-attribution",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB001",
+          "path": "$.claims",
+          "message": "Expected at least 2 'scenario' claim(s); found 1."
+        },
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 18,
+        "source_backed_claims": 5,
+        "claims_with_basis": 13,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "10401392410c0834",
+      "case_id": "food-contamination-attribution",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB001",
+          "path": "$.claims",
+          "message": "Expected at least 2 'scenario' claim(s); found 0."
+        },
+        {
+          "code": "ARTIFACTB002",
+          "path": "$.claims",
+          "message": "Expected at least 3 'user-provided' provenance declaration(s); found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 12,
+        "source_backed_claims": 5,
+        "claims_with_basis": 7,
+        "verify_claims": 3,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "1ba168ccb7d79ffd",
+      "case_id": "hospital-stockpile-options",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 9,
+        "source_backed_claims": 3,
+        "claims_with_basis": 6,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 2
+      }
+    },
+    {
+      "sample_id": "5a929e7ca7383a37",
+      "case_id": "hospital-stockpile-options",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 3,
+        "claims_with_basis": 4,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "5c1fb56b17cafb19",
+      "case_id": "industrial-subsidy-location",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 11,
+        "source_backed_claims": 3,
+        "claims_with_basis": 8,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "455e8510beefeaf0",
+      "case_id": "industrial-subsidy-location",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 16,
+        "source_backed_claims": 3,
+        "claims_with_basis": 13,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "96945f5586efb233",
+      "case_id": "nearshoring-eliminates-risk",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 0,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "ae8865fa5629551a",
+      "case_id": "nearshoring-eliminates-risk",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 1 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 9,
+        "source_backed_claims": 0,
+        "claims_with_basis": 5,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "4817980988019e54",
+      "case_id": "ransomware-state-direction",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 9,
+        "source_backed_claims": 2,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "54e36d4b3fc33410",
+      "case_id": "ransomware-state-direction",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 2,
+        "claims_with_basis": 8,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "9bf0bd55d6100257",
+      "case_id": "sovereign-workout-creditors",
+      "arm": "baseline",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 10,
+        "source_backed_claims": 3,
+        "claims_with_basis": 7,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    },
+    {
+      "sample_id": "55035b2a5c7c27f1",
+      "case_id": "sovereign-workout-creditors",
+      "arm": "skill",
+      "passed": false,
+      "structurally_passed": true,
+      "behaviorally_passed": false,
+      "expected_mode_matches": true,
+      "expected_evidence_mode_matches": true,
+      "findings": [
+        {
+          "code": "ARTIFACTB001",
+          "path": "$.claims",
+          "message": "Expected at least 1 'unknown' claim(s); found 0."
+        },
+        {
+          "code": "ARTIFACTB007",
+          "path": "$.claims",
+          "message": "Expected at least 2 claim(s) flagged for verification; found 0."
+        }
+      ],
+      "artifact_metrics": {
+        "claims": 14,
+        "source_backed_claims": 4,
+        "claims_with_basis": 10,
+        "verify_claims": 0,
+        "options": 3,
+        "indicators": 3
+      }
+    }
+  ],
+  "limitations": [
+    "This report checks structure and preregistered counts over model-declared fields only.",
+    "It does not judge whether claims are true, distinct, relevant, well-reasoned, source-supported, or useful.",
+    "Passing declared-behavior expectations is method-contract adoption, not analytical quality.",
+    "A same-model or author-run comparison is not external validation.",
+    "External practitioner validation remains a separate unmet evidence layer."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "runner": "Antigravity",
+  "app_version": "2.12.2",
+  "model": "Gemini 3.8 Flash (High)",
+  "generation_settings": {
+    "thinking": "high"
+  },
+  "notes": "First preregistered 20-sample paired holdout run; skills were injected via workspace agent definitions (gtta_skill); retry count: 0; one fresh isolated subagent context per sample.",
+  "imported_at": "2026-09-05T11:24:37.895650+00:00",
+  "sample_count": 20,
+  "requests_sha256": "dfb653285eb9c0d30e3b98853128fffb440aa59610abe3c0939f6d90d21ad478",
+  "outputs_sha256": "c4b22f1c2b94fe313e04e999118f99a14f3ee18658b47e44a1a3ed384dfaa888"
+}

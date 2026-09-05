@@ -1,0 +1,521 @@
+{
+  "benchmark_version": "gtta-agent-eval-holdout@1.0.0",
+  "evaluation_version": "gtta-artifact-behavior-eval@1.0.0",
+  "evaluation_type": "memo-artifact-declared-behavior",
+  "artifact_schema_version": "gtta.memo@1.0",
+  "artifact_schema_sha256": "fc008c964f895e0efb1945664c00c1254c6c7ae532dc434a37283f4ef7b39848",
+  "expectations_sha256": "3f87904a74c31345c103656a110eae1f3087ce94bc01fefc304de3f6f6bac54d",
+  "response_extension": ".json",
+  "seed": 20260907,
+  "case_count": 10,
+  "sample_count": 20,
+  "skill_sha256": "fbf1f2c2957c0fa7701aabbc4484de954726311ee9c7f74f3b8979837117d57a",
+  "samples": [
+    {
+      "sample_id": "245ebc6fea006ec5",
+      "case_id": "fertilizer-port-disruption",
+      "arm": "baseline",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "0a30bc981b1a97aa",
+      "case_id": "fertilizer-port-disruption",
+      "arm": "skill",
+      "mode": "A",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "9bf0bd55d6100257",
+      "case_id": "sovereign-workout-creditors",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "55035b2a5c7c27f1",
+      "case_id": "sovereign-workout-creditors",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "5c1fb56b17cafb19",
+      "case_id": "industrial-subsidy-location",
+      "arm": "baseline",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "455e8510beefeaf0",
+      "case_id": "industrial-subsidy-location",
+      "arm": "skill",
+      "mode": "B",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "a1cc9ea8bed9d241",
+      "case_id": "drought-hydropower-scenarios",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "3a10c362ab8322a0",
+      "case_id": "drought-hydropower-scenarios",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "99faec64d5b87fa3",
+      "case_id": "coalition-digital-policy",
+      "arm": "baseline",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "28310b1d13343ab3",
+      "case_id": "coalition-digital-policy",
+      "arm": "skill",
+      "mode": "C",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "scenario": 3,
+          "assumption": 1,
+          "assessment": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 3,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "4817980988019e54",
+      "case_id": "ransomware-state-direction",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 3,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "54e36d4b3fc33410",
+      "case_id": "ransomware-state-direction",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 3,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "96945f5586efb233",
+      "case_id": "nearshoring-eliminates-risk",
+      "arm": "baseline",
+      "mode": "D",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 3,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 3
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "ae8865fa5629551a",
+      "case_id": "nearshoring-eliminates-risk",
+      "arm": "skill",
+      "mode": "D",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 3,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 3
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 1,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "1ba168ccb7d79ffd",
+      "case_id": "hospital-stockpile-options",
+      "arm": "baseline",
+      "mode": "E",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 3,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "5a929e7ca7383a37",
+      "case_id": "hospital-stockpile-options",
+      "arm": "skill",
+      "mode": "E",
+      "evidence_mode": "user-provided sources",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 2,
+          "assessment": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 2,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 3,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "aeeae23a8583a82d",
+      "case_id": "coach-rumor-analysis",
+      "arm": "baseline",
+      "mode": "F",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "5de74f2782f574e7",
+      "case_id": "coach-rumor-analysis",
+      "arm": "skill",
+      "mode": "F",
+      "evidence_mode": "reasoning-only",
+      "expectations": {
+        "min_claim_kinds": {
+          "assessment": 2,
+          "assumption": 1,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "inference": 1,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 2,
+        "min_indicators": 2,
+        "min_verify_claims": 1,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "6abd2a66a782d587",
+      "case_id": "food-contamination-attribution",
+      "arm": "baseline",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 3,
+          "assessment": 2,
+          "scenario": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 3,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    },
+    {
+      "sample_id": "10401392410c0834",
+      "case_id": "food-contamination-attribution",
+      "arm": "skill",
+      "mode": "G",
+      "evidence_mode": "illustrative source packet",
+      "expectations": {
+        "min_claim_kinds": {
+          "fact": 3,
+          "assessment": 2,
+          "scenario": 2,
+          "unknown": 1
+        },
+        "min_provenances": {
+          "user-provided": 3,
+          "analyst-judgment": 2
+        },
+        "min_derived_claims": 2,
+        "min_bottom_line_derived_claims": 1,
+        "min_options": 1,
+        "min_indicators": 2,
+        "min_verify_claims": 2,
+        "min_key_unknowns": 2,
+        "min_change_conditions": 2
+      }
+    }
+  ]
+}
