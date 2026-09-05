@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
-"""Keep the declared Russian method coverage matching the actual coverage.
+"""Keep the Russian runtime method structurally aligned with the canonical one.
 
-`SKILL_RU.md` is not a translation of `SKILL.md`; it is a subset. Both files are
-packaged in the wheel and `get_skill_prompt(language="ru")` is a documented
-entry point, so an agent can load the Russian method believing it carries the
-same contract as the English one. It does not.
-
-This check does not require parity. Partial localisation is a legitimate state.
-It requires that the gap is *declared where it is loaded*: `SKILL_RU.md` must
-carry a coverage banner whose numbers and missing-mode list match what the files
-actually contain, so the claim cannot quietly rot as either file changes.
+Both skill files are packaged and exposed through ``get_skill_prompt``. The
+Russian rendering therefore has to retain every method section, every memo
+mode, and the machine-checkable labels that callers rely on.
 """
 
 from __future__ import annotations
@@ -29,6 +23,32 @@ SECTION_RE = re.compile(r"^#{2,3}\s+(.+?)\s*$", re.MULTILINE)
 # mentions back as definitions.
 MODE_HEADING_RE = re.compile(r"^#{2,3}\s+Mode ([A-G])\b", re.MULTILINE)
 BANNER_MARKER = "> **Покрытие метода:**"
+REQUIRED_RUNTIME_MARKERS = (
+    "полный русскоязычный эквивалент",
+    "EVIDENCE ACCESS LIMITED: no live verification performed in this environment.",
+    "[primary]",
+    "[secondary]",
+    "[user-provided]",
+    "[inference]",
+    "[analyst-judgment]",
+    "[verify]",
+    "[stale-risk: YYYY-MM]",
+    "**Question:**",
+    "**Decision:**",
+    "**Audience:**",
+    "**Time horizon:**",
+    "**Evidence mode:**",
+    "Risk Severity",
+    "Decision Relevance",
+    "Executive Takeaway",
+    "Decision Context",
+    "What Is Known / Evidence Limits",
+    "Actors and Incentives",
+    "Main Assessment",
+    "Risks and Trade-Offs",
+    "Indicators to Watch",
+    "What Would Change This Judgment",
+)
 
 
 def fail(message: str) -> None:
@@ -49,42 +69,46 @@ def main() -> None:
     english_sections, english_modes = measure(ENGLISH)
     russian_sections, russian_modes = measure(RUSSIAN)
     missing_modes = sorted(english_modes - russian_modes)
+    extra_modes = sorted(russian_modes - english_modes)
 
     russian_text = RUSSIAN.read_text(encoding="utf-8")
     if BANNER_MARKER not in russian_text:
         fail(
             f"{RUSSIAN.name} must open with a coverage banner starting "
-            f"{BANNER_MARKER!r}. The Russian method is a subset of the English one, "
-            "and the file itself is what an agent loads — the disclosure has to live "
-            "there, not only in the README."
+            f"{BANNER_MARKER!r}; the parity claim must live in the runtime file."
         )
 
-    expected = f"{russian_sections} из {english_sections}"
+    if russian_sections != english_sections:
+        fail(
+            f"{RUSSIAN.name} has {russian_sections} method sections; "
+            f"{ENGLISH.name} has {english_sections}. Full structural parity is required."
+        )
+
+    expected = f"{english_sections} из {english_sections}"
     if expected not in russian_text:
         fail(
-            f"{RUSSIAN.name} coverage banner does not state the measured section count. "
-            f"Expected the text {expected!r} (Russian sections / English sections). "
-            "Update the banner whenever either file gains or loses a section."
+            f"{RUSSIAN.name} parity banner must contain {expected!r}."
         )
 
     if missing_modes:
-        expected_modes = ", ".join(f"Mode {mode}" for mode in missing_modes)
-        if expected_modes not in russian_text:
-            fail(
-                f"{RUSSIAN.name} coverage banner must name the memo modes it does not "
-                f"define. Expected the text {expected_modes!r}. An agent asked for a "
-                "mode with no Russian definition has nothing to follow."
-            )
-    elif "не определены" in russian_text:
         fail(
-            f"{RUSSIAN.name} claims missing modes, but every English memo mode is now "
-            "present. Update the banner."
+            f"{RUSSIAN.name} is missing memo modes: {', '.join(missing_modes)}."
+        )
+    if extra_modes:
+        fail(f"{RUSSIAN.name} has unknown memo modes: {', '.join(extra_modes)}.")
+
+    missing_markers = [
+        marker for marker in REQUIRED_RUNTIME_MARKERS if marker not in russian_text
+    ]
+    if missing_markers:
+        fail(
+            f"{RUSSIAN.name} is missing runtime contract markers: "
+            + ", ".join(repr(marker) for marker in missing_markers)
         )
 
     print(
-        f"ok: Russian method declares its coverage — {russian_sections} of "
-        f"{english_sections} sections"
-        + (f", missing {', '.join(missing_modes)}" if missing_modes else ", all modes present")
+        f"ok: Russian method parity — {russian_sections}/{english_sections} "
+        f"sections and all {len(english_modes)} modes present"
     )
 
 

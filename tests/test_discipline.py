@@ -218,6 +218,39 @@ Confidence: Moderate.
     assert "GTTA008" not in finding_ids(report)
 
 
+def test_bilingual_russian_mode_b_headings_remain_machine_checkable():
+    report = check_contract(
+        """# Меморандум
+Question: следует ли запускать обратимый пилот? (Вопрос)
+Decision: запуск, ожидание или отказ. (Решение)
+Audience: операционный комитет. (Аудитория)
+Time horizon: near-term. (Временной горизонт)
+Evidence mode: reasoning-only. (Режим доказательств)
+
+**EVIDENCE ACCESS LIMITED: no live verification performed in this environment.**
+
+## Executive Takeaway / Резюме для руководства
+[analyst-judgment] Обратимый пилот выглядит предпочтительнее полного запуска.
+
+## Decision Context / Контекст решения
+[inference] Решение касается момента и масштаба входа.
+
+## Actors and Incentives / Акторы и стимулы
+[analyst-judgment] Оператор стремится сохранить гибкость.
+
+## Options / Варианты действий
+[analyst-judgment] Вариант A — ограниченный пилот.
+
+## Confidence and Key Unknowns / Уверенность и неизвестные
+Confidence: Moderate.
+""",
+        mode="B",
+    )
+    assert report.passed is True
+    assert report.evidence_mode == "reasoning-only"
+    assert "GTTA008" not in finding_ids(report)
+
+
 def test_mode_g_evidence_evaluation_matrix_marker_is_accepted():
     report = check_contract(
         """# Competing hypotheses

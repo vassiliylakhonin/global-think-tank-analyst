@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Expanded `SKILL_RU.md` from a disclosed 9/45-section subset to a full
+  45/45-section Russian rendering of the canonical method, including Modes D,
+  F, and G, the complete workflow, stop conditions, evidence-packet handoff,
+  default output template, and self-check. Canonical English heading markers
+  remain visible beside Russian labels for deterministic checker compatibility;
+  structural parity and essential runtime markers now have a release check.
+
 - Made `gtta.agent` importable without the optional LangChain/LangGraph stack.
   Agent dependencies now load only when `AnalystAgent` is constructed, with a
   focused installation error at that seam. The release gate again tests the

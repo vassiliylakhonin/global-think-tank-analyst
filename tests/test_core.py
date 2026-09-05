@@ -7,10 +7,27 @@ from gtta.resources import get_mode_template, get_skill_prompt
 
 def test_packaged_skill_resources_are_complete():
     assert len(get_skill_prompt("en")) > 20_000
-    assert len(get_skill_prompt("ru")) > 5_000
+    assert len(get_skill_prompt("ru")) > 25_000
     mode_g = get_mode_template("G")
     assert "### Mode G" in mode_g
     assert "## Default memo output" not in mode_g
+
+
+def test_packaged_russian_skill_exposes_every_mode_with_canonical_markers():
+    markers = {
+        "A": "Bottom line",
+        "B": "Executive Takeaway",
+        "C": "Triggers",
+        "D": "Target Claim",
+        "E": "Questions for Owners",
+        "F": "Coaching Questions",
+        "G": "Evidence Matrix",
+    }
+
+    for mode, marker in markers.items():
+        template = get_mode_template(mode, language="ru")
+        assert template.startswith(f"### Mode {mode}")
+        assert marker in template
 
 
 def test_skill_resource_language_is_explicit():

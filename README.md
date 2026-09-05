@@ -77,12 +77,10 @@ mature way to use the method.
 
 Add [`AGENTS.md`](AGENTS.md) and [`SKILL.md`](SKILL.md) to an agent workspace,
 or attach `SKILL.md` to a conversation. English and Russian instructions are
-both packaged in the wheel, but they are not equivalent: `SKILL.md` is the
-canonical method and `SKILL_RU.md` is a **partial** rendering of it — 9 of 45
-sections, with Mode D, Mode F and Mode G undefined. Use `language="ru"` for
-Russian-language output of the modes it covers; use the English method when the
-full contract matters. The gap is stated in `SKILL_RU.md` itself and checked by
-`scripts/validate_language_parity.py`.
+both packaged in the wheel. `SKILL.md` remains canonical; `SKILL_RU.md` is a
+full 45-section Russian rendering with Mode A–G and bilingual canonical output
+markers so Russian memos remain compatible with the method checker. Structural
+parity is enforced by `scripts/validate_language_parity.py`.
 
 ### Install the developer toolkit from source
 
@@ -308,7 +306,7 @@ by running its example prompt through the skill.
 
 - [`AGENTS.md`](AGENTS.md) — repository-wide agent contract
 - [`SKILL.md`](SKILL.md) — canonical English runtime instructions
-- [`SKILL_RU.md`](SKILL_RU.md) — Russian runtime instructions (partial: 9 of 45 sections)
+- [`SKILL_RU.md`](SKILL_RU.md) — full Russian runtime instructions (45 of 45 sections, Mode A–G)
 - [`codex/SKILL.md`](codex/SKILL.md) — Codex-ready variant
 - [`llms.txt`](llms.txt) — orientation for agents and indexers
 - `Global Think Tank Analyst` — project and horizontal skill

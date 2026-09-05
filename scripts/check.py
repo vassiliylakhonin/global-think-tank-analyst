@@ -11,7 +11,7 @@ CHECKS = (
     ("skill package", ("scripts/validate_skill_package.py",)),
     ("runtime skill resources", ("scripts/validate_runtime_resources.py",)),
     ("repository JSON", ("scripts/validate_json.py",)),
-    ("declared language coverage", ("scripts/validate_language_parity.py",)),
+    ("Russian method parity", ("scripts/validate_language_parity.py",)),
     # ("signal archive", ("scripts/validate_signals.py",)), # Deprecated: now auto-generated
     ("signal pipeline tests", ("scripts/test_signal_pipeline.py",)),
     ("evidence-packet handoff", ("scripts/validate_evidence_packet_handoff.py",)),
