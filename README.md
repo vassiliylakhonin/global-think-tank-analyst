@@ -113,9 +113,15 @@ gtta mcp
 
 The current release is
 [`v1.6.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest),
-the first stable one since `1.4.0`. It carries the full Russian method and
-makes the agent adapter's optional dependencies genuinely optional. See
-[`STATUS.md`](STATUS.md) for the PyPI publication state.
+the first stable one since `1.4.0`, and the first release on PyPI:
+
+```bash
+pip install global-think-tank-analyst
+```
+
+It carries the full Russian method and makes the agent adapter's optional
+dependencies genuinely optional. See [`STATUS.md`](STATUS.md) for how it was
+published and what still blocks this repository from publishing itself.
 
 ## Executable analysis contracts
 
