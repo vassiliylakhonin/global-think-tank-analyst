@@ -8,7 +8,7 @@ on:
       tag:
         description: "Existing release tag to build and publish"
         required: true
-        default: "v1.6.0rc3"
+        default: "v1.6.0"
         type: string
 
 permissions:
@@ -75,6 +75,15 @@ jobs:
       url: https://pypi.org/p/global-think-tank-analyst
     permissions:
       id-token: write
+    # Trusted Publishing is the destination, and registering the publisher needs
+    # a PyPI web login this account cannot currently perform: two-factor access
+    # was lost and pypi/support#12033 is still open. That blocked every release
+    # from 1.4.0 onward, while the sibling repository kept publishing on a
+    # stored account-scoped token throughout. So accept either credential and
+    # prefer the token while it is the one that works. Delete the token step,
+    # and the secret, once the publisher is registered.
+    env:
+      HAS_API_TOKEN: ${{ secrets.PYPI_API_TOKEN != '' }}
     steps:
       - name: Download verified distributions
         uses: actions/download-artifact@v8
@@ -82,7 +91,23 @@ jobs:
           name: python-package-distributions
           path: dist/
 
+      - name: Report which credential will be used
+        run: |
+          if [ "$HAS_API_TOKEN" = "true" ]; then
+            echo "Publishing with the stored PYPI_API_TOKEN." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "No PYPI_API_TOKEN set; attempting Trusted Publishing." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Publish with a stored API token
+        if: env.HAS_API_TOKEN == 'true'
+        uses: pypa/gh-action-pypi-publish@v1.14.2
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+          print-hash: true
+
       - name: Publish with PyPI Trusted Publishing
+        if: env.HAS_API_TOKEN != 'true'
         uses: pypa/gh-action-pypi-publish@v1.14.2
         with:
           print-hash: true

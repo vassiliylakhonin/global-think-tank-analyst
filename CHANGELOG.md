@@ -1,6 +1,9 @@
 # Changelog
 
-## Unreleased
+## 1.6.0 - 2026-09-07
+
+First stable release since 1.4.0. Supersedes the 1.6.0rc1-rc3 candidates,
+which stayed GitHub prereleases while PyPI publication was blocked.
 
 - Expanded `SKILL_RU.md` from a disclosed 9/45-section subset to a full
   45/45-section Russian rendering of the canonical method, including Modes D,

@@ -111,11 +111,11 @@ gtta render-artifact memo.json > memo.md
 gtta mcp
 ```
 
-The latest GitHub candidate is
-[`v1.6.0rc2`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0rc2).
-PyPI publication remains blocked until Trusted Publishing is configured. The
-`v1.6.0rc1` prerelease exposed a missing optional test dependency; `rc2`
-corrected the release gate without invoking a paid API.
+The current release is
+[`v1.6.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest),
+the first stable one since `1.4.0`. It carries the full Russian method and
+makes the agent adapter's optional dependencies genuinely optional. See
+[`STATUS.md`](STATUS.md) for the PyPI publication state.
 
 ## Executable analysis contracts
 
