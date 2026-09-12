@@ -1,0 +1,5 @@
+Synthetic shipping record
+
+Illustrative data only. The synthetic record lists 24 microcontroller
+shipments through Warehouse KZ-7 during July 2026. It does not identify a real
+company, shipment, warehouse, customer, or controlled item.

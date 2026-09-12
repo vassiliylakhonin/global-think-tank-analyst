@@ -310,3 +310,26 @@ def test_cli_contract_exit_semantics(tmp_path):
     failing = CliRunner().invoke(app, ["check-contract", str(invalid), "--mode", "B"])
     assert failing.exit_code == 1
     assert "GTTA002" in failing.output
+
+
+def test_cli_contract_sarif_has_stable_rules_and_line_locations(tmp_path):
+    from typer.testing import CliRunner
+
+    from gtta.cli import app
+
+    memo = tmp_path / "memo.md"
+    memo.write_text(
+        VALID_MODE_B + "\nThe regulator will change the rule.\n", encoding="utf-8"
+    )
+    result = CliRunner().invoke(
+        app, ["check-contract", str(memo), "--mode", "B", "--format", "sarif"]
+    )
+
+    assert result.exit_code == 0, result.output
+    sarif = json.loads(result.output)
+    assert sarif["version"] == "2.1.0"
+    run = sarif["runs"][0]
+    assert run["tool"]["driver"]["name"] == "gtta-method-contract"
+    finding = next(item for item in run["results"] if item["ruleId"] == "GTTA010")
+    assert finding["level"] == "warning"
+    assert finding["locations"][0]["physicalLocation"]["region"]["startLine"]

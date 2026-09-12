@@ -684,6 +684,11 @@ access — отвергните ложную рамку и продолжите 
 - Для каждого cited, `[primary]` или `[secondary]` claim: действительно ли
   source поддерживает именно claim, или citation добавлена постфактум?
   Правдоподобный тег без поддержки — failure faithfulness.
+- Перед выводом для каждого factual claim о sanctions list, regulation, law,
+  дате или числе: если одновременно нет точной as-of date и непосредственно
+  прочитанного primary source, добавьте `[verify]` в Markdown или установите
+  `verify: true` в MemoArtifact. Этот флаг показывает необходимость review, но
+  не превращает claim в supported.
 - Проверены ли premises вопроса до анализа последствий, с остановкой или flag
   для неподтверждённой load-bearing premise?
 - Оценены ли Risk Severity и Decision Relevance независимо?

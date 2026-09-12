@@ -16,8 +16,10 @@ and the current evidence is recorded in [`STATUS.md`](../STATUS.md).
 | Say the workflow is production-proven or operationally reliable | U3 plus system-specific safety and operational evidence outside this repository | Nothing currently in this repo is sufficient |
 
 Passing `gtta check-contract` or `gtta check-artifact` means only that the
-declared structure conforms. It is never evidence that claims are true or that
-the memo is safe to use without review.
+declared structure conforms. Passing `gtta verify` additionally means the
+projected packet met the selected deterministic Agenda Intelligence checks.
+None of these results is evidence that claims are true or that the memo is safe
+to use without review.
 
 A repeated run presented as additional M3 evidence must also publish a
 freshness comparison against prior runs and known discarded attempts on the
@@ -41,6 +43,8 @@ than quality measures.
 - New invariants have positive and negative regression tests.
 - CLI and MCP adapters use the same implementation rather than copying rules.
 - The built-wheel smoke test exercises the installed interface.
+- Optional cross-repository seams have a CI job against their declared minimum
+  released dependency, not only an injected test double.
 - Rule severity and compatibility follow
   [`contract-release-criteria.md`](contract-release-criteria.md).
 - `STATUS.md` changes only when committed evidence changes.

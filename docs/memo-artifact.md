@@ -16,6 +16,9 @@ that accounting explicit:
 
 - each atomic ledger claim has a stable ID, kind, provenance, and optional
   source references;
+- source-backed claims can be paired with a `gtta.sources@1.0` companion
+  catalog of local source paths and verbatim quotes without changing this
+  reasoning-artifact schema;
 - derived claims can name the claims on which they depend;
 - narrative blocks, options, and indicators link back to ledger claims;
 - mode-specific sections and deeper-mode requirements are validated together;
@@ -88,14 +91,40 @@ factual truth. Agenda Intelligence MD owns the downstream evidence-packet seam.
 
 ```bash
 gtta artifact-schema
+gtta source-catalog-schema
 gtta check-artifact memo.json
 gtta check-artifact memo.json --json
 gtta render-artifact memo.json > memo.md
+gtta verify memo.json --strict
+gtta verify memo.json --strict --format html --out review.html
+gtta verify memo.json --strict --repair-prompt repair.md
 ```
 
 For Python integrations, use `MemoArtifact`, `check_memo_artifact()`,
-`get_memo_artifact_schema()`, and `render_memo_artifact()` from `gtta`. MCP
-exposes the same schema, validation, and rendering operations.
+`get_memo_artifact_schema()`, `render_memo_artifact()`, and
+`verify_memo_artifact()` from `gtta`. Install the optional verification seam
+with `pip install "global-think-tank-analyst[verification]"`. MCP exposes the
+artifact schema, validation, and rendering operations; memo verification is
+currently available through Python and CLI.
+
+`gtta verify` selects claims with `primary`, `secondary`, or `user-provided`
+provenance, maps `source_refs` to Agenda Intelligence `source_ids`, loads only
+the referenced local files, and runs Agenda's evidence-packet checker. It does
+not submit source text to a model or network service. In strict mode, missing
+or weak claim support, unresolved sources, and missing verification markers on
+risk-sensitive factual claims fail closed. A pass means packet completeness,
+not factual truth or professional approval.
+
+By convention `gtta verify memo.json` discovers `memo.sources.json`; use
+`--sources another-catalog.json` to override it. Source paths resolve relative
+to the catalog and must remain inside its directory. This prevents a portable
+catalog from silently reading arbitrary files. The Agenda Intelligence adapter
+retains its own file-size, format, and extraction limits.
+
+`gtta source-catalog-schema` reads the frozen Draft 2020-12 schema shipped in
+the installed package. A regression test requires the runtime model to produce
+the same schema. `--repair-prompt` writes bounded Markdown guidance without
+source text or input mutation; it cannot discover evidence or certify a repair.
 
 The offline paired [structured artifact eval](../evals/agent-eval/artifact-eval.md)
 uses this same validator. It gives both arms the same schema and interface

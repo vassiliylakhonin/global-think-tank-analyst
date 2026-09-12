@@ -48,3 +48,20 @@ jobs:
 
       - name: Smoke-test installed wheel
         run: python3 scripts/test_wheel_install.py
+
+  agenda-1-9-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install GTTA test dependencies and pinned Agenda release
+        run: pip install -e ".[test]" "agenda-intelligence-md==1.9.0"
+
+      - name: Run the real composition-seam test
+        run: pytest -q tests/test_verification_integration.py

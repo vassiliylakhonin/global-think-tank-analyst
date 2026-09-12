@@ -20,9 +20,24 @@ from .artifact import (
 )
 from .discipline import ContractReport, Finding, Severity, check_contract
 from .resources import SkillResourceError, get_mode_template, get_skill_prompt
+from .verification import (
+    SOURCE_CATALOG_VERSION,
+    MemoSource,
+    MemoSourceCatalog,
+    MemoVerificationReport,
+    SourceQuote,
+    VerificationDependencyError,
+    VerificationFinding,
+    VerificationInputError,
+    build_evidence_packet,
+    get_memo_source_catalog_schema,
+    load_source_catalog,
+    render_memo_repair_prompt,
+    verify_memo_artifact,
+)
 
 
-__version__ = "1.6.0rc3"
+__version__ = "1.7.0rc1"
 
 __all__ = (
     "SkillResourceError",
@@ -42,10 +57,23 @@ __all__ = (
     "ContractReport",
     "Finding",
     "Severity",
+    "MemoVerificationReport",
+    "MemoSource",
+    "MemoSourceCatalog",
+    "SOURCE_CATALOG_VERSION",
+    "SourceQuote",
+    "VerificationDependencyError",
+    "VerificationFinding",
+    "VerificationInputError",
+    "build_evidence_packet",
+    "get_memo_source_catalog_schema",
+    "load_source_catalog",
+    "render_memo_repair_prompt",
     "check_contract",
     "check_memo_artifact",
     "get_memo_artifact_schema",
     "get_mode_template",
     "get_skill_prompt",
     "render_memo_artifact",
+    "verify_memo_artifact",
 )

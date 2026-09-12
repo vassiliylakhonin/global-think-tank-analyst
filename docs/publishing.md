@@ -29,7 +29,7 @@ different repository, workflow filename, or environment.
    workflow for an existing tag:
 
    ```bash
-   gh workflow run publish-pypi.yml -f tag=v1.6.0rc3
+   gh workflow run publish-pypi.yml -f tag=v1.7.0rc1
    ```
 
 5. Verify the workflow attestation and the release through the PyPI JSON API

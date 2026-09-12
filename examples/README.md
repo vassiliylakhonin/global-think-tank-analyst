@@ -23,6 +23,7 @@ Examples that fail this policy and are kept anyway should be relabeled from `liv
 5. Read [`user-provided-sources-supply-chain-sanctions.md`](user-provided-sources-supply-chain-sanctions.md) to see the mode where the user's own documents become the primary evidence base.
 6. Use [`red-team-policy-brief.md`](red-team-policy-brief.md) when you need to challenge an existing claim rather than draft a neutral memo.
 7. Read [`source-conflict-iea-opec-demand-forecast.md`](source-conflict-iea-opec-demand-forecast.md) to see the **source-conflict-surfacing rule** applied: two reputable sources disagree on a load-bearing fact; the memo names both with provenance, assesses source independence, states a preferred position with reasoning, and carries the conflict through to the decision instead of silently averaging.
+8. Run the [Central Asia microelectronics cookbook](cookbooks/secondary-sanctions/README.md) to exercise the native `MemoArtifact -> Agenda Intelligence -> HTML review` seam offline in about one minute.
 
 ## Evidence modes
 

@@ -1,5 +1,30 @@
 # Changelog
 
+## Unreleased
+
+- Package metadata now targets `1.7.0rc1`; no tag or release has been created.
+
+- Added the optional `gtta.memo-verification@1.0` composition seam and separate
+  `gtta.sources@1.0` source catalog. `gtta verify memo.json --strict`
+  auto-discovers `memo.sources.json`, projects source-backed MemoArtifact
+  claims into Agenda Intelligence MD 1.9.x, preserves declared quotes, filters
+  unused sources, emits Markdown/JSON/HTML review output, and fails closed
+  without changing the frozen `gtta.memo@1.0` schema or claiming factual or
+  legal verification.
+- Added SARIF 2.1.0 output to `gtta check-contract`, preserving stable rule IDs,
+  severities, line locations, truncation metadata, and existing exit semantics.
+- Added a deterministic verification-marker preflight for sanctions,
+  regulatory, legal, date-sensitive, and quantitative source-backed claims;
+  strict verification rejects missing `verify: true` unless a dated primary
+  basis is declared.
+- Froze and packaged the Draft 2020-12 JSON Schema for `gtta.sources@1.0`;
+  tests reject drift between the shipped contract and its runtime model.
+- Added `gtta verify --repair-prompt repair.md`, which emits bounded,
+  claim-specific repair guidance without source text, input mutation, source
+  invention, or a claim that the resulting memo is factually correct.
+- Added a dedicated CI job against the real public
+  `agenda-intelligence-md==1.9.0` package and the canonical offline cookbook.
+
 ## 1.6.0 - 2026-09-07
 
 First stable release since 1.4.0. Supersedes the 1.6.0rc1-rc3 candidates,

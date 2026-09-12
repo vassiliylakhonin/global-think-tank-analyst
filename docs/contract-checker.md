@@ -20,8 +20,14 @@ This is a deliberately narrow interface:
 ```bash
 gtta check-contract memo.md --mode B
 gtta check-contract memo.md --mode B --json
+gtta check-contract memo.md --mode B --format sarif --out gtta.sarif
 cat memo.md | gtta check-contract - --mode B
 ```
+
+SARIF output follows SARIF 2.1.0, preserves the stable GTTA rule IDs and
+severity, and emits `startLine` when a finding has a deterministic Markdown
+line. It is suitable for GitHub code-scanning upload; warnings remain warnings
+and do not change the command's existing exit semantics.
 
 The command exits non-zero only when an `error` finding exists. Warnings expose
 possible method-shape problems without claiming that a deterministic heuristic

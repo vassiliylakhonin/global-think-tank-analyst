@@ -1,0 +1,78 @@
+{
+  "schema_version": "gtta.memo@1.0",
+  "artifact_id": "illustrative-central-asia-routing-001",
+  "title": "Illustrative microelectronics routing review",
+  "question": "Should the operator pause, continue, or condition a synthetic shipment route through Central Asia?",
+  "decision": "Choose a reversible diligence posture before any real shipment or counterparty action.",
+  "audience": "Trade-risk committee",
+  "time_horizon": "30–90 days",
+  "mode": "B",
+  "evidence_mode": "illustrative source packet",
+  "bottom_line": {
+    "text": "Do not infer legal clearance from routing records; use a bounded evidence-collection gate before any real transaction.",
+    "claim_ids": ["c3"]
+  },
+  "claims": [
+    {
+      "claim_id": "c1",
+      "text": "The synthetic record lists 24 microcontroller shipments through Warehouse KZ-7 during July 2026.",
+      "kind": "fact",
+      "provenance": "user-provided",
+      "source_refs": ["shipping-record"],
+      "confidence": "High",
+      "verify": true
+    },
+    {
+      "claim_id": "c2",
+      "text": "The synthetic policy note is dated 2026-08-15 and requires enhanced review of listed dual-use routing patterns.",
+      "kind": "fact",
+      "provenance": "user-provided",
+      "source_refs": ["policy-note"],
+      "confidence": "High",
+      "verify": true
+    },
+    {
+      "claim_id": "c3",
+      "text": "These records justify enhanced diligence but cannot establish whether any real transaction is prohibited.",
+      "kind": "assessment",
+      "provenance": "analyst-judgment",
+      "basis_claim_ids": ["c1", "c2"],
+      "confidence": "Moderate"
+    }
+  ],
+  "sections": {
+    "actors": {
+      "text": "The exporter values continuity, while banks and logistics providers may prioritize evidence completeness and escalation safety.",
+      "claim_ids": ["c1", "c2"]
+    }
+  },
+  "options": [
+    {
+      "option_id": "o1",
+      "title": "Pause pending evidence",
+      "benefit": "Avoids acting on an incomplete illustrative file.",
+      "downside": "Delays the synthetic transaction.",
+      "conditions": "Use when ownership, end-user, goods classification, or payment evidence is missing.",
+      "basis_claim_ids": ["c1", "c2", "c3"]
+    },
+    {
+      "option_id": "o2",
+      "title": "Continue only to human review",
+      "benefit": "Preserves process momentum without implying clearance.",
+      "downside": "Requires additional specialist time.",
+      "conditions": "Use only after all requested records are assembled and reviewed by qualified humans.",
+      "basis_claim_ids": ["c3"]
+    }
+  ],
+  "confidence": "Moderate",
+  "key_unknowns": [
+    "Real beneficial ownership, end use, goods classification, routing rationale, and current list status are not present."
+  ],
+  "change_conditions": [
+    "Authenticated current-source evidence resolves ownership, end use, classification, payment-rail, and routing questions."
+  ],
+  "limitations": [
+    "All names and records are synthetic; no live sanctions or counterparty lookup was performed.",
+    "Packet completeness is not factual verification or legal clearance."
+  ]
+}

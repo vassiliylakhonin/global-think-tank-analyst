@@ -28,6 +28,18 @@ _Avoid_: Parent skill, source retriever, factual verifier, commercial umbrella f
 The JSON seam between this reasoning skill and Agenda Intelligence MD: externally checkable `claims[]`, their declared `source_ids`, optional verbatim `quotes`, and caller-supplied `sources[]` text.
 _Avoid_: Full memo serialization, factuality result, source-discovery step, analyst-judgment ledger
 
+**Memo Verification**:
+The deterministic projection of source-backed claims from a valid MemoArtifact into an Evidence-Packet Handoff, followed by Agenda Intelligence packet checks and mandatory human review.
+_Avoid_: Factual verification, legal clearance, automated approval, verification of analyst judgment
+
+**Memo Source Catalog**:
+The versioned companion record of caller-selected local sources and claim-bound quotes used to hydrate a MemoArtifact during Memo Verification.
+_Avoid_: Source retrieval, web crawl, embedded knowledge base, proof that a source is authoritative
+
+**Memo Repair Plan**:
+Claim-specific instructions produced after Memo Verification that may narrow, reclassify, remove, or flag a claim and may attach only operator-supplied evidence.
+_Avoid_: Automatic factual correction, source invention, autonomous clearance, proof that a repair is true
+
 **Vertical Specialist**:
 A regional or sector reasoning skill (Central Asia + Caspian, Gulf + Middle East) that composes on top of GTTA's horizontal method and adds domain depth. Routed automatically by `analyze` when the geography matches.
 _Avoid_: Replacement for GTTA, source database, standalone analyst

@@ -92,7 +92,7 @@ git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
 cd global-think-tank-analyst
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[mcp]"
+python -m pip install -e ".[mcp,verification]"
 ```
 
 ```bash
@@ -101,11 +101,18 @@ gtta new --mode B --topic "Market-entry regulatory exposure"
 
 # Heuristically check a Markdown memo
 gtta check-contract memo.md --mode B
+gtta check-contract memo.md --mode B --format sarif --out gtta.sarif
 
 # Inspect, validate, and render the strict structured artifact
 gtta artifact-schema
+gtta source-catalog-schema
 gtta check-artifact memo.json --json
 gtta render-artifact memo.json > memo.md
+
+# Project source-backed claims through Agenda Intelligence and fail closed
+gtta verify memo.json --strict
+gtta verify memo.json --strict --format html --out review.html
+gtta verify memo.json --strict --repair-prompt repair.md
 
 # Serve the method and artifact tools over MCP stdio
 gtta mcp
@@ -131,7 +138,8 @@ GTTA separates checks that answer different questions:
 |---|---|---|---|
 | Markdown method preflight | [`gtta-method-contract@1.x`](docs/contract-checker.md) | Required declarations, mode shape, confidence, likely untagged claims, generic advice | Claim boundaries, factuality, source support |
 | Structured memo | [`gtta.memo@1.0`](docs/memo-artifact.md) | Claim IDs, provenance, source references, dependency links, mode invariants, canonical rendering | Whether a named source is trustworthy or supports the claim |
-| Evidence packet | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Claim/source packet completeness, declared quotes, lexical support, unmatched numbers | Factual truth or professional approval |
+| Memo verification | `gtta.memo-verification@1.0` + [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Native MemoArtifact projection, claim/source packet completeness, declared quotes, lexical support, unmatched numbers | Factual truth or professional approval |
+| Memo repair plan | `gtta verify --repair-prompt` | Bounded claim-specific repair instructions that preserve unresolved evidence gaps | Source discovery, automatic factual correction, clearance |
 | Operational decision | Human review | Contextual judgment, current-source verification, accountability | Guaranteed correctness |
 
 `MemoArtifact` is the canonical machine-readable GTTA seam. Its claim ledger is
@@ -204,8 +212,8 @@ See [`PORTFOLIO.md`](PORTFOLIO.md) and the
 | Surface | Status | Entry point |
 |---|---|---|
 | Agent instructions | Core | `AGENTS.md`, `SKILL.md`, `SKILL_RU.md`, `llms.txt` |
-| Python artifact API | Core development interface | `gtta.MemoArtifact`, `check_memo_artifact()`, `render_memo_artifact()` |
-| CLI | Tested | `gtta new`, `check-contract`, `check-artifact`, `render-artifact` |
+| Python artifact API | Core development interface | `gtta.MemoArtifact`, `check_memo_artifact()`, `render_memo_artifact()`, `verify_memo_artifact()` |
+| CLI | Tested | `gtta new`, `check-contract`, `check-artifact`, `render-artifact`, `verify` |
 | MCP server | Tested optional extra | `python -m pip install -e ".[mcp]"`, then `gtta mcp` |
 | LangChain / LlamaIndex adapters | Optional | `.[langchain]` or `.[llamaindex]` |
 | LangGraph draft-and-critique pipeline | Experimental | `.[agent]` |

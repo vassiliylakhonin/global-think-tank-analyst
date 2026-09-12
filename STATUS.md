@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-09-07. Maturity definitions are in
+Updated 2026-09-12. Maturity definitions are in
 [`docs/maturity-framework.md`](docs/maturity-framework.md); gates for specific
 claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
@@ -14,7 +14,8 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
 ## Release state
 
-- Package version on `main`: `1.6.0`, superseding the `rc1`-`rc3` candidates.
+- Latest stable release: [`v1.6.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0), superseding the `rc1`-`rc3` candidates.
+- Package version on `main`: `1.7.0rc1`, the unreleased candidate containing the Agenda Intelligence verification bridge and SARIF support.
 - `v1.6.0rc1` is superseded: its release build failed before packaging because
   the workflow omitted the optional LangChain test dependency. `rc2` passed
   the corrected distribution-integrity gate; its PyPI job was intentionally

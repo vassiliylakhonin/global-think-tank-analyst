@@ -1,0 +1,27 @@
+{
+  "schema_version": "gtta.sources@1.0",
+  "sources": [
+    {
+      "source_id": "shipping-record",
+      "path": "sources/synthetic-shipping-record.txt",
+      "title": "Synthetic shipping record"
+    },
+    {
+      "source_id": "policy-note",
+      "path": "sources/synthetic-policy-note.txt",
+      "title": "Synthetic policy note"
+    }
+  ],
+  "quotes": [
+    {
+      "claim_id": "c1",
+      "source_id": "shipping-record",
+      "text": "24 microcontroller shipments through Warehouse KZ-7 during July 2026"
+    },
+    {
+      "claim_id": "c2",
+      "source_id": "policy-note",
+      "text": "dated 2026-08-15"
+    }
+  ]
+}

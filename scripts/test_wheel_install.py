@@ -58,7 +58,16 @@ valid_memo = 'Evidence mode: reasoning-only\\n[analyst-judgment] Draft.\\nModera
 assert check_contract(valid_memo).passed
 checked = CliRunner().invoke(cli_app, ['check-contract', '-', '--json'], input=valid_memo)
 assert checked.exit_code == 0, checked.output
+sarif = CliRunner().invoke(cli_app, ['check-contract', '-', '--format', 'sarif'], input=valid_memo)
+assert sarif.exit_code == 0, sarif.output
+assert json.loads(sarif.output)['version'] == '2.1.0'
 from gtta.artifact import check_memo_artifact, get_memo_artifact_schema
+from gtta.verification import get_memo_source_catalog_schema
+assert get_memo_source_catalog_schema()['title'] == 'MemoSourceCatalog'
+assert get_memo_source_catalog_schema()['$id'] == 'urn:gtta:schema:sources:1.0'
+source_schema = CliRunner().invoke(cli_app, ['source-catalog-schema'])
+assert source_schema.exit_code == 0, source_schema.output
+assert json.loads(source_schema.output)['title'] == 'MemoSourceCatalog'
 artifact = {
     'schema_version': 'gtta.memo@1.0',
     'artifact_id': 'wheel-probe',
