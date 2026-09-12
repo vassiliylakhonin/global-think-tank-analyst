@@ -27,7 +27,7 @@
 - Added a portable six-case verification benchmark: two golden variants, four
   expected negative controls, bounded-repair safety assertions, input hashes,
   JSON receipts, and SARIF regression output. CI uploads both the artifact and
-  Code Scanning result; expected negative findings remain informational notes.
+  Code Scanning result; expected negative findings remain in the JSON receipt.
 
 ## 1.6.0 - 2026-09-07
 

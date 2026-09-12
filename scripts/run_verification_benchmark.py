@@ -317,22 +317,6 @@ def main() -> int:
 
         if case.expected_passed:
             sarif_results.extend(native_results)
-        else:
-            for item in native_results:
-                expected_item = copy.deepcopy(item)
-                expected_item["level"] = "note"
-                expected_item.pop("locations", None)
-                expected_item.setdefault("properties", {}).update(
-                    {
-                        "benchmarkCase": case.case_id,
-                        "expectedNegativeControl": True,
-                    }
-                )
-                expected_item["message"]["text"] = (
-                    f"Expected negative control {case.case_id}: "
-                    + expected_item["message"]["text"]
-                )
-                sarif_results.append(expected_item)
 
         for assertion in result["assertions"]:
             if assertion["passed"]:
@@ -401,7 +385,7 @@ def main() -> int:
                 "results": sarif_results,
                 "properties": {
                     "scope": "golden-and-negative-control-benchmark",
-                    "expectedNegativeFindingsAreNotes": True,
+                    "expectedNegativeFindingsRecordedInSummary": True,
                 },
             }
         ],

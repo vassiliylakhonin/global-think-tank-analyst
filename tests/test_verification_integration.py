@@ -69,5 +69,5 @@ def test_portable_verification_benchmark_passes(tmp_path: Path):
     assert summary["source_inputs_unchanged"] is True
     sarif = json.loads(sarif_path.read_text(encoding="utf-8"))
     assert sarif["version"] == "2.1.0"
-    assert not [item for item in sarif["runs"][0]["results"] if item["level"] == "error"]
-    assert len([item for item in sarif["runs"][0]["results"] if item["level"] == "note"]) >= 4
+    assert sarif["runs"][0]["results"] == []
+    assert sarif["runs"][0]["properties"]["expectedNegativeFindingsRecordedInSummary"] is True

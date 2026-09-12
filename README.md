@@ -151,7 +151,7 @@ Verification findings can be emitted as SARIF 2.1.0 with claim-level JSON line
 locations. The portable six-case benchmark is available through
 `python scripts/run_verification_benchmark.py`; CI stores its receipts and
 uploads regression errors to GitHub Code Scanning. Expected negative-control
-findings remain informational notes and do not masquerade as production defects.
+findings remain in the JSON receipt and do not masquerade as production defects.
 
 ## Memo modes
 

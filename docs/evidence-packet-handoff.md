@@ -135,8 +135,8 @@ It derives two passing golden variants and four expected failing mutations from
 the synthetic cookbook, verifies anti-fabrication repair constraints, and
 writes JSON plus SARIF receipts under `artifacts/`. The runner compares hashes
 before and after execution so it cannot silently rewrite the canonical
-cookbook. Expected negative-control findings are SARIF notes; expectation
-mismatches are errors suitable for GitHub Code Scanning.
+cookbook. Expected negative-control findings stay in the JSON receipt; only
+expectation mismatches enter SARIF as errors suitable for GitHub Code Scanning.
 
 The local-file adapter is not exposed by Agenda Intelligence MD's Cloudflare
 Workers deployment because a Worker cannot read caller-local file paths. Use
