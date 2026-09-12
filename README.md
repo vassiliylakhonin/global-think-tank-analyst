@@ -112,6 +112,7 @@ gtta render-artifact memo.json > memo.md
 # Project source-backed claims through Agenda Intelligence and fail closed
 gtta verify memo.json --strict
 gtta verify memo.json --strict --format html --out review.html
+gtta verify memo.json --strict --format sarif --out verification.sarif
 gtta verify memo.json --strict --repair-prompt repair.md
 
 # Serve the method and artifact tools over MCP stdio
@@ -145,6 +146,12 @@ GTTA separates checks that answer different questions:
 `MemoArtifact` is the canonical machine-readable GTTA seam. Its claim ledger is
 shared by the Python API, CLI, and MCP tools; Markdown is the rendered human
 view.
+
+Verification findings can be emitted as SARIF 2.1.0 with claim-level JSON line
+locations. The portable six-case benchmark is available through
+`python scripts/run_verification_benchmark.py`; CI stores its receipts and
+uploads regression errors to GitHub Code Scanning. Expected negative-control
+findings remain informational notes and do not masquerade as production defects.
 
 ## Memo modes
 

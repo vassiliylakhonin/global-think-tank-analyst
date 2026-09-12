@@ -17,6 +17,7 @@ site/
 *.egg-info/
 dist/
 build/
+/artifacts/
 
 # uv lockfile: this project pins through pyproject.toml, and the file kept
 # arriving by accident in unrelated commits.

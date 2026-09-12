@@ -184,7 +184,7 @@ def verify_command(
         False, help="Exit 1 unless Agenda reports a complete packet and GTTA preflight is clean"
     ),
     output_format: str = typer.Option(
-        "text", "--format", help="Output format: text, json, markdown, or html"
+        "text", "--format", help="Output format: text, json, markdown, html, or sarif"
     ),
     out: Optional[str] = typer.Option(None, help="Write output to this path"),
     repair_prompt: Optional[str] = typer.Option(
@@ -208,9 +208,9 @@ def verify_command(
     )
 
     selected_format = output_format.strip().lower()
-    if selected_format not in {"text", "json", "markdown", "html"}:
+    if selected_format not in {"text", "json", "markdown", "html", "sarif"}:
         console.print(
-            "[bold red]Error:[/bold red] format must be text, json, markdown, or html"
+            "[bold red]Error:[/bold red] format must be text, json, markdown, html, or sarif"
         )
         raise typer.Exit(2)
     try:
@@ -257,6 +257,22 @@ def verify_command(
             rendered = render_verification_markdown(report)
         elif selected_format == "html":
             rendered = render_verification_html(report)
+        elif selected_format == "sarif":
+            from .sarif import render_verification_sarif
+
+            artifact_uri = "stdin" if file_path == "-" else Path(file_path).as_posix()
+            rendered = (
+                json.dumps(
+                    render_verification_sarif(
+                        report,
+                        artifact_uri=artifact_uri,
+                        artifact_text=payload,
+                    ),
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n"
+            )
         else:
             rendered = report.render_text() + "\n"
         repair_rendered = (

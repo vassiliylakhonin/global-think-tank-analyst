@@ -17,6 +17,8 @@ source material in one of two forms:
 7. On failure, optionally write a bounded repair plan with
    `--repair-prompt repair.md`; rerun strict verification after the memo or
    source catalog is revised.
+8. For CI or pull-request annotations, emit SARIF with
+   `gtta verify memo.json --strict --format sarif --out verification.sarif`.
 
 If a factual claim has no supplied support, keep the claim in the packet with an empty `source_ids` array. Do not invent a source to make the packet pass. The linter should report that gap.
 
@@ -115,6 +117,26 @@ reclassify reasoning, add an unresolved `verify: true` marker, or stop and ask
 the operator for evidence. It explicitly forbids inventing sources, quotes,
 dates, numbers, regulations, and factual assertions. Generating a plan does
 not mutate either input file and does not claim the defect was repaired.
+
+## SARIF and regression benchmark
+
+Native verification SARIF combines the GTTA declaration preflight with Agenda
+claim-level packet issues behind one renderer. It retains stable rule IDs,
+severity, packet status, and MemoArtifact claim locations without embedding
+the supplied source text.
+
+Run the portable benchmark from the repository root:
+
+```bash
+python scripts/run_verification_benchmark.py
+```
+
+It derives two passing golden variants and four expected failing mutations from
+the synthetic cookbook, verifies anti-fabrication repair constraints, and
+writes JSON plus SARIF receipts under `artifacts/`. The runner compares hashes
+before and after execution so it cannot silently rewrite the canonical
+cookbook. Expected negative-control findings are SARIF notes; expectation
+mismatches are errors suitable for GitHub Code Scanning.
 
 The local-file adapter is not exposed by Agenda Intelligence MD's Cloudflare
 Workers deployment because a Worker cannot read caller-local file paths. Use

@@ -31,6 +31,7 @@ Portfolio (three layers, four repos, separately maintained):
 
 Use Global Think Tank Analyst to draft the memo. Bring in a vertical specialist when the region changes the mechanism. For a structured MemoArtifact with caller-selected local sources, run `gtta verify memo.json --strict`; it projects externally checkable source-backed claims through Agenda Intelligence MD before human review. It does not establish factual truth.
 On a failed strict check, `gtta verify memo.json --strict --repair-prompt repair.md` writes bounded repair instructions. The plan cannot retrieve or invent sources and does not mutate the memo.
+For CI, `gtta verify memo.json --strict --format sarif --out verification.sarif` emits GTTA and Agenda findings with claim-level locations and no caller source text. `python scripts/run_verification_benchmark.py` runs the portable golden and negative-control suite.
 
 Concrete CLI / MCP recipe (score a memo, validate a JSON projection, add an evidence pack):
 - docs/integrations/agenda-intelligence-md.md

@@ -37,3 +37,15 @@ run: network availability and current sanctions data would make this example
 non-reproducible. A live adapter should be a separate, explicitly enabled
 stage and must never upgrade this packet-completeness result into legal
 clearance.
+
+## Regression benchmark
+
+The repository-level benchmark reuses this synthetic packet without changing
+it:
+
+```bash
+python scripts/run_verification_benchmark.py
+```
+
+It checks two golden variants and four controlled failures, emits SARIF 2.1.0,
+and verifies that bounded repair guidance never authorizes invented evidence.

@@ -1,8 +1,6 @@
 # Changelog
 
-## Unreleased
-
-- Package metadata now targets `1.7.0rc1`; no tag or release has been created.
+## 1.7.0rc1 - 2026-09-12
 
 - Added the optional `gtta.memo-verification@1.0` composition seam and separate
   `gtta.sources@1.0` source catalog. `gtta verify memo.json --strict`
@@ -24,6 +22,12 @@
   invention, or a claim that the resulting memo is factually correct.
 - Added a dedicated CI job against the real public
   `agenda-intelligence-md==1.9.0` package and the canonical offline cookbook.
+- Added native `gtta verify --format sarif` output with stable GTTA/Agenda rule
+  mapping, severity, packet metadata, and claim-level MemoArtifact locations.
+- Added a portable six-case verification benchmark: two golden variants, four
+  expected negative controls, bounded-repair safety assertions, input hashes,
+  JSON receipts, and SARIF regression output. CI uploads both the artifact and
+  Code Scanning result; expected negative findings remain informational notes.
 
 ## 1.6.0 - 2026-09-07
 

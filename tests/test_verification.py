@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 from gtta.artifact import ARTIFACT_SCHEMA_VERSION, MemoArtifact, check_memo_artifact
+from gtta.sarif import render_verification_sarif
 from gtta.verification import (
     MemoSourceCatalog,
     VerificationInputError,
@@ -219,6 +220,40 @@ def test_repair_prompt_is_bounded_and_does_not_repeat_source_text(tmp_path: Path
     assert source_text not in prompt
 
 
+def test_verification_sarif_maps_both_seams_without_source_text(tmp_path: Path):
+    source_text = "The synthetic consultation closes on 2026-09-15."
+    artifact_payload = sourced_mode_b(verify=False)
+    artifact_text = json.dumps(artifact_payload, indent=2)
+    artifact_report = check_memo_artifact(artifact_payload)
+    assert artifact_report.artifact is not None
+    report = verify_memo_artifact(
+        artifact_report.artifact,
+        source_catalog=source_catalog(),
+        base_dir=tmp_path,
+        strict=True,
+        checker=incomplete_check,
+        source_loader=lambda _: source_text,
+    )
+
+    sarif = render_verification_sarif(
+        report,
+        artifact_uri="memo.json",
+        artifact_text=artifact_text,
+    )
+
+    assert sarif["version"] == "2.1.0"
+    run = sarif["runs"][0]
+    assert run["tool"]["driver"]["name"] == "gtta-memo-verification"
+    assert run["properties"]["packetStatus"] == "packet_incomplete"
+    assert run["properties"]["factualityStatus"] == "not_assessed"
+    by_rule = {item["ruleId"]: item for item in run["results"]}
+    assert by_rule["GTTAV001"]["properties"]["claimId"] == "c1"
+    assert by_rule["AGENDA002"]["properties"]["issueCode"] == "missing_source:notice"
+    assert by_rule["AGENDA002"]["level"] == "error"
+    assert by_rule["AGENDA002"]["locations"][0]["physicalLocation"]["region"]["startLine"] > 1
+    assert source_text not in json.dumps(sarif)
+
+
 def test_projection_rejects_source_path_escape(tmp_path: Path):
     artifact = parsed_artifact()
     catalog = source_catalog()
@@ -322,3 +357,43 @@ def test_cli_verify_writes_repair_prompt_on_strict_failure(
     assert "GTTA Memo Repair Instructions" in prompt
     assert "gtta verify memo.json --strict" in prompt
     assert source_text not in prompt
+
+
+def test_cli_verify_emits_sarif_with_claim_location(tmp_path: Path, monkeypatch):
+    from typer.testing import CliRunner
+
+    from gtta import verification
+    from gtta.cli import app
+
+    source_dir = tmp_path / "sources"
+    source_dir.mkdir()
+    (source_dir / "notice.md").write_text(
+        "The synthetic consultation closes on 2026-09-15.", encoding="utf-8"
+    )
+    artifact_path = tmp_path / "memo.json"
+    artifact_path.write_text(
+        json.dumps(sourced_mode_b(verify=False), indent=2), encoding="utf-8"
+    )
+    (tmp_path / "memo.sources.json").write_text(
+        json.dumps(source_catalog().model_dump(mode="json")), encoding="utf-8"
+    )
+    monkeypatch.setattr(
+        verification,
+        "_load_agenda_dependencies",
+        lambda: (incomplete_check, lambda path: path.read_text(encoding="utf-8")),
+    )
+
+    result = CliRunner().invoke(
+        app,
+        ["verify", str(artifact_path), "--strict", "--format", "sarif"],
+    )
+
+    assert result.exit_code == 1, result.output
+    sarif = json.loads(result.output)
+    assert sarif["version"] == "2.1.0"
+    rules = {item["ruleId"] for item in sarif["runs"][0]["results"]}
+    assert {"GTTAV001", "AGENDA002"}.issubset(rules)
+    result_item = next(
+        item for item in sarif["runs"][0]["results"] if item["ruleId"] == "AGENDA002"
+    )
+    assert result_item["locations"][0]["physicalLocation"]["region"]["startLine"] > 1

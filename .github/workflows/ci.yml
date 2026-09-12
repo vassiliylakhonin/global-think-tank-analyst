@@ -51,6 +51,9 @@ jobs:
 
   agenda-1-9-integration:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -65,3 +68,23 @@ jobs:
 
       - name: Run the real composition-seam test
         run: pytest -q tests/test_verification_integration.py
+
+      - name: Run golden and negative-control benchmark
+        run: python scripts/run_verification_benchmark.py
+
+      - name: Upload benchmark receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: memo-verification-benchmark
+          path: artifacts/
+
+      - name: Upload benchmark SARIF
+        if: >-
+          always() &&
+          (github.event_name != 'pull_request' ||
+          github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: artifacts/verification-benchmark.sarif
+          category: gtta-memo-verification-benchmark

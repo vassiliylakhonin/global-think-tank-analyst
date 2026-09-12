@@ -97,6 +97,7 @@ gtta check-artifact memo.json --json
 gtta render-artifact memo.json > memo.md
 gtta verify memo.json --strict
 gtta verify memo.json --strict --format html --out review.html
+gtta verify memo.json --strict --format sarif --out verification.sarif
 gtta verify memo.json --strict --repair-prompt repair.md
 ```
 
@@ -125,6 +126,13 @@ retains its own file-size, format, and extraction limits.
 the installed package. A regression test requires the runtime model to produce
 the same schema. `--repair-prompt` writes bounded Markdown guidance without
 source text or input mutation; it cannot discover evidence or certify a repair.
+
+`--format sarif` projects both GTTA verification-marker findings and Agenda
+claim-level issue codes into SARIF 2.1.0. Findings point to the corresponding
+`claim_id` line in pretty-printed or line-oriented MemoArtifact JSON when that
+line is available. Structural packet gaps are errors; lexical review findings
+and unresolved verification declarations are warnings. SARIF preserves the
+same exit semantics as other formats and does not include caller source text.
 
 The offline paired [structured artifact eval](../evals/agent-eval/artifact-eval.md)
 uses this same validator. It gives both arms the same schema and interface

@@ -18,9 +18,12 @@ def fail(message: str) -> int:
 
 
 def main() -> int:
-    wheels = sorted((ROOT / "dist").glob("global_think_tank_analyst-*.whl"))
+    distribution_dir = Path(os.environ.get("GTTA_DIST_DIR", ROOT / "dist"))
+    wheels = sorted(distribution_dir.glob("global_think_tank_analyst-*.whl"))
     if len(wheels) != 1:
-        return fail(f"expected exactly one wheel under dist/, found {len(wheels)}")
+        return fail(
+            f"expected exactly one wheel under {distribution_dir}, found {len(wheels)}"
+        )
 
     with tempfile.TemporaryDirectory(prefix="gtta-wheel-smoke-") as temp_dir:
         temp = Path(temp_dir)
@@ -63,6 +66,8 @@ assert sarif.exit_code == 0, sarif.output
 assert json.loads(sarif.output)['version'] == '2.1.0'
 from gtta.artifact import check_memo_artifact, get_memo_artifact_schema
 from gtta.verification import get_memo_source_catalog_schema
+from gtta.sarif import render_verification_sarif
+assert callable(render_verification_sarif)
 assert get_memo_source_catalog_schema()['title'] == 'MemoSourceCatalog'
 assert get_memo_source_catalog_schema()['$id'] == 'urn:gtta:schema:sources:1.0'
 source_schema = CliRunner().invoke(cli_app, ['source-catalog-schema'])
