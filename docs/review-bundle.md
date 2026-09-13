@@ -50,6 +50,46 @@ catalog contents, the text loaded for each used source, and every generated
 output other than the manifest itself. It records `human_review_required: true`
 even when deterministic checks pass.
 
+## Check an existing bundle
+
+The checker requires only the core GTTA package, not Agenda Intelligence:
+
+```bash
+gtta check-review-bundle memo.review
+gtta check-review-bundle memo.review --json
+```
+
+The versioned JSON report uses `gtta.review-bundle-check@1.0`. The checker
+requires the exact file set, rejects symbolic links and non-file entries,
+validates the manifest and input-digest declarations, recomputes every output
+hash, parses the verification receipt and SARIF, and derives `passed` again
+from strictness, Agenda validity, packet status, and GTTA findings. It also
+checks that the manifest, receipt, and repair status agree.
+
+Stable rule families are:
+
+| Rule | Meaning |
+|---|---|
+| `GTTAB001` | Missing or unexpected bundle file |
+| `GTTAB002` | Symbolic link or non-regular bundle entry |
+| `GTTAB003` | Invalid manifest JSON |
+| `GTTAB004` | Unsupported bundle interface |
+| `GTTAB005` | Invalid manifest invariant |
+| `GTTAB006` | Wrong output declaration set |
+| `GTTAB007` | Invalid output metadata |
+| `GTTAB008` | Output hash mismatch |
+| `GTTAB009` | Invalid verification receipt |
+| `GTTAB010` | Inconsistent or impossible status |
+| `GTTAB011` | Invalid SARIF output |
+| `GTTAB012` | Repair-status mismatch |
+| `GTTAB013` | Invalid input digest declaration |
+
+The checker exits `0` for an internally valid bundle, including an intact
+bundle whose recorded memo verification is `REVIEW REQUIRED`. Its text and
+JSON reports expose that verdict separately as `verification_passed` and
+`packet_status`. It exits `1` for bundle-contract or integrity findings and `2`
+when the requested path does not exist, is not a directory, or cannot be read.
+
 ## Publication and exit behavior
 
 - The bundle is rendered in a staging directory and renamed into place only
@@ -66,3 +106,9 @@ even when deterministic checks pass.
 does not establish that a claim is true, current, lawful, or safe to act on.
 Qualified human review remains mandatory for sanctions, legal, compliance,
 financial, and other consequential decisions.
+
+The manifest is self-contained but not signed. A matching SHA-256 proves only
+that a file matches the value currently declared in that manifest; it does not
+prove who produced either file or that an adversary did not replace both. Use
+an external signature or trusted artifact attestation when authenticity is
+required.

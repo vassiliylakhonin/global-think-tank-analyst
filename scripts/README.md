@@ -8,7 +8,7 @@ Development and CI helper scripts. Not part of the published skill.
 | `validate_skill_package.py` | Guard skill discovery fields, the canonical symlink, and plugin manifests synchronized with each other and with the released version in `CHANGELOG.md` | Yes |
 | `validate_runtime_resources.py` | Guard packaged EN/RU skill resources against drift from the root canon | Yes |
 | `sync_runtime_resources.py` | Copy canonical skill files into the installable Python package | No (explicit build step) |
-| `test_wheel_install.py` | Unpack the built wheel into an isolated import path and verify resources, CLI, contract checker, review-bundle interface, and MCP tools | Yes |
+| `test_wheel_install.py` | Unpack the built wheel into an isolated import path and verify resources, CLI, contract checker, review creation/check interfaces, and MCP tools | Yes |
 | `agent_eval.py` | Validate, prepare, import offline Antigravity responses, and score both Markdown-contract and strict `MemoArtifact` versions of the 12-case paired eval; it never calls a model API | Yes (case validation) |
 | `validate_signals.py` | 4-file consistency check across signals/ (index, feed, latest, individual signal) | Yes |
 | `test_signal_pipeline.py` | Unit tests: generator index output must satisfy `validate_signals.py` | Yes |

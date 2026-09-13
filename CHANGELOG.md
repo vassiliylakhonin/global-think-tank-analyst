@@ -1,11 +1,15 @@
 # Changelog
 
-## Unreleased
+## 1.8.0rc1 - 2026-09-13
 
 - Added `gtta review` and the `gtta.review-bundle@1.0` Python interface. A
   single strict-by-default run now atomically writes the rendered memo, JSON
   receipt, Markdown and HTML evidence reviews, SARIF, bounded repair guidance,
   and a hash-bearing manifest without overwriting an earlier review directory.
+- Added the Agenda-independent `gtta check-review-bundle` command and
+  `gtta.review-bundle-check@1.0` report. It rejects incomplete or unsafe file
+  sets, recomputes output hashes, validates receipt and SARIF structure, and
+  checks status consistency with stable `GTTAB001`–`GTTAB013` rule families.
 
 ## 1.7.0 - 2026-09-13
 

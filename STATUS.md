@@ -15,10 +15,10 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 ## Release state
 
 - Latest stable release: [`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.7.0), superseding `v1.7.0rc1`.
-- Package version on `main`: `1.8.0.dev0`. The unreleased development branch
-  adds the strict-by-default `gtta.review-bundle@1.0` orchestration interface
-  over the released Agenda Intelligence verification bridge; latest stable
-  remains `1.7.0`.
+- Release candidate prepared on `main`: `1.8.0rc1`. It adds the
+  strict-by-default `gtta.review-bundle@1.0` orchestration interface and its
+  Agenda-independent integrity checker over the released Agenda Intelligence
+  verification bridge; latest stable remains `1.7.0`.
 - `v1.6.0rc1` is superseded: its release build failed before packaging because
   the workflow omitted the optional LangChain test dependency. `rc2` passed
   the corrected distribution-integrity gate; its PyPI job was intentionally

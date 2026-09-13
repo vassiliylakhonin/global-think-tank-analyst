@@ -358,6 +358,33 @@ def review_command(
         raise typer.Exit(1)
 
 
+@app.command(name="check-review-bundle")
+def check_review_bundle_command(
+    bundle_dir: str = typer.Argument(..., help="Review bundle directory"),
+    json_output: bool = typer.Option(
+        False, "--json", help="Emit a versioned JSON check report"
+    ),
+):
+    """Check a review bundle's files, hashes, and status consistency."""
+
+    from .review import ReviewBundleAccessError, check_review_bundle
+
+    try:
+        report = check_review_bundle(bundle_dir)
+    except ReviewBundleAccessError as exc:
+        console.print(f"[bold red]Error:[/bold red] {exc}")
+        raise typer.Exit(2)
+
+    rendered = (
+        json.dumps(report.to_dict(), ensure_ascii=False, indent=2) + "\n"
+        if json_output
+        else report.render_text() + "\n"
+    )
+    typer.echo(rendered, nl=False)
+    if not report.passed:
+        raise typer.Exit(1)
+
+
 @app.command()
 def ui(host: str = "127.0.0.1", port: int = 8501):
     """Launch the interactive web UI (requires 'streamlit' extra)."""

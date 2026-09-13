@@ -21,10 +21,15 @@ from .artifact import (
 from .discipline import ContractReport, Finding, Severity, check_contract
 from .resources import SkillResourceError, get_mode_template, get_skill_prompt
 from .review import (
+    REVIEW_BUNDLE_CHECK_VERSION,
     REVIEW_BUNDLE_VERSION,
+    ReviewBundleAccessError,
+    ReviewBundleCheckReport,
+    ReviewBundleFinding,
     ReviewBundleInputError,
     ReviewBundleResult,
     build_review_bundle,
+    check_review_bundle,
 )
 from .verification import (
     SOURCE_CATALOG_VERSION,
@@ -43,7 +48,7 @@ from .verification import (
 )
 
 
-__version__ = "1.8.0.dev0"
+__version__ = "1.8.0rc1"
 
 __all__ = (
     "SkillResourceError",
@@ -63,7 +68,11 @@ __all__ = (
     "ContractReport",
     "Finding",
     "Severity",
+    "REVIEW_BUNDLE_CHECK_VERSION",
     "REVIEW_BUNDLE_VERSION",
+    "ReviewBundleAccessError",
+    "ReviewBundleCheckReport",
+    "ReviewBundleFinding",
     "ReviewBundleInputError",
     "ReviewBundleResult",
     "MemoVerificationReport",
@@ -76,6 +85,7 @@ __all__ = (
     "VerificationInputError",
     "build_evidence_packet",
     "build_review_bundle",
+    "check_review_bundle",
     "get_memo_source_catalog_schema",
     "load_source_catalog",
     "render_memo_repair_prompt",

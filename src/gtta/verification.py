@@ -26,6 +26,7 @@ SOURCE_BACKED_PROVENANCE = {
     Provenance.USER_PROVIDED,
 }
 SOURCE_CATALOG_VERSION = "gtta.sources@1.0"
+MEMO_VERIFICATION_VERSION = "gtta.memo-verification@1.0"
 _SOURCE_CATALOG_SCHEMA_RESOURCE = "contracts/gtta.sources-1.0.schema.json"
 _NUMBER_RE = re.compile(r"(?<!\w)[+-]?\d[\d.,]*(?:\s?%|\b)")
 _HIGH_RISK_RE = re.compile(
@@ -149,7 +150,7 @@ class MemoVerificationReport:
         """Return an auditable result without repeating caller source text."""
 
         return {
-            "interface": "gtta.memo-verification@1.0",
+            "interface": MEMO_VERIFICATION_VERSION,
             "source_catalog_version": SOURCE_CATALOG_VERSION,
             "scope": "memo-artifact-to-evidence-packet-preflight",
             "strict": self.strict,

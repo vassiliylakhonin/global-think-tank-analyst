@@ -10,7 +10,11 @@ from pathlib import Path
 import pytest
 
 from gtta.artifact import check_memo_artifact
-from gtta.review import REVIEW_BUNDLE_VERSION, build_review_bundle
+from gtta.review import (
+    REVIEW_BUNDLE_VERSION,
+    build_review_bundle,
+    check_review_bundle,
+)
 from gtta.verification import load_source_catalog, verify_memo_artifact
 
 
@@ -91,3 +95,4 @@ def test_pinned_agenda_1_9_builds_the_complete_review_bundle(tmp_path: Path):
     assert (result.output_dir / "repair.md").read_text(encoding="utf-8").startswith(
         "# GTTA Memo Repair Status: Complete"
     )
+    assert check_review_bundle(result.output_dir).passed is True

@@ -18,8 +18,11 @@ and the current evidence is recorded in [`STATUS.md`](../STATUS.md).
 Passing `gtta check-contract` or `gtta check-artifact` means only that the
 declared structure conforms. Passing `gtta verify` additionally means the
 projected packet met the selected deterministic Agenda Intelligence checks.
-None of these results is evidence that claims are true or that the memo is safe
-to use without review.
+Passing `gtta check-review-bundle` means the bundle's file set, declared hashes,
+receipt structure, and internal statuses agree. Because the manifest is not a
+signature, it does not prove authorship or authenticity. None of these results
+is evidence that claims are true or that the memo is safe to use without
+review.
 
 A repeated run presented as additional M3 evidence must also publish a
 freshness comparison against prior runs and known discarded attempts on the

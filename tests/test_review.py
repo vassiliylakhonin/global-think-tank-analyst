@@ -11,9 +11,11 @@ from gtta import review, verification
 from gtta.artifact import ARTIFACT_SCHEMA_VERSION
 from gtta.cli import app
 from gtta.review import (
+    REVIEW_BUNDLE_CHECK_VERSION,
     REVIEW_BUNDLE_VERSION,
     ReviewBundleInputError,
     build_review_bundle,
+    check_review_bundle,
 )
 
 
@@ -250,3 +252,114 @@ def test_review_write_failure_removes_staging_directory(
 
     assert not output_dir.exists()
     assert not list(tmp_path.glob(".atomic-review.tmp-*"))
+
+
+def build_complete_bundle(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> Path:
+    artifact_path = write_inputs(tmp_path)
+    stub_optional_renderers(monkeypatch)
+    return build_review_bundle(
+        artifact_path, output_dir=tmp_path / "checked-review"
+    ).output_dir
+
+
+def test_check_review_bundle_accepts_a_complete_bundle(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    output_dir = build_complete_bundle(tmp_path, monkeypatch)
+
+    report = check_review_bundle(output_dir)
+
+    assert report.passed is True
+    assert report.bundle_interface == REVIEW_BUNDLE_VERSION
+    assert report.verification_passed is True
+    assert report.packet_status == "packet_complete"
+    assert report.to_dict()["interface"] == REVIEW_BUNDLE_CHECK_VERSION
+    assert "not signatures" in report.to_dict()["limitations"]
+
+
+def test_check_review_bundle_accepts_an_intact_review_required_bundle(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    artifact_path = write_inputs(tmp_path, verify=False)
+    stub_optional_renderers(monkeypatch)
+    output_dir = build_review_bundle(
+        artifact_path, output_dir=tmp_path / "review-required"
+    ).output_dir
+
+    report = check_review_bundle(output_dir)
+
+    assert report.passed is True
+    assert report.verification_passed is False
+    assert report.packet_status == "packet_complete"
+    assert "Recorded verification: REVIEW REQUIRED" in report.render_text()
+
+
+def test_check_review_bundle_cli_reports_hash_tampering(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    output_dir = build_complete_bundle(tmp_path, monkeypatch)
+    memo = output_dir / "memo.md"
+    memo.write_text(memo.read_text(encoding="utf-8") + "tampered\n", encoding="utf-8")
+
+    result = CliRunner().invoke(
+        app, ["check-review-bundle", str(output_dir), "--json"]
+    )
+
+    assert result.exit_code == 1, result.output
+    payload = json.loads(result.output)
+    assert payload["interface"] == REVIEW_BUNDLE_CHECK_VERSION
+    assert payload["passed"] is False
+    assert {finding["rule_id"] for finding in payload["findings"]} == {
+        "GTTAB008"
+    }
+    assert payload["findings"][0]["path"] == "memo.md"
+
+
+def test_check_review_bundle_recomputes_status_semantics(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    output_dir = build_complete_bundle(tmp_path, monkeypatch)
+    manifest_path = output_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["passed"] = False
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+    report = check_review_bundle(output_dir)
+
+    assert report.passed is False
+    assert any(
+        finding.rule_id == "GTTAB010"
+        and finding.path == "manifest.json#/passed"
+        for finding in report.findings
+    )
+
+
+def test_check_review_bundle_rejects_extra_files_and_symlinks(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    output_dir = build_complete_bundle(tmp_path, monkeypatch)
+    (output_dir / "extra.txt").write_text("unexpected", encoding="utf-8")
+    memo_path = output_dir / "memo.md"
+    memo_path.unlink()
+    memo_path.symlink_to(output_dir / "verification.md")
+
+    report = check_review_bundle(output_dir)
+
+    assert report.passed is False
+    assert {finding.rule_id for finding in report.findings} >= {
+        "GTTAB001",
+        "GTTAB002",
+    }
+
+
+def test_check_review_bundle_missing_directory_is_an_operational_error(
+    tmp_path: Path,
+):
+    result = CliRunner().invoke(
+        app, ["check-review-bundle", str(tmp_path / "missing")]
+    )
+
+    assert result.exit_code == 2
+    assert "does not exist" in result.output

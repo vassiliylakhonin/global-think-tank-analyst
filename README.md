@@ -118,6 +118,7 @@ gtta verify memo.json --strict --repair-prompt repair.md
 
 # Write the complete strict review contract to a new, auditable directory
 gtta review memo.json --out-dir memo.review
+gtta check-review-bundle memo.review --json
 
 # Serve the method and artifact tools over MCP stdio
 gtta mcp
@@ -135,10 +136,11 @@ guidance, SARIF output, and a portable verification benchmark while preserving
 the `gtta.memo@1.0` contract. See [`STATUS.md`](STATUS.md) for how it was
 published and what still blocks this repository from publishing itself.
 
-The development branch additionally exposes `gtta review`, a single strict
-orchestration command that atomically writes the versioned review bundle
-documented in [`docs/review-bundle.md`](docs/review-bundle.md). This interface
-is not part of the `1.7.0` package on PyPI.
+The `1.8.0rc1` release-candidate line additionally exposes `gtta review`, a
+single strict orchestration command that atomically writes the versioned review
+bundle documented in [`docs/review-bundle.md`](docs/review-bundle.md). This
+interface and its Agenda-independent `gtta check-review-bundle` integrity
+checker are not part of the stable `1.7.0` package on PyPI.
 
 ## Executable analysis contracts
 
@@ -150,6 +152,7 @@ GTTA separates checks that answer different questions:
 | Structured memo | [`gtta.memo@1.0`](docs/memo-artifact.md) | Claim IDs, provenance, source references, dependency links, mode invariants, canonical rendering | Whether a named source is trustworthy or supports the claim |
 | Memo verification | `gtta.memo-verification@1.0` + [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Native MemoArtifact projection, claim/source packet completeness, declared quotes, lexical support, unmatched numbers | Factual truth or professional approval |
 | Memo repair plan | `gtta verify --repair-prompt` | Bounded claim-specific repair instructions that preserve unresolved evidence gaps | Source discovery, automatic factual correction, clearance |
+| Review bundle integrity | `gtta.review-bundle-check@1.0` | Exact file contract, SHA-256 matches, receipt/SARIF shape, internal status consistency | Authorship, authenticity, factual truth, trusted attestation |
 | Operational decision | Human review | Contextual judgment, current-source verification, accountability | Guaranteed correctness |
 
 `MemoArtifact` is the canonical machine-readable GTTA seam. Its claim ledger is

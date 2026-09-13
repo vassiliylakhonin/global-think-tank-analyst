@@ -65,11 +65,16 @@ sarif = CliRunner().invoke(cli_app, ['check-contract', '-', '--format', 'sarif']
 assert sarif.exit_code == 0, sarif.output
 assert json.loads(sarif.output)['version'] == '2.1.0'
 from gtta.artifact import check_memo_artifact, get_memo_artifact_schema
-from gtta.review import REVIEW_BUNDLE_VERSION, build_review_bundle
+from gtta.review import (
+    REVIEW_BUNDLE_CHECK_VERSION, REVIEW_BUNDLE_VERSION,
+    build_review_bundle, check_review_bundle,
+)
 from gtta.verification import get_memo_source_catalog_schema
 from gtta.sarif import render_verification_sarif
 assert REVIEW_BUNDLE_VERSION == 'gtta.review-bundle@1.0'
+assert REVIEW_BUNDLE_CHECK_VERSION == 'gtta.review-bundle-check@1.0'
 assert callable(build_review_bundle)
+assert callable(check_review_bundle)
 assert callable(render_verification_sarif)
 assert get_memo_source_catalog_schema()['title'] == 'MemoSourceCatalog'
 assert get_memo_source_catalog_schema()['$id'] == 'urn:gtta:schema:sources:1.0'
@@ -98,10 +103,19 @@ assert artifact_check.exit_code == 0, artifact_check.output
 artifact_render = CliRunner().invoke(cli_app, ['render-artifact', '-'], input=artifact_json)
 assert artifact_render.exit_code == 0, artifact_render.output
 assert '# Coaching probe' in artifact_render.output
+broken_bundle = Path('broken-review')
+broken_bundle.mkdir()
+bundle_check = CliRunner().invoke(
+    cli_app, ['check-review-bundle', str(broken_bundle), '--json']
+)
+assert bundle_check.exit_code == 1, bundle_check.output
+bundle_report = json.loads(bundle_check.output)
+assert bundle_report['interface'] == 'gtta.review-bundle-check@1.0'
+assert bundle_report['findings'][0]['rule_id'] == 'GTTAB001'
 cli_help = CliRunner().invoke(cli_app, ['--help'])
 assert cli_help.exit_code == 0, cli_help.output
 assert 'review' in cli_help.output
-print('ok: installed wheel exposes resources, review contract, CLI, and MCP tools')
+print('ok: installed wheel exposes resources, review contracts, CLI, and MCP tools')
 """
         completed = subprocess.run(
             [sys.executable, "-c", probe, str(target)],
