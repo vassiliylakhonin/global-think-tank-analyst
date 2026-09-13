@@ -17,6 +17,7 @@ nav:
   - Russian Skill (RU): SKILL_RU.md
   - Method Contract Checker: contract-checker.md
   - MemoArtifact: memo-artifact.md
+  - Review Bundle: review-bundle.md
   - Contract Release Criteria: contract-release-criteria.md
   - Definition of Done: definition-of-done.md
   - Maturity Framework: maturity-framework.md

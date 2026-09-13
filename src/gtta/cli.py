@@ -308,6 +308,56 @@ def verify_command(
         raise typer.Exit(1)
 
 
+@app.command(name="review")
+def review_command(
+    file_path: str = typer.Argument(..., help="MemoArtifact JSON path"),
+    sources: Optional[str] = typer.Option(
+        None,
+        "--sources",
+        help="Source catalog path; defaults to <memo>.sources.json when present",
+    ),
+    out_dir: Optional[str] = typer.Option(
+        None,
+        "--out-dir",
+        help="New bundle directory; defaults to <memo>.review",
+    ),
+    strict: bool = typer.Option(
+        True,
+        "--strict/--no-strict",
+        help="Require packet_complete and a clean GTTA verification preflight",
+    ),
+):
+    """Write Markdown, JSON, HTML, SARIF, repair, and manifest outputs."""
+
+    from .review import ReviewBundleInputError, build_review_bundle
+    from .verification import VerificationDependencyError, VerificationInputError
+
+    try:
+        result = build_review_bundle(
+            file_path,
+            source_catalog_path=sources,
+            output_dir=out_dir,
+            strict=strict,
+        )
+    except (
+        OSError,
+        ReviewBundleInputError,
+        VerificationDependencyError,
+        VerificationInputError,
+    ) as exc:
+        console.print(f"[bold red]Error:[/bold red] {exc}")
+        raise typer.Exit(2)
+
+    status = "PASS" if result.report.passed else "REVIEW REQUIRED"
+    console.print(
+        f"Review bundle: {status} ({result.report.packet_status})",
+        markup=False,
+    )
+    console.print(f"Wrote {result.output_dir}", markup=False)
+    if not result.report.passed:
+        raise typer.Exit(1)
+
+
 @app.command()
 def ui(host: str = "127.0.0.1", port: int = 8501):
     """Launch the interactive web UI (requires 'streamlit' extra)."""

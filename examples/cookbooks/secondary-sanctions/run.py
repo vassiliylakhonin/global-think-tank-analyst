@@ -8,8 +8,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 MEMO = HERE / "memo.json"
-REPORT = HERE / "review.html"
-REPAIR = HERE / "repair.md"
+REVIEW_BUNDLE = HERE / "review-bundle"
 
 
 def main() -> int:
@@ -17,19 +16,14 @@ def main() -> int:
         sys.executable,
         "-m",
         "gtta.cli",
-        "verify",
+        "review",
         str(MEMO),
-        "--strict",
-        "--format",
-        "html",
-        "--out",
-        str(REPORT),
-        "--repair-prompt",
-        str(REPAIR),
+        "--out-dir",
+        str(REVIEW_BUNDLE),
     ]
     result = subprocess.run(command, cwd=HERE, check=False)
     if result.returncode == 0:
-        print(f"Verified illustrative packet; review: {REPORT}; repair status: {REPAIR}")
+        print(f"Verified illustrative packet; bundle: {REVIEW_BUNDLE}")
     return result.returncode
 
 

@@ -3,7 +3,7 @@
 This deterministic, offline example demonstrates the complete shipped seam:
 
 ```text
-MemoArtifact -> GTTA projection -> Agenda Intelligence evidence check -> HTML review
+MemoArtifact -> GTTA projection -> Agenda Intelligence check -> review bundle
 ```
 
 The documents and entities are synthetic. Evidence mode is
@@ -21,12 +21,17 @@ python examples/cookbooks/secondary-sanctions/run.py
 
 The script validates `memo.json`, auto-discovers `memo.sources.json`, selects
 source-backed claims, loads only their declared local sources, runs Agenda
-Intelligence's deterministic packet checker in strict mode, and writes
-`review.html` plus a bounded `repair.md` beside the example. A passing run says
-that no deterministic repair is needed; a failing run lists safe, claim-level
-repair actions without copying the source documents. Open the
-HTML file to inspect claims, lexical support, source excerpts, and reviewer
-actions side by side.
+Intelligence's deterministic packet checker in strict mode, and atomically
+writes `review-bundle/`. The directory contains the rendered memo, JSON and
+Markdown receipts, side-by-side HTML, SARIF, bounded repair guidance, and a
+hash-bearing manifest. A passing run says that no deterministic repair is
+needed; a failing run still writes the complete bundle and lists safe,
+claim-level repair actions without copying the source documents. Open
+`review-bundle/review.html` to inspect claims, lexical support, source excerpts,
+and reviewer actions side by side.
+
+Review directories are immutable by convention and never overwritten. Move or
+archive `review-bundle/` before rerunning this exact cookbook command.
 
 To exercise the fail-closed path, change either dated fact in `memo.json`
 without changing its source, or set its `verify` field to `false`, then run the

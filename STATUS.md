@@ -15,7 +15,10 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 ## Release state
 
 - Latest stable release: [`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.7.0), superseding `v1.7.0rc1`.
-- Package version on `main`: `1.7.0`, containing the Agenda Intelligence verification bridge, bounded repair guidance, SARIF support, and the six-case verification benchmark.
+- Package version on `main`: `1.8.0.dev0`. The unreleased development branch
+  adds the strict-by-default `gtta.review-bundle@1.0` orchestration interface
+  over the released Agenda Intelligence verification bridge; latest stable
+  remains `1.7.0`.
 - `v1.6.0rc1` is superseded: its release build failed before packaging because
   the workflow omitted the optional LangChain test dependency. `rc2` passed
   the corrected distribution-integrity gate; its PyPI job was intentionally
@@ -84,7 +87,8 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
 ## Immediate development order
 
-1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable and testable.
+1. Keep `gtta.memo@1.x`, `gtta-method-contract@1.x`, and the new
+   `gtta.review-bundle@1.x` orchestration contract stable and testable.
 2. Keep the new per-sample truncation telemetry in every published rescore and
    avoid presenting capped warning totals as exact quality deltas.
 3. Freeze the completed holdout and its null result; do not tune the skill or

@@ -10,6 +10,7 @@ from pathlib import Path
 import pytest
 
 from gtta.artifact import check_memo_artifact
+from gtta.review import REVIEW_BUNDLE_VERSION, build_review_bundle
 from gtta.verification import load_source_catalog, verify_memo_artifact
 
 
@@ -71,3 +72,22 @@ def test_portable_verification_benchmark_passes(tmp_path: Path):
     assert sarif["version"] == "2.1.0"
     assert sarif["runs"][0]["results"] == []
     assert sarif["runs"][0]["properties"]["expectedNegativeFindingsRecordedInSummary"] is True
+
+
+def test_pinned_agenda_1_9_builds_the_complete_review_bundle(tmp_path: Path):
+    agenda_intelligence = pytest.importorskip("agenda_intelligence")
+    assert agenda_intelligence.__version__ == "1.9.0"
+
+    result = build_review_bundle(
+        COOKBOOK / "memo.json",
+        output_dir=tmp_path / "review-bundle",
+    )
+
+    assert result.report.passed is True
+    assert result.manifest["interface"] == REVIEW_BUNDLE_VERSION
+    assert result.manifest["packet_status"] == "packet_complete"
+    assert (result.output_dir / "review.html").is_file()
+    assert (result.output_dir / "verification.sarif").is_file()
+    assert (result.output_dir / "repair.md").read_text(encoding="utf-8").startswith(
+        "# GTTA Memo Repair Status: Complete"
+    )

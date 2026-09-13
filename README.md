@@ -116,6 +116,9 @@ gtta verify memo.json --strict --format html --out review.html
 gtta verify memo.json --strict --format sarif --out verification.sarif
 gtta verify memo.json --strict --repair-prompt repair.md
 
+# Write the complete strict review contract to a new, auditable directory
+gtta review memo.json --out-dir memo.review
+
 # Serve the method and artifact tools over MCP stdio
 gtta mcp
 ```
@@ -131,6 +134,11 @@ It adds the native Agenda Intelligence verification seam, bounded repair
 guidance, SARIF output, and a portable verification benchmark while preserving
 the `gtta.memo@1.0` contract. See [`STATUS.md`](STATUS.md) for how it was
 published and what still blocks this repository from publishing itself.
+
+The development branch additionally exposes `gtta review`, a single strict
+orchestration command that atomically writes the versioned review bundle
+documented in [`docs/review-bundle.md`](docs/review-bundle.md). This interface
+is not part of the `1.7.0` package on PyPI.
 
 ## Executable analysis contracts
 
