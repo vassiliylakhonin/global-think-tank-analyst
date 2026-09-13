@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.7.0rc1 - 2026-09-12
+## 1.7.0 - 2026-09-13
+
+Stable promotion of `1.7.0rc1`. The release candidate passed the full GitHub
+build gate; no runtime or contract semantics changed during promotion.
 
 - Added the optional `gtta.memo-verification@1.0` composition seam and separate
   `gtta.sources@1.0` source catalog. `gtta verify memo.json --strict`

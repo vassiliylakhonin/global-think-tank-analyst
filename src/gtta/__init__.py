@@ -37,7 +37,7 @@ from .verification import (
 )
 
 
-__version__ = "1.7.0rc1"
+__version__ = "1.7.0"
 
 __all__ = (
     "SkillResourceError",
