@@ -1,6 +1,6 @@
 # Project status
 
-Updated 2026-09-12. Maturity definitions are in
+Updated 2026-09-13. Maturity definitions are in
 [`docs/maturity-framework.md`](docs/maturity-framework.md); gates for specific
 claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
@@ -8,14 +8,14 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
 | Axis | Level | Evidence | Next level requires |
 |---|---:|---|---|
-| Release readiness | R3 | `1.6.0` is on PyPI (uploaded 2026-09-07T12:02:04Z, sdist + wheel) through an authenticated workflow running this repository's full release gate, and installs from there into a clean environment: `pip install global-think-tank-analyst==1.6.0`, then `import gtta`, `gtta artifact-schema`, and the 45/45 Russian method including Mode G. **Caveat, and it is the point of the R axis:** that workflow ran in a sibling repository, because this one still cannot authenticate to PyPI. R3 is the highest defined release level | — |
+| Release readiness | R3 | `1.7.0` is on PyPI (wheel uploaded 2026-09-13T10:36:46Z; sdist 2026-09-13T10:36:47Z) through an authenticated one-use workflow that repeated the full release gate. A clean Python 3.12 environment installed `global-think-tank-analyst[verification]==1.7.0` and confirmed GTTA 1.7.0, Agenda Intelligence 1.9.0, and the installed artifact/source-catalog schema CLI surfaces. **Caveat, and it is the point of the R axis:** the upload workflow ran in a sibling repository because this one still cannot authenticate to PyPI. R3 is the highest defined release level | — |
 | Method evidence | M3 | Four disclosed Markdown runs report 12/12 skill passes vs. 0/12 baseline. Declared-behavior runs on the original suite record 8/12 vs. 3/12 on Gemini and 3/12 vs. 0/12 on Claude. The preregistered broader-domain holdout passed structure 10/10 in both arms but declared behavior 0/10 in both; the null result and execution caveats are retained. | M3 is the highest defined method level; stronger quality/usefulness claims require different evidence and remain tracked under U |
 | External usefulness | U0 | No external practitioner review record exists; `reviews/` contains scaffolding only | One real review reaches U1; two independent relevant reviews with recorded findings reach U2 |
 
 ## Release state
 
-- Latest stable release: [`v1.6.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.6.0), superseding the `rc1`-`rc3` candidates.
-- Package version on `main`: `1.7.0rc1`, the unreleased candidate containing the Agenda Intelligence verification bridge and SARIF support.
+- Latest stable release: [`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.7.0), superseding `v1.7.0rc1`.
+- Package version on `main`: `1.7.0`, containing the Agenda Intelligence verification bridge, bounded repair guidance, SARIF support, and the six-case verification benchmark.
 - `v1.6.0rc1` is superseded: its release build failed before packaging because
   the workflow omitted the optional LangChain test dependency. `rc2` passed
   the corrected distribution-integrity gate; its PyPI job was intentionally
@@ -31,16 +31,18 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 - That token is account-scoped, not project-scoped: it was created at
   `2026-05-01T17:44:48Z`, five minutes before that project's first upload at
   `17:49:52Z`, and a project-scoped token cannot exist before its project does.
-- **`1.6.0` was published from that sibling repository on 2026-09-07**, through a
-  dispatch-only bridge workflow that checked this repository out at the tag,
-  refused to run against any other project name, and repeated this repository's
-  own release gate before uploading. The bridge has since been deleted; the
-  commit that removed it names the revert if it is needed again.
+- **`1.6.0` and `1.7.0` were published from that sibling repository**, through
+  one-use dispatch-only bridge workflows that checked this repository out at
+  the exact tag, refused unexpected project metadata, and repeated this
+  repository's release gate before uploading. Each bridge was deleted after
+  PyPI readback and clean-install verification. The `1.7.0` run and cleanup are
+  recorded in the sibling repository's decision workspace.
 - **This repository still cannot publish itself.** Its own `publish-pypi.yml`
   accepts a stored token or Trusted Publishing and has neither: no secret is set
-  here, and no publisher is registered. Two runs of it on `v1.6.0` built cleanly
-  and failed at upload. Making the next release self-sufficient needs either a
-  registered Trusted Publisher (owner `vassiliylakhonin`, repository
+  here, and no publisher is registered. Its stable `v1.7.0` release workflow
+  built, tested, checked, packaged, and smoke-tested successfully, then PyPI
+  rejected the OIDC exchange with `invalid-publisher`. Making the next release
+  self-sufficient needs either a registered Trusted Publisher (owner `vassiliylakhonin`, repository
   `global-think-tank-analyst`, workflow `publish-pypi.yml`, environment `pypi`)
   or this repository's own copy of a token.
 - No prerelease is sent to PyPI automatically.

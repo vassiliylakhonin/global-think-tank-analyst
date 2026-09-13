@@ -14,8 +14,9 @@ options, and watch indicators explicit.
 [Use the skill](SKILL.md) · [Read the Russian version](SKILL_RU.md) ·
 [See examples](examples/README.md) · [Inspect project status](STATUS.md)
 
-**Current maturity: `R2 / M3 / U0`.** A tested GitHub release candidate, an
-executable method contract, and a disclosed paired evaluation run exist.
+**Current maturity: `R3 / M3 / U0`.** A reproducibly tested package is
+available from PyPI, alongside an executable method contract and disclosed
+paired evaluations.
 No practitioner validation or production reliability is claimed.
 
 > GTTA improves analytical structure; it does not establish factual truth. It
@@ -84,8 +85,8 @@ parity is enforced by `scripts/validate_language_parity.py`.
 
 ### Install the developer toolkit from source
 
-The package is a source-installed pre-release while PyPI account recovery is
-pending.
+The stable package is available from PyPI. A source checkout remains useful for
+developing the method, examples, and integrations.
 
 ```bash
 git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
@@ -120,15 +121,15 @@ gtta mcp
 ```
 
 The current release is
-[`v1.6.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest),
-the first stable one since `1.4.0`, and the first release on PyPI:
+[`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest):
 
 ```bash
 pip install global-think-tank-analyst
 ```
 
-It carries the full Russian method and makes the agent adapter's optional
-dependencies genuinely optional. See [`STATUS.md`](STATUS.md) for how it was
+It adds the native Agenda Intelligence verification seam, bounded repair
+guidance, SARIF output, and a portable verification benchmark while preserving
+the `gtta.memo@1.0` contract. See [`STATUS.md`](STATUS.md) for how it was
 published and what still blocks this repository from publishing itself.
 
 ## Executable analysis contracts
@@ -373,7 +374,8 @@ by running its example prompt through the skill.
    tune the method or rubric against repeated runs on the same cases.
 3. Freeze the completed broader-domain holdout and its null result; do not tune
    the method or thresholds against those cases.
-4. Stabilize the `1.6` source, package, documentation, and release notes.
+4. Keep the stable `1.7` verification seam, source catalog, SARIF mappings, and
+   bounded-repair behavior regression-tested.
 5. Complete PyPI Trusted Publishing after account access is restored.
 6. Record real practitioner feedback if access becomes available; do not use
    proxy metrics to disguise `U0`.
