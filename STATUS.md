@@ -15,7 +15,11 @@ claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 ## Release state
 
 - Latest stable release: [`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.7.0), superseding `v1.7.0rc1`.
-- Release candidate prepared on `main`: `1.8.0rc1`. It adds the
+- Latest prerelease: [`v1.8.0rc1`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/tag/v1.8.0rc1),
+  cut from `08e061b`. Its tagged release workflow passed tests, repository
+  checks, distribution build and metadata checks, and installed-wheel smoke;
+  the PyPI job was skipped by the prerelease policy.
+- Package version on `main`: `1.8.0rc1`. It adds the
   strict-by-default `gtta.review-bundle@1.0` orchestration interface and its
   Agenda-independent integrity checker over the released Agenda Intelligence
   verification bridge; latest stable remains `1.7.0`.
