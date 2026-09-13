@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.8.0rc1 - 2026-09-13
+## 1.8.0 - 2026-09-13
+
+Stable promotion of `1.8.0rc1`. The tagged candidate passed the full GitHub
+build gate and an independent installed-wheel burn-in covering a complete
+packet, an intact `REVIEW REQUIRED` packet, six corruption classes, and the
+missing-path operational error. No runtime or contract semantics changed
+during promotion.
 
 - Added `gtta review` and the `gtta.review-bundle@1.0` Python interface. A
   single strict-by-default run now atomically writes the rendered memo, JSON

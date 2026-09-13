@@ -48,7 +48,7 @@ from .verification import (
 )
 
 
-__version__ = "1.8.0rc1"
+__version__ = "1.8.0"
 
 __all__ = (
     "SkillResourceError",

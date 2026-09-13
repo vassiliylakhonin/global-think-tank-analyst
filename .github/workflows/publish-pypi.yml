@@ -8,7 +8,7 @@ on:
       tag:
         description: "Existing release tag to build and publish"
         required: true
-        default: "v1.7.0"
+        default: "v1.8.0"
         type: string
 
 permissions:

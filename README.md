@@ -125,22 +125,19 @@ gtta mcp
 ```
 
 The current release is
-[`v1.7.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest):
+[`v1.8.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest):
 
 ```bash
 pip install global-think-tank-analyst
 ```
 
-It adds the native Agenda Intelligence verification seam, bounded repair
+It includes the native Agenda Intelligence verification seam, bounded repair
 guidance, SARIF output, and a portable verification benchmark while preserving
-the `gtta.memo@1.0` contract. See [`STATUS.md`](STATUS.md) for how it was
-published and what still blocks this repository from publishing itself.
-
-The `1.8.0rc1` release-candidate line additionally exposes `gtta review`, a
-single strict orchestration command that atomically writes the versioned review
-bundle documented in [`docs/review-bundle.md`](docs/review-bundle.md). This
-interface and its Agenda-independent `gtta check-review-bundle` integrity
-checker are not part of the stable `1.7.0` package on PyPI.
+the `gtta.memo@1.0` contract. Version 1.8.0 adds `gtta review`, a single strict
+orchestration command that atomically writes the versioned review bundle
+documented in [`docs/review-bundle.md`](docs/review-bundle.md), plus the
+Agenda-independent `gtta check-review-bundle` integrity checker. See
+[`STATUS.md`](STATUS.md) for publication state and limitations.
 
 ## Executable analysis contracts
 
