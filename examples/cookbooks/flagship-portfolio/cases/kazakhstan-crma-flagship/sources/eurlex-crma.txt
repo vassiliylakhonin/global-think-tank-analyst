@@ -1,0 +1,19 @@
+PRIMARY-SOURCE READING RECORD
+
+Source: Regulation (EU) 2024/1252 of the European Parliament and of the Council of 11 April 2024
+Official URL: https://eur-lex.europa.eu/eli/reg/2024/1252/oj
+Official publication date: 2024-05-03
+Analyst access date: 2026-09-10
+Scope read: Articles 5, 6 and 11; Annex I context.
+
+Analyst extraction (Russian paraphrase checked against the official text):
+
+К 2030 году ориентиры CRMA составляют не менее 10% годового потребления ЕС для добывающих мощностей, не менее 40% для перерабатывающих мощностей и не менее 25% для рециклинговых мощностей.
+
+К 2030 году ни одна третья страна не должна обеспечивать более 65% годового потребления ЕС каждого стратегического материала на соответствующей стадии переработки.
+
+Статья 6 CRMA требует от Strategic Project значимого вклада в безопасность снабжения ЕС, технической осуществимости, устойчивой реализации и взаимной выгоды с добавленной стоимостью в третьей стране, если проект расположен в развивающейся или формирующейся экономике.
+
+Ускоренные сроки 27 месяцев для добычи и 15 месяцев для переработки или рециклинга статья 11 CRMA устанавливает только для Strategic Projects в Европейском союзе.
+
+Boundary: this file is a bounded analyst reading record, not a copy of the full legal text. The official EUR-Lex page controls.

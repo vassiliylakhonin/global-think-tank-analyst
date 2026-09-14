@@ -1,0 +1,42 @@
+{
+  "schema_version": "gtta.sources@1.0",
+  "sources": [
+    {
+      "source_id": "eurlex-833",
+      "path": "sources/eurlex-833.txt",
+      "title": "Consolidated Council Regulation (EU) No 833/2014",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014R0833-20260724"
+    },
+    {
+      "source_id": "ec-due-diligence",
+      "path": "sources/ec-due-diligence.txt",
+      "title": "European Commission enhanced due-diligence guidance",
+      "url": "https://finance.ec.europa.eu/document/download/3c86c9a8-f09e-4092-ab8c-a9e678df1494_en?filename=guidance-eu-operators-russia-sanctions-circumvention_en.pdf"
+    },
+    {
+      "source_id": "ec-chpi",
+      "path": "sources/ec-chpi.txt",
+      "title": "European Commission list of common high priority items",
+      "url": "https://finance.ec.europa.eu/publications/list-common-high-priority-items_en"
+    },
+    {
+      "source_id": "ec-21st-package",
+      "path": "sources/ec-21st-package.txt",
+      "title": "European Commission 21st sanctions package announcement",
+      "url": "https://finance.ec.europa.eu/news/eu-adopts-21st-package-sanctions-against-russia-2026-07-23_en"
+    },
+    {
+      "source_id": "world-bank-middle-corridor",
+      "path": "sources/world-bank-middle-corridor.txt",
+      "title": "World Bank Middle Trade and Transport Corridor report",
+      "url": "https://www.worldbank.org/en/region/eca/publication/middle-trade-and-transport-corridor"
+    },
+    {
+      "source_id": "kazakhstan-specific-goods-law",
+      "path": "sources/kazakhstan-specific-goods-law.txt",
+      "title": "Закон Республики Казахстан № 172-VII ЗРК",
+      "url": "https://www.adilet.zan.kz/rus/docs/Z2200000172"
+    }
+  ],
+  "quotes": []
+}

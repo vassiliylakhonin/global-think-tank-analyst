@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Added a self-contained, developer-facing two-case portfolio cookbook. It
+  builds source-backed review bundles in staging, requires strict verification
+  and bundle-integrity PASS, atomically promotes the release, and emits
+  deterministic ZIP distributions as CI artifacts.
+
 ## 1.8.0 - 2026-09-13
 
 Stable promotion of `1.8.0rc1`. The tagged candidate passed the full GitHub

@@ -1,0 +1,20 @@
+Источник: European Commission, Guidance for EU operators: Implementing enhanced due diligence to shield against Russia sanctions circumvention.
+URL: https://finance.ec.europa.eu/document/download/3c86c9a8-f09e-4092-ab8c-a9e678df1494_en?filename=guidance-eu-operators-russia-sanctions-circumvention_en.pdf
+Дата документа: 2023.
+Дата доступа: 2026-09-12.
+Тип: официальное руководство, не самостоятельный правовой акт.
+
+Поддерживаемые утверждения:
+
+F3. Руководство Еврокомиссии рекомендует для повышенной проверки охватывать прямых и косвенных участников, бенефициарных владельцев, конечного пользователя, сделку и денежные потоки, транспорт, маршрут и характеристики товара.
+
+F4. Руководство Еврокомиссии относит к красным флагам сложные или необычные маршруты, несоответствие фактического груза документам, непрозрачных посредников и операции без очевидного экономического смысла.
+
+Релевантные фрагменты:
+
+- Increased circumvention risk can justify enhanced due diligence for high-risk sectors and complex supply chains.
+- Stakeholder checks include business partners, representatives, beneficial owners, end users, intermediaries and banks.
+- Transaction checks include money flows, origin, transit and destination, routing, transport changes and documents.
+- Goods checks include sanctions/export controls, common high priority items and similarity to restricted goods.
+- Freight forwarders should review carriers, subcontractors and routing; transport companies should compare actual goods with documentation.
+- Contractual clauses should be enforceable, create liability and may include ex-post verification.

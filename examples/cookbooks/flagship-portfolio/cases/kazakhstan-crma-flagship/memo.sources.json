@@ -1,0 +1,30 @@
+{
+  "schema_version": "gtta.sources@1.0",
+  "sources": [
+    {
+      "source_id": "eurlex-crma",
+      "path": "sources/eurlex-crma.txt",
+      "title": "Regulation (EU) 2024/1252",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1252/oj"
+    },
+    {
+      "source_id": "ec-kazakhstan-mou",
+      "path": "sources/ec-kazakhstan-mou.txt",
+      "title": "EU–Kazakhstan strategic partnership announcement",
+      "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_22_6585"
+    },
+    {
+      "source_id": "eurlex-strategic-projects",
+      "path": "sources/eurlex-strategic-projects.txt",
+      "title": "Commission Decision (EU) 2025/1174",
+      "url": "https://eur-lex.europa.eu/eli/dec/2025/1174/oj/eng"
+    },
+    {
+      "source_id": "ec-non-eu-projects",
+      "path": "sources/ec-non-eu-projects.txt",
+      "title": "European Commission announcement of non-EU Strategic Projects",
+      "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1419"
+    }
+  ],
+  "quotes": []
+}

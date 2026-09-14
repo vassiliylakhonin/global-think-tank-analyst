@@ -1,0 +1,17 @@
+PRIMARY-SOURCE READING RECORD
+
+Source: European Commission press release IP/22/6585
+Official URL: https://ec.europa.eu/commission/presscorner/detail/en/ip_22_6585
+Publication date: 2022-11-07
+Analyst access date: 2026-09-10
+Scope read: announcement and stated cooperation areas.
+
+Analyst extraction (Russian paraphrase checked against the official text):
+
+7 ноября 2022 года ЕС и Казахстан подписали меморандум о партнёрстве по устойчивому сырью, батареям и возобновляемому водороду.
+
+Партнёрство предусматривает интеграцию цепочек стоимости и совместные проекты, устойчивость и прозрачность цепочек поставок, а также развитие навыков, исследований и инноваций.
+
+Стороны обязались разработать Roadmap на 2023–2024 годы и согласовать конкретные совместные действия в течение шести месяцев.
+
+Boundary: the announcement establishes stated intentions and cooperation areas; it does not establish project economics, completed implementation or a binding purchase commitment.

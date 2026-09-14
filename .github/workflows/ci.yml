@@ -72,6 +72,9 @@ jobs:
       - name: Run golden and negative-control benchmark
         run: python scripts/run_verification_benchmark.py
 
+      - name: Build two-case review portfolio
+        run: python examples/cookbooks/flagship-portfolio/run.py
+
       - name: Upload benchmark receipts
         if: always()
         uses: actions/upload-artifact@v7

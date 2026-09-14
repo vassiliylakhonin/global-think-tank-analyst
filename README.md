@@ -248,6 +248,7 @@ Start with these:
 | Work from supplied documents | `user-provided sources` | [Supply-chain sanctions exposure](examples/user-provided-sources-supply-chain-sanctions.md) |
 | Surface conflicting sources | `illustrative source packet` | [IEA–OPEC forecast conflict](examples/source-conflict-iea-opec-demand-forecast.md) |
 | Challenge an existing claim | `reasoning-only` | [Red-team policy brief](examples/red-team-policy-brief.md) |
+| Build a two-case review release | `live-source-backed` | [Flagship portfolio cookbook](examples/cookbooks/flagship-portfolio/README.md) |
 
 Every example declares its evidence mode. Source-backed examples are snapshots;
 verify their retrieval dates and current facts before use.

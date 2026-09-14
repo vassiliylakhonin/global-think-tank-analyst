@@ -1,0 +1,15 @@
+PRIMARY-SOURCE READING RECORD
+
+Source: Commission Decision (EU) 2025/1174 of 4 June 2025
+Official URL: https://eur-lex.europa.eu/eli/dec/2025/1174/oj/eng
+Official Journal publication date: 2025-06-12
+Analyst access date: 2026-09-10
+Scope read: Articles 1–2 and Annex entry for Kazakhstan.
+
+Analyst extraction (Russian paraphrase checked against the official text):
+
+Решением Комиссии (EU) 2025/1174 проект Sarytogan Graphite Project в Казахстане признан Strategic Project как ongoing extraction project, ориентированный на graphite battery grade.
+
+В решении промоутером Sarytogan Graphite Project названа Sarytogan Graphite Limited.
+
+Boundary: recognition records the CRMA status at the date of the Decision; it is not a resource statement, permit, financing commitment or operating certificate.

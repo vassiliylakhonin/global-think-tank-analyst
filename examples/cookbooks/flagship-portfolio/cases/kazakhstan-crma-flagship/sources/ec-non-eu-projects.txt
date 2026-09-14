@@ -1,0 +1,13 @@
+PRIMARY-SOURCE READING RECORD
+
+Source: European Commission press release IP/25/1419
+Official URL: https://ec.europa.eu/commission/presscorner/detail/en/ip_25_1419
+Publication date: 2025-06-04
+Analyst access date: 2026-09-10
+Scope read: support described for non-EU Strategic Projects.
+
+Analyst extraction (Russian paraphrase checked against the official text):
+
+Комиссия описывает поддержку 13 Strategic Projects вне ЕС как координированное содействие доступу к финансированию и контактам с потенциальными off-takers.
+
+Boundary: facilitating access is not an award, guarantee, financing approval, signed off-take or assurance of bankability.
