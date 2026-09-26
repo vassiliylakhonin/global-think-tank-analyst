@@ -3,6 +3,8 @@
 [![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+**For analysts and teams who need a decision memo, not a generic geopolitical summary.** Give an AI assistant a question, decision, audience and time horizon; this method forces it to separate evidence from assumptions, compare options, and name what would change its judgment. [Try one prompt](#try-it-in-one-prompt) before installing anything. This is an experimental method, not a live intelligence feed or factuality verifier.
+
 **An experimental strategic-risk reasoning framework for AI agents, with
 versioned memo contracts, CLI, and MCP.**
 
