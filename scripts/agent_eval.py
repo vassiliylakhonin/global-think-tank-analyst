@@ -502,6 +502,7 @@ def prepare_artifact_behavior_run(
     output_dir: Path,
     seed: int,
     benchmark_version: str = BENCHMARK_VERSION,
+    skill_path: Path | None = None,
 ) -> dict[str, Any]:
     """Create opaque paired requests with preregistered behavior expectations."""
     if not benchmark_version.strip():
@@ -510,7 +511,7 @@ def prepare_artifact_behavior_run(
     expectations = load_artifact_expectations(
         expectation_path, {case["id"] for case in cases}
     )
-    skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    skill_text = (skill_path or ROOT / "SKILL.md").read_text(encoding="utf-8")
     skill_hash = hashlib.sha256(skill_text.encode()).hexdigest()
     schema_text = _artifact_schema_text()
     output_contract = _artifact_output_contract(schema_text)
@@ -1489,6 +1490,7 @@ def _parser() -> argparse.ArgumentParser:
         default=BENCHMARK_VERSION,
         help="version identifier for the case suite stored in the run mapping",
     )
+    prepare_artifact_behavior.add_argument("--skill", type=Path, help="experimental candidate; default is canonical SKILL.md")
     prepare_artifact_behavior.add_argument("--seed", type=int, default=20260905)
 
     import_antigravity = subparsers.add_parser(
@@ -1581,6 +1583,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.output_dir,
                 args.seed,
                 args.suite_version,
+                skill_path=args.skill,
             )
             print(
                 f"OK: prepared {mapping['sample_count']} structured behavior "

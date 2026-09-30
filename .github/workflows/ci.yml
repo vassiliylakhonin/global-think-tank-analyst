@@ -91,3 +91,15 @@ jobs:
         with:
           sarif_file: artifacts/verification-benchmark.sarif
           category: gtta-memo-verification-benchmark
+
+  agenda-latest-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install latest allowed verification dependency
+        run: pip install -e ".[test,verification]"
+      - name: Exercise the supported composition interface
+        run: pytest -q tests/test_verification_integration.py

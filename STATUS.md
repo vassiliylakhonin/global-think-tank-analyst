@@ -4,6 +4,16 @@ Updated 2026-09-13. Maturity definitions are in
 [`docs/maturity-framework.md`](docs/maturity-framework.md); gates for specific
 claims are in [`docs/definition-of-done.md`](docs/definition-of-done.md).
 
+## Maintenance update — 2026-09-30
+
+Explicit per-claim verification serialization has been added to the EN/RU and
+Codex runtime instructions. Ten separate development cases and an opt-in compact
+candidate support a future controlled comparison. These are prepared instruments,
+not new model results: the published holdout and its null result remain unchanged.
+The Agenda seam tests now exercise both the minimum supported 1.9 release in CI
+and the latest allowed 1.x release rather than rejecting it by version alone.
+No maturity coordinate or usefulness claim is advanced.
+
 ## Current coordinates: R3 / M3 / U0
 
 | Axis | Level | Evidence | Next level requires |

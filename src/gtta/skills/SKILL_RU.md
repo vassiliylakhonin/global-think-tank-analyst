@@ -211,6 +211,17 @@ Axis A — ровно один на claim: `[primary]` `[secondary]` `[user-prov
 
 Axis B — необязательно: `[verify]` `[stale-risk: YYYY-MM]`.
 
+При выводе `MemoArtifact` явно перенесите evidence flags в каждый atomic claim:
+Markdown `[verify]` становится `"verify": true`, а известная дата устаревания —
+`"stale_as_of": "YYYY-MM-DD"`. Source IDs и provenance не заменяют эти поля.
+Непроверенные утверждения пользователя сохраняют `user-provided`; если нужна
+проверка, установите флаг даже при наличии source reference. Используйте `unknown`
+или `assumption`, когда это оправдано, не превращая premise в установленный факт.
+Чисто гипотетический scenario не требует verification flag, если он не содержит
+непроверенную внешнюю premise. Перед выводом проверьте claims по отдельности,
+а не только evidence mode всего memo.
+
+
 Layout-only элементы не требуют тега: адресат, отправитель, заголовки,
 заголовки таблиц, нейтральные идентификаторы `Option A` и прямые вопросы.
 Аналитические вводные — содержательные claims: тегируйте предложение, которое

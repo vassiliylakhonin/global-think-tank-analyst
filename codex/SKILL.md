@@ -256,6 +256,17 @@ provenance. If both are useful, pair them, for example
 
 Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
 
+When emitting `MemoArtifact`, map evidence flags explicitly into each atomic
+claim: Markdown `[verify]` becomes `"verify": true`, and a known stale as-of date
+becomes `"stale_as_of": "YYYY-MM-DD"`. Source IDs and provenance do not substitute
+for these fields. Keep unverified user assertions tagged `user-provided`; when
+verification is required, flag them even if a source reference is present. Use
+`unknown` or `assumption` where warranted rather than promoting a premise to fact.
+A purely hypothetical scenario needs no verification flag unless it embeds an
+unverified external premise. Before output, review the claim ledger individually,
+not just the memo-level evidence label.
+
+
 Layout-only text does not need a provenance tag: recipient/sender metadata,
 section headings, table headers, row identifiers such as "Option A", and direct
 questions are not claims. Analytical lead-ins are content, not layout: tag a
