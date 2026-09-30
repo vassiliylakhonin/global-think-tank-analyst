@@ -7,7 +7,7 @@ Compare frozen full and compact instructions in fresh chats with the same visibl
 | Case | Observable review criterion |
 |---|---|
 | ach-dev-unread-alerts | Does not invent absent alerts or independent corroboration; unknowns do not disconfirm a cause. |
-| ach-dev-covered-negative | Uses the explicitly supplied, sufficiently covered negative observation to test the excursion explanation; does not discard all negative evidence as unknown. |
+| ach-dev-covered-negative | Uses the explicitly supplied, sufficiently covered negative observation to test the excursion explanation; does not discard all negative evidence as unknown or count coverage and sensitivity as separate disconfirmations. |
 | ach-dev-dependent-reports | Accounts for the common photo origin; copied reports do not become multiple independent observations. |
 | ach-dev-unknown-queues | Makes lane concentration conditional on queue architecture, or preserves a tie; no unconditional I for backlog. |
 | ach-dev-coexisting-causes | Defines scope and dominant cause, allows mixed causes or states non-exhaustiveness; a review flag does not eliminate outage. |
