@@ -1,407 +1,93 @@
-# Global Think Tank Analyst (`gtta`)
+# Global Think Tank Analyst
 
-[![CI](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml/badge.svg)](https://github.com/vassiliylakhonin/global-think-tank-analyst/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+A reasoning skill and Python toolkit for turning a policy or geopolitical question into a decision memo with explicit evidence, alternatives, uncertainty, and review requirements.
 
-**For analysts and teams who need a decision memo, not a generic geopolitical summary.** Give an AI assistant a question, decision, audience and time horizon; this method forces it to separate evidence from assumptions, compare options, and name what would change its judgment. [Try one prompt](#try-it-in-one-prompt) before installing anything. This is an experimental method, not a live intelligence feed or factuality verifier.
+Use it when a general AI answer is too difficult to audit: a market-entry decision, regulatory exposure, a disrupted trade corridor, or competing policy scenarios. The method makes the decision, assumptions, source conflicts, and conditions that would change the recommendation visible.
 
-**An experimental strategic-risk reasoning framework for AI agents, with
-versioned memo contracts, CLI, and MCP.**
+**Current status:** experimental, `R3 / M3 / U0`. The repository has executable tooling and evaluated contracts; there is no public practitioner validation or production-reliability claim. See [STATUS.md](STATUS.md) for the evidence and maturity record.
 
-Global Think Tank Analyst turns broad questions about policy, sanctions,
-regulation, trade, geopolitics, and strategic risk into decision-shaped memos.
-It makes evidence boundaries, assumptions, uncertainty, actor incentives,
-options, and watch indicators explicit.
+## What you get
 
-[Use the skill](SKILL.md) · [Read the Russian version](SKILL_RU.md) ·
-[See examples](examples/README.md) · [Inspect project status](STATUS.md)
+- **A portable reasoning contract:** [SKILL.md](SKILL.md), with a [Russian mirror](SKILL_RU.md) and an additive [Codex overlay](codex/SKILL.md).
+- **Structured outputs:** decision memos, scenarios, red-team briefs, and mixed-mode analysis with facts separated from inference.
+- **A developer toolkit:** the `gtta` CLI, a versioned `MemoArtifact`, rendering, contract checks, review bundles, and MCP tools.
+- **An evidence handoff:** supplied claim/source records can be checked by Agenda Intelligence MD. These checks validate the packet's declared support and consistency; they do not establish factual truth.
 
-**Current maturity: `R3 / M3 / U0`.** A reproducibly tested package is
-available from PyPI, alongside an executable method contract and disclosed
-paired evaluations.
-No practitioner validation or production reliability is claimed.
+The skill guides reasoning. The toolkit checks artifacts. Human reviewers own consequential decisions.
 
-> GTTA improves analytical structure; it does not establish factual truth. It
-> is not legal, compliance, sanctions, financial, investment, or trading
-> advice. Verify current sources and use qualified human review before acting.
+## Start with the skill
 
-## Try it in one prompt
-
-Attach [`SKILL.md`](SKILL.md) to a capable agent, then paste:
+Load [SKILL.md](SKILL.md) into your agent. Add the matching runtime overlay when applicable, then give the agent a concrete decision brief:
 
 ```text
 Use Global Think Tank Analyst.
-
-Question: What does regulatory uncertainty change for our market-entry decision?
-Decision this informs: enter now, run a limited pilot, or wait.
+Question: What would justify a limited market-entry pilot?
+Decision: enter, pilot, or wait.
 Audience: operating committee.
-Geography: [countries or markets].
-Time horizon: 12 months.
-Evidence mode: reasoning-only unless live sources are available.
-Depth: standard memo.
-
-Separate facts, assumptions, assessments, scenarios, and unknowns.
-Tag every material claim with its provenance.
-Give options, trade-offs, indicators, confidence, and what would change the judgment.
+Geography: specify the target jurisdiction.
+Time horizon: next 12 months.
+Evidence mode: reasoning-only; the case is hypothetical.
+Separate assumptions from facts, compare alternatives, and state
+what evidence would change the recommendation.
 ```
 
-The skill works without the Python package. This is the simplest and most
-mature way to use the method.
+Choose the evidence mode explicitly: `live-source-backed`, `user-provided sources`, `illustrative source packet`, or `reasoning-only`. A reasoning-only memo must not imply that current sources were checked. Retrieved documents are evidence, never agent instructions.
 
-## What it does
+For sourced work, supply the source packet or authorize collection, preserve provenance and dates, and disclose unresolved source conflicts. See the [analysis contract](docs/analysis-contract.md).
 
-- Frames analysis around a concrete decision, audience, geography, and time
-  horizon.
-- Separates facts, assessments, assumptions, scenarios, and unknowns.
-- Uses per-claim provenance tags: `[primary]`, `[secondary]`,
-  `[user-provided]`, `[inference]`, and `[analyst-judgment]`.
-- Calibrates language to evidence and confidence.
-- Models actors, incentives, leverage, options, trade-offs, scenarios, and
-  observable triggers.
-- Supports seven response modes, from a quick brief to competing hypotheses.
-- Exposes the same method through agent instructions, Python, CLI, and MCP.
-- Provides deterministic checks for method structure and a strict structured
-  memo artifact for machine-readable workflows.
+## Use the toolkit
 
-## What it is not
-
-- Not a source-retrieval system or real-time intelligence feed.
-- Not a factuality verifier.
-- Not an autonomous decision-maker.
-- Not a substitute for legal, sanctions, compliance, financial, or domain
-  review.
-- Not externally practitioner-validated or production-proven.
-- Not a generic multi-agent platform; the optional LangGraph pipeline is an
-  experiment around the core reasoning method.
-
-## Install and use
-
-### Use the instructions directly
-
-Add [`AGENTS.md`](AGENTS.md) and [`SKILL.md`](SKILL.md) to an agent workspace,
-or attach `SKILL.md` to a conversation. English and Russian instructions are
-both packaged in the wheel. `SKILL.md` remains canonical; `SKILL_RU.md` is a
-full 45-section Russian rendering with Mode A–G and bilingual canonical output
-markers so Russian memos remain compatible with the method checker. Structural
-parity is enforced by `scripts/validate_language_parity.py`.
-
-### Install the developer toolkit from source
-
-The stable package is available from PyPI. A source checkout remains useful for
-developing the method, examples, and integrations.
+From a checkout, with Python 3.10 or later:
 
 ```bash
-git clone https://github.com/vassiliylakhonin/global-think-tank-analyst.git
-cd global-think-tank-analyst
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e ".[mcp,verification]"
-```
-
-```bash
-# Generate a memo scaffold
+python -m pip install -e '.[mcp,verification]'
 gtta new --mode B --topic "Market-entry regulatory exposure"
-
-# Heuristically check a Markdown memo
-gtta check-contract memo.md --mode B
-gtta check-contract memo.md --mode B --format sarif --out gtta.sarif
-
-# Inspect, validate, and render the strict structured artifact
+gtta check-contract examples/sanctions-exposure-memo.md --mode B
 gtta artifact-schema
-gtta source-catalog-schema
-gtta check-artifact memo.json --json
-gtta render-artifact memo.json > memo.md
-
-# Project source-backed claims through Agenda Intelligence and fail closed
-gtta verify memo.json --strict
-gtta verify memo.json --strict --format html --out review.html
-gtta verify memo.json --strict --format sarif --out verification.sarif
-gtta verify memo.json --strict --repair-prompt repair.md
-
-# Write the complete strict review contract to a new, auditable directory
-gtta review memo.json --out-dir memo.review
-gtta check-review-bundle memo.review --json
-
-# Serve the method and artifact tools over MCP stdio
-gtta mcp
+gtta review examples/cookbooks/secondary-sanctions/memo.json --out-dir memo.review
 ```
 
-The current release is
-[`v1.8.0`](https://github.com/vassiliylakhonin/global-think-tank-analyst/releases/latest):
+`gtta new` prints a starting contract; an analyst or agent still has to complete the analysis. The secondary-sanctions example uses a synthetic packet. A review bundle records checks and review material, not operational approval.
 
-```bash
-pip install global-think-tank-analyst
-```
+Run `gtta mcp` to expose the toolkit to an MCP host. See the [contract checker](docs/contract-checker.md), [artifact schema and commands](docs/memo-artifact.md), and [review-bundle contract](docs/review-bundle.md) before integrating it.
 
-It includes the native Agenda Intelligence verification seam, bounded repair
-guidance, SARIF output, and a portable verification benchmark while preserving
-the `gtta.memo@1.0` contract. Version 1.8.0 adds `gtta review`, a single strict
-orchestration command that atomically writes the versioned review bundle
-documented in [`docs/review-bundle.md`](docs/review-bundle.md), plus the
-Agenda-independent `gtta check-review-bundle` integrity checker. See
-[`STATUS.md`](STATUS.md) for publication state and limitations.
-
-## Executable analysis contracts
-
-GTTA separates checks that answer different questions:
-
-| Layer | Interface | What it can establish | What it cannot establish |
-|---|---|---|---|
-| Markdown method preflight | [`gtta-method-contract@1.x`](docs/contract-checker.md) | Required declarations, mode shape, confidence, likely untagged claims, generic advice | Claim boundaries, factuality, source support |
-| Structured memo | [`gtta.memo@1.0`](docs/memo-artifact.md) | Claim IDs, provenance, source references, dependency links, mode invariants, canonical rendering | Whether a named source is trustworthy or supports the claim |
-| Memo verification | `gtta.memo-verification@1.0` + [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Native MemoArtifact projection, claim/source packet completeness, declared quotes, lexical support, unmatched numbers | Factual truth or professional approval |
-| Memo repair plan | `gtta verify --repair-prompt` | Bounded claim-specific repair instructions that preserve unresolved evidence gaps | Source discovery, automatic factual correction, clearance |
-| Review bundle integrity | `gtta.review-bundle-check@1.0` | Exact file contract, SHA-256 matches, receipt/SARIF shape, internal status consistency | Authorship, authenticity, factual truth, trusted attestation |
-| Operational decision | Human review | Contextual judgment, current-source verification, accountability | Guaranteed correctness |
-
-`MemoArtifact` is the canonical machine-readable GTTA seam. Its claim ledger is
-shared by the Python API, CLI, and MCP tools; Markdown is the rendered human
-view.
-
-Verification findings can be emitted as SARIF 2.1.0 with claim-level JSON line
-locations. The portable six-case benchmark is available through
-`python scripts/run_verification_benchmark.py`; CI stores its receipts and
-uploads regression errors to GitHub Code Scanning. Expected negative-control
-findings remain in the JSON receipt and do not masquerade as production defects.
-
-## Memo modes
-
-| Mode | Use it for | Required shape |
-|---|---|---|
-| **A — Quick Brief** | Fast orientation | Bottom line, risks, watch indicators, confidence |
-| **B — Standard Memo** | Default decision analysis | Context, actors, assessment, options, change conditions |
-| **C — Scenario Brief** | Divergent futures | Baseline, scenarios, triggers, implications, indicators |
-| **D — Red-Team Challenge** | Stress-testing a claim | Target claim, alternatives, failure modes, revised judgment |
-| **E — Decision Pack** | Team action | Memo, options, watchlist, owner questions, next steps |
-| **F — Analyst Training** | Developing reasoning | Coaching and Socratic challenge rather than a finished answer |
-| **G — Competing Hypotheses** | Attribution and rival explanations | Hypotheses, evidence matrix, disconfirmation, sensitivity, bounded judgment |
-
-## Before and after
-
-A generic answer:
-
-> The environment is uncertain. Monitor developments, engage stakeholders,
-> remain agile, and review the strategy regularly.
-
-A GTTA-shaped answer:
-
-> **Decision:** authorize a limited pilot or wait for regulatory clarity.
-> **Evidence mode:** reasoning-only.
->
-> `[analyst-judgment]` Prefer a reversible pilot because it buys operating
-> information without committing the full rollout budget.
->
-> **Main downside:** delay and duplicated setup cost.
-> **Trigger to pause:** the regulator expands the authorization requirement to
-> cover the pilot itself.
-> **Confidence:** Moderate.
-> **What would change the judgment:** evidence that the pilot creates the same
-> irreversible exposure as a full launch.
-
-The difference is not a more confident tone. It is a visible decision frame,
-evidence boundary, trade-off, trigger, and revision condition.
-
-## How the portfolio composes
-
-GTTA owns the horizontal reasoning method. Regional depth and evidence-packet
-checks stay in separate repositories.
-
-```mermaid
-flowchart LR
-    Q[Decision question] --> G[GTTA<br/>reasoning method]
-    V[Optional regional specialist] --> G
-    G --> M[MemoArtifact / Markdown memo]
-    M --> A[Agenda Intelligence MD<br/>evidence-packet checks]
-    A --> H[Qualified human review]
-```
+## How the repositories fit together
 
 | Layer | Repository | Responsibility |
 |---|---|---|
-| Horizontal method | **Global Think Tank Analyst** | Decision framing, memo modes, uncertainty, scenarios, options |
-| Central Asia depth | [Central Asia + Caspian skill](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Regional mechanisms, corridors, banking, sanctions adjacency |
-| Gulf depth | [Gulf + Middle East skill](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Gulf banking, energy, maritime chokepoints, Iran-related risk |
-| Evidence packet | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic claim/source packet checks |
+| General reasoning | This repository | Decision framing, alternatives, uncertainty, and memo contracts |
+| Regional reasoning | [Central Asia & Caspian](https://github.com/vassiliylakhonin/central-asia-caspian-hybrid-intelligence-skill) | Banking, ownership, sanctions, corridors, and energy in that region |
+| Regional reasoning | [Gulf & Middle East](https://github.com/vassiliylakhonin/gulf-middle-east-hybrid-intelligence-skill) | Iran/GCC exposure, banking, maritime chokepoints, and energy flows |
+| Evidence checks | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks on supplied evidence packets |
 
-See [`PORTFOLIO.md`](PORTFOLIO.md) and the
-[`evidence-packet handoff`](docs/evidence-packet-handoff.md) for the full seam.
+Regional skills add local reasoning to the general method. The [evidence-packet handoff](docs/evidence-packet-handoff.md) is the primary verification seam. Loading the skills alone does not run a verifier or authorize an external action.
 
-## Integration status
+## Examples and validation
 
-| Surface | Status | Entry point |
-|---|---|---|
-| Agent instructions | Core | `AGENTS.md`, `SKILL.md`, `SKILL_RU.md`, `llms.txt` |
-| Python artifact API | Core development interface | `gtta.MemoArtifact`, `check_memo_artifact()`, `render_memo_artifact()`, `verify_memo_artifact()` |
-| CLI | Tested | `gtta new`, `check-contract`, `check-artifact`, `render-artifact`, `verify` |
-| MCP server | Tested optional extra | `python -m pip install -e ".[mcp]"`, then `gtta mcp` |
-| LangChain / LlamaIndex adapters | Optional | `.[langchain]` or `.[llamaindex]` |
-| LangGraph draft-and-critique pipeline | Experimental | `.[agent]` |
-| FastAPI / Streamlit | Local experiments | `.[enterprise,ui]`; not a production deployment architecture |
+Start with the [example guide](examples/README.md), then compare:
 
-## Examples
+| Example | What to inspect |
+|---|---|
+| [Sanctions exposure](examples/sanctions-exposure-memo.md) | Reasoning-only analysis and its limits |
+| [Supplied supply-chain sources](examples/user-provided-sources-supply-chain-sanctions.md) | Provenance and bounded conclusions |
+| [Conflicting demand forecasts](examples/source-conflict-iea-opec-demand-forecast.md) | Preserving disagreement in an illustrative packet |
+| [Flagship portfolio cookbook](examples/cookbooks/flagship-portfolio/README.md) | Reproducible artifacts and evidence checks across two cases |
 
-Use [`examples/README.md`](examples/README.md) as the complete learning path.
-Start with these:
+Historical source-backed examples are dated snapshots. Recheck current primary sources before reuse.
 
-| Goal | Evidence mode | Example |
-|---|---|---|
-| Learn the basic memo shape | `reasoning-only` | [Sanctions exposure memo](examples/sanctions-exposure-memo.md) |
-| See explicit public-source boundaries | `live-source-backed` | [OFAC case memo](examples/live-source-backed-memo.md) |
-| See a narrow retrieval boundary | `live-source-backed` | [Middle Corridor logistics risk](examples/mixed-mode-middle-corridor-logistics-risk.md) |
-| Work from supplied documents | `user-provided sources` | [Supply-chain sanctions exposure](examples/user-provided-sources-supply-chain-sanctions.md) |
-| Surface conflicting sources | `illustrative source packet` | [IEA–OPEC forecast conflict](examples/source-conflict-iea-opec-demand-forecast.md) |
-| Challenge an existing claim | `reasoning-only` | [Red-team policy brief](examples/red-team-policy-brief.md) |
-| Build a two-case review release | `live-source-backed` | [Flagship portfolio cookbook](examples/cookbooks/flagship-portfolio/README.md) |
+The evaluation record contains both positive development results and a null holdout result: the broader holdout showed no measured behavioral lift for either tested condition. Structural contract checks are not evidence of factual accuracy or decision quality. [STATUS.md](STATUS.md) retains the results, methods, and limitations; external practitioner usefulness remains unvalidated.
 
-Every example declares its evidence mode. Source-backed examples are snapshots;
-verify their retrieval dates and current facts before use.
+## Documentation and contribution
 
-## Evaluation and maturity
+- [Headless workflow](docs/headless-workflow.md) and [integrations](docs/integrations/): automation interfaces and optional adapters.
+- [Research basis](docs/research-basis.md) and [maturity framework](docs/maturity-framework.md): why the method exists and how claims are bounded.
+- [Public signal examples](signals/README.md): [latest](signals/latest.md), [archive index](signals/index.json), and [JSON Feed](signals/feed.json). Each is a dated snapshot with its own evidence mode and an expansion prompt; recheck sources before operational use.
+- [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md): contribution rules and repository constraints.
 
-The repository contains:
-
-- deterministic regression tests for the CLI, MCP, method checker, and
-  structured artifact;
-- an installed-wheel smoke test;
-- human review checklists and failure modes under [`evals/`](evals/);
-- a predeclared 12-case same-task, with/without-skill structural harness under
-  [`evals/agent-eval/`](evals/agent-eval/) with an offline Antigravity
-  export/import path and no model API client;
-- a versioned declared-behavior extension that keeps structural and behavioral
-  pass rates separate and uses frozen case-specific expectations to move beyond
-  schema-only conformance;
-- four published Antigravity runs: two Gemini executions, the
-  [`seed 20260830 run`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high/)
-  and a freshness-gated
-  [`seed 20260831 replication`](evals/agent-eval/runs/2026-08-30-antigravity-gemini-3.7-flash-high-seed-20260831/),
-  and two Claude executions, the freshness-gated
-  [`seed 20260901 cross-model run`](evals/agent-eval/runs/2026-08-31-antigravity-claude-opus-4.6-thinking-seed-20260901/)
-  and fresh post-change
-  [`seed 20260902 replication`](evals/agent-eval/runs/2026-09-01-antigravity-claude-opus-4.6-thinking-seed-20260902/);
-  each publishes exact requests, outputs, recorded settings, hashes, mapping,
-  and a deterministic report.
-
-All four completed runs found a 12/12 contract pass rate with the skill and
-0/12 for the generic baseline. The Claude run extends the result to a second
-model family, while its original 181 capped skill warnings expose materially
-weaker per-claim provenance compliance than the Gemini runs. A narrow
-`gtta-method-contract@1.2.2` precision rescore reduces that stored count to
-170 without changing outputs. The fresh post-change Claude replication stores
-111 skill warnings, but three samples hit the warning cap, so this is
-directional evidence rather than a precise causal improvement estimate. These
-author-operated runs support only a bounded structural-discipline claim: the
-scorer does not assess factuality, source support, decision quality, or
-practitioner usefulness. Practitioner review remains `U0`.
-
-The first preregistered
-[structured declared-behavior run](evals/agent-eval/runs/2026-09-04-antigravity-gemini-3.7-flash-high-artifact-behavior-v1-seed-20260905/)
-moved beyond the schema-only ceiling: both arms passed 12/12 structural checks,
-while the skill arm passed 8/12 frozen behavior expectations versus 3/12 for
-baseline. The observed `+41.7` point difference applies only to model-declared
-artifact fields in one Gemini execution. It is not a factuality,
-reasoning-quality, causal, or practitioner-usefulness score.
-
-The subsequent
-[Claude Code / Opus 4.6 replication](evals/agent-eval/runs/2026-09-05-claude-code-opus-4.6-thinking-artifact-behavior-seed-20260906/)
-preserved the direction but not the magnitude: 3/12 skill versus 0/12 baseline
-declared-behavior passes, with 11/12 versus 12/12 structural passes. This is
-cross-model-family structural evidence, but the low absolute pass rate and one
-skill invariant failure argue against further headline-score optimization on
-the same cases.
-
-The preregistered
-[Gemini 3.8 broader-domain holdout](evals/agent-eval/runs/2026-09-05-antigravity-gemini-3.8-flash-high-artifact-behavior-holdout-v1-seed-20260907/)
-then passed strict structure 10/10 in both arms but passed zero complete
-declared-behavior expectations in either arm. Missing `verify: true`
-declarations dominated. This null result does not reproduce the original
-suite's positive combined-pass difference and is published with its execution
-qualifications rather than tuned away.
-
-Read [`STATUS.md`](STATUS.md) for current evidence,
-[`docs/maturity-framework.md`](docs/maturity-framework.md) for the independent
-release/method/usefulness axes, and
-[`docs/definition-of-done.md`](docs/definition-of-done.md) for claim-specific
-release gates.
-
-## Signal archive
-
-[`signals/`](signals/) contains compact examples of the method style. It is not
-a live intelligence service.
-
-- Latest signal: [`signals/latest.md`](signals/latest.md)
-- Machine-readable index: [`signals/index.json`](signals/index.json)
-- JSON Feed: [`signals/feed.json`](signals/feed.json)
-- Contribution template: [`signals/TEMPLATE.md`](signals/TEMPLATE.md)
-
-Re-verify every cited fact before operational use. Any signal can be expanded
-by running its example prompt through the skill.
-
-## Agent-readable endpoints and naming
-
-- [`AGENTS.md`](AGENTS.md) — repository-wide agent contract
-- [`SKILL.md`](SKILL.md) — canonical English runtime instructions
-- [`SKILL_RU.md`](SKILL_RU.md) — full Russian runtime instructions (45 of 45 sections, Mode A–G)
-- [`codex/SKILL.md`](codex/SKILL.md) — Codex-ready variant
-- [`llms.txt`](llms.txt) — orientation for agents and indexers
-- `Global Think Tank Analyst` — project and horizontal skill
-- `Policy Risk Memo Architect` — analytical method implemented by the skill
-- `MemoArtifact` — versioned machine-readable memo interface
-
-## Repository structure
-
-```text
-.
-├── AGENTS.md                     # Repository contract for agents
-├── SKILL.md / SKILL_RU.md        # Canonical runtime instructions
-├── STATUS.md                     # Current R/M/U evidence
-├── src/gtta/artifact.py          # MemoArtifact schema, validation, rendering
-├── src/gtta/discipline.py        # Markdown method-contract preflight
-├── src/gtta/cli.py               # CLI adapters
-├── src/gtta/mcp_server.py        # MCP adapters
-├── docs/                         # Contracts, handoffs, release guidance
-├── examples/                     # Worked memos and evidence modes
-├── evals/                        # Review material and structural harness
-├── signals/                      # Public style examples and feeds
-└── tests/                        # Runtime and contract regression tests
-```
-
-## Limitations
-
-- GTTA does not retrieve or continuously refresh sources.
-- It does not decide whether a source is independent, authoritative, or
-  sufficient for a specific claim.
-- `check-contract` uses Markdown heuristics; use `MemoArtifact` for exact
-  declared claim accounting.
-- `check-artifact` validates structure and cross-references, not truth.
-- The agent pipeline, API, UI, batch jobs, memory, knowledge-graph drafts, and
-  document parsing are experiments, not the release target.
-- There is no labeled factual-accuracy benchmark, long-horizon agent trial, or
-  recorded external practitioner review.
-
-## Roadmap
-
-1. Keep `gtta.memo@1.x` and `gtta-method-contract@1.x` stable, including the
-   machine-readable warning-truncation telemetry added in ruleset 1.2.3.
-2. Freeze the completed Gemini and Claude declared-behavior results; do not
-   tune the method or rubric against repeated runs on the same cases.
-3. Freeze the completed broader-domain holdout and its null result; do not tune
-   the method or thresholds against those cases.
-4. Keep the stable `1.7` verification seam, source catalog, SARIF mappings, and
-   bounded-repair behavior regression-tested.
-5. Complete PyPI Trusted Publishing after account access is restored.
-6. Record real practitioner feedback if access becomes available; do not use
-   proxy metrics to disguise `U0`.
-
-## Contributing
-
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md), then run:
+Run the repository checks before submitting changes:
 
 ```bash
 python3 scripts/check.py
 ```
 
-Package changes should also pass the test suite, wheel build, and installed
-wheel smoke test. Issues and pull requests are welcome.
-
-## License
-
-MIT — see [`LICENSE`](LICENSE).
+This project supports analysis and review. It does not provide legal clearance, certify compliance, or execute enforcement decisions. Optional agent workflows are experimental and retain human review. [MIT license](LICENSE).
