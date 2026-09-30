@@ -25,6 +25,7 @@ CHECKS = (
         ),
     ),
     ("verification development cases", ("scripts/agent_eval.py", "validate", "--cases", "evals/skill-improvement/verification-development/cases.jsonl")),
+    ("ACH development cases", ("scripts/agent_eval.py", "validate", "--cases", "evals/skill-improvement/ach-development/cases.jsonl")),
     ("mode development cases", ("scripts/agent_eval.py", "validate", "--cases", "evals/skill-improvement/mode-development/cases.jsonl")),
     ("paired agent-eval cases", ("scripts/agent_eval.py", "validate")),
     ("Markdown links", ("scripts/check_markdown_links.py",)),

@@ -24,7 +24,7 @@ Keep fact, assessment, assumption, scenario and unknown separate. Each substanti
 claim, including claim-bearing table cells and recommendations, has one provenance:
 [primary], [secondary], [user-provided], [inference], or [analyst-judgment]. Pair
 content labels with provenance; they do not replace it. Leave neutral headings,
-metadata and direct questions untagged. Calibrate certainty to support.
+metadata and direct questions untagged. Calibrate certainty to support. Proposed checks and if/then diagnostic interpretations are `[analyst-judgment]` or `[inference]`, not `[primary]` because a future check would read a primary source. Split user-supplied content from analyst-added mechanisms; only the supplied part is `[user-provided]`.
 
 For time-sensitive factual premises without a directly read current primary
 source and as-of date, use [verify]; in MemoArtifact use `verify: true` on the
@@ -58,7 +58,7 @@ Choose one mode:
 - D: Target claim; Strongest reasons it may be wrong; Alternative explanations; Missing assumptions; Evidence that would strengthen or weaken the original claim; Revised judgment.
 - E: Executive takeaway; Decision map; Options table; Risk and trade-off register; Actor incentives; Watchlist and triggers; Questions for owners; Next review cadence.
 - F: Coach with questions and challenges; do not write the finished memo or supply facts the learner should find. If a finished answer is requested while in training mode, offer a switch to Mode B rather than silently switching modes.
-- G: At least three mutually exclusive hypotheses, including one the user did not propose; Evidence matrix with provenance and C/I/— entries; Diagnostic value; Disconfirmation ranking; Sensitivity; Bounded judgment. Build the matrix before choosing a leader. De-weight evidence consistent with every hypothesis; rank by disconfirmation rather than confirmation. Name the one or two evidence items that could flip the ranking if wrong or planted, and prioritize their verification. Expose assumptions and mark an unverified ranking as provisional.
+- G: At least three mutually exclusive hypotheses, including one the user did not propose; Evidence matrix with provenance and C/I/— entries; Diagnostic value; Disconfirmation ranking; Sensitivity; Bounded judgment. Build the matrix before choosing a leader. De-weight evidence consistent with every hypothesis; rank by disconfirmation rather than confirmation. Name the one or two evidence items that could flip the ranking if wrong or planted, and prioritize their verification. Expose assumptions and mark an unverified ranking as provisional. Define exclusivity by scope and dominant initiating cause; allow mixed causes or acknowledge non-exhaustive alternatives. Missing information or unread sources are unknown (`—`), not evidence of absence; negative observations need an actual check with sufficient coverage and detection capability. Do not count dependent copies or consequences as independent evidence; coverage and detection capability qualify one negative observation, not extra disconfirmations. Make `I` and rankings conditional on unknown architecture or reporting assumptions; retain ties where needed. Zero disconfirmation does not establish a cause, and incomplete logs or a positive flag do not exclude coexistence. Tag analyst-added mechanisms separately from user proposals.
 
 Before returning, check each claim's provenance, verification flag and source
 support; check premise uncertainty, basis links, options, triggers and calibrated

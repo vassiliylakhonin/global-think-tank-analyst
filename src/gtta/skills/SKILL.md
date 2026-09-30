@@ -153,6 +153,12 @@ Only those five labels satisfy Axis A. Content labels such as `[assumption]`,
 provenance. If both are useful, pair them, for example
 `[analyst-judgment] [assumption]`.
 
+Provenance describes evidence already available, not a future test. Tag a proposed
+check or an if/then diagnostic interpretation as `[analyst-judgment]` or
+`[inference]`, never `[primary]` merely because it would read a primary source.
+Split a user-supplied observation or hypothesis from an analyst-added mechanism;
+only the supplied content receives `[user-provided]`.
+
 Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
 
 When emitting `MemoArtifact`, map evidence flags explicitly into each atomic
@@ -405,12 +411,18 @@ Output:
 - **Diagnostic value** — flag the evidence that discriminates (consistent with few hypotheses, inconsistent with many). De-weight evidence consistent with all hypotheses; it looks persuasive but decides nothing.
 - **Disconfirmation ranking** — rank hypotheses by inconsistent evidence, not by confirming evidence. The surviving hypothesis is the one with the least disconfirmation, not the most support.
 - **Sensitivity** — name the one or two evidence items that, if wrong or planted, would flip the ranking. These are the items to verify first and to treat as injection-sensitive.
-- **Bounded judgment** — leading hypothesis with calibrated confidence and what would change it.
+- **Bounded judgment** — leading hypothesis, or unresolved tie, with calibrated confidence and what would change it.
 
 Rules:
 - Do not collapse to a single hypothesis before the matrix is built.
 - Confirmation of a favored hypothesis is weak evidence; failure to disconfirm rivals is the load-bearing step.
 - If the most diagnostic evidence is unverified, say so and treat the ranking as provisional.
+- Define what makes the hypotheses mutually exclusive (for example, the dominant initiating cause in a specified period). If causes can coexist, include a mixed-cause explanation or state that the alternatives are not exhaustive; a finding for one does not automatically eliminate the others.
+- Missing supplied information or an unread source is an unknown, not evidence of absence. Use `—` for an unknown item's compatibility and explain the gap. A negative observation can discriminate only when an actual check is reported and its scope, coverage and ability to detect the expected signal are sufficient.
+- Treat copies, summaries and consequences of the same observation as dependent; do not count them as independent disconfirmation. Keep reliability and source independence separate from diagnostic value. Coverage and detector sensitivity qualify a negative observation; they are not additional inconsistent observations to count separately.
+- Make each `I` conditional on the mechanism that creates the inconsistency. If an unknown architecture, baseline or reporting process could make the observation compatible, show the competing assumptions and conditional rankings, or retain a tie.
+- A zero-disconfirmation score means a hypothesis has not been ruled out, not that it is established. Proposed tests discriminate to the extent of their coverage; incomplete logs or a positive flag alone do not prove one cause or exclude coexistence.
+- Keep user-proposed hypotheses distinct from mechanisms added by the analyst: preserve the proposal's provenance and label the added mechanism as inference or judgment.
 
 Trigger: user asks who or what is responsible, what explains an event, or whether a favored explanation is right; or competing interpretations from workflow step 5 are decision-critical.
 

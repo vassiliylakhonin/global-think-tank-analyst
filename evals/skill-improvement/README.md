@@ -41,3 +41,7 @@ Accept a skill edit only when all are true:
 python3 evals/skill-improvement/tools/validate_cases.py \
   evals/skill-improvement/cases/global-think-tank-analyst.jsonl
 ```
+
+## ACH development review
+
+The [ACH evidence-boundary suite](ach-development/README.md) contains ten public development cases for unknown versus negative evidence, dependent reports, architecture assumptions and mixed causes. It is separate from the existing cases and frozen holdout. Case validation checks input shape only; outcome scoring and improvement claims remain pending model review.
