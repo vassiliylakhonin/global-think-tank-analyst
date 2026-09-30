@@ -22,9 +22,10 @@ ROOT = Path(__file__).resolve().parents[1]
 COOKBOOK = ROOT / "examples" / "cookbooks" / "secondary-sanctions"
 
 
-def test_pinned_agenda_1_9_checks_the_canonical_cookbook():
+def test_supported_agenda_checks_the_canonical_cookbook():
     agenda_intelligence = pytest.importorskip("agenda_intelligence")
-    assert agenda_intelligence.__version__ == "1.9.0"
+    # CI covers the minimum release and the latest allowed 1.x release.
+    assert agenda_intelligence.__version__.split(".")[0] == "1"
     artifact_report = check_memo_artifact(
         (COOKBOOK / "memo.json").read_text(encoding="utf-8")
     )
@@ -78,9 +79,10 @@ def test_portable_verification_benchmark_passes(tmp_path: Path):
     assert sarif["runs"][0]["properties"]["expectedNegativeFindingsRecordedInSummary"] is True
 
 
-def test_pinned_agenda_1_9_builds_the_complete_review_bundle(tmp_path: Path):
+def test_supported_agenda_builds_the_complete_review_bundle(tmp_path: Path):
     agenda_intelligence = pytest.importorskip("agenda_intelligence")
-    assert agenda_intelligence.__version__ == "1.9.0"
+    # CI covers the minimum release and the latest allowed 1.x release.
+    assert agenda_intelligence.__version__.split(".")[0] == "1"
 
     result = build_review_bundle(
         COOKBOOK / "memo.json",

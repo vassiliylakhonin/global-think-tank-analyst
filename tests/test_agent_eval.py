@@ -1246,3 +1246,20 @@ def test_published_claude_replication_reproduces(tmp_path):
         and not comparison["near_duplicates"]
         for comparison in published_freshness["comparisons"]
     )
+
+
+def test_behavior_preparation_uses_explicit_candidate_without_changing_canonical(tmp_path):
+    candidate = tmp_path / "candidate.md"
+    candidate.write_text("UNIQUE COMPACT CANDIDATE MARKER\n")
+    target = tmp_path / "prepared"
+    original_hash = hashlib.sha256((ROOT / "SKILL.md").read_bytes()).hexdigest()
+    result = _run("prepare-artifact-behavior", str(target), "--skill", str(candidate))
+    assert result.returncode == 0, result.stderr
+    mapping = json.loads((target / "private-mapping.json").read_text())
+    assert mapping["skill_sha256"] == hashlib.sha256(candidate.read_bytes()).hexdigest()
+    requests = [json.loads(line) for line in (target / "requests.jsonl").read_text().splitlines()]
+    samples = {sample["sample_id"]: sample for sample in mapping["samples"]}
+    for request in requests:
+        system = request["messages"][0]["content"]
+        assert ("UNIQUE COMPACT CANDIDATE MARKER" in system) == (samples[request["sample_id"]]["arm"] == "skill")
+    assert hashlib.sha256((ROOT / "SKILL.md").read_bytes()).hexdigest() == original_hash

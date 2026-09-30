@@ -1,0 +1,165 @@
+{
+  "version": "gtta-artifact-behavior-eval@1.0.0",
+  "cases": {
+    "dev-permit-renewal": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-payout-threshold": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-regulatory-start": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-counterparty-status": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-ownership-change": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-capacity-figure": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-subsidy-eligibility": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-market-share": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 1,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-hypothetical-diversion": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 0,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    },
+    "dev-hypothetical-pilot": {
+      "min_claim_kinds": {
+        "assessment": 1,
+        "unknown": 1
+      },
+      "min_provenances": {
+        "analyst-judgment": 1
+      },
+      "min_derived_claims": 1,
+      "min_bottom_line_derived_claims": 1,
+      "min_options": 1,
+      "min_indicators": 1,
+      "min_verify_claims": 0,
+      "min_key_unknowns": 1,
+      "min_change_conditions": 1
+    }
+  }
+}

@@ -24,6 +24,7 @@ CHECKS = (
             "evals/skill-improvement/cases/global-think-tank-analyst.jsonl",
         ),
     ),
+    ("verification development cases", ("scripts/agent_eval.py", "validate", "--cases", "evals/skill-improvement/verification-development/cases.jsonl")),
     ("paired agent-eval cases", ("scripts/agent_eval.py", "validate")),
     ("Markdown links", ("scripts/check_markdown_links.py",)),
 )
