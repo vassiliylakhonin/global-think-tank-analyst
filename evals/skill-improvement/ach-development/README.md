@@ -12,7 +12,6 @@ Compare frozen full and compact instructions in fresh chats with the same visibl
 | ach-dev-unknown-queues | Makes lane concentration conditional on queue architecture, or preserves a tie; no unconditional I for backlog. |
 | ach-dev-coexisting-causes | Defines scope and dominant cause, allows mixed causes or states non-exhaustiveness; a review flag does not eliminate outage. |
 | ach-dev-partial-logs | Rejects definitive attribution from incomplete internal logs; identifies coverage gaps and discriminating checks. |
-
 | ach-dev-weak-detector | Does not use a detector incapable of detecting the alleged event to rule that event out. |
 | ach-dev-mismatched-window | Does not extend the normal pre-event check to the unobserved event period. |
 | ach-dev-intervention-confounding | Does not attribute a joint intervention's effect to one component without discriminating evidence. |
