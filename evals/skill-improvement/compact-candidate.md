@@ -24,7 +24,7 @@ Keep fact, assessment, assumption, scenario and unknown separate. Each substanti
 claim, including claim-bearing table cells and recommendations, has one provenance:
 [primary], [secondary], [user-provided], [inference], or [analyst-judgment]. Pair
 content labels with provenance; they do not replace it. Leave neutral headings,
-metadata and direct questions untagged. Calibrate certainty to support.
+metadata and direct questions untagged. Calibrate certainty to support. Proposed checks and if/then diagnostic interpretations are `[analyst-judgment]` or `[inference]`, not `[primary]` because a future check would read a primary source. Split user-supplied content from analyst-added mechanisms; only the supplied part is `[user-provided]`.
 
 For time-sensitive factual premises without a directly read current primary
 source and as-of date, use [verify]; in MemoArtifact use `verify: true` on the

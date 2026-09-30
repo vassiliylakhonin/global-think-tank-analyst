@@ -153,6 +153,12 @@ Only those five labels satisfy Axis A. Content labels such as `[assumption]`,
 provenance. If both are useful, pair them, for example
 `[analyst-judgment] [assumption]`.
 
+Provenance describes evidence already available, not a future test. Tag a proposed
+check or an if/then diagnostic interpretation as `[analyst-judgment]` or
+`[inference]`, never `[primary]` merely because it would read a primary source.
+Split a user-supplied observation or hypothesis from an analyst-added mechanism;
+only the supplied content receives `[user-provided]`.
+
 Axis B — optional: `[verify]` `[stale-risk: YYYY-MM]`
 
 When emitting `MemoArtifact`, map evidence flags explicitly into each atomic
