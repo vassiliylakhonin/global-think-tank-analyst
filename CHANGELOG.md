@@ -2,11 +2,11 @@
 
 ## Unreleased
 
+- Restore training-mode switching and ACH requirements in the experimental compact candidate.
+- Add fourteen A–G manual development cases for a no-API review; no model result or adoption claim.
 - Make per-claim verification flag serialization explicit in EN/RU and Codex instructions.
 - Exercise the supported Agenda 1.x range without requiring one exact patch release.
 - Add opt-in compact-skill ablation and separate development cases; preserve frozen holdouts.
-
-## Unreleased
 
 - Added a self-contained, developer-facing two-case portfolio cookbook. It
   builds source-backed review bundles in staging, requires strict verification
