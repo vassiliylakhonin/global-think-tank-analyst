@@ -35,3 +35,7 @@ stops; a shorter prompt is not adopted solely for better flag counts.
 
 The compact candidate is opt-in and unvalidated. Freeze a **new** unseen holdout
 only after development is finished. No model run accompanies this change.
+
+Mode B verification counts do not establish equivalence in A–G. Use the separate
+[mode-development review cases](../mode-development/README.md) for coaching, ACH
+and other mode-specific checks before considering adoption.
