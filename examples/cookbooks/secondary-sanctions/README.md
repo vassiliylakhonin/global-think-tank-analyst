@@ -10,6 +10,12 @@ The documents and entities are synthetic. Evidence mode is
 `illustrative source packet`; this is not a sanctions-screening result, legal
 advice, or evidence about a real counterparty.
 
+The plain-text source paragraphs are not hard-wrapped: keep each sentence and
+its numeric context on one line. Agenda 1.16 treats plain-text lines as separate
+contexts, so a formatting wrap can require review even when the words match.
+GTTA passes extracted source text through unchanged; it does not join arbitrary
+records or override the checker's findings.
+
 ## Run
 
 From the repository root:

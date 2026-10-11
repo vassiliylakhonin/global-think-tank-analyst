@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Keep the synthetic cookbook's plain-text numeric context on complete lines
+  for Agenda 1.16 compatibility, preserving every word and fail-closed checks.
+
 - Preserve quantitative scenario provenance, binding constraints and ranking
   reversals in EN/RU skills; document external-model handoffs and separate MCP
   environments without adding model-execution claims.
