@@ -36,9 +36,10 @@ inherit uncertainty from their inputs, even if the arithmetic is reproducible.
 
 ## Companion example and availability
 
-Corridor Bankability Analyst's
-[maritime capacity model](https://github.com/vassiliylakhonin/corridor-bankability-analyst/blob/main/docs/maritime-capacity-model.md)
-can supply directional vessel/port/rail capacity scenarios. It remains optional;
+When a Corridor Bankability Analyst checkout is available, its
+`docs/maritime-capacity-model.md` describes directional vessel/port/rail capacity
+scenarios. The companion is access-controlled; no public documentation URL or
+automatic access is assumed. It remains optional;
 use an inspectable alternative model or bounded qualitative analysis if it is
 unavailable. Never claim that this companion ran without an actual result.
 
