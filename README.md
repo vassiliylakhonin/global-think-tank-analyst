@@ -64,6 +64,12 @@ Regional skills add local reasoning to the general method. The [evidence-packet 
 
 ## Examples and validation
 
+When a memo relies on numerical scenarios, follow the
+[quantitative scenario handoff](docs/quantitative-scenario-handoff.md): preserve
+actual model runs and input provenance, explain constraints and ranking reversals,
+and distinguish scenario comparisons from optimisation. Optional model adapters
+remain separate from the reasoning method.
+
 Start with the [example guide](examples/README.md), then compare:
 
 | Example | What to inspect |

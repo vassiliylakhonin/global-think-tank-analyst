@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Preserve quantitative scenario provenance, binding constraints and ranking
+  reversals in EN/RU skills; document external-model handoffs and separate MCP
+  environments without adding model-execution claims.
+
 - Restore training-mode switching and ACH requirements in the experimental compact candidate.
 - Add fourteen A–G manual development cases for a no-API review; no model result or adoption claim.
 - Make per-claim verification flag serialization explicit in EN/RU and Codex instructions.
