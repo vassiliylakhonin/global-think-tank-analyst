@@ -6,6 +6,16 @@ Use it when a general AI answer is too difficult to audit: a market-entry decisi
 
 **Current status:** experimental, `R3 / M3 / U0`. The repository has executable tooling and evaluated contracts; there is no public practitioner validation or production-reliability claim. See [STATUS.md](STATUS.md) for the evidence and maturity record.
 
+## Choose a starting point
+
+| Your task | Start here |
+| --- | --- |
+| Give an agent the reasoning method | [Load the skill and try the decision brief](#start-with-the-skill) |
+| Create or check a structured memo artifact | [Python toolkit and CLI](#use-the-toolkit) |
+| Inspect a complete worked case | [Flagship portfolio cookbook](examples/cookbooks/flagship-portfolio/README.md) |
+| Understand the evidence behind the method | [Validation record](#examples-and-validation) and [current status](STATUS.md) |
+
+
 ## What you get
 
 - **A portable reasoning contract:** [SKILL.md](SKILL.md), with a [Russian mirror](SKILL_RU.md) and an additive [Codex overlay](codex/SKILL.md).
