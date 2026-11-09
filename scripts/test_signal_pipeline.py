@@ -17,10 +17,12 @@ from __future__ import annotations
 import contextlib
 import importlib
 import io
+import json
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 SCRIPTS = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPTS))
@@ -162,6 +164,120 @@ class GeneratedArchivePassesValidation(unittest.TestCase):
         with signal_tree() as (_, signals):
             self.build(signals, [("2026-01-05.md", "2026-01-05", "Tariffs &amp; quotas: the binding gate")])
             self.validate()
+
+
+WORKING_FEED = b"""<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"><channel><title>Example</title>
+<item><title>Working item</title><link>https://good.example/1</link>
+<description>Summary text.</description><pubDate>Mon, 05 Jan 2026 00:00:00 GMT</pubDate></item>
+</channel></rss>
+"""
+
+SOFT_404 = b"<!DOCTYPE html><html><head><title>Page not found</title></head><body>404</body></html>"
+
+
+@contextlib.contextmanager
+def sources_config(entries):
+    """Point the generator at a temporary sources.json."""
+    with tempfile.TemporaryDirectory() as raw:
+        path = Path(raw) / "sources.json"
+        path.write_text(json.dumps({"sources": entries}), encoding="utf-8")
+        saved = generator.SOURCES_PATH
+        generator.SOURCES_PATH = path
+        try:
+            yield path
+        finally:
+            generator.SOURCES_PATH = saved
+
+
+def fake_fetch(url, timeout=20):
+    if "good.example" in url:
+        return WORKING_FEED
+    if "soft404.example" in url:
+        return SOFT_404
+    raise OSError("connection refused")
+
+
+class CollectSnippets(unittest.TestCase):
+    """The generator must never pass fetch errors to the model as evidence.
+
+    Regression test for the defect where an empty or failed source set was
+    appended to the prompt as "SOURCE FETCH NOTES" and sent to the model with
+    evidence mode `live-source-backed`.
+    """
+
+    def test_all_sources_failing_returns_no_snippets(self):
+        entries = [
+            {"name": "Dead A", "url": "https://deada.example/feed", "focus": "x"},
+            {"name": "Dead B", "url": "https://deadb.example/feed", "focus": "y"},
+        ]
+        with sources_config(entries):
+            with mock.patch.object(generator, "fetch_url", side_effect=fake_fetch):
+                snippets, failures = generator.collect_snippets()
+        self.assertEqual(snippets, "")
+        self.assertEqual(len(failures), 2)
+        self.assertNotIn("SOURCE FETCH NOTES", snippets)
+
+    def test_partial_failure_keeps_errors_out_of_snippets(self):
+        entries = [
+            {"name": "Good Source", "url": "https://good.example/feed", "focus": "x"},
+            {"name": "Dead Source", "url": "https://dead.example/feed", "focus": "y"},
+        ]
+        with sources_config(entries):
+            with mock.patch.object(generator, "fetch_url", side_effect=fake_fetch):
+                snippets, failures = generator.collect_snippets()
+        self.assertIn("SOURCE: Good Source", snippets)
+        self.assertNotIn("Dead Source", snippets)
+        self.assertEqual(len(failures), 1)
+        self.assertIn("Dead Source", failures[0])
+
+    def test_soft_404_html_counts_as_failure(self):
+        entries = [{"name": "Soft404", "url": "https://soft404.example/feed", "focus": "x"}]
+        with sources_config(entries):
+            with mock.patch.object(generator, "fetch_url", side_effect=fake_fetch):
+                snippets, failures = generator.collect_snippets()
+        self.assertEqual(snippets, "")
+        self.assertEqual(len(failures), 1)
+
+    def test_disabled_sources_are_skipped(self):
+        entries = [
+            {"name": "Good Source", "url": "https://good.example/feed", "focus": "x"},
+            {"name": "Dead Source", "url": "https://dead.example/feed", "focus": "y",
+             "enabled": False, "disabled_reason": "404"},
+        ]
+        with sources_config(entries):
+            with mock.patch.object(generator, "fetch_url", side_effect=fake_fetch):
+                snippets, failures = generator.collect_snippets()
+        self.assertIn("SOURCE: Good Source", snippets)
+        self.assertEqual(failures, [])
+
+
+class GenerationRefusal(unittest.TestCase):
+    """main() refuses to draft a live-source-backed signal on empty or partial evidence."""
+
+    def run_main(self):
+        with mock.patch.object(sys, "argv", ["generate_policy_risk_signal.py", "--dry-run"]):
+            with mock.patch.object(generator, "fetch_url", side_effect=fake_fetch):
+                generator.main()
+
+    def test_refuses_when_no_source_produces_snippets(self):
+        entries = [{"name": "Dead A", "url": "https://deada.example/feed", "focus": "x"}]
+        with sources_config(entries):
+            with self.assertRaises(SystemExit) as caught:
+                self.run_main()
+        self.assertIn("no live evidence", str(caught.exception))
+
+    def test_refuses_on_partial_evidence(self):
+        entries = [
+            {"name": "Good Source", "url": "https://good.example/feed", "focus": "x"},
+            {"name": "Dead Source", "url": "https://dead.example/feed", "focus": "y"},
+        ]
+        with sources_config(entries):
+            with self.assertRaises(SystemExit) as caught:
+                self.run_main()
+        message = str(caught.exception)
+        self.assertIn("Partial evidence", message)
+        self.assertIn("Dead Source", message)
 
 
 if __name__ == "__main__":

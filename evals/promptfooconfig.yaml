@@ -5,11 +5,12 @@ providers:
     label: GPT-4o-Mini
 
 prompts:
-  - file://../SKILL.md
+  - file://prompts/analyst-request.md
 
 tests:
   - description: "Mode B - Standard Memo Test"
     vars:
+      skill: file://../SKILL.md
       question: "What is the regulatory risk of expanding operations into Kazakhstan for a European logistics firm?"
       mode: "B"
     assert:
@@ -24,6 +25,7 @@ tests:
 
   - description: "Mode A - Quick Brief Test"
     vars:
+      skill: file://../SKILL.md
       question: "Quick brief on EU CBAM exposure for a Kazakh metals exporter"
       mode: "A"
     assert:

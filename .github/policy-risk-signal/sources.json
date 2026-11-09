@@ -3,7 +3,9 @@
     {
       "name": "OFAC Recent Actions",
       "url": "https://ofac.treasury.gov/recent-actions.xml",
-      "focus": "US sanctions, designations, compliance exposure"
+      "focus": "US sanctions, designations, compliance exposure",
+      "enabled": false,
+      "disabled_reason": "Feed URL returns HTTP 404 (verified 2026-11-09); no current official replacement found for recent-actions.xml"
     },
     {
       "name": "European Commission Press Corner",
@@ -13,17 +15,23 @@
     {
       "name": "WTO News",
       "url": "https://www.wto.org/english/news_e/news_e.xml",
-      "focus": "trade policy, disputes, tariffs, market access"
+      "focus": "trade policy, disputes, tariffs, market access",
+      "enabled": false,
+      "disabled_reason": "URL returns an HTML error page with HTTP 200 (soft 404, verified 2026-11-09), so it yields no parseable feed items"
     },
     {
       "name": "World Bank Europe and Central Asia",
       "url": "https://www.worldbank.org/en/region/eca/rss",
-      "focus": "macro, development, infrastructure, regional risk"
+      "focus": "macro, development, infrastructure, regional risk",
+      "enabled": false,
+      "disabled_reason": "Feed URL returns HTTP 404 (verified 2026-11-09)"
     },
     {
       "name": "EBRD News",
       "url": "https://www.ebrd.com/news/rss.xml",
-      "focus": "investment climate, transition economies, Central Asia"
+      "focus": "investment climate, transition economies, Central Asia",
+      "enabled": false,
+      "disabled_reason": "Feed URL returns HTTP 404 (verified 2026-11-09)"
     },
     {
       "name": "ECB Press Releases",
@@ -33,7 +41,9 @@
     {
       "name": "BIS Latest Speeches and Press Releases",
       "url": "https://www.bis.org/list/press_releases/index.rss",
-      "focus": "international banking, monetary policy coordination, financial stability"
+      "focus": "international banking, monetary policy coordination, financial stability",
+      "enabled": false,
+      "disabled_reason": "Feed URL returns HTTP 404 (verified 2026-11-09); bis.org/rss.xml is a site-wide feed dominated by vacancies, not press releases"
     }
   ]
 }

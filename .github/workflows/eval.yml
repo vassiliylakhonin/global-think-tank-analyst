@@ -6,6 +6,7 @@ on:
       - 'SKILL.md'
       - 'SKILL_RU.md'
       - 'evals/promptfooconfig.yaml'
+      - 'evals/prompts/**'
 
 jobs:
   promptfoo-eval:
@@ -13,22 +14,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-        
+
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
           node-version: '24'
-          
-      - name: Install promptfoo
-        run: npm install -g promptfoo
-        
-      - name: Run promptfoo evaluation
+
+      - name: Check for OpenAI API key
+        id: key
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          if [ -z "${OPENAI_API_KEY}" ]; then
-            echo "OPENAI_API_KEY secret is not set. Skipping evaluation."
-            exit 0
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Install promptfoo
+        if: steps.key.outputs.present == 'true'
+        run: npm install -g promptfoo
+
+      - name: Run promptfoo evaluation
+        if: steps.key.outputs.present == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
           cd evals
           promptfoo eval
+
+      - name: Report skipped evaluation
+        if: steps.key.outputs.present != 'true'
+        run: |
+          echo "::notice title=Prompt Evaluation::OPENAI_API_KEY is not set, so the promptfoo evaluation was skipped. A green run here means 'not evaluated', not 'passed'. Set the OPENAI_API_KEY repository secret to enable it."

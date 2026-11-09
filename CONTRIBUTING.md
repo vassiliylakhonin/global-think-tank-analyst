@@ -22,12 +22,14 @@ If you've just landed in this repo and want to understand it before editing, do 
 ```bash
 git clone https://github.com/vassiliylakhonin/global-think-tank-analyst
 cd global-think-tank-analyst
+python3 -m pip install -e ".[test]"
 python3 scripts/check.py
 ```
 
-Requirements: Python 3.8+ for the dependency-free repository validators. The
-installable Python package requires Python 3.10+. CI runs the same repository
-checks and then smoke-tests a built wheel.
+Requirements: Python 3.10+. The validators are not dependency-free: several of
+them import the installed `gtta` package (which needs Pydantic), so
+`pip install -e .` must run before `scripts/check.py`. CI runs the same
+repository checks and then smoke-tests a built wheel.
 
 **3. Read one concrete artifact end-to-end:**
 
@@ -51,8 +53,9 @@ checks and then smoke-tests a built wheel.
 
 ## Local environment
 
-Requirements: Python 3.8+ for these dependency-free validators. Package and
-runtime development requires Python 3.10+.
+Requirements: Python 3.10+ with the package installed
+(`python3 -m pip install -e ".[test]"`); several validators import `gtta`,
+which requires Pydantic.
 
 Run validators from the repo root:
 
@@ -95,11 +98,16 @@ repository.
 
 ## Adding a signal
 
-The manual process of updating JSON files has been deprecated in favor of automation.
+Indexing is not automated: nothing in CI rebuilds the signal indexes after a
+manual add, so rebuild them yourself before committing.
 
-1. Create `signals/<slug>.md` from [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
-2. Commit your markdown file.
-3. The automated CI/CD pipeline (or build script) will handle indexing this signal into `index.json`, `feed.json`, and `latest.md`.
+1. Create `signals/YYYY/YYYY-MM-DD.md` from [`signals/TEMPLATE.md`](signals/TEMPLATE.md).
+2. Rebuild the indexes: `python3 scripts/build_signals.py`. This updates
+   `signals/index.json`, `signals/feed.json`, `signals/latest.md`, and the
+   archive list in `signals/README.md`.
+3. Commit the signal together with the regenerated index files.
+   `scripts/check.py` runs `validate_signals.py`, which fails when the four
+   files disagree.
 
 ## Examples must include
 

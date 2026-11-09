@@ -12,11 +12,11 @@ CHECKS = (
     ("runtime skill resources", ("scripts/validate_runtime_resources.py",)),
     ("repository JSON", ("scripts/validate_json.py",)),
     ("Russian method parity", ("scripts/validate_language_parity.py",)),
-    # ("signal archive", ("scripts/validate_signals.py",)), # Deprecated: now auto-generated
+    ("signal archive", ("scripts/validate_signals.py",)),
     ("signal pipeline tests", ("scripts/test_signal_pipeline.py",)),
     ("evidence-packet handoff", ("scripts/validate_evidence_packet_handoff.py",)),
     ("example evidence discipline", ("scripts/validate_examples.py",)),
-    # ("Codex variant sync", ("scripts/validate_codex_sync.py",)), # Deprecated: now auto-generated
+    ("Codex variant sync", ("scripts/validate_codex_sync.py",)),
     (
         "skill-improvement cases",
         (

@@ -155,31 +155,36 @@ def parse_feed(raw: bytes, base_url: str, limit: int = 5) -> list[dict[str, str]
     return items[:limit]
 
 
-def collect_snippets(limit_per_source: int = 4) -> str:
+def collect_snippets(limit_per_source: int = 4) -> tuple[str, list[str]]:
+    """Collect snippets from enabled sources.
+
+    Returns ``(snippets, failures)``: ``snippets`` contains only blocks built
+    from retrieved feed items, and ``failures`` lists the enabled sources that
+    produced nothing. Failures are deliberately kept out of the prompt: the
+    model is instructed to label its output ``live-source-backed``, so an error
+    list must never stand in for retrieved snippets.
+    """
     config = json.loads(SOURCES_PATH.read_text(encoding="utf-8"))
+    sources = [source for source in config.get("sources", []) if source.get("enabled", True)]
     blocks: list[str] = []
-    errors: list[str] = []
-    for source in config.get("sources", []):
+    failures: list[str] = []
+    for source in sources:
         name = source["name"]
         url = source["url"]
         try:
             raw = fetch_url(url)
             items = parse_feed(raw, url, limit=limit_per_source)
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
-            errors.append(f"- {name}: fetch failed ({exc})")
+            failures.append(f"{name}: fetch failed ({exc})")
             continue
         if not items:
-            errors.append(f"- {name}: no parseable feed items")
+            failures.append(f"{name}: no parseable feed items")
             continue
         lines = [f"SOURCE: {name}", f"FOCUS: {source.get('focus', '')}", f"FEED: {url}"]
         for item in items:
             lines.append(f"- TITLE: {item['title']}\n  URL: {item['url']}\n  DATE: {item.get('date', '')}\n  SUMMARY: {item.get('summary', '')}")
         blocks.append("\n".join(lines))
-    if errors:
-        blocks.append("SOURCE FETCH NOTES:\n" + "\n".join(errors))
-    if not blocks:
-        raise SystemExit("No source snippets collected")
-    return "\n\n---\n\n".join(blocks)
+    return "\n\n---\n\n".join(blocks), failures
 
 
 def openai_generate(prompt: str, model: str) -> str:
@@ -402,7 +407,24 @@ def main() -> None:
     except ValueError:
         raise SystemExit(f"--date must be YYYY-MM-DD, got {date!r}") from None
     year = date[:4]
-    snippets = collect_snippets()
+    snippets, failures = collect_snippets()
+    if not snippets:
+        raise SystemExit(
+            "No enabled source produced snippets, so there is no live evidence "
+            "to base a signal on. Fix or re-enable sources in "
+            ".github/policy-risk-signal/sources.json, or write the signal by "
+            "hand from signals/TEMPLATE.md. Failures: "
+            + ("; ".join(failures) if failures else "no sources are enabled")
+        )
+    if failures:
+        raise SystemExit(
+            "Partial evidence only, refusing to draft a live-source-backed "
+            "signal from incomplete coverage. Failed sources: "
+            + "; ".join(failures)
+            + ". Fix the source, mark it \"enabled\": false in "
+            ".github/policy-risk-signal/sources.json, or write the signal by "
+            "hand from signals/TEMPLATE.md."
+        )
     prompt = USER_TEMPLATE.format(date=date, snippets=snippets)
     markdown = openai_generate(prompt, args.model)
     required_sections = [
