@@ -41,6 +41,8 @@ Rules:
 4. A number is a judgment, not a measurement. Tie it to the evidence in the
    claim ledger, and say what would move it.
 
+Under composition with a vertical specialist skill, these bands still describe likelihood only. Confidence uses the shared Low / Moderate / High labels, and the vertical's ceilings narrow the level, never raise it (see `Composition with vertical specialist skills` in [`SKILL.md`](../SKILL.md)).
+
 ## Honest limit
 
 No calibration is claimed. The forecast log in [`forecasts/`](../forecasts/README.md)

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add a composition rule for vertical specialist skills (for example, central-asia-caspian): this skill's memo mode and canonical output labels govern the memo structure, the vertical layers its mechanisms, evidence requirements and hard stops inside those sections, and confidence uses the shared Low / Moderate / High labels, with the vertical's ceilings narrowing, never raising, the level. Mirrored in `SKILL_RU.md` and `codex/SKILL.md`, with one cross-reference line in `docs/estimative-language.md`. Documentation-only; no mode, eval, holdout, or published-result change.
+
 - Add optional estimative-probability language, an empty forecast log with a
   scoring script and a documented scoring ritual, and optional Admiralty-style
   source grading for disputed claims. No calibration is claimed; no modes,

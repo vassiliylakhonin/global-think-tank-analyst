@@ -599,6 +599,17 @@ If confidence is high, make the basis explicit.
 
 End deeper memos and decision briefing packs with 3-5 concrete evidence updates that would materially change the assessment, recommended posture, or timing.
 
+## Composition with vertical specialist skills
+
+A vertical specialist skill (for example, the Central Asia + Caspian skill) may be active together with this one. When both apply:
+
+- **Structure**: this skill governs. Select one memo mode (A-G) and use its canonical output labels as the section headings. Do not merge two heading sets into one memo.
+- **Content**: the vertical layers inside those sections. Its mechanisms, archetypes, source and freshness requirements, false-positive handling, and hard stops fill the horizontal sections; they never replace the mode's headings.
+- **Confidence**: use the shared labels Low / Moderate / High. The vertical's confidence criteria and ceilings (source freshness, `reasoning-only` ceiling, no High beyond a 12-month forecast) narrow the level; they never raise it.
+- **Estimative language**: ICD 203 likelihood terms (see `docs/estimative-language.md`) describe likelihood, not confidence, and stay optional under either skill.
+
+If the two contracts appear to conflict, the horizontal mode structure and the shared confidence labels decide the format; the vertical's stricter evidence requirements and confidence ceilings decide the substance.
+
 ## Recommendation rules
 
 Recommendations must be:
