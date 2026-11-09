@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add optional estimative-probability language, an empty forecast log with a
+  scoring script and a documented scoring ritual, and optional Admiralty-style
+  source grading for disputed claims. No calibration is claimed; no modes,
+  holdouts or published results change.
+
 - Keep the synthetic cookbook's plain-text numeric context on complete lines
   for Agenda 1.16 compatibility, preserving every word and fail-closed checks.
 

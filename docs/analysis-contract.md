@@ -45,6 +45,13 @@ The rule exists because verbalized confidence cannot be trusted by default: meas
 
 This is checkable, not vibes: the hedges and modal verbs in the prose should track the strength of the underlying evidence and its provenance tag. A claim stated more decisively than its evidence supports — or a verified `[primary]` fact buried under needless hedges — is a calibration failure in either direction. When the right level is unclear, state confidence explicitly (a range or a qualitative band) rather than leaning on tone to carry it.
 
+## Optional additions: probability terms and source grades
+
+Both are additive and optional. Low / Moderate / High stays valid.
+
+- For load-bearing forward-looking judgments, a probability term and number from the [estimative language table](estimative-language.md), logged in the [forecast log](../forecasts/README.md) so hit rates can be counted. No calibration is claimed; the log starts empty.
+- For load-bearing claims that are disputed or single-sourced, an Admiralty-style [source and information grade](source-grading.md) next to the provenance tag.
+
 ## Three-value response logic
 
 Do not default to binary "answer or refuse." Apply three values:
