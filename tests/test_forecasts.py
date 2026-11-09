@@ -15,9 +15,22 @@ def row(i, p, outcome="", resolve_by="2030-01-01"):
 
 
 class ForecastScoreTests(unittest.TestCase):
-    def test_shipped_log_is_empty_and_valid(self):
+    def test_shipped_log_rows_are_valid(self):
+        # The log holds only real forecasts from real memos. Synthetic rows live
+        # in this file as fixtures and must never be added to log.csv.
         rows = score.load(ROOT / "forecasts" / "log.csv")
-        self.assertEqual(rows, [], "log must contain only real forecasts; none logged yet")
+        ids = set()
+        for r in rows:
+            self.assertNotIn(r["id"], ids, f"duplicate forecast id {r['id']}")
+            ids.add(r["id"])
+            self.assertTrue(1 <= int(r["probability"]) <= 99, f"{r['id']}: probability out of range")
+            self.assertLessEqual(
+                date.fromisoformat(r["logged_on"]), date.fromisoformat(r["resolve_by"]),
+                f"{r['id']}: logged_on after resolve_by",
+            )
+            self.assertIn((r.get("outcome") or "").strip().lower(), ("", "yes", "no", "void"))
+            self.assertTrue(r["claim"].strip(), f"{r['id']}: empty claim")
+            self.assertTrue(r["resolution_rule"].strip(), f"{r['id']}: empty resolution rule")
 
     def test_brier_synthetic(self):
         result = score.score([row("a", 80, "yes"), row("b", 80, "no")], date(2026, 1, 1))

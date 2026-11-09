@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Log the first six real forecasts in `forecasts/log.csv`, bootstrapped from
+  existing live-source-backed memos (this repo and central-asia-caspian
+  examples), each with probability, resolution rule, named source and
+  resolve_by date. `tests/test_forecasts.py` now validates shipped rows
+  instead of requiring an empty log. No forecast is resolved; no calibration
+  is claimed; no modes, holdouts or published results change.
+
 - Add a composition rule for vertical specialist skills (for example, central-asia-caspian): this skill's memo mode and canonical output labels govern the memo structure, the vertical layers its mechanisms, evidence requirements and hard stops inside those sections, and confidence uses the shared Low / Moderate / High labels, with the vertical's ceilings narrowing, never raising, the level. Mirrored in `SKILL_RU.md` and `codex/SKILL.md`, with one cross-reference line in `docs/estimative-language.md`. Documentation-only; no mode, eval, holdout, or published-result change.
 
 - Add optional estimative-probability language, an empty forecast log with a

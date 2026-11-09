@@ -2,9 +2,10 @@
 
 A plain record of dated, resolvable judgments, so hit rates can be counted later.
 
-**Status: empty.** No forecast has been logged and no calibration is claimed.
-Entries must be real judgments from real memos. Do not add invented ones. Synthetic
-examples live only in `tests/test_forecasts.py` and are marked synthetic there.
+**Status: started 2026-11-09.** Six forecasts logged from real memos, none
+resolved yet; no calibration is claimed. Entries must be real judgments from real
+memos. Do not add invented ones. Synthetic examples live only in
+`tests/test_forecasts.py` and are marked synthetic there.
 
 Format and terms: [`docs/estimative-language.md`](../docs/estimative-language.md).
 
