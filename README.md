@@ -179,3 +179,6 @@ See [limits, formats and migration](docs/local-evidence.md).
 
 `gtta forecast-score log.csv` exposes the existing Brier scorer in the installed
 CLI. Manual add/resolve preserve old forecasts. [Ledger format and limits](forecasts/README.md).
+
+`gtta evidence-age memo.json --as-of YYYY-MM-DD` flags expired v2 facts and
+affected declared blocks using manual dates/TTLs. [Limits and boundary rules](docs/evidence-age.md).

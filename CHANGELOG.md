@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Explicit-date evidence-age report for v2 facts with manual dates/TTLs and affected declared blocks. No confidence decay or watcher.
+
 - Packaged existing Brier scorer; manual CSV ledger add/resolve with duplicate and overwrite protection. Existing real forecasts unchanged.
 
 - Deterministic ACH calculator for complete, user-supplied matrices; reports ties and unknown-cell coverage.

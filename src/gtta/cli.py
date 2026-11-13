@@ -591,5 +591,24 @@ def forecast_resolve_command(
     typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+@app.command(name="evidence-age")
+def evidence_age_command(
+    artifact: Path = typer.Argument(..., help="MemoArtifact v2 JSON path"),
+    as_of: str = typer.Option(..., help="Required YYYY-MM-DD assessment date"),
+):
+    """Report expired facts and affected declared blocks without source retrieval."""
+    from datetime import date
+    from .freshness import evidence_age
+
+    try:
+        result = evidence_age(
+            artifact.read_text(encoding="utf-8"), date.fromisoformat(as_of)
+        )
+    except (OSError, ValueError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(2)
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 if __name__ == "__main__":
     app()

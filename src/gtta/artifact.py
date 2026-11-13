@@ -325,10 +325,31 @@ class MemoArtifact(_ArtifactModel):
         return self
 
 
+class MemoClaimV2(MemoClaim):
+    evidence_as_of: date | None = None
+    valid_for_days: int | None = Field(default=None, ge=1, le=36500, strict=True)
+
+    @model_validator(mode="after")
+    def paired_freshness_fields(self):
+        if (self.evidence_as_of is None) != (self.valid_for_days is None):
+            raise ValueError(
+                "evidence_as_of and valid_for_days must be supplied together"
+            )
+        if self.evidence_as_of is not None:
+            from datetime import timedelta
+
+            try:
+                self.evidence_as_of + timedelta(days=self.valid_for_days)
+            except OverflowError as exc:
+                raise ValueError("expiry date exceeds the supported calendar") from exc
+        return self
+
+
 class MemoArtifactV2(MemoArtifact):
     """Explicit opt-in schema; v1 schema hashes and receipts stay unchanged."""
 
     schema_version: Literal["gtta.memo@2.0"]
+    claims: list[MemoClaimV2] = Field(default_factory=list)
     null_hypothesis: str | None = Field(default=None, min_length=15)
     reversal_conditions: list[ReversalCondition] = Field(default_factory=list)
 
@@ -560,6 +581,8 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
                 tags += "[verify]"
             if claim.stale_as_of:
                 tags += f"[stale-risk: {claim.stale_as_of.isoformat()}]"
+            if isinstance(claim, MemoClaimV2) and claim.evidence_as_of is not None:
+                tags += f"[evidence-as-of: {claim.evidence_as_of.isoformat()}][valid-for-days: {claim.valid_for_days}]"
             suffix = ""
             if claim.source_refs:
                 suffix = (

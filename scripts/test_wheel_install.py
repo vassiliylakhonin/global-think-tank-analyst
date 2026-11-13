@@ -56,6 +56,8 @@ from gtta.cli import app as cli_app
 result = CliRunner().invoke(cli_app, ['new', '--mode', 'G', '--topic', 'Probe'])
 assert result.exit_code == 0, result.output
 assert 'Competing Hypotheses' in result.output
+from gtta.freshness import evidence_age
+assert callable(evidence_age)
 from gtta.forecasts import score
 from gtta.ledger import add_forecast, resolve_forecast
 assert score([])["resolved"] == 0
