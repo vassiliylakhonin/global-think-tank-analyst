@@ -173,3 +173,6 @@ This project supports analysis and review. It does not provide legal clearance, 
 structured-reversal declarations. Add `--sources captures/sources.json` for local
 integrity and literal declared-quote checks. These are not factual verification.
 See [limits, formats and migration](docs/local-evidence.md).
+
+`gtta ach matrix.json` counts supplied inconsistencies in a complete ACH matrix.
+[Format and limits](docs/ach.md). No automatic evidence grading or probabilities.

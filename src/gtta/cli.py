@@ -498,5 +498,25 @@ def mcp_server():
     server_app.run(transport="stdio")
 
 
+@app.command(name="ach")
+def ach_command(
+    file_path: str = typer.Argument(..., help="ACH JSON path or '-' for stdin"),
+):
+    """Rank explicitly supplied hypotheses by counted inconsistencies, not probability."""
+    from .ach import rank_ach
+
+    try:
+        payload = (
+            sys.stdin.read()
+            if file_path == "-"
+            else Path(file_path).read_text(encoding="utf-8")
+        )
+        result = rank_ach(payload)
+    except (OSError, ValueError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(2)
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 if __name__ == "__main__":
     app()

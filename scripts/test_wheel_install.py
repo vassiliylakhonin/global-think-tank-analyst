@@ -56,6 +56,8 @@ from gtta.cli import app as cli_app
 result = CliRunner().invoke(cli_app, ['new', '--mode', 'G', '--topic', 'Probe'])
 assert result.exit_code == 0, result.output
 assert 'Competing Hypotheses' in result.output
+from gtta.ach import rank_ach
+assert callable(rank_ach)
 from gtta.harvest import harvest, load_snapshots
 from gtta.contract_v2 import ReversalCondition
 assert callable(harvest) and callable(load_snapshots)

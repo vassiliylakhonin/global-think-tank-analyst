@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Deterministic ACH calculator for complete, user-supplied matrices; reports ties and unknown-cell coverage.
+
 - Explicit HTTPS harvest with raw/text snapshots, UTC time and SHA-256.
 - Opt-in method-contract v2: source IDs, literal declared quotes, no-action baseline
   and typed reversal conditions; separate MemoArtifact v2, preserving v1 receipts.
