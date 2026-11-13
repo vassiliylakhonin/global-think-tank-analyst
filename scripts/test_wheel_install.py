@@ -56,6 +56,10 @@ from gtta.cli import app as cli_app
 result = CliRunner().invoke(cli_app, ['new', '--mode', 'G', '--topic', 'Probe'])
 assert result.exit_code == 0, result.output
 assert 'Competing Hypotheses' in result.output
+from gtta.forecasts import score
+from gtta.ledger import add_forecast, resolve_forecast
+assert score([])["resolved"] == 0
+assert callable(add_forecast) and callable(resolve_forecast)
 from gtta.ach import rank_ach
 assert callable(rank_ach)
 from gtta.harvest import harvest, load_snapshots

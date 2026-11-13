@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Packaged existing Brier scorer; manual CSV ledger add/resolve with duplicate and overwrite protection. Existing real forecasts unchanged.
+
 - Deterministic ACH calculator for complete, user-supplied matrices; reports ties and unknown-cell coverage.
 
 - Explicit HTTPS harvest with raw/text snapshots, UTC time and SHA-256.

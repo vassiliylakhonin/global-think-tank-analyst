@@ -176,3 +176,6 @@ See [limits, formats and migration](docs/local-evidence.md).
 
 `gtta ach matrix.json` counts supplied inconsistencies in a complete ACH matrix.
 [Format and limits](docs/ach.md). No automatic evidence grading or probabilities.
+
+`gtta forecast-score log.csv` exposes the existing Brier scorer in the installed
+CLI. Manual add/resolve preserve old forecasts. [Ledger format and limits](forecasts/README.md).

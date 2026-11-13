@@ -518,5 +518,78 @@ def ach_command(
     typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
 
 
+@app.command(name="forecast-score")
+def forecast_score_command(
+    ledger: Path = typer.Argument(..., help="Forecast CSV path"),
+    as_of: Optional[str] = typer.Option(
+        None, help="Explicit YYYY-MM-DD date; defaults to system date"
+    ),
+):
+    """Compute Brier score from manually resolved ledger entries."""
+    from datetime import date
+    from .forecasts import score, MIN_FOR_CALIBRATION
+    from .ledger import _validated_rows
+
+    try:
+        if not ledger.exists():
+            raise ValueError("ledger does not exist")
+        result = score(
+            _validated_rows(ledger),
+            date.fromisoformat(as_of) if as_of else date.today(),
+        )
+        result["calibration_claim_supported"] = False
+        result["limitations"] = (
+            "Descriptive Brier score only. Outcomes are manually supplied; no verification or predictive-skill claim."
+        )
+        if result["resolved"] < MIN_FOR_CALIBRATION:
+            result["warning"] = (
+                f"Fewer than {MIN_FOR_CALIBRATION} resolved entries; do not judge calibration."
+            )
+    except (OSError, ValueError, KeyError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(2)
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@app.command(name="forecast-add")
+def forecast_add_command(
+    entry: Path = typer.Argument(..., help="New unresolved forecast JSON"),
+    ledger: Path = typer.Option(..., help="CSV ledger to create or append"),
+):
+    """Add a caller-supplied forecast without overwriting past probabilities."""
+    from .ledger import add_forecast
+
+    try:
+        result = add_forecast(ledger, entry.read_text(encoding="utf-8"))
+    except (OSError, ValueError, KeyError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(2)
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@app.command(name="forecast-resolve")
+def forecast_resolve_command(
+    forecast_id: str = typer.Argument(...),
+    ledger: Path = typer.Option(...),
+    outcome: str = typer.Option(..., help="yes, no or void"),
+    resolved_on: str = typer.Option(..., help="Manual resolution date YYYY-MM-DD"),
+    source: str = typer.Option(
+        ..., help="Resolution source or explanation, recorded verbatim"
+    ),
+):
+    """Record a manually supplied outcome; never retrieves or judges the source."""
+    from datetime import date
+    from .ledger import resolve_forecast
+
+    try:
+        result = resolve_forecast(
+            ledger, forecast_id, outcome, date.fromisoformat(resolved_on), source
+        )
+    except (OSError, ValueError, KeyError) as exc:
+        typer.echo(f"Error: {exc}", err=True)
+        raise typer.Exit(2)
+    typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 if __name__ == "__main__":
     app()

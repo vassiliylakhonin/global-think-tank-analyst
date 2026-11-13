@@ -54,3 +54,30 @@ Run it when entries pass `resolve_by`, at least once a quarter:
 
 Brier score: mean of (probability - outcome)^2 with probability as a fraction and
 outcome 1 or 0. 0 is perfect; always saying 50% scores 0.25.
+
+## Installed CLI
+
+The original read-only scorer is now packaged; `python forecasts/score.py` remains
+compatible. No existing forecast or outcome was changed by this addition.
+
+```bash
+gtta forecast-score forecasts/log.csv --as-of 2026-11-13
+gtta forecast-add new-forecast.json --ledger my-log.csv
+gtta forecast-resolve f-0001 --ledger my-log.csv --outcome yes --resolved-on 2026-12-01 --source 'Named public source and resolution basis'
+```
+
+The add command requires a JSON object with `id`, `logged_on`, `claim`, integer
+`probability` (1-99), `resolve_by`, and `resolution_rule`. Optional fields match the
+CSV columns above. New rows must be unresolved. Duplicate IDs cannot overwrite
+old forecasts. Resolution requires a manually supplied yes/no/void, date and basis.
+Already resolved outcomes cannot be rewritten with this command. Use operator-owned
+files; lock directories and atomic replacement prevent ordinary concurrent writers,
+not deliberate filesystem tampering. A crashed writer can leave a `.lock` directory;
+check that no writer is active before removing it.
+
+The CLI never retrieves the named source or judges an outcome. Void and pending
+entries are excluded from Brier; overdue unresolved IDs are reported. Empty or
+unresolved-only ledgers have no Brier score, not a zero score. At least 30 resolved
+entries is only a cautionary minimum, not proof of calibration or predictive skill.
+The report always disclaims a calibration claim. Existing six entries remain
+pending; synthetic forecasts are only test fixtures.
