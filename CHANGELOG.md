@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Explicit HTTPS harvest with raw/text snapshots, UTC time and SHA-256.
+- Opt-in method-contract v2: source IDs, literal declared quotes, no-action baseline
+  and typed reversal conditions; separate MemoArtifact v2, preserving v1 receipts.
+- Bound optional Agenda compatibility below 1.25 after reproducing golden-case
+  failures on unchanged main; 1.9 and 1.24 integration tests pass.
+- No new factuality, calibration or analytical-quality claim. No daemon.
+
+## Unreleased
+
 - Log the first six real forecasts in `forecasts/log.csv`, bootstrapped from
   existing live-source-backed memos (this repo and central-asia-caspian
   examples), each with probability, resolution rule, named source and

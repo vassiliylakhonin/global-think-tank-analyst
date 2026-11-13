@@ -19,6 +19,11 @@ _RULES = {
     "GTTA008": "Mode output markers are present",
     "GTTA009": "Recommendations use observable triggers",
     "GTTA010": "Likely claims carry inline provenance",
+    "GTTA011": "No-action null hypothesis is declared",
+    "GTTA012": "Declared facts name inline source IDs",
+    "GTTA013": "Reversals contain typed fields",
+    "GTTA014": "Declared quotes occur literally in snapshots",
+    "GTTA015": "Local snapshot integrity and references pass",
 }
 
 _VERIFICATION_RULES: dict[str, tuple[str, str]] = {

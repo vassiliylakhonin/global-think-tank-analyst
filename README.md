@@ -165,3 +165,11 @@ This project supports analysis and review. It does not provide legal clearance, 
 ## License
 
 [MIT License](LICENSE).
+
+### Local capture and strict declarations
+
+`gtta harvest URL --out captures` saves a local snapshot with SHA-256 and a UTC timestamp.
+`gtta check-contract memo.md --strict` opts into v2 source-ID, null-hypothesis and
+structured-reversal declarations. Add `--sources captures/sources.json` for local
+integrity and literal declared-quote checks. These are not factual verification.
+See [limits, formats and migration](docs/local-evidence.md).

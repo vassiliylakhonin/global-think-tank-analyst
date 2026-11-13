@@ -45,7 +45,7 @@ async def get_mode_template(mode: str, language: str = "en") -> str:
 
 @app.tool()
 async def check_memo_contract(
-    draft: str, mode: str | None = None
+    draft: str, mode: str | None = None, strict: bool = False
 ) -> dict[str, object]:
     """Run the versioned method-contract preflight on a draft memo.
 
@@ -55,17 +55,17 @@ async def check_memo_contract(
     Args:
         draft: The markdown text of the draft memo.
     """
-    return check_contract(draft, mode=mode).to_dict()
+    return check_contract(draft, mode=mode, strict=strict).to_dict()
 
 
 @app.tool()
-async def get_memo_artifact_schema() -> dict[str, object]:
+async def get_memo_artifact_schema(strict: bool = False) -> dict[str, object]:
     """Return the canonical JSON Schema for a structured memo artifact."""
-    return load_memo_artifact_schema()
+    return load_memo_artifact_schema(strict=strict)
 
 
 @app.tool()
-async def check_memo_artifact(artifact: str) -> dict[str, object]:
+async def check_memo_artifact(artifact: str, strict: bool = False) -> dict[str, object]:
     """Validate MemoArtifact JSON, including per-claim provenance structure.
 
     This check validates declarations and cross-references, not the truth or
@@ -74,7 +74,7 @@ async def check_memo_artifact(artifact: str) -> dict[str, object]:
     Args:
         artifact: A complete MemoArtifact JSON object encoded as a string.
     """
-    return validate_memo_artifact(artifact).to_dict()
+    return validate_memo_artifact(artifact, strict=strict).to_dict()
 
 
 @app.tool()

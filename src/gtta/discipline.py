@@ -9,6 +9,7 @@ import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
+from pathlib import Path
 
 
 RULESET_VERSION = "gtta-method-contract@1.2.3"
@@ -99,7 +100,9 @@ class ContractReport:
                 f"{rule_id}={FINDING_LIMITS[rule_id]}"
                 for rule_id in self.truncated_rule_ids
             )
-            lines.append(f"- WARNING: findings truncated at configured limits: {limits}.")
+            lines.append(
+                f"- WARNING: findings truncated at configured limits: {limits}."
+            )
         lines.append(
             "Limit: no factuality or claim/source support verification was performed."
         )
@@ -155,7 +158,7 @@ def _line_number(text: str, position: int) -> int:
 
 def _is_quoted_rejection(line: str, phrase_position: int) -> bool:
     """Recognize a quoted generic-advice phrase that the line rejects."""
-    quote_pairs = (("\"", "\""), ("'", "'"), ("`", "`"), ("“", "”"))
+    quote_pairs = (('"', '"'), ("'", "'"), ("`", "`"), ("“", "”"))
     is_quoted = False
     for opening, closing in quote_pairs:
         opening_position = line.rfind(opening, 0, phrase_position + 1)
@@ -339,9 +342,7 @@ def _find_untagged_claims(text: str) -> tuple[list[Finding], bool]:
                     "GTTA010",
                     Severity.WARNING,
                     "Likely material claim lacks an inline Axis A provenance tag."
-                    + (
-                        f" Table column: {column + 1}." if is_table_row else ""
-                    ),
+                    + (f" Table column: {column + 1}." if is_table_row else ""),
                     line_number,
                 )
                 if len(findings) == FINDING_LIMITS["GTTA010"]:
@@ -350,7 +351,13 @@ def _find_untagged_claims(text: str) -> tuple[list[Finding], bool]:
     return findings, False
 
 
-def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
+def check_contract(
+    text: str,
+    mode: Optional[str] = None,
+    *,
+    strict: bool = False,
+    sources: Path | None = None,
+) -> ContractReport:
     """Check deterministic, observable parts of the analytical contract.
 
     Errors are limited to declarations the method requires unambiguously.
@@ -365,9 +372,7 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
     evidence_mode, evidence_line = _extract_evidence_mode(text)
 
     if not text.strip():
-        findings.append(
-            Finding("GTTA001", Severity.ERROR, "Memo text is empty.")
-        )
+        findings.append(Finding("GTTA001", Severity.ERROR, "Memo text is empty."))
     if evidence_mode is None:
         findings.append(
             Finding(
@@ -464,8 +469,15 @@ def check_contract(text: str, mode: Optional[str] = None) -> ContractReport:
         if claims_truncated:
             truncated_rule_ids.append("GTTA010")
 
+    if strict or sources is not None:
+        from .contract_v2 import strict_findings
+
+        findings.extend(strict_findings(text, normalized_mode, sources))
+
     return ContractReport(
-        ruleset_version=RULESET_VERSION,
+        ruleset_version="gtta-method-contract@2.0.0"
+        if strict or sources is not None
+        else RULESET_VERSION,
         mode=normalized_mode,
         evidence_mode=evidence_mode,
         findings=tuple(findings),

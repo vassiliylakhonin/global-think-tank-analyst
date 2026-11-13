@@ -56,9 +56,13 @@ from gtta.cli import app as cli_app
 result = CliRunner().invoke(cli_app, ['new', '--mode', 'G', '--topic', 'Probe'])
 assert result.exit_code == 0, result.output
 assert 'Competing Hypotheses' in result.output
+from gtta.harvest import harvest, load_snapshots
+from gtta.contract_v2 import ReversalCondition
+assert callable(harvest) and callable(load_snapshots)
 from gtta.discipline import check_contract
 valid_memo = 'Evidence mode: reasoning-only\\n[analyst-judgment] Draft.\\nModerate confidence.'
 assert check_contract(valid_memo).passed
+assert not check_contract(valid_memo, strict=True).passed
 checked = CliRunner().invoke(cli_app, ['check-contract', '-', '--json'], input=valid_memo)
 assert checked.exit_code == 0, checked.output
 sarif = CliRunner().invoke(cli_app, ['check-contract', '-', '--format', 'sarif'], input=valid_memo)

@@ -22,6 +22,9 @@ from pydantic import (
 )
 
 
+from .contract_v2 import ReversalCondition
+
+
 ARTIFACT_SCHEMA_VERSION = "gtta.memo@1.0"
 
 
@@ -106,9 +109,7 @@ class MemoClaim(_ArtifactModel):
             Provenance.USER_PROVIDED,
         }:
             if not self.source_refs:
-                raise ValueError(
-                    "source-backed claims require at least one source_ref"
-                )
+                raise ValueError("source-backed claims require at least one source_ref")
         return self
 
 
@@ -208,9 +209,7 @@ class MemoArtifact(_ArtifactModel):
         required_sections = set(MODE_SECTION_KEYS[self.mode])
         missing_sections = sorted(required_sections - self.sections.keys())
         if missing_sections:
-            raise ValueError(
-                "missing mode sections: " + ", ".join(missing_sections)
-            )
+            raise ValueError("missing mode sections: " + ", ".join(missing_sections))
 
         if self.mode in {MemoMode.B, MemoMode.E} and not self.options:
             raise ValueError(f"mode {self.mode.value} requires at least one option")
@@ -218,9 +217,7 @@ class MemoArtifact(_ArtifactModel):
             raise ValueError(f"mode {self.mode.value} requires at least one indicator")
         if self.mode in {MemoMode.B, MemoMode.E, MemoMode.G}:
             if not self.change_conditions:
-                raise ValueError(
-                    f"mode {self.mode.value} requires change_conditions"
-                )
+                raise ValueError(f"mode {self.mode.value} requires change_conditions")
 
         identifiers = [claim.claim_id for claim in self.claims]
         if len(identifiers) != len(set(identifiers)):
@@ -320,13 +317,20 @@ class MemoArtifact(_ArtifactModel):
                 )
         if self.evidence_mode is EvidenceMode.USER_PROVIDED:
             if not any(
-                claim.provenance is Provenance.USER_PROVIDED
-                for claim in self.claims
+                claim.provenance is Provenance.USER_PROVIDED for claim in self.claims
             ):
                 raise ValueError(
                     "user-provided sources artifacts require a user-provided claim"
                 )
         return self
+
+
+class MemoArtifactV2(MemoArtifact):
+    """Explicit opt-in schema; v1 schema hashes and receipts stay unchanged."""
+
+    schema_version: Literal["gtta.memo@2.0"]
+    null_hypothesis: str | None = Field(default=None, min_length=15)
+    reversal_conditions: list[ReversalCondition] = Field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -350,7 +354,9 @@ class ArtifactReport:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "schema_version": ARTIFACT_SCHEMA_VERSION,
+            "schema_version": self.artifact.schema_version
+            if self.artifact
+            else ARTIFACT_SCHEMA_VERSION,
             "scope": "memo-artifact-structure-only",
             "passed": self.passed,
             "findings": [finding.to_dict() for finding in self.findings],
@@ -363,7 +369,9 @@ class ArtifactReport:
         }
 
 
-def check_memo_artifact(payload: str | bytes | Mapping[str, Any]) -> ArtifactReport:
+def check_memo_artifact(
+    payload: str | bytes | Mapping[str, Any], *, strict: bool = False
+) -> ArtifactReport:
     """Parse and validate a memo artifact without raising on user input."""
     raw: Any = payload
     if isinstance(payload, (str, bytes)):
@@ -372,9 +380,7 @@ def check_memo_artifact(payload: str | bytes | Mapping[str, Any]) -> ArtifactRep
         except (json.JSONDecodeError, UnicodeDecodeError) as exc:
             return ArtifactReport(
                 artifact=None,
-                findings=(
-                    ArtifactFinding("ARTIFACT001", "$", f"Invalid JSON: {exc}"),
-                ),
+                findings=(ArtifactFinding("ARTIFACT001", "$", f"Invalid JSON: {exc}"),),
             )
     if not isinstance(raw, Mapping):
         return ArtifactReport(
@@ -384,7 +390,12 @@ def check_memo_artifact(payload: str | bytes | Mapping[str, Any]) -> ArtifactRep
             ),
         )
     try:
-        artifact = MemoArtifact.model_validate(raw)
+        artifact_class = (
+            MemoArtifactV2
+            if raw.get("schema_version") == "gtta.memo@2.0"
+            else MemoArtifact
+        )
+        artifact = artifact_class.model_validate(raw)
     except ValidationError as exc:
         findings = tuple(
             ArtifactFinding(
@@ -395,12 +406,51 @@ def check_memo_artifact(payload: str | bytes | Mapping[str, Any]) -> ArtifactRep
             for error in exc.errors(include_url=False)
         )
         return ArtifactReport(artifact=None, findings=findings)
+    if strict or isinstance(artifact, MemoArtifactV2):
+        from .contract_v2 import null_hypothesis_present
+        from .harvest import SOURCE_ID
+        import re
+
+        findings = []
+        if artifact.mode is not MemoMode.F and not null_hypothesis_present(
+            "Null hypothesis: " + (getattr(artifact, "null_hypothesis", None) or "")
+        ):
+            findings.append(
+                ArtifactFinding(
+                    "ARTIFACT004",
+                    "$.null_hypothesis",
+                    "Strict profile requires a populated no-action baseline.",
+                )
+            )
+        if artifact.mode in {MemoMode.B, MemoMode.E, MemoMode.G} and not getattr(
+            artifact, "reversal_conditions", []
+        ):
+            findings.append(
+                ArtifactFinding(
+                    "ARTIFACT004",
+                    "$.reversal_conditions",
+                    "Strict deeper memos require structured reversal conditions.",
+                )
+            )
+        for claim in artifact.claims:
+            if claim.kind is ClaimKind.FACT and any(
+                not re.fullmatch(SOURCE_ID, ref) for ref in claim.source_refs
+            ):
+                findings.append(
+                    ArtifactFinding(
+                        "ARTIFACT004",
+                        f"$.claims.{claim.claim_id}.source_refs",
+                        "Strict facts require SRC-XX source IDs.",
+                    )
+                )
+        if findings:
+            return ArtifactReport(artifact=None, findings=tuple(findings))
     return ArtifactReport(artifact=artifact, findings=())
 
 
-def get_memo_artifact_schema() -> dict[str, Any]:
+def get_memo_artifact_schema(*, strict: bool = False) -> dict[str, Any]:
     """Return the versioned JSON Schema for integrations and agent toolchains."""
-    return MemoArtifact.model_json_schema()
+    return (MemoArtifactV2 if strict else MemoArtifact).model_json_schema()
 
 
 _SECTION_TITLES = {
@@ -434,7 +484,19 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
         basis = ", ".join(block.claim_ids)
         prefix = f"{tags} " if tags else ""
         suffix = f" [basis: {basis}]" if basis else ""
-        return f"{prefix}{block.text}{suffix}"
+        refs = (
+            sorted(
+                {
+                    ref
+                    for claim_id in block.claim_ids
+                    for ref in claims_by_id[claim_id].source_refs
+                }
+            )
+            if isinstance(artifact, MemoArtifactV2)
+            else []
+        )
+        citations = "".join(f" [{ref}]" for ref in refs)
+        return f"{prefix}{block.text}{suffix}{citations}"
 
     def render_basis(claim_ids: list[str]) -> str:
         if not claim_ids:
@@ -443,7 +505,20 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
             {claims_by_id[claim_id].provenance.value for claim_id in claim_ids}
         )
         tags = "".join(f"[{provenance}]" for provenance in provenances)
-        return f" {tags} [basis: {', '.join(claim_ids)}]"
+        refs = (
+            sorted(
+                {
+                    ref
+                    for claim_id in claim_ids
+                    for ref in claims_by_id[claim_id].source_refs
+                }
+            )
+            if isinstance(artifact, MemoArtifactV2)
+            else []
+        )
+        return f" {tags} [basis: {', '.join(claim_ids)}]" + "".join(
+            f" [{ref}]" for ref in refs
+        )
 
     takeaway_heading = (
         "Executive takeaway"
@@ -487,7 +562,14 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
                 tags += f"[stale-risk: {claim.stale_as_of.isoformat()}]"
             suffix = ""
             if claim.source_refs:
-                suffix = " Sources: " + ", ".join(claim.source_refs) + "."
+                suffix = (
+                    " Sources: "
+                    + ", ".join(
+                        f"[{ref}]" if isinstance(artifact, MemoArtifactV2) else ref
+                        for ref in claim.source_refs
+                    )
+                    + "."
+                )
             lines.append(f"- `{claim.claim_id}` {tags} {claim.text}{suffix}")
 
     if artifact.options:
@@ -513,7 +595,9 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
                 f"{render_basis(indicator.basis_claim_ids)}"
             )
 
-    lines.extend(["", "## Confidence", "", f"**Confidence: {artifact.confidence.value}.**"])
+    lines.extend(
+        ["", "## Confidence", "", f"**Confidence: {artifact.confidence.value}.**"]
+    )
     if artifact.key_unknowns:
         lines.extend(["", "### Key unknowns", ""])
         lines.extend(f"- {item}" for item in artifact.key_unknowns)
@@ -521,6 +605,24 @@ def render_memo_artifact(artifact: MemoArtifact) -> str:
         lines.extend(["", "## What would change the judgment", ""])
         lines.extend(
             f"- **Change condition:** {item}" for item in artifact.change_conditions
+        )
+    if getattr(artifact, "null_hypothesis", None):
+        lines.extend(["", "Null hypothesis: " + artifact.null_hypothesis])
+    if getattr(artifact, "reversal_conditions", []):
+        lines.extend(
+            [
+                "",
+                "```gtta-reversals",
+                json.dumps(
+                    [
+                        item.model_dump(mode="json")
+                        for item in artifact.reversal_conditions
+                    ],
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+                "```",
+            ]
         )
     if artifact.limitations:
         lines.extend(["", "## Limitations", ""])

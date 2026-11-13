@@ -85,3 +85,8 @@ Counts for a truncated sample are lower bounds, not exact totals.
 
 The versioning and automated gate for the stable v1 interface are documented
 in [`contract-release-criteria.md`](contract-release-criteria.md).
+
+## Opt-in v2
+
+`--strict` or `--sources` selects the separate v2 profile. Existing v1 checks are
+unchanged. See [local capture and strict declarations](local-evidence.md).
