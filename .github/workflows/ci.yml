@@ -99,7 +99,9 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
-      - name: Install latest allowed verification dependency
-        run: pip install -e ".[test,verification]"
+      - name: Install GTTA with Agenda 1.26.0
+        run: pip install -e ".[test,verification]" "agenda-intelligence-md==1.26.0"
       - name: Exercise the supported composition interface
         run: pytest -q tests/test_verification_integration.py
+      - name: Build two-case review portfolio
+        run: python examples/cookbooks/flagship-portfolio/run.py

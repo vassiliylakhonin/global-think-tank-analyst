@@ -5,9 +5,11 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+from importlib.metadata import requires
 from pathlib import Path
 
 import pytest
+from packaging.requirements import Requirement
 
 from gtta.artifact import check_memo_artifact
 from gtta.review import (
@@ -22,9 +24,17 @@ ROOT = Path(__file__).resolve().parents[1]
 COOKBOOK = ROOT / "examples" / "cookbooks" / "secondary-sanctions"
 
 
+def test_verification_extra_admits_supported_agenda_and_excludes_regression():
+    requirements = map(Requirement, requires("global-think-tank-analyst") or [])
+    agenda = next(requirement for requirement in requirements if requirement.name == "agenda-intelligence-md")
+
+    assert all(version in agenda.specifier for version in ("1.9.0", "1.24.0", "1.26.0"))
+    assert "1.25.0" not in agenda.specifier
+
+
 def test_supported_agenda_checks_the_canonical_cookbook():
     agenda_intelligence = pytest.importorskip("agenda_intelligence")
-    # CI covers the minimum release and the latest allowed 1.x release.
+    # CI covers pinned versions at both ends of the supported range.
     assert agenda_intelligence.__version__.split(".")[0] == "1"
     artifact_report = check_memo_artifact(
         (COOKBOOK / "memo.json").read_text(encoding="utf-8")
@@ -81,7 +91,7 @@ def test_portable_verification_benchmark_passes(tmp_path: Path):
 
 def test_supported_agenda_builds_the_complete_review_bundle(tmp_path: Path):
     agenda_intelligence = pytest.importorskip("agenda_intelligence")
-    # CI covers the minimum release and the latest allowed 1.x release.
+    # CI covers pinned versions at both ends of the supported range.
     assert agenda_intelligence.__version__.split(".")[0] == "1"
 
     result = build_review_bundle(

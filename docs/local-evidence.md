@@ -97,8 +97,8 @@ tools.
 
 ## Agenda compatibility
 
-The optional verification dependency is constrained to `>=1.9.0,<1.25`.
-The canonical golden and negative-control integration tests pass with 1.9.0 and
-1.24.0. They fail with 1.25.0 even on the unchanged earlier GTTA tree, so support
-for that version is not claimed. The evidence-packet algorithm and fixtures are
-unchanged; do not weaken checks or reinterpret a failed golden case as success.
+The optional verification dependency is constrained to
+`>=1.9.0,<1.27,!=1.25.*`. CI runs the canonical integration checks and
+portfolio cookbook with pinned Agenda versions 1.9.0 and 1.26.0.
+The known 1.25.0 regression failed the golden and negative-control checks on
+the earlier GTTA tree. The 1.25 series is excluded from dependency resolution.
