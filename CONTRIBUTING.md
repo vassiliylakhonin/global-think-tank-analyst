@@ -38,7 +38,7 @@ repository checks and then smoke-tests a built wheel.
 
 **Unfamiliar with a term in `AGENTS.md`?** See the [portfolio glossary](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md) for shared evidence terminology. Maturity scores are repository-native: GTTA uses the `R/M/U` axes in [`docs/maturity-framework.md`](docs/maturity-framework.md), and sibling scores must not be transplanted.
 
-**When something is unclear**, the lookup order is: this repo's [`AGENTS.md`](AGENTS.md) → portfolio canon ([agenda-intelligence-md/AGENTS.md](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/AGENTS.md), vertical-skill AGENTS.md files) → open an issue using the template under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/).
+**When something is unclear**, the lookup order is: this repo's [`AGENTS.md`](AGENTS.md) → portfolio canon ([Agenda Intelligence glossary](https://github.com/vassiliylakhonin/agenda-intelligence-md/blob/main/docs/glossary.md), vertical-skill AGENTS.md files) → open an issue using the template under [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/).
 
 ---
 
