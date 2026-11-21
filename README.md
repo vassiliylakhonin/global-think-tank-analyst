@@ -1,6 +1,6 @@
 # Global Think Tank Analyst
 
-**Turn policy and geopolitical questions into evidence-aware decision memos.**
+**Turn policy and geopolitical questions into decision memos that separate facts, assumptions, and unknowns.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
@@ -11,6 +11,35 @@ A strategic-risk analysis skill for AI agents, with Python, CLI, and MCP support
 [Try the skill](#start-with-the-skill) · [Python / CLI](#use-the-toolkit) · [Worked examples](examples/README.md) · [Evaluation record](STATUS.md) · [Русский](SKILL_RU.md)
 
 Use it when a general AI answer is too difficult to audit: a market-entry decision, regulatory exposure, disrupted trade corridor, or competing policy scenarios. The method forces the model to separate facts, assumptions, scenarios, and uncertainty before making a recommendation.
+
+## See what the memo looks like
+
+You give it a decision and context:
+
+```text
+Decision: Expand, hold, or contract our Central Asia footprint over 12 months.
+Audience: Compliance lead and operating CEO.
+Evidence mode: reasoning-only.
+```
+
+The [worked example](examples/sanctions-exposure-memo.md) returns a memo that keeps these apart:
+
+- **Assumption:** Current sanctions architecture stays broadly stable for 12 months.
+- **Fact:** US secondary-sanctions risk attaches to non-US persons supporting designated entities.
+- **Assessment:** Banking partners, not the firm directly, are the main transmission channel for that risk.
+- **Unknown:** Enforcement posture. The memo names it as the dominant uncertainty and says what would change the judgment.
+
+The example is illustrative and reasoning-only: no live sources were checked, and it is not real intelligence. A reviewer can check the facts, challenge the assumptions, and see what is still unknown.
+
+## Where it fits
+
+| Step | Project | Role |
+| --- | --- | --- |
+| Think | **GTTA (this repo)** | Drafts the decision memo |
+| Check | [Agenda Intelligence MD](https://github.com/vassiliylakhonin/agenda-intelligence-md) | Deterministic checks on supplied evidence packets |
+| Authorize | [Vizier](https://github.com/vassiliylakhonin/vizier) | Authorizes agent actions before tools execute |
+
+GTTA does not verify facts or authorize actions. AI drafts; humans decide.
 
 Current status: experimental, `R3 / M3 / U0`. The repository has executable tooling and evaluated contracts, but there is no public practitioner validation or production-reliability claim. See [STATUS.md](STATUS.md) for the current maturity record.
 
