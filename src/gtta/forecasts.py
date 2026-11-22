@@ -2,6 +2,7 @@
 """Score the forecast log. Standard library only. Read-only."""
 
 import csv
+import math
 import sys
 from datetime import date
 from pathlib import Path
@@ -9,6 +10,10 @@ from pathlib import Path
 LOG = Path("forecasts/log.csv")
 MIN_FOR_CALIBRATION = 30
 BANDS = ((1, 5), (6, 20), (21, 45), (46, 55), (56, 80), (81, 95), (96, 99))
+# Decile bins: bin = p // 10, so 10% lands in the "10-20%" bin and the last
+# bin covers 90-100%. Kept next to the coarser BANDS, which are retained so
+# old output stays comparable.
+DECILES = tuple((i, i + 10) for i in range(0, 100, 10))
 
 
 def load(path):
@@ -48,12 +53,31 @@ def score(rows, today=None):
         result["brier"] = sum((p / 100 - o) ** 2 for p, o in resolved) / n
         result["base_rate"] = base
         result["brier_base_rate"] = sum((base - o) ** 2 for _, o in resolved) / n
+
+        def log_loss(probability, outcome):
+            return -(
+                outcome * math.log(probability)
+                + (1 - outcome) * math.log(1 - probability)
+            )
+
+        result["log_score"] = sum(log_loss(p / 100, o) for p, o in resolved) / n
+        # A base rate of exactly 0 or 1 has no finite log score (log 0).
+        # Reported as None rather than clipped to an invented probability.
+        result["log_base_rate"] = (
+            sum(log_loss(base, o) for _, o in resolved) / n if 0 < base < 1 else None
+        )
         bands = []
         for low, high in BANDS:
             hits = [o for p, o in resolved if low <= p <= high]
             if hits:
                 bands.append((f"{low}-{high}%", len(hits), sum(hits) / len(hits)))
         result["bands"] = bands
+        deciles = []
+        for low, high in DECILES:
+            hits = [o for p, o in resolved if low <= p < high]
+            if hits:
+                deciles.append((f"{low}-{high}%", len(hits), sum(hits) / len(hits)))
+        result["deciles"] = deciles
     return result
 
 
@@ -71,8 +95,19 @@ def main(argv):
         f"Base rate of YES: {result['base_rate']:.0%}; "
         f"Brier of always forecasting it: {result['brier_base_rate']:.3f}"
     )
+    print(
+        f"Log score: {result['log_score']:.3f} (lower is better; punishes "
+        f"confident misses harder than Brier)"
+    )
+    if result["log_base_rate"] is not None:
+        print(f"Log score of always forecasting the base rate: {result['log_base_rate']:.3f}")
+    else:
+        print("Log score of the base rate: undefined (all resolved outcomes are the same)")
     print("band      n  observed YES")
     for name, n, rate in result["bands"]:
+        print(f"{name:8} {n:3}  {rate:.0%}")
+    print("decile    n  observed YES")
+    for name, n, rate in result["deciles"]:
         print(f"{name:8} {n:3}  {rate:.0%}")
     if result["resolved"] < MIN_FOR_CALIBRATION:
         print(

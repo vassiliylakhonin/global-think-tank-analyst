@@ -48,6 +48,23 @@ class ForecastScoreTests(unittest.TestCase):
         result = score.score([row("a", 60, "", "2025-01-01")], date(2026, 1, 1))
         self.assertEqual(result["overdue"], ["a"])
 
+    def test_log_score_synthetic(self):
+        import math
+
+        result = score.score([row("a", 80, "yes"), row("b", 80, "no")], date(2026, 1, 1))
+        self.assertAlmostEqual(result["log_score"], (-math.log(0.8) - math.log(0.2)) / 2)
+        self.assertAlmostEqual(result["log_base_rate"], -math.log(0.5))
+
+    def test_decile_bins(self):
+        result = score.score(
+            [row("a", 5, "no"), row("b", 15, "yes"), row("c", 95, "yes")],
+            date(2026, 1, 1),
+        )
+        self.assertEqual(
+            result["deciles"],
+            [("0-10%", 1, 0.0), ("10-20%", 1, 1.0), ("90-100%", 1, 1.0)],
+        )
+
     def test_rejects_bad_probability_and_outcome(self):
         with self.assertRaises(ValueError):
             score.score([row("a", 100, "yes")])

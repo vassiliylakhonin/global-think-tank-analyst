@@ -33,9 +33,16 @@ Vague claims ("tension will rise") are not loggable. Rewrite them or leave them 
 | outcome | Empty until resolved, then `yes` or `no` (or `void` if the question became unresolvable) |
 | resolved_on | Date resolved |
 | notes | Optional |
+| scoring_rule | Which scoring rule(s) the forecast is judged by: `brier`, `log` or `brier+log` (optional, but fixed at logging) |
 
-Never edit `claim`, `probability` or `resolve_by` after logging. If you change your
-mind, add a new row. Editing the past destroys the record.
+Never edit `claim`, `probability`, `resolve_by` or `scoring_rule` after logging. If
+you change your mind, add a new row. Editing the past destroys the record. Fix the
+scoring rule before the outcome is known: different proper scoring rules can rank the
+same forecaster differently (arXiv:2608.28482, a study of LLM forecasters under RL
+training - the metric-choice lesson transfers, the training results do not), so picking
+the rule after resolution would let the record be flattered retroactively. Rows logged
+before this column existed (2026-11-09) carry it empty; the ritual at that time was
+Brier-only.
 
 ## Scoring ritual
 
@@ -43,10 +50,14 @@ Run it when entries pass `resolve_by`, at least once a quarter:
 
 1. Resolve due entries from the named source. Fill `outcome` and `resolved_on`.
    Mark `void` rather than guessing.
-2. Run `python forecasts/score.py`. It prints counts, Brier score, and a hit
-   table by probability band, and flags entries past `resolve_by` that are unresolved.
-3. Compare with the **base rate**: the Brier score of always forecasting the
-   observed share of YES outcomes. A score is only interesting if it beats that.
+2. Run `python forecasts/score.py`. It prints counts, Brier score and log score,
+   a hit table by probability band and one by decile, and flags entries past
+   `resolve_by` that are unresolved.
+3. Compare with the **base rate**: the score of always forecasting the observed
+   share of YES outcomes, reported for both rules. A score is only interesting if
+   it beats that. Log score punishes confident misses harder than Brier; if the two
+   rules disagree about whether the log beats the base rate, say so rather than
+   picking the flattering one.
 4. Do not read calibration from fewer than about 30 resolved entries. The script
    prints a warning below that. Below it, treat results as anecdotes.
 5. Write what you learned (where you were over- or underconfident) in a short note,
@@ -54,6 +65,10 @@ Run it when entries pass `resolve_by`, at least once a quarter:
 
 Brier score: mean of (probability - outcome)^2 with probability as a fraction and
 outcome 1 or 0. 0 is perfect; always saying 50% scores 0.25.
+
+Log score: mean of -(outcome * ln p + (1 - outcome) * ln(1 - p)). 0 is perfect;
+always saying 50% scores about 0.693. It is unbounded, so a single confident miss
+moves it a lot - that is the point of reporting it next to Brier.
 
 ## Installed CLI
 

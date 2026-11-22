@@ -26,6 +26,7 @@ COLUMNS = [
     "outcome",
     "resolved_on",
     "notes",
+    "scoring_rule",
 ]
 
 
@@ -42,6 +43,11 @@ class ForecastEntry(BaseModel):
     outcome: Literal["", "yes", "no", "void"] = ""
     resolved_on: date | None = None
     notes: str = ""
+    # Which proper scoring rule(s) the forecast will be judged by. Fixed at
+    # logging, before resolution - different proper rules can rank the same
+    # forecaster differently (arXiv:2608.28482), so the rule is part of the
+    # immutable record, not chosen after the outcome is known.
+    scoring_rule: Literal["", "brier", "log", "brier+log"] = ""
 
     @model_validator(mode="after")
     def dates_and_outcome(self):

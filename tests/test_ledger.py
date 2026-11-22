@@ -36,6 +36,16 @@ def test_add_resolve_score_and_immutability(tmp_path):
     assert "Synthetic source" in load(path)[0]["notes"]
 
 
+def test_scoring_rule_recorded_and_immutable(tmp_path):
+    path = tmp_path / "log.csv"
+    add_forecast(path, {**entry(), "scoring_rule": "brier+log"})
+    assert load(path)[0]["scoring_rule"] == "brier+log"
+    resolve_forecast(path, "F1", "yes", date(2026, 12, 1), "Synthetic source")
+    assert load(path)[0]["scoring_rule"] == "brier+log"
+    with pytest.raises(ValueError):
+        add_forecast(path, {**entry(i="F2"), "scoring_rule": "whichever wins"})
+
+
 @pytest.mark.parametrize(
     "patch",
     [

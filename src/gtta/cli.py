@@ -525,7 +525,7 @@ def forecast_score_command(
         None, help="Explicit YYYY-MM-DD date; defaults to system date"
     ),
 ):
-    """Compute Brier score from manually resolved ledger entries."""
+    """Compute Brier and log scores from manually resolved ledger entries."""
     from datetime import date
     from .forecasts import score, MIN_FOR_CALIBRATION
     from .ledger import _validated_rows
@@ -539,7 +539,7 @@ def forecast_score_command(
         )
         result["calibration_claim_supported"] = False
         result["limitations"] = (
-            "Descriptive Brier score only. Outcomes are manually supplied; no verification or predictive-skill claim."
+            "Descriptive Brier and log scores only. Outcomes are manually supplied; no verification or predictive-skill claim."
         )
         if result["resolved"] < MIN_FOR_CALIBRATION:
             result["warning"] = (

@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Forecast scoring now reports the log score next to the Brier score (with
+  base-rate comparisons for both) and a decile-bin hit table next to the
+  coarser bands, and the ledger accepts an optional `scoring_rule` column
+  (`brier`, `log` or `brier+log`) fixed at logging, before resolution.
+  Different proper scoring rules can rank the same forecaster differently,
+  so the rule is part of the immutable record. Basis: arXiv:2608.28482, a
+  study of LLM forecasters under RL training - only the metric-choice lesson
+  transfers to a manual journal, not the training results. The six existing
+  forecasts predate the column and carry it empty; no existing forecast,
+  outcome or score was changed.
+
+
 - Explicit-date evidence-age report for v2 facts with manual dates/TTLs and affected declared blocks. No confidence decay or watcher.
 
 - Packaged existing Brier scorer; manual CSV ledger add/resolve with duplicate and overwrite protection. Existing real forecasts unchanged.
