@@ -1,0 +1,190 @@
+{
+  "topic": "Central Asia fintech routing risk case packet",
+  "evidence_mode": "source_backed_public_demo",
+  "retrieved_at": "2026-05-14T00:00:00Z",
+  "jurisdiction": "Kazakhstan, Uzbekistan, Caspian routes, UAE-linked trade exposure; sanctions and AML implications for a European fintech",
+  "claims": [
+    {
+      "claim": "Foreign financial institutions and third-country actors can face sanctions risk when supporting Russia's war economy, military-industrial base, alternative payment mechanisms, or sanctions-evasion schemes.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "U.S. Department of the Treasury - As Russia Completes Transition to a Full War Economy, Treasury Takes Sweeping Aim at Foundational Financial Infrastructure and Access to Third Country Support",
+          "url": "https://home.treasury.gov/news/press-releases/jy2404",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Foreign-financial-institution exposure framing",
+            "Third-country support and Russia war-economy risk pattern",
+            "Risk relevance of foundational financial infrastructure"
+          ],
+          "limits": [
+            "Does not assess any customer, bank, counterparty, transaction, route, or goods shipment in this case packet",
+            "Operational use requires current sanctions-list checks and qualified review"
+          ]
+        },
+        {
+          "name": "U.S. Department of the Treasury - Treasury Disrupts Russia's Sanctions Evasion Schemes",
+          "url": "https://home.treasury.gov/news/press-releases/jy2785",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Russia sanctions-evasion scheme framing",
+            "Regional financial-node relevance when tied to evasion activity"
+          ],
+          "limits": [
+            "Does not establish that any prospective fintech customer is illicit",
+            "The packet does not perform sanctions screening"
+          ]
+        }
+      ]
+    },
+    {
+      "claim": "Payment connectivity and Russia-linked financial messaging can be a specific risk channel for foreign financial institutions.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "U.S. Department of the Treasury - Treasury Sanctions Gazprombank and Takes Additional Steps to Curtail Russia's Use of the International Financial System",
+          "url": "https://home.treasury.gov/news/press-releases/jy2725",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Gazprombank action",
+            "Payment-system and financial-connectivity risk framing",
+            "SPFS-related risk channel"
+          ],
+          "limits": [
+            "Does not evaluate this fictional fintech's actual payment rails",
+            "Bank-specific exposure requires current operational data"
+          ]
+        }
+      ]
+    },
+    {
+      "claim": "Caspian / Middle Corridor routing is commercially legitimate and strategically important, but route growth can increase review burden when goods, counterparties, end-users, or route changes are poorly explained.",
+      "support_status": "partially_supported",
+      "sources": [
+        {
+          "name": "World Bank - Middle Corridor through Central Asia, Caucasus Can Boost Trade, Connectivity and Supply Chain Resilience",
+          "url": "https://www.worldbank.org/en/news/press-release/2023/11/27/middle-corridor-through-central-asia-caucasus-can-boost-trade-connectivity-and-supply-chain-resilience",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Middle Corridor / Trans-Caspian connectivity context",
+            "Commercial and supply-chain resilience rationale"
+          ],
+          "limits": [
+            "Supports corridor legitimacy and growth context, not transaction-level sanctions or AML risk",
+            "Review-burden implication is analyst inference"
+          ]
+        },
+        {
+          "name": "World Bank - World Bank Support to Enhance Rail Connectivity and Logistics in Kazakhstan",
+          "url": "https://www.worldbank.org/en/news/press-release/2026/02/19/world-bank-support-to-enhance-rail-connectivity-and-logistics-in-kazakhstan",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Kazakhstan rail and logistics connectivity context",
+            "Strategic corridor-development relevance"
+          ],
+          "limits": [
+            "Does not establish suspicious activity",
+            "Does not assess specific routes, shippers, vessels, banks, or customers"
+          ]
+        }
+      ]
+    },
+    {
+      "claim": "Kazakhstan and Uzbekistan AML/CFT evaluation context is relevant to fintech onboarding design.",
+      "support_status": "supported",
+      "sources": [
+        {
+          "name": "FATF - Kazakhstan's measures to combat money laundering and terrorist financing",
+          "url": "https://www.fatf-gafi.org/en/publications/Mutualevaluations/Kazakhstan-MER-2023.html",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "AML/CFT mutual-evaluation context for Kazakhstan",
+            "Relevance of AML/CFT controls and effectiveness context"
+          ],
+          "limits": [
+            "Does not establish onboarding risk for a specific Kazakh customer",
+            "Does not replace customer-level due diligence"
+          ]
+        },
+        {
+          "name": "Central Bank of Uzbekistan - EAG and the Mutual Evaluation of Uzbekistan",
+          "url": "https://cbu.uz/en/combating-money-laundering/aml-cft/eag/",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "Uzbekistan AML/CFT mutual-evaluation context",
+            "EAG process relevance"
+          ],
+          "limits": [
+            "Does not establish onboarding risk for a specific Uzbek customer",
+            "Does not replace transaction monitoring or legal review"
+          ]
+        }
+      ]
+    },
+    {
+      "claim": "UAE-linked counterparties are not inherently high risk, but hub intermediation can raise review burden when combined with sensitive goods, opaque ownership, Russia/Iran adjacency, or weak commercial rationale.",
+      "support_status": "partially_supported",
+      "sources": [
+        {
+          "name": "FATF - Jurisdictions under Increased Monitoring, 23 February 2024",
+          "url": "https://www.fatf-gafi.org/en/publications/High-risk-and-other-monitored-jurisdictions/Increased-monitoring-february-2024.html",
+          "source_type": "official",
+          "freshness": "retrieved_2026-05-14",
+          "supports": [
+            "UAE was no longer subject to increased monitoring as of the FATF update",
+            "Areas previously requiring action included legal-person abuse, FIU capacity, ML investigations, and targeted financial sanctions implementation"
+          ],
+          "limits": [
+            "Does not assess any UAE-linked counterparty in this fictional scenario",
+            "Intermediation risk framing is analyst inference from hub exposure and sanctions/AML context"
+          ]
+        }
+      ]
+    },
+    {
+      "claim": "The recommended posture is conditional expansion with segment-level enhanced due diligence rather than unrestricted launch.",
+      "support_status": "assessment",
+      "sources": [],
+      "basis": [
+        "Synthesizes the supported and partially supported claims above",
+        "Depends on assumptions about incomplete UBO records, goods-classification uncertainty, Caspian-connected routes, UAE-linked counterparties, and payment-rail sensitivity"
+      ],
+      "limits": [
+        "Not externally validated",
+        "Not legal, compliance, sanctions, AML, investment, or operational advice",
+        "Could change materially with real customer data and qualified review"
+      ]
+    }
+  ],
+  "unsupported_claims": [
+    "Any conclusion about a real customer, counterparty, bank, payment provider, route, vessel, owner, or transaction",
+    "Any claim that the fictional fintech's proposed onboarding portfolio is compliant or non-compliant",
+    "Any claim that a named party should be approved, rejected, blocked, or reported"
+  ],
+  "source_plan": [
+    "Current OFAC, EU, UK, UN, and relevant national sanctions-list checks",
+    "Current export-control list checks for actual goods categories and HS codes",
+    "Customer KYC and UBO records",
+    "Transaction and payment-rail history",
+    "Correspondent-bank feedback and risk appetite documentation",
+    "Route, vessel, logistics-provider, and end-user documentation",
+    "Qualified sanctions, AML, export-control, and legal review"
+  ],
+  "required_but_missing_sources": [
+    "Customer files",
+    "Transaction records",
+    "UBO records",
+    "Sanctions-screening results",
+    "Payment-rail data",
+    "Vessel / AIS data where relevant",
+    "Bank correspondence",
+    "Legal or compliance reviewer assessment"
+  ]
+}

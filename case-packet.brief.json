@@ -1,0 +1,66 @@
+{
+  "bottom_line": "Do not approve unrestricted Central Asia SME-exporter onboarding. Approve conditional expansion with segment-level enhanced due diligence where SME opacity, sanctions-adjacent goods, Caspian routing, UAE-linked counterparties, and sensitive payment rails overlap.",
+  "signal_classification": "case_packet_projection",
+  "what_changed": "The markdown case packet has been projected into a machine-readable Agenda Intelligence MD-style brief so the decision, evidence mode, assumptions, scenarios, watchlist, and confidence boundaries can be audited separately from prose.",
+  "why_it_matters": "The source-backed memo is easier to review when the core decision logic is available as structured data. This does not make the case externally validated, but it makes the workflow more inspectable and closer to validation infrastructure.",
+  "affected_actors": [
+    "European fintech risk leadership",
+    "SME exporters in Kazakhstan and Uzbekistan",
+    "Correspondent banks and payment providers",
+    "Caspian / Middle Corridor logistics counterparties",
+    "UAE-linked trading counterparties",
+    "Sanctions, AML, and onboarding review teams"
+  ],
+  "main_uncertainty": "Whether real customer files, transaction history, UBO records, goods-classification evidence, payment-rail data, route rationale, and correspondent-bank feedback confirm or reduce the structural risk pattern.",
+  "scenarios": [
+    {
+      "name": "Controlled expansion",
+      "description": "Customer data, goods descriptions, route rationale, UBO evidence, and payment-rail exposure are complete enough to support lower-risk segment onboarding.",
+      "indicators": [
+        "Complete UBO records before onboarding",
+        "Commercial route rationale documented",
+        "Goods descriptions and HS codes reviewed",
+        "No correspondent-bank objections"
+      ]
+    },
+    {
+      "name": "Segment restriction",
+      "description": "High-risk goods, incomplete UBO records, unexplained route changes, or opaque UAE-linked counterparties appear repeatedly in proposed onboarding segments.",
+      "indicators": [
+        "Repeated incomplete ownership records",
+        "Repeated route or counterparty anomalies",
+        "Ambiguous goods classifications",
+        "Customer concentration in a narrow counterparty set"
+      ]
+    },
+    {
+      "name": "Correspondent-bank pressure",
+      "description": "Banking or payment partners ask for additional explanations, reject flows, or tighten their risk appetite below the fintech's planned operating model.",
+      "indicators": [
+        "EDD letters from correspondent banks",
+        "Payment rejection or delay patterns",
+        "New bank partner conditions on route or goods exposure"
+      ]
+    },
+    {
+      "name": "Enforcement shock",
+      "description": "A new sanctions, export-control, or AML action names a relevant bank, intermediary type, commodity, route, payment mechanism, or regional financial node.",
+      "indicators": [
+        "New OFAC, EU, UK, UN, or national designations",
+        "New Treasury warning on foreign financial institutions or SPFS",
+        "New export-control action affecting customer goods categories"
+      ]
+    }
+  ],
+  "watch_next": [
+    "New OFAC, EU, UK, UN, or national designations involving regional banks, logistics companies, trading houses, payment providers, or intermediaries",
+    "OFAC or Treasury updates on foreign-financial-institution exposure, SPFS, or Russia military-industrial-base support",
+    "BIS or EU export-control updates affecting goods categories used by SME exporters",
+    "FATF, EAG, or national AML updates changing risk posture for relevant jurisdictions",
+    "Correspondent-bank requests for route, counterparty, goods, or payment-rail explanations",
+    "Customer concentration in a narrow set of UAE-linked counterparties",
+    "Increase in route changes without commercial explanation"
+  ],
+  "evidence_mode": "source_backed_public_demo",
+  "confidence": "medium_for_structural_mechanism_low_for_real_party_conclusions"
+}
